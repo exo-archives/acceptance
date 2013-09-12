@@ -1,0 +1,3 @@
+#{decorate path="main.gtmpl"/}
+#{title value="Deployments list"/}
+
