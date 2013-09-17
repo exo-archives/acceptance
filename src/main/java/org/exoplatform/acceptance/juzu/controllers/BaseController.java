@@ -51,7 +51,7 @@ public abstract class BaseController {
   }
 
   protected void render(Template.Builder builder) {
-    builder.render();
+    builder.ok();
   }
 
   protected Response.Content makeResponse(Template template) {
