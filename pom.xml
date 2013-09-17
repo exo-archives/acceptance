@@ -63,7 +63,7 @@
     <spring.data.mongo.version>1.2.3.RELEASE</spring.data.mongo.version>
     <spring.data.version>1.5.2.RELEASE</spring.data.version>
     <spring.security.version>3.1.4.RELEASE</spring.security.version>
-    <spring.version>3.1.4.RELEASE</spring.version>
+    <spring.version>3.2.4.RELEASE</spring.version>
     <tomcat.version>7.0.42</tomcat.version>
     <!-- ************** -->
     <!-- Build settings -->
