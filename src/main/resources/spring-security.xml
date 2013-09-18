@@ -20,24 +20,24 @@
 
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:security="http://www.springframework.org/schema/security"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
   <!-- Import the Crowd Client Spring configuration provided with the client lib -->
   <import resource="classpath:/applicationContext-CrowdClient.xml" />
 
   <!-- no security for assets (js/css/img)-->
-  <security:http pattern='/assets/**/*.css' security='none'/>
-  <security:http pattern='/assets/**/*.js' security='none'/>
-  <security:http pattern='/assets/**/*.png' security='none'/>
-  <security:http pattern='/assets/**/*.gif' security='none'/>
-  <security:http pattern='/assets/**/*.jpg' security='none'/>
-  <security:http pattern='/assets/**/*.ico' security='none'/>
-  <security:http pattern='/favicon.ico' security='none'/>
+  <security:http pattern='/assets/**/*.css' security='none' />
+  <security:http pattern='/assets/**/*.js' security='none' />
+  <security:http pattern='/assets/**/*.png' security='none' />
+  <security:http pattern='/assets/**/*.gif' security='none' />
+  <security:http pattern='/assets/**/*.jpg' security='none' />
+  <security:http pattern='/assets/**/*.ico' security='none' />
+  <security:http pattern='/favicon.ico' security='none' />
   <!-- no security on the signin page or we can't even login -->
-  <security:http pattern='/signin' security='none'/>
+  <security:http pattern='/signin' security='none' />
 
   <security:http auto-config="true" authentication-manager-ref="authenticationManager">
     <security:intercept-url pattern="/" access="ROLE_acceptance-users" />
@@ -62,15 +62,15 @@
 
   <!-- CROWD configuration -->
   <bean id="crowdAuthenticationProvider" class="com.atlassian.crowd.integration.springsecurity.RemoteCrowdAuthenticationProvider">
-    <constructor-arg ref="crowdAuthenticationManager"/>
-    <constructor-arg ref="httpAuthenticator"/>
-    <constructor-arg ref="crowdUserDetailsService"/>
+    <constructor-arg ref="crowdAuthenticationManager" />
+    <constructor-arg ref="httpAuthenticator" />
+    <constructor-arg ref="crowdUserDetailsService" />
   </bean>
   <bean id="crowdUserDetailsService" class="com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsServiceImpl">
-    <property name="authenticationManager" ref="crowdAuthenticationManager"/>
-    <property name="groupMembershipManager" ref="crowdGroupMembershipManager"/>
-    <property name="userManager" ref="crowdUserManager"/>
-    <property name="authorityPrefix" value="ROLE_"/>
+    <property name="authenticationManager" ref="crowdAuthenticationManager" />
+    <property name="groupMembershipManager" ref="crowdGroupMembershipManager" />
+    <property name="userManager" ref="crowdUserManager" />
+    <property name="authorityPrefix" value="ROLE_" />
   </bean>
 
 </beans>

@@ -19,8 +19,6 @@
 package org.exoplatform.acceptance.repositories;
 
 import org.exoplatform.acceptance.model.Software;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

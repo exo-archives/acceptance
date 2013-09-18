@@ -29,7 +29,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "deployment")
 @TypeAlias("Deployment")
 public class Deployment {
-  @Getter @Setter
+  @Getter
+  @Setter
   private Software software;
   //private JVM jvm;
   //private OS os;
