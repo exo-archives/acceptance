@@ -26,12 +26,8 @@ import juzu.Response;
 import juzu.Route;
 import juzu.View;
 import juzu.template.Template;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Administration extends BaseController {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Administration.class);
 
   @Inject
   private CrowdUserDetailsService userDetailsService;

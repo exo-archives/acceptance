@@ -24,15 +24,11 @@ import juzu.Response;
 import juzu.template.Template;
 import lombok.Getter;
 import org.exoplatform.acceptance.juzu.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  */
 public abstract class BaseController {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
   @Named("user")
   @Inject
