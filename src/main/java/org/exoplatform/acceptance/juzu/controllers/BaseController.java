@@ -22,6 +22,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.Response;
 import juzu.template.Template;
+import lombok.Getter;
 import org.exoplatform.acceptance.juzu.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,16 +36,8 @@ public abstract class BaseController {
 
   @Named("user")
   @Inject
+  @Getter
   private User user;
-
-  /**
-   * The current user
-   *
-   * @return user
-   */
-  public User getUser() {
-    return user;
-  }
 
   protected void render(Template template) {
     this.render(template.with());

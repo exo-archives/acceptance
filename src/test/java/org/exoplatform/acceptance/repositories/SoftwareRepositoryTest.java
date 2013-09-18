@@ -55,13 +55,13 @@ public class SoftwareRepositoryTest {
   }
 
   @Test
-  public void create () {
+  public void create() {
     Software software = new Software();
     software.setName("my software");
 
     Software saveSoftware = softwareRepository.save(software);
 
-    Assert.assertNotNull("The software ID should not be null", software.getId());
+    Assert.assertNotNull("The software ID should not be null", saveSoftware.getId());
 
     Assert.assertEquals("We should have exactly 1 Software", 1, softwareRepository.count());
   }

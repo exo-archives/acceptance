@@ -23,6 +23,8 @@ import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsServi
 import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.SessionScoped;
+import lombok.Delegate;
+import lombok.Getter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -37,28 +39,9 @@ public class User {
   @Named("crowdUserDetailsService")
   private CrowdUserDetailsService userDetailsService;
 
-  private CrowdUserDetails userDetails;
-
-  public String getUsername() {
-    return getUserDetails().getUsername();
-  }
-
-  public String getFirstName() {
-    return getUserDetails().getFirstName();
-  }
-
-  public String getLastName() {
-    return getUserDetails().getLastName();
-  }
-
-  public String getEmail() {
-    return getUserDetails().getEmail();
-  }
-
-  public String getFullName() {
-
-    return getUserDetails().getFullName();
-  }
+  @Getter(lazy = true)
+  @Delegate
+  private final CrowdUserDetails userDetails = loadUserDetails();
 
   public boolean isAuthenticated() {
     try {
@@ -68,11 +51,7 @@ public class User {
     }
   }
 
-  private CrowdUserDetails getUserDetails() {
-    if (userDetails != null) {
-      return userDetails;
-    }
-
+  private CrowdUserDetails loadUserDetails() {
     Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     String username;
     if (principal instanceof UserDetails) {
@@ -82,8 +61,6 @@ public class User {
     } else {
       username = principal.toString();
     }
-    userDetails = userDetailsService.loadUserByUsername(username);
-
-    return userDetails;
+    return userDetailsService.loadUserByUsername(username);
   }
 }

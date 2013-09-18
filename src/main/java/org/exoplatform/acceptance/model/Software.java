@@ -18,6 +18,8 @@
  */
 package org.exoplatform.acceptance.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,19 +32,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Software {
 
   @Id
+  @Getter
   private String id;
 
+  @Getter
+  @Setter
   private String name;
 
-  public String getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 }

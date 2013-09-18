@@ -18,6 +18,8 @@
  */
 package org.exoplatform.acceptance.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,6 +29,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "deployment")
 @TypeAlias("Deployment")
 public class Deployment {
+  @Getter @Setter
   private Software software;
   //private JVM jvm;
   //private OS os;
