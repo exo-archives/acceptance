@@ -48,6 +48,7 @@
     <embedmongo-spring.version>1.1</embedmongo-spring.version>
     <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
     <jackson2.version>2.2.2</jackson2.version>
+    <jansi.version>1.9</jansi.version>
     <javax.annotation.version>1.0</javax.annotation.version>
     <javax.inject.version>1</javax.inject.version>
     <javax.mail.version>1.4.2</javax.mail.version>
@@ -77,14 +78,6 @@
   </properties>
   <dependencyManagement>
     <dependencies>
-      <!-- **************************************** -->
-      <!-- Tomcat Dependencies -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.apache.tomcat</groupId>
-        <artifactId>tomcat-catalina-jmx-remote</artifactId>
-        <version>${tomcat.version}</version>
-      </dependency>
       <!-- **************************************** -->
       <!-- Spring Framework -->
       <!-- **************************************** -->
@@ -315,7 +308,7 @@
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
+        <artifactId>slf4j-ext</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
@@ -343,6 +336,12 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-core</artifactId>
         <version>${logback.version}</version>
+      </dependency>
+      <!-- Required by logback for colorized console on windows -->
+      <dependency>
+        <groupId>org.fusesource.jansi</groupId>
+        <artifactId>jansi</artifactId>
+        <version>${jansi.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Lombok -->
@@ -468,6 +467,10 @@
           <artifactId>commons-logging</artifactId>
           <groupId>commons-logging</groupId>
         </exclusion>
+        <exclusion>
+          <artifactId>log4j</artifactId>
+          <groupId>log4j</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -515,8 +518,15 @@
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <scope>test</scope>
+      <artifactId>jcl-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
     </dependency>
     <!-- **************************************** -->
     <!-- Lombok -->
@@ -539,73 +549,122 @@
       <artifactId>spring-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Use logback for tests outputs -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- Required by logback for colorized console on windows -->
+    <dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
       <plugin>
-        <!-- Configure Groovy Compile for Juzu -->
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>gmaven-plugin</artifactId>
-        <configuration>
-          <sources>
-            <fileset>
-              <directory>${project.build.outputDirectory}</directory>
-              <includes>
-                <include>**/*.groovy</include>
-              </includes>
-            </fileset>
-          </sources>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <dependencies>
-          <!-- SLF4J-->
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-          </dependency>
-          <!-- Logback -->
-          <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-          </dependency>
-        </dependencies>
-        <configuration>
-          <path>/</path>
-          <tomcatLoggingFile>${project.basedir}/src/main/resources/logging.properties</tomcatLoggingFile>
-          <additionalConfigFilesDir>${project.basedir}/src/main/resources/</additionalConfigFilesDir>
-          <!-- Use a separation classloader to avoid conflicts with SLF4J -->
-          <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-          <!-- The delay in seconds between each classPathScanning change invocation -->
-          <backgroundProcessorDelay>5</backgroundProcessorDelay>
-          <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-          <contextReloadable>true</contextReloadable>
-        </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <!-- Configure Groovy Compile for Juzu -->
+          <groupId>org.codehaus.gmaven</groupId>
+          <artifactId>gmaven-plugin</artifactId>
+          <configuration>
+            <sources>
+              <fileset>
+                <directory>${project.build.outputDirectory}</directory>
+                <includes>
+                  <include>**/*.groovy</include>
+                </includes>
+              </fileset>
+            </sources>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <configuration>
+            <path>/</path>
+            <additionalConfigFilesDir>${project.basedir}/src/main/resources/</additionalConfigFilesDir>
+            <!-- Use a separation classloader to avoid conflicts with SLF4J -->
+            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+            <!-- The delay in seconds between each classPathScanning change invocation -->
+            <backgroundProcessorDelay>30</backgroundProcessorDelay>
+            <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
+            <contextReloadable>true</contextReloadable>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <id>exo-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>executable-jar</id>
+                <goals>
+                  <goal>exec-war-only</goal>
+                </goals>
+                <phase>package</phase>
+                <configuration>
+                  <finalName>${project.artifactId}-${project.version}-standalone.jar</finalName>
+                  <extraDependencies>
+                    <!-- SLF4J-->
+                    <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>slf4j-api</artifactId>
+                      <version>${slf4j.version}</version>
+                    </dependency>
+                    <dependency>
+                      <groupId>org.slf4j</groupId>
+                      <artifactId>jul-to-slf4j</artifactId>
+                      <version>${slf4j.version}</version>
+                    </dependency>
+                    <!-- Logback -->
+                    <dependency>
+                      <groupId>ch.qos.logback</groupId>
+                      <artifactId>logback-classic</artifactId>
+                      <version>${logback.version}</version>
+                    </dependency>
+                    <dependency>
+                      <groupId>ch.qos.logback</groupId>
+                      <artifactId>logback-core</artifactId>
+                      <version>${logback.version}</version>
+                    </dependency>
+                    <!-- Required by logback for colorized console on windows -->
+                    <dependency>
+                      <groupId>org.fusesource.jansi</groupId>
+                      <artifactId>jansi</artifactId>
+                      <version>${jansi.version}</version>
+                    </dependency>
+                  </extraDependencies>
+                  <extraResources>
+                    <extraResource>
+                      <directory>${project.basedir}/src/main/resources/</directory>
+                      <includes>
+                        <include>**/*.xml</include>
+                        <include>**/*.properties</include>
+                      </includes>
+                    </extraResource>
+                  </extraResources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
