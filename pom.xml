@@ -75,6 +75,12 @@
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
+    <!-- Crowd settings -->
+    <acceptance.crowd.application.name>acceptanceng.exoplatform.org</acceptance.crowd.application.name>
+    <acceptance.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.crowd.application.password>
+    <acceptance.crowd.application.login.url>http://localhost:8080/signin</acceptance.crowd.application.login.url>
+    <acceptance.crowd.cookie.domain>localhost</acceptance.crowd.cookie.domain>
+    <acceptance.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.crowd.server.url>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -563,12 +569,33 @@
     </dependency>
   </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-      </plugin>
-    </plugins>
+    <resources>
+      <!-- Classical resources for the webapp -->
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <testResources>
+      <!-- Filtered tests resources -->
+      <testResource>
+        <filtering>true</filtering>
+        <directory>${project.basedir}/src/test/resources/</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+      </testResource>
+    </testResources>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -591,7 +618,7 @@
           <artifactId>tomcat7-maven-plugin</artifactId>
           <configuration>
             <path>/</path>
-            <additionalConfigFilesDir>${project.basedir}/src/main/resources/</additionalConfigFilesDir>
+            <additionalConfigFilesDir>${project.basedir}/src/main/tomcatconf</additionalConfigFilesDir>
             <!-- Use a separation classloader to avoid conflicts with SLF4J -->
             <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
             <!-- The delay in seconds between each classPathScanning change invocation -->
@@ -599,9 +626,35 @@
             <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
             <contextReloadable>true</contextReloadable>
           </configuration>
+          <dependencies>
+            <!-- SLF4J-->
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>jul-to-slf4j</artifactId>
+              <version>${slf4j.version}</version>
+            </dependency>
+            <!-- Logback -->
+            <dependency>
+              <groupId>ch.qos.logback</groupId>
+              <artifactId>logback-classic</artifactId>
+              <version>${logback.version}</version>
+            </dependency>
+            <!-- Required by logback for colorized console on windows -->
+            <dependency>
+              <groupId>org.fusesource.jansi</groupId>
+              <artifactId>jansi</artifactId>
+              <version>${jansi.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>gmaven-plugin</artifactId>
+      </plugin>
+    </plugins>
   </build>
   <profiles>
     <profile>
@@ -614,13 +667,14 @@
             <executions>
               <execution>
                 <id>executable-jar</id>
+                <phase>package</phase>
                 <goals>
                   <goal>exec-war-only</goal>
                 </goals>
-                <phase>package</phase>
                 <configuration>
                   <finalName>${project.artifactId}-${project.version}-standalone.jar</finalName>
                   <extraDependencies>
+                    <!-- This is not transitive here -->
                     <!-- SLF4J-->
                     <dependency>
                       <groupId>org.slf4j</groupId>
@@ -652,7 +706,7 @@
                   </extraDependencies>
                   <extraResources>
                     <extraResource>
-                      <directory>${project.basedir}/src/main/resources/</directory>
+                      <directory>${project.basedir}/src/main/tomcatconf</directory>
                       <includes>
                         <include>**/*.xml</include>
                         <include>**/*.properties</include>

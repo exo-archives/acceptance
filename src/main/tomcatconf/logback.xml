@@ -20,8 +20,6 @@
 
 -->
 <configuration>
-  <!-- Enable JMX to configure logs -->
-  <jmxConfigurator/>
   <!--
   LevelChangePropagator propagates changes made to the level of any logback-classic logger onto the java.util.logging framework.
   Such propagation eliminates the performance impact of disabled log statements.
@@ -30,18 +28,16 @@
     <resetJUL>true</resetJUL>
   </contextListener>
 
-
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-    <withJansi>false</withJansi>
+    <withJansi>true</withJansi>
     <encoder>
-      <pattern>%date{ISO8601} | %-5level | %msg [%logger{40}&lt;%thread&gt;] %n%xEx</pattern>
+      <pattern>%date{ISO8601} | %highlight(%-5level) | %msg %green([%logger{40}){}%cyan(&lt;%thread&gt;){}%green(]){} %n%xEx</pattern>
     </encoder>
   </appender>
 
-  <logger name="com.exoplatform.cloud" level="DEBUG"/>
-  <logger name="mongod.process" level="INFO"/>
+  <logger name="org.exoplatform.acceptance" level="INFO" />
 
   <root level="INFO">
-    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="CONSOLE" />
   </root>
 </configuration>

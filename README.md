@@ -5,8 +5,25 @@ eXo Acceptance System
 
 ## How to configure
 
-Recopy the file ```src/main/resources/crowd.properties.sample``` as ```src/main/resources/crowd.properties``` and fill the crowd application password in the file ```src/main/resources/crowd.properties```
+You need to add the crowd application password to test and use eXo Application
 
+In your maven configuration file ```~.m2/settings.xmml``` add something like :
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          http://maven.apache.org/xsd/settings-1.0.0.xsd">
+      <profiles>
+        <profile>
+          <id>acceptance-settings</id>
+          <properties>
+            <acceptance.crowd.application.password>XXXXXX</acceptance.crowd.application.password>
+          </properties>
+        </profile>
+      </profiles>
+      <activeProfiles>
+        <activeProfile>acceptance-settings</activeProfile>
+      </activeProfiles>
+    </settings>
 
 ## How to build
 
@@ -17,4 +34,3 @@ Recopy the file ```src/main/resources/crowd.properties.sample``` as ```src/main/
 ```mvn clean tomcat7:run```
 
 and then go to http://localhost:8080/
-
