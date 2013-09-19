@@ -3,5 +3,6 @@
 
 <div class="jumbotron">
   <h1>Welcome ${user.fullName} &nbsp;</h1>
+
   <p>This is Acceptance v2 ...</p>
 </div>

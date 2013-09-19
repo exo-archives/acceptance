@@ -17,7 +17,8 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 @import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css";
-@import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css";
+@import "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css";
+@import "//netdna.bootstrapcdn.com/bootswatch/3.0.0/spacelab/bootstrap.min.css";
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -26,6 +27,10 @@ html,
 body {
   height: 100%;
   /* The html and body elements cannot have any padding or margin. */
+}
+
+body {
+  padding-top: 70px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -41,8 +46,12 @@ body {
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
-  background-color: #f5f5f5;
+  background: url("footer.png") no-repeat center;
+  text-align: center;
+  clear: both;
+  margin-top  : -64px; /* negative value of footer height */
+  padding-top : 20px;
+  height      : 44px;
 }
 
 /* Adapt some containers to with the top bar menu + sticky footer

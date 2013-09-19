@@ -13,7 +13,7 @@
   </div>
 
   <% } else { %>
-  <form class="form-signin" action="@{Home.login()}" method="post">
+  <form class="form-signin" action="@{ Home.login()}" method="post">
     <h2 class="form-signin-heading">Please sign in</h2>
     <input type="text" class="form-control" placeholder="eXo Account" name="username" autofocus>
     <input type="password" class="form-control" placeholder="Password" name="password">
