@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 /**
  *
  */
-@WithAssets("*")
+@WithAssets({"acceptance.js","acceptance.css"})
 @Slf4j
 public abstract class BaseController {
 
