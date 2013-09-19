@@ -26,6 +26,7 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
+import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 
 public class Home extends BaseController {
@@ -63,8 +64,9 @@ public class Home extends BaseController {
 
   @View
   @Route("/signin")
+  @WithAssets("signin.css")
   public Response.Content signin() {
-    return makeResponse(signin.with().ok().withStylesheets("signin"));
+    return makeResponse(signin.with().ok());
   }
 
   @Action

@@ -16,6 +16,9 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+@import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css";
+@import "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css";
+
 /* Sticky footer styles
 -------------------------------------------------- */
 

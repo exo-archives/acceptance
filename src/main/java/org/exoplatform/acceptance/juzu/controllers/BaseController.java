@@ -21,6 +21,7 @@ package org.exoplatform.acceptance.juzu.controllers;
 import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.Response;
+import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 import lombok.Getter;
 import org.exoplatform.acceptance.juzu.model.User;
@@ -28,6 +29,7 @@ import org.exoplatform.acceptance.juzu.model.User;
 /**
  *
  */
+@WithAssets("*")
 public abstract class BaseController {
 
   @Named("user")
