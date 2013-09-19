@@ -20,16 +20,20 @@ package org.exoplatform.acceptance.juzu.controllers;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
 import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.juzu.model.User;
+import org.xml.sax.SAXException;
 
 /**
  *
  */
 @WithAssets("*")
+@Slf4j
 public abstract class BaseController {
 
   @Named("user")
@@ -54,19 +58,17 @@ public abstract class BaseController {
   }
 
   protected Response.Content makeResponse(Response.Content content) {
-//    try {
-    return content
-        // FIXME Currently this is not working with Juzu 0.7.0-beta15 (we need a fix)
-//          .withHeader("viewport", "width=device-width, initial-scale=1.0")
-//          .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/a/favicon.ico\"></link>")
-        ;
-//    } catch (ParserConfigurationException e) {
-//      LOGGER.error("Impossible to insert the favicon header in the page", e);
-//      return content;
-//    } catch (SAXException e) {
-//      LOGGER.error("Impossible to insert the favicon header in the page", e);
-//      return content;
-//    }
+    try {
+      return content
+          .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\"></link>")
+          ;
+    } catch (ParserConfigurationException e) {
+      log.error("Impossible to insert the favicon header in the page", e);
+      return content;
+    } catch (SAXException e) {
+      log.error("Impossible to insert the favicon header in the page", e);
+      return content;
+    }
   }
 
 }
