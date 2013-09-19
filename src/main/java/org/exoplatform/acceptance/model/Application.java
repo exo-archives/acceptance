@@ -27,9 +27,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Represent a Software manageable by acceptance.
  */
-@Document(collection = "software")
-@TypeAlias("Software")
-public class Software {
+@Document(collection = "application")
+@TypeAlias("Application")
+public class Application {
 
   @Id
   @Getter

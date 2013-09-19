@@ -25,9 +25,6 @@ import juzu.FlashScoped;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author <a href="mailto:julien.viet@exoplatform.com">Julien Viet</a>
- */
 @Named("flash")
 @FlashScoped
 public class Flash implements Serializable {

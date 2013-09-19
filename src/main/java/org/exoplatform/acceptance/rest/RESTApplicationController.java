@@ -19,8 +19,8 @@
 package org.exoplatform.acceptance.rest;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.model.Software;
-import org.exoplatform.acceptance.repositories.SoftwareRepository;
+import org.exoplatform.acceptance.model.Application;
+import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -32,79 +32,79 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
+ * Controller to manage REST services for applications
  */
 @Controller
-@RequestMapping(value = "software", produces = "application/json")
-public class RESTSoftwareController {
+@RequestMapping(value = "application", produces = "application/json")
+public class RESTApplicationController {
 
   public static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
 
   public static final int MAX_STORAGE_PAGE_SIZE = 500;
 
   @Inject
-  private SoftwareRepository softwareRepository;
+  private ApplicationRepository applicationRepository;
 
   /**
-   * Get a paginated list of available software
+   * Get a paginated list of available applications
    *
    * @param offset the page number to get (0 is the first page)
    * @param limit  the maximum number of entries in the page of results
-   * @return a list of softwares
+   * @return a list of applications
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
-  public Iterable<Software> getSoftwares(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
-    Page<Software> softwares = softwareRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
-    return softwares;
+  public Iterable<Application> getApplications(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    Page<Application> applications = applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
+    return applications;
   }
 
   /**
-   * Get a specific software by its id.
+   * Get a specific application by its id.
    *
-   * @param id the id of the software
-   * @return the software
+   * @param id the id of the application
+   * @return the application
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
-  public Software getSoftware(@PathVariable(value = "id") String id) {
-    Software software = softwareRepository.findOne(id);
-    return software;
+  public Application getApplication(@PathVariable(value = "id") String id) {
+    Application application = applicationRepository.findOne(id);
+    return application;
   }
 
   /**
-   * Save a new software
+   * Save a new application
    *
-   * @param software the software to save
-   * @return the saved software
+   * @param application the application to save
+   * @return the saved application
    */
   @RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
   @ResponseBody
-  public Software saveSoftware(@RequestBody Software software) {
-    Software savedSoftware = softwareRepository.save(software);
-    return savedSoftware;
+  public Application saveApplication(@RequestBody Application application) {
+    Application savedApplication = applicationRepository.save(application);
+    return savedApplication;
   }
 
   /**
-   * Update an existing software
+   * Update an existing application
    *
-   * @param software the software to update
-   * @return the updated software
+   * @param application the application to update
+   * @return the updated application
    */
   @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
   @ResponseBody
-  public Software updateSoftware(@RequestBody Software software) {
-    Software savedSoftware = softwareRepository.save(software);
-    return savedSoftware;
+  public Application updateApplication(@RequestBody Application application) {
+    Application savedApplication = applicationRepository.save(application);
+    return savedApplication;
   }
 
   /**
-   * Delete an existing software
+   * Delete an existing application
    *
-   * @param software the software to delete
+   * @param application the application to delete
    */
   @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = "application/json")
-  public void deleteSoftware(@RequestBody Software software) {
-    softwareRepository.delete(software);
+  public void deleteApplication(@RequestBody Application application) {
+    applicationRepository.delete(application);
   }
 }

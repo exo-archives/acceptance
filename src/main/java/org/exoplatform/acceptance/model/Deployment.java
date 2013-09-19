@@ -31,7 +31,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Deployment {
   @Getter
   @Setter
-  private Software software;
+  private Application application;
   //private JVM jvm;
   //private OS os;
 }

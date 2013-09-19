@@ -19,10 +19,10 @@
 package org.exoplatform.acceptance.rest;
 
 import javax.inject.Inject;
+import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
-import org.exoplatform.acceptance.model.Software;
+import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.exoplatform.acceptance.repositories.DeploymentRepository;
-import org.exoplatform.acceptance.repositories.SoftwareRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -48,7 +48,7 @@ public class RESTDeploymentController {
   private DeploymentRepository deploymentRepository;
 
   @Inject
-  private SoftwareRepository softwareRepository;
+  private ApplicationRepository applicationRepository;
 
   /**
    * Get a paginated list of available deployments
@@ -114,18 +114,18 @@ public class RESTDeploymentController {
   }
 
   /**
-   * Get a paginated list of deployment for a particular software name
+   * Get a paginated list of deployment for a particular application name
    *
-   * @param softwareName the software name
-   * @param offset       the page number to get (0 is the first page)
-   * @param limit        the maximum number of entries in the page of results
+   * @param applicationName the application name
+   * @param offset          the page number to get (0 is the first page)
+   * @param limit           the maximum number of entries in the page of results
    * @return a list of deployments
    */
-  @RequestMapping(value = "{softwareName}", method = RequestMethod.GET)
+  @RequestMapping(value = "{applicationName}", method = RequestMethod.GET)
   @ResponseBody
-  public Iterable<Deployment> getDeploymentsBySoftwareName(@PathVariable(value = "softwareName") String softwareName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
-    Software software = softwareRepository.findByName(softwareName);
-    Iterable<Deployment> deployments = deploymentRepository.findBySoftware(software, new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
+  public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
+    Application application = applicationRepository.findByName(applicationName);
+    Iterable<Deployment> deployments = deploymentRepository.findByApplication(application, new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
     return deployments;
   }
 }

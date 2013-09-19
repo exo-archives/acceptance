@@ -19,7 +19,7 @@
 package org.exoplatform.acceptance.repositories;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.model.Software;
+import org.exoplatform.acceptance.model.Application;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,33 +33,33 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class SoftwareRepositoryTest {
+public class ApplicationRepositoryTest {
 
   @Inject
-  SoftwareRepository softwareRepository;
+  ApplicationRepository applicationRepository;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    this.softwareRepository.deleteAll();
+    this.applicationRepository.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    this.softwareRepository.deleteAll();
+    this.applicationRepository.deleteAll();
   }
 
   @Test
   public void create() {
-    Software software = new Software();
-    software.setName("my software");
+    Application application = new Application();
+    application.setName("my software");
 
-    Software saveSoftware = softwareRepository.save(software);
+    Application saveApplication = applicationRepository.save(application);
 
-    Assert.assertNotNull("The software ID should not be null", saveSoftware.getId());
+    Assert.assertNotNull("The software ID should not be null", saveApplication.getId());
 
-    Assert.assertEquals("We should have exactly 1 Software", 1, softwareRepository.count());
+    Assert.assertEquals("We should have exactly 1 Software", 1, applicationRepository.count());
   }
 
 }

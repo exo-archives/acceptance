@@ -18,8 +18,9 @@
  */
 package org.exoplatform.acceptance.repositories;
 
+import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
-import org.exoplatform.acceptance.model.Software;
+import org.exoplatform.acceptance.model.Application;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -30,5 +31,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DeploymentRepository extends MongoRepository<Deployment, String> {
-  Page<Deployment> findBySoftware(Software software, Pageable pageable);
+  Page<Deployment> findByApplication(Application application, Pageable pageable);
 }
