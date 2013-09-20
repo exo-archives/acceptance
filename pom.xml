@@ -85,6 +85,214 @@
   <dependencyManagement>
     <dependencies>
       <!-- **************************************** -->
+      <!-- Logback -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Crowd -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>com.atlassian.crowd</groupId>
+        <artifactId>crowd-integration-client-soap</artifactId>
+        <version>${crowd.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>com.atlassian.crowd</groupId>
+        <artifactId>crowd-integration-springsecurity</artifactId>
+        <version>${crowd.version}</version>
+        <scope>runtime</scope>
+        <exclusions>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson2.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- MongoDB -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>cz.jirutka.spring</groupId>
+        <artifactId>embedmongo-spring</artifactId>
+        <version>${embedmongo-spring.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- javax.* -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>jsr250-api</artifactId>
+        <version>${javax.annotation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>${javax.inject.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>${javax.mail.version}</version>
+      </dependency>
+      <!-- INFO : Servlet 3.0+ replaces the old javax.servlet:servlet-api -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${javax.servlet.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>${javax.validation.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>jsr311-api</artifactId>
+        <version>${javax.ws.rs.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- JUnit -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Required by logback for colorized console on windows -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.fusesource.jansi</groupId>
+        <artifactId>jansi</artifactId>
+        <version>${jansi.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Hibernate Validator Framework -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-validator</artifactId>
+        <version>${hibernate.validator.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Juzu Web Framework -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-bom-arquillian</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-bom-core</artifactId>
+        <version>${juzu.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-core</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-less</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-portlet</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-servlet</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-upload</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>${mongodb.driver.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Lombok -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- SLF4J -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jul-to-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>log4j-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-ext</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <!-- **************************************** -->
       <!-- Spring Framework -->
       <!-- **************************************** -->
       <dependency>
@@ -129,6 +337,11 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
         <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
@@ -141,6 +354,19 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
         <version>${spring.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- Spring Data Framework -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>${spring.data.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-mongodb</artifactId>
+        <version>${spring.data.mongo.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Spring Security -->
@@ -157,237 +383,74 @@
       </dependency>
       <dependency>
         <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-web</artifactId>
+        <artifactId>spring-security-taglibs</artifactId>
         <version>${spring.security.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-taglibs</artifactId>
+        <artifactId>spring-security-web</artifactId>
         <version>${spring.security.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Crowd -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>com.atlassian.crowd</groupId>
-        <artifactId>crowd-integration-springsecurity</artifactId>
-        <version>${crowd.version}</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.atlassian.crowd</groupId>
-        <artifactId>crowd-integration-client</artifactId>
-        <version>${crowd.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Spring Data Framework -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-commons</artifactId>
-        <version>${spring.data.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-mongodb</artifactId>
-        <version>${spring.data.mongo.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>${jackson2.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson2.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- MongoDB -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>cz.jirutka.spring</groupId>
-        <artifactId>embedmongo-spring</artifactId>
-        <version>${embedmongo-spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>${mongodb.driver.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Juzu Web Framework -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-core</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-core</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-less</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-portlet</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-servlet</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-upload</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-arquillian</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
-        <version>${juzu.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- javax.* -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>javax.annotation</groupId>
-        <artifactId>jsr250-api</artifactId>
-        <version>${javax.annotation.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>${javax.inject.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.mail</groupId>
-        <artifactId>mail</artifactId>
-        <version>${javax.mail.version}</version>
-      </dependency>
-      <!-- INFO : Servlet 3.0+ replaces the old javax.servlet:servlet-api -->
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${javax.servlet.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.ws.rs</groupId>
-        <artifactId>jsr311-api</artifactId>
-        <version>${javax.ws.rs.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javax.validation.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Hibernate Validator Framework -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-validator</artifactId>
-        <version>${hibernate.validator.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Logs -->
-      <!-- **************************************** -->
-      <!-- SLF4J-->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-ext</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jul-to-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>log4j-over-slf4j</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <!-- Logback -->
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>${logback.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>${logback.version}</version>
-      </dependency>
-      <!-- Required by logback for colorized console on windows -->
-      <dependency>
-        <groupId>org.fusesource.jansi</groupId>
-        <artifactId>jansi</artifactId>
-        <version>${jansi.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Lombok -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Tests -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>${spring.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <!-- **************************************** -->
+    <!-- Use logback for tests outputs -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Crowd -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.atlassian.crowd</groupId>
+      <artifactId>crowd-integration-client-soap</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.atlassian.crowd</groupId>
+      <artifactId>crowd-integration-springsecurity</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Embedded MongoDB -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>cz.jirutka.spring</groupId>
+      <artifactId>embedmongo-spring</artifactId>
+      <scope>compile</scope>
+    </dependency>
     <!-- **************************************** -->
     <!-- javax.* -->
     <!-- **************************************** -->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- JUnit -->
+    <!-- **************************************** -->
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Required by logback for colorized console on windows -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
+      <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Hibernate Validator Framework -->
@@ -395,99 +458,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Data Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- MongoDB -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>cz.jirutka.spring</groupId>
-      <artifactId>embedmongo-spring</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mongodb</groupId>
-      <artifactId>mongo-java-driver</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Security Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Crowd -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>com.atlassian.crowd</groupId>
-      <artifactId>crowd-integration-client</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>log4j</artifactId>
-          <groupId>log4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.atlassian.crowd</groupId>
-      <artifactId>crowd-integration-springsecurity</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-      </exclusions>
+      <scope>runtime</scope>
     </dependency>
     <!-- ########################################### -->
     <!-- Juzu Frameworks -->
@@ -495,6 +466,7 @@
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-bom-core</artifactId>
+      <scope>compile</scope>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -509,30 +481,12 @@
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-core</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-plugins-servlet</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Logs -->
-    <!-- **************************************** -->
-    <!-- SLF4J-->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
+      <scope>compile</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Lombok -->
@@ -543,37 +497,89 @@
       <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
-    <!-- Tests -->
+    <!-- SLF4J -->
     <!-- **************************************** -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- Use logback for tests outputs -->
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>test</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <scope>compile</scope>
     </dependency>
-    <!-- Required by logback for colorized console on windows -->
     <dependency>
-      <groupId>org.fusesource.jansi</groupId>
-      <artifactId>jansi</artifactId>
-      <scope>test</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Data Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Security Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
   <build>
     <resources>
       <!-- Classical resources for the webapp -->
       <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
         <filtering>true</filtering>
+        <directory>${project.basedir}/src/main/resources</directory>
         <includes>
           <include>**/*.properties</include>
         </includes>
@@ -616,23 +622,7 @@
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
-          <configuration>
-            <path>/</path>
-            <additionalConfigFilesDir>${project.basedir}/src/main/tomcatconf</additionalConfigFilesDir>
-            <!-- Use a separation classloader to avoid conflicts with SLF4J -->
-            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-            <!-- The delay in seconds between each classPathScanning change invocation -->
-            <backgroundProcessorDelay>30</backgroundProcessorDelay>
-            <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-            <contextReloadable>true</contextReloadable>
-          </configuration>
           <dependencies>
-            <!-- SLF4J-->
-            <dependency>
-              <groupId>org.slf4j</groupId>
-              <artifactId>jul-to-slf4j</artifactId>
-              <version>${slf4j.version}</version>
-            </dependency>
             <!-- Logback -->
             <dependency>
               <groupId>ch.qos.logback</groupId>
@@ -645,7 +635,23 @@
               <artifactId>jansi</artifactId>
               <version>${jansi.version}</version>
             </dependency>
+            <!-- SLF4J-->
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>jul-to-slf4j</artifactId>
+              <version>${slf4j.version}</version>
+            </dependency>
           </dependencies>
+          <configuration>
+            <path>/</path>
+            <additionalConfigFilesDir>${project.basedir}/src/main/tomcatconf</additionalConfigFilesDir>
+            <!-- Use a separation classloader to avoid conflicts with SLF4J -->
+            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+            <!-- The delay in seconds between each classPathScanning change invocation -->
+            <backgroundProcessorDelay>30</backgroundProcessorDelay>
+            <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
+            <contextReloadable>true</contextReloadable>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
