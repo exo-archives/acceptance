@@ -16,7 +16,7 @@ In your maven configuration file ```~.m2/settings.xmml``` add something like :
         <profile>
           <id>acceptance-settings</id>
           <properties>
-            <acceptance.crowd.application.password>XXXXXX</acceptance.crowd.application.password>
+            <acceptance.dev.crowd.application.password>XXXXXX</acceptance.dev.crowd.application.password>
           </properties>
         </profile>
       </profiles>
