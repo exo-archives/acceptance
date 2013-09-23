@@ -18,10 +18,12 @@
  */
 package org.exoplatform.acceptance.repositories;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import javax.inject.Inject;
 import org.exoplatform.acceptance.model.Application;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,9 +59,9 @@ public class ApplicationRepositoryTest {
 
     Application saveApplication = applicationRepository.save(application);
 
-    Assert.assertNotNull("The software ID should not be null", saveApplication.getId());
+    assertNotNull("The software ID should not be null", saveApplication.getId());
 
-    Assert.assertEquals("We should have exactly 1 Software", 1, applicationRepository.count());
+    assertEquals("We should have exactly 1 Software", 1, applicationRepository.count());
   }
 
 }

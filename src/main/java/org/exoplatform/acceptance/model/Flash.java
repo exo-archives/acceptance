@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2003-2013 eXo Platform SAS.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -16,54 +16,23 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+package org.exoplatform.acceptance.model;
 
-@import "acceptance.css";
+import java.io.Serializable;
 
-body {
-  background-color: #eee;
-}
+import javax.inject.Named;
+import juzu.FlashScoped;
+import lombok.Data;
 
-#wrap {
-  padding-top: 40px;
-}
+@Named("flash")
+@FlashScoped
+@Data
+public class Flash implements Serializable {
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
+  private String success = "";
 
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
+  private String error = "";
 
-.form-signin .checkbox {
-  font-weight: normal;
-}
+  private String username = "";
 
-.form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-
-.form-signin input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }

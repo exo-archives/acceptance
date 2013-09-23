@@ -20,7 +20,6 @@ package org.exoplatform.acceptance.repositories;
 
 import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
-import org.exoplatform.acceptance.model.Application;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

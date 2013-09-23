@@ -19,7 +19,7 @@
     02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>maven-parent-pom</artifactId>
@@ -56,7 +56,7 @@
     <javax.validation.version>1.0.0.GA</javax.validation.version>
     <javax.ws.rs.version>1.0</javax.ws.rs.version>
     <junit.version>4.11</junit.version>
-    <juzu.version>0.7.0-beta18</juzu.version>
+    <juzu.version>0.7.0-beta19</juzu.version>
     <logback.version>1.0.13</logback.version>
     <lombok.version>0.12.0</lombok.version>
     <mongodb.driver.version>2.11.2</mongodb.driver.version>
@@ -75,12 +75,12 @@
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
-    <!-- Crowd settings -->
-    <acceptance.crowd.application.name>acceptanceng.exoplatform.org</acceptance.crowd.application.name>
-    <acceptance.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.crowd.application.password>
-    <acceptance.crowd.application.login.url>http://localhost:8080/signin</acceptance.crowd.application.login.url>
-    <acceptance.crowd.cookie.domain>localhost</acceptance.crowd.cookie.domain>
-    <acceptance.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.crowd.server.url>
+    <!-- Development settings -->
+    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
+    <acceptance.dev.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.dev.crowd.application.password>
+    <acceptance.dev.crowd.application.login.url>http://localhost:8080/signin</acceptance.dev.crowd.application.login.url>
+    <acceptance.dev.crowd.cookie.domain>localhost</acceptance.dev.crowd.cookie.domain>
+    <acceptance.dev.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.dev.crowd.server.url>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -186,6 +186,21 @@
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
       </dependency>
+      <!-- Additional Tomcat JAR to allow to fix JMX ports. Useful when the server is behind a firewall -->
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-catalina-jmx-remote</artifactId>
+        <version>${tomcat.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <!-- Build resource used to import license related files -->
+      <dependency>
+        <groupId>org.exoplatform.resources</groupId>
+        <artifactId>exo-lgpl-license-resource-bundle</artifactId>
+        <!-- It's version is set in parent pom -->
+        <version>${version.exo-lgpl-license-resource-bundle}</version>
+        <scope>provided</scope>
+      </dependency>
       <!-- **************************************** -->
       <!-- Required by logback for colorized console on windows -->
       <!-- **************************************** -->
@@ -221,8 +236,8 @@
         <version>${juzu.version}</version>
         <exclusions>
           <exclusion>
-            <groupId>org.jboss.weld</groupId>
             <artifactId>weld-core</artifactId>
+            <groupId>org.jboss.weld</groupId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -350,11 +365,6 @@
         <artifactId>spring-web</artifactId>
         <version>${spring.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
       <!-- **************************************** -->
       <!-- Spring Data Framework -->
       <!-- **************************************** -->
@@ -400,7 +410,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Crowd -->
@@ -445,12 +455,36 @@
       <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
+    <!-- Apache Tomcat -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat</artifactId>
+      <version>${tomcat.version}</version>
+      <type>zip</type>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Additional Tomcat JAR to allow to fix JMX ports. Useful when the server is behind a firewall -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina-jmx-remote</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Build resource used to import license related files -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.exoplatform.resources</groupId>
+      <artifactId>exo-lgpl-license-resource-bundle</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Required by logback for colorized console on windows -->
     <!-- **************************************** -->
     <dependency>
       <groupId>org.fusesource.jansi</groupId>
       <artifactId>jansi</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Hibernate Validator Framework -->
@@ -488,6 +522,16 @@
       <artifactId>juzu-plugins-servlet</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-arquillian</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- **************************************** -->
     <!-- Lombok -->
     <!-- **************************************** -->
@@ -499,11 +543,6 @@
     <!-- **************************************** -->
     <!-- SLF4J -->
     <!-- **************************************** -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>compile</scope>
-    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
@@ -518,6 +557,11 @@
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>compile</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Spring Framework -->
@@ -540,11 +584,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
       <scope>compile</scope>
     </dependency>
     <!-- **************************************** -->
@@ -576,7 +615,7 @@
   </dependencies>
   <build>
     <resources>
-      <!-- Classical resources for the webapp -->
+      <!-- Filtered main resources -->
       <resource>
         <filtering>true</filtering>
         <directory>${project.basedir}/src/main/resources</directory>
@@ -584,6 +623,7 @@
           <include>**/*.properties</include>
         </includes>
       </resource>
+      <!-- Not filtered main resources -->
       <resource>
         <directory>${project.basedir}/src/main/resources</directory>
         <excludes>
@@ -592,14 +632,20 @@
       </resource>
     </resources>
     <testResources>
-      <!-- Filtered tests resources -->
+      <!-- Filtered test resources -->
       <testResource>
         <filtering>true</filtering>
-        <directory>${project.basedir}/src/test/resources/</directory>
+        <directory>${project.basedir}/src/test/resources</directory>
         <includes>
           <include>**/*.properties</include>
-          <include>**/*.xml</include>
         </includes>
+      </testResource>
+      <!-- Not filtered test resources -->
+      <testResource>
+        <directory>${project.basedir}/src/test/resources</directory>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+        </excludes>
       </testResource>
     </testResources>
     <pluginManagement>
@@ -620,38 +666,86 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <systemProperties>
+              <!-- test configuration file -->
+              <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
+              <!-- debug logback setup -->
+              <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
+            </systemProperties>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>copy-resources-for-tomcat-run</id>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <phase>generate-resources</phase>
+              <configuration>
+                <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
+                <resources>
+                  <resource>
+                    <filtering>true</filtering>
+                    <directory>${project.basedir}/src/test/resources</directory>
+                    <includes>
+                      <include>acceptance.properties</include>
+                      <include>logback.xml</include>
+                    </includes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>default-cli</id>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <path>/</path>
+                <!-- Use a separation classloader to avoid conflicts with SLF4J -->
+                <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+                <!-- The delay in seconds between each classPathScanning change invocation -->
+                <!--
+                <backgroundProcessorDelay>30</backgroundProcessorDelay>
+                -->
+                <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
+                <!--
+                <contextReloadable>true</contextReloadable>
+                -->
+                <!-- We rely on test resources -->
+                <useTestClasspath>true</useTestClasspath>
+                <!-- System properties to test -->
+                <systemProperties>
+                  <!-- test configuration file -->
+                  <acceptance.configurationFile>${project.build.directory}/tomcat-run-conf/acceptance.properties</acceptance.configurationFile>
+                  <!-- logback configuration file -->
+                  <logback.configurationFile>${project.build.directory}/tomcat-run-conf/logback.xml</logback.configurationFile>
+                  <!-- debug logback setup -->
+                  <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
+                </systemProperties>
+              </configuration>
+            </execution>
+          </executions>
           <dependencies>
-            <!-- Logback -->
             <dependency>
               <groupId>ch.qos.logback</groupId>
               <artifactId>logback-classic</artifactId>
               <version>${logback.version}</version>
-            </dependency>
-            <!-- Required by logback for colorized console on windows -->
-            <dependency>
-              <groupId>org.fusesource.jansi</groupId>
-              <artifactId>jansi</artifactId>
-              <version>${jansi.version}</version>
-            </dependency>
-            <!-- SLF4J-->
-            <dependency>
-              <groupId>org.slf4j</groupId>
-              <artifactId>jul-to-slf4j</artifactId>
-              <version>${slf4j.version}</version>
+              <scope>runtime</scope>
             </dependency>
           </dependencies>
-          <configuration>
-            <path>/</path>
-            <additionalConfigFilesDir>${project.basedir}/src/main/tomcatconf</additionalConfigFilesDir>
-            <!-- Use a separation classloader to avoid conflicts with SLF4J -->
-            <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-            <!-- The delay in seconds between each classPathScanning change invocation -->
-            <backgroundProcessorDelay>30</backgroundProcessorDelay>
-            <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-            <contextReloadable>true</contextReloadable>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -659,6 +753,28 @@
       <plugin>
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>gmaven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <!-- Create the distribution directory with all content -->
+          <execution>
+            <id>tomcat-distribution-content</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <attach>false</attach>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assemblies/extract-dependencies.xml</descriptor>
+                <descriptor>src/main/assemblies/tomcat-packaging.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -668,60 +784,44 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.tomcat.maven</groupId>
-            <artifactId>tomcat7-maven-plugin</artifactId>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
             <executions>
+              <!-- Create the distribution zip and attach it to maven -->
               <execution>
-                <id>executable-jar</id>
+                <id>tomcat-zip</id>
                 <phase>package</phase>
                 <goals>
-                  <goal>exec-war-only</goal>
+                  <goal>single</goal>
                 </goals>
                 <configuration>
-                  <finalName>${project.artifactId}-${project.version}-standalone.jar</finalName>
-                  <extraDependencies>
-                    <!-- This is not transitive here -->
-                    <!-- SLF4J-->
-                    <dependency>
-                      <groupId>org.slf4j</groupId>
-                      <artifactId>slf4j-api</artifactId>
-                      <version>${slf4j.version}</version>
-                    </dependency>
-                    <dependency>
-                      <groupId>org.slf4j</groupId>
-                      <artifactId>jul-to-slf4j</artifactId>
-                      <version>${slf4j.version}</version>
-                    </dependency>
-                    <!-- Logback -->
-                    <dependency>
-                      <groupId>ch.qos.logback</groupId>
-                      <artifactId>logback-classic</artifactId>
-                      <version>${logback.version}</version>
-                    </dependency>
-                    <dependency>
-                      <groupId>ch.qos.logback</groupId>
-                      <artifactId>logback-core</artifactId>
-                      <version>${logback.version}</version>
-                    </dependency>
-                    <!-- Required by logback for colorized console on windows -->
-                    <dependency>
-                      <groupId>org.fusesource.jansi</groupId>
-                      <artifactId>jansi</artifactId>
-                      <version>${jansi.version}</version>
-                    </dependency>
-                  </extraDependencies>
-                  <extraResources>
-                    <extraResource>
-                      <directory>${project.basedir}/src/main/tomcatconf</directory>
-                      <includes>
-                        <include>**/*.xml</include>
-                        <include>**/*.properties</include>
-                      </includes>
-                    </extraResource>
-                  </extraResources>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <descriptors>
+                    <descriptor>src/main/assemblies/tomcat-zip.xml</descriptor>
+                  </descriptors>
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+          <!-- Build License related files bundled directly in the archive -->
+          <!-- This is a long process and really useful only for released stuffs -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-remote-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>process</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <resourceBundles>
+                <resourceBundle>org.exoplatform.resources:exo-lgpl-license-resource-bundle:${version.exo-lgpl-license-resource-bundle}</resourceBundle>
+              </resourceBundles>
+              <includeScope>provided</includeScope>
+              <excludeGroupIds>org.exoplatform,com.exoplatform</excludeGroupIds>
+            </configuration>
           </plugin>
         </plugins>
       </build>

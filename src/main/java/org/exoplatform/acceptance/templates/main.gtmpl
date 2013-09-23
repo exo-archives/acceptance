@@ -61,5 +61,5 @@
 </div>
 
 <div id="footer">
-  <p class="muted credit"><a href="/">eXo Acceptance</a> - Powered by <a href="http://juzuweb.org/">juzu</a></p>
+  <p class="muted credit"><a href="/">eXo Acceptance</a> v${configuration.version} - Powered by <a href="http://juzuweb.org/">juzu</a></p>
 </div>

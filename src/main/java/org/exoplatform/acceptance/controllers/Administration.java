@@ -16,29 +16,30 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.juzu.controllers;
+package org.exoplatform.acceptance.controllers;
 
+
+import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsService;
 import javax.inject.Inject;
-import juzu.Param;
 import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
 import juzu.template.Template;
 
-/**
- *
- */
-public class Search extends BaseController {
+public class Administration extends BaseController {
 
   @Inject
-  @Path("deployments/search.gtmpl")
-  Template search;
+  private CrowdUserDetailsService userDetailsService;
+
+  @Inject
+  @Path("administration/index.gtmpl")
+  Template index;
 
   @View
-  @Route(value = "/search")
-  public Response.Content deployments(@Param(name = "q") String name) {
-    return makeResponse(search.with().set("search", name));
+  @Route("/admin")
+  public Response.Content index() {
+    return makeResponse(index);
   }
 
 }

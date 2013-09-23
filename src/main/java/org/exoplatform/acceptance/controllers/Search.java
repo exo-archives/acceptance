@@ -16,27 +16,29 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.juzu.model;
+package org.exoplatform.acceptance.controllers;
 
-import java.io.Serializable;
+import javax.inject.Inject;
+import juzu.Param;
+import juzu.Path;
+import juzu.Response;
+import juzu.Route;
+import juzu.View;
+import juzu.template.Template;
 
-import javax.inject.Named;
-import juzu.FlashScoped;
-import lombok.Getter;
-import lombok.Setter;
+/**
+ *
+ */
+public class Search extends BaseController {
 
-@Named("flash")
-@FlashScoped
-public class Flash implements Serializable {
+  @Inject
+  @Path("deployments/search.gtmpl")
+  Template search;
 
-  @Getter
-  @Setter
-  private String success = "";
-  @Getter
-  @Setter
-  private String error = "";
-  @Getter
-  @Setter
-  private String username = "";
+  @View
+  @Route(value = "/search")
+  public Response.Content deployments(@Param(name = "q") String name) {
+    return makeResponse(search.with().set("search", name));
+  }
 
 }

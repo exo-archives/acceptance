@@ -21,7 +21,6 @@ package org.exoplatform.acceptance.rest;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.repositories.ApplicationRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,8 +54,7 @@ public class RESTApplicationController {
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
   public Iterable<Application> getApplications(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
-    Page<Application> applications = applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
-    return applications;
+    return applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
   /**
@@ -68,8 +66,7 @@ public class RESTApplicationController {
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
   public Application getApplication(@PathVariable(value = "id") String id) {
-    Application application = applicationRepository.findOne(id);
-    return application;
+    return applicationRepository.findOne(id);
   }
 
   /**
@@ -81,8 +78,7 @@ public class RESTApplicationController {
   @RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
   @ResponseBody
   public Application saveApplication(@RequestBody Application application) {
-    Application savedApplication = applicationRepository.save(application);
-    return savedApplication;
+    return applicationRepository.save(application);
   }
 
   /**
@@ -94,8 +90,7 @@ public class RESTApplicationController {
   @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
   @ResponseBody
   public Application updateApplication(@RequestBody Application application) {
-    Application savedApplication = applicationRepository.save(application);
-    return savedApplication;
+    return applicationRepository.save(application);
   }
 
   /**

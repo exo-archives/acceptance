@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2003-2013 eXo Platform SAS.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -16,30 +16,53 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.juzu.controllers;
+@import "acceptance.css";
 
+body {
+  background-color: #eee;
+}
 
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsService;
-import javax.inject.Inject;
-import juzu.Path;
-import juzu.Response;
-import juzu.Route;
-import juzu.View;
-import juzu.template.Template;
+#wrap {
+  padding-top: 40px;
+}
 
-public class Administration extends BaseController {
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
 
-  @Inject
-  private CrowdUserDetailsService userDetailsService;
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
 
-  @Inject
-  @Path("administration/index.gtmpl")
-  Template index;
+.form-signin .checkbox {
+  font-weight: normal;
+}
 
-  @View
-  @Route("/admin")
-  public Response.Content index() {
-    return makeResponse(index);
-  }
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

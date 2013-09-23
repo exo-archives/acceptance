@@ -17,15 +17,15 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-
-@Application(defaultController = Home.class)
+@Application(defaultController = Home.class,name = "AcceptanceApplication")
+@Servlet("/")
 
 @Bindings(value = {
     @Binding(User.class),
-    @Binding(Flash.class)
+    @Binding(Flash.class),
+    @Binding(Settings.class)
 })
 
-@Servlet("/")
 
 @Assets({
     @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
@@ -35,7 +35,7 @@
     @Asset(id = "acceptance.js", value = "acceptance.js", depends = {"jquery.js", "underscore.js", "bootstrap.js", "backbone.js"}),
     @Asset(id = "acceptance.css", value = "acceptance.css"),
     @Asset(id = "signin.css", value = "signin.css")
-}) package org.exoplatform.acceptance.juzu;
+}) package org.exoplatform.acceptance;
 
 import juzu.Application;
 import juzu.asset.AssetLocation;
@@ -44,6 +44,7 @@ import juzu.plugin.asset.Assets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
-import org.exoplatform.acceptance.juzu.controllers.Home;
-import org.exoplatform.acceptance.juzu.model.Flash;
-import org.exoplatform.acceptance.juzu.model.User;
+import org.exoplatform.acceptance.controllers.Home;
+import org.exoplatform.acceptance.model.Flash;
+import org.exoplatform.acceptance.model.Settings;
+import org.exoplatform.acceptance.model.User;

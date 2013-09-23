@@ -35,6 +35,7 @@
     </encoder>
   </appender>
 
+  <!-- Acceptance -->
   <logger name="org.exoplatform.acceptance" level="INFO" />
 
   <root level="INFO">

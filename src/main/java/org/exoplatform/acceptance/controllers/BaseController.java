@@ -16,30 +16,33 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.juzu.controllers;
+package org.exoplatform.acceptance.controllers;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
 import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.exoplatform.acceptance.juzu.model.User;
+import org.exoplatform.acceptance.model.Settings;
+import org.exoplatform.acceptance.model.User;
 import org.xml.sax.SAXException;
 
 /**
  *
  */
-@WithAssets({"acceptance.js","acceptance.css"})
+@WithAssets({"acceptance.js", "acceptance.css"})
 @Slf4j
 public abstract class BaseController {
 
-  @Named("user")
   @Inject
   @Getter
   private User user;
+
+  @Inject
+  @Getter
+  private Settings settings;
 
   protected void render(Template template) {
     this.render(template.with());

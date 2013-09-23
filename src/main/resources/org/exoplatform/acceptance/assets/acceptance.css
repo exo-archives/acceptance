@@ -49,9 +49,9 @@ body {
   background: url("footer.png") no-repeat center;
   text-align: center;
   clear: both;
-  margin-top  : -64px; /* negative value of footer height */
-  padding-top : 20px;
-  height      : 44px;
+  margin-top: -64px; /* negative value of footer height */
+  padding-top: 20px;
+  height: 44px;
 }
 
 /* Adapt some containers to with the top bar menu + sticky footer

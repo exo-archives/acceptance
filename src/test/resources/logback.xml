@@ -35,7 +35,12 @@
     </encoder>
   </appender>
 
-  <logger name="org.exoplatform.acceptance" level="INFO" />
+  <!-- Acceptance -->
+  <logger name="org.exoplatform.acceptance" level="DEBUG" />
+
+  <!-- Spring -->
+  <logger name="org.springframework.beans" level="INFO" />
+  <logger name="org.springframework.context" level="INFO" />
 
   <root level="INFO">
     <appender-ref ref="CONSOLE" />

@@ -19,11 +19,9 @@
 package org.exoplatform.acceptance.rest;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
 import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.exoplatform.acceptance.repositories.DeploymentRepository;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,8 +58,7 @@ public class RESTDeploymentController {
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
   public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
-    Page<Deployment> deployments = deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
-    return deployments;
+    return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
   }
 
   /**
@@ -73,8 +70,7 @@ public class RESTDeploymentController {
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
   public Deployment getDeployment(@PathVariable(value = "id") String id) {
-    Deployment deployment = deploymentRepository.findOne(id);
-    return deployment;
+    return deploymentRepository.findOne(id);
   }
 
   /**
@@ -86,8 +82,7 @@ public class RESTDeploymentController {
   @RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
   @ResponseBody
   public Deployment saveDeployment(@RequestBody Deployment deployment) {
-    Deployment savedDeployment = deploymentRepository.save(deployment);
-    return savedDeployment;
+    return deploymentRepository.save(deployment);
   }
 
   /**
@@ -99,8 +94,7 @@ public class RESTDeploymentController {
   @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
   @ResponseBody
   public Deployment updateDeployment(@RequestBody Deployment deployment) {
-    Deployment savedDeployment = deploymentRepository.save(deployment);
-    return savedDeployment;
+    return deploymentRepository.save(deployment);
   }
 
   /**
@@ -124,8 +118,6 @@ public class RESTDeploymentController {
   @RequestMapping(value = "{applicationName}", method = RequestMethod.GET)
   @ResponseBody
   public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
-    Application application = applicationRepository.findByName(applicationName);
-    Iterable<Deployment> deployments = deploymentRepository.findByApplication(application, new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
-    return deployments;
+    return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
   }
 }
