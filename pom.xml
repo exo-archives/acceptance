@@ -25,7 +25,7 @@
     <artifactId>maven-parent-pom</artifactId>
     <groupId>org.exoplatform</groupId>
     <version>12-SNAPSHOT</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>org.exoplatform.swf</groupId>
   <artifactId>acceptance</artifactId>
@@ -651,6 +651,24 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>reserve-network-port</id>
+              <goals>
+                <goal>reserve-network-port</goal>
+              </goals>
+              <phase>process-resources</phase>
+              <configuration>
+                <portNames>
+                  <portName>tomcat.http.port</portName>
+                </portNames>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <!-- Configure Groovy Compile for Juzu -->
           <groupId>org.codehaus.gmaven</groupId>
           <artifactId>gmaven-plugin</artifactId>
@@ -674,6 +692,8 @@
               <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
               <!-- debug logback setup -->
               <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
+              <!-- Port used for Tomcat HTTP connector -->
+              <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
             </systemProperties>
           </configuration>
         </plugin>

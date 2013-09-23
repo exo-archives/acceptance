@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian>
+  <extension qualifier="webdriver">
+    <property name="javascriptEnabled">true</property>
+    <property name="browserCapabilities">htmlUnit</property>
+  </extension>
+  <container qualifier="tomcat" default="true">
+    <configuration>
+      <property name="bindHttpPort">${tomcat.http.port}</property>
+    </configuration>
+  </container>
+</arquillian>

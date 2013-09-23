@@ -56,7 +56,7 @@ public class ApplicationTestCase {
   @RunAsClient
   public void testFoo() {
     driver.get(deploymentURL.toString());
-    ApplicationTestCase.log.info("Source: " + driver.getPageSource());
+    log.info("Source: " + driver.getPageSource());
     //WebElement body = driver.findElement(By.tagName("body"));
     //assertEquals("Hello World", body.getText());
   }
