@@ -19,7 +19,7 @@
     02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
 -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>maven-parent-pom</artifactId>
@@ -703,10 +703,10 @@
           <executions>
             <execution>
               <id>copy-resources-for-tomcat-run</id>
+              <phase>generate-resources</phase>
               <goals>
                 <goal>copy-resources</goal>
               </goals>
-              <phase>generate-resources</phase>
               <configuration>
                 <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
                 <resources>
@@ -716,6 +716,7 @@
                     <includes>
                       <include>acceptance.properties</include>
                       <include>logback.xml</include>
+                      <include>tomcat-context.xml</include>
                     </includes>
                   </resource>
                 </resources>
@@ -737,15 +738,11 @@
                 <!-- Use a separation classloader to avoid conflicts with SLF4J -->
                 <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
                 <!-- The delay in seconds between each classPathScanning change invocation -->
-                <!--
                 <backgroundProcessorDelay>30</backgroundProcessorDelay>
-                -->
                 <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-                <!--
                 <contextReloadable>true</contextReloadable>
-                -->
-                <!-- We rely on test resources -->
-                <useTestClasspath>true</useTestClasspath>
+                <!-- Specific context for development mode -->
+                <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
                 <!-- System properties to test -->
                 <systemProperties>
                   <!-- test configuration file -->
