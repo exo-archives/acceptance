@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2003-2013 eXo Platform SAS.
+    Copyright (C) 2011-2013 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -22,8 +22,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.exoplatform.swf</groupId>
     <artifactId>acceptance</artifactId>
+    <groupId>org.exoplatform.swf</groupId>
     <version>2.0.x-SNAPSHOT</version>
   </parent>
   <artifactId>acceptance-webapp</artifactId>
@@ -64,6 +64,19 @@
       <scope>compile</scope>
     </dependency>
     <!-- **************************************** -->
+    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Embedded MongoDB -->
     <!-- **************************************** -->
     <dependency>
@@ -93,19 +106,6 @@
       <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
-    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
     <!-- Required by logback for colorized console on windows -->
     <!-- **************************************** -->
     <dependency>
@@ -120,6 +120,16 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-arquillian</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
+      <scope>test</scope>
     </dependency>
     <!-- ########################################### -->
     <!-- Juzu Frameworks -->
@@ -138,16 +148,6 @@
       <groupId>org.juzu</groupId>
       <artifactId>juzu-plugins-servlet</artifactId>
       <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-arquillian</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
-      <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Lombok -->
@@ -278,10 +278,10 @@
           <executions>
             <execution>
               <id>reserve-network-port</id>
+              <phase>process-resources</phase>
               <goals>
                 <goal>reserve-network-port</goal>
               </goals>
-              <phase>process-resources</phase>
               <configuration>
                 <portNames>
                   <portName>tomcat.http.port</portName>

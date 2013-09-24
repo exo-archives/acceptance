@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2003-2013 eXo Platform SAS.
+    Copyright (C) 2011-2013 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -34,6 +34,10 @@
   <name>eXo Acceptance</name>
   <description>eXo Acceptance</description>
   <inceptionYear>2011</inceptionYear>
+  <modules>
+    <module>acceptance-webapp</module>
+    <module>acceptance-standalone</module>
+  </modules>
   <scm>
     <connection>scm:git:git://github.com/exoplatform/acceptance.git</connection>
     <developerConnection>scm:git:git@github.com:exoplatform/acceptance.git</developerConnection>
@@ -310,23 +314,13 @@
         <artifactId>slf4j-ext</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-      <!-- **************************************** -->
-      <!-- Spring Framework -->
-      <!-- **************************************** -->
-      <!-- Core utilities used by other modules.
-          Define this if you use Spring Utility APIs
-          (org.springframework.core.*/org.springframework.util.*)-->
+      <!-- Aspect Oriented Programming (AOP) Framework
+          (depends on spring-core, spring-beans)
+          Define this if you use Spring AOP APIs
+          (org.springframework.aop.*)-->
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-core</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <!-- Expression Language (depends on spring-core)
-          Define this if you use Spring Expression APIs
-          (org.springframework.expression.*)-->
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-expression</artifactId>
+        <artifactId>spring-aop</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- Bean Factory and JavaBeans utilities (depends on spring-core)
@@ -335,15 +329,6 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-beans</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <!-- Aspect Oriented Programming (AOP) Framework
-          (depends on spring-core, spring-beans)
-          Define this if you use Spring AOP APIs
-          (org.springframework.aop.*)-->
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aop</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- Application Context
@@ -363,13 +348,23 @@
         <artifactId>spring-context-support</artifactId>
         <version>${spring.version}</version>
       </dependency>
-      <!-- Transaction Management Abstraction
-          (depends on spring-core, spring-beans, spring-aop, spring-context)
-          Define this if you use Spring Transactions or DAO Exception Hierarchy
-          (org.springframework.transaction.*/org.springframework.dao.*)-->
+      <!-- **************************************** -->
+      <!-- Spring Framework -->
+      <!-- **************************************** -->
+      <!-- Core utilities used by other modules.
+          Define this if you use Spring Utility APIs
+          (org.springframework.core.*/org.springframework.util.*)-->
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-tx</artifactId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <!-- Expression Language (depends on spring-core)
+          Define this if you use Spring Expression APIs
+          (org.springframework.expression.*)-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- JDBC Data Access Library
@@ -396,6 +391,24 @@
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-oxm</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+      <!-- Support for testing Spring applications with tools such as JUnit and TestNG
+          This artifact is generally always defined with a 'test' scope for the
+          integration testing framework and unit testing stubs-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- Transaction Management Abstraction
+          (depends on spring-core, spring-beans, spring-aop, spring-context)
+          Define this if you use Spring Transactions or DAO Exception Hierarchy
+          (org.springframework.transaction.*/org.springframework.dao.*)-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- Web application development utilities applicable to both Servlet and
@@ -425,15 +438,6 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc-portlet</artifactId>
         <version>${spring.version}</version>
-      </dependency>
-      <!-- Support for testing Spring applications with tools such as JUnit and TestNG
-          This artifact is generally always defined with a 'test' scope for the
-          integration testing framework and unit testing stubs-->
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>${spring.version}</version>
-        <scope>test</scope>
       </dependency>
       <!-- **************************************** -->
       <!-- Spring Data Framework -->
@@ -473,8 +477,4 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <modules>
-    <module>acceptance-webapp</module>
-    <module>acceptance-standalone</module>
-  </modules>
 </project>
