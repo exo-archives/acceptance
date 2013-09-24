@@ -41,21 +41,6 @@
   <!-- Load MVC for REST -->
   <mvc:annotation-driven/>
 
-  <!-- JSON Support for REST services -->
-  <bean name="handlerAdapter"
-        class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-    <property name="messageConverters">
-      <list>
-        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-        <ref bean="jsonConverter"/>
-      </list>
-    </property>
-    <property name="requireSession" value="false"/>
-  </bean>
-  <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-    <property name="supportedMediaTypes" value="application/json"/>
-  </bean>
-
   <!-- Boostrap JSR-303 Bean Validation -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
   <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
