@@ -22,36 +22,52 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
   <!-- Properties configuration -->
-  <context:property-placeholder location="classpath:acceptance-default.properties,file://${acceptance.configurationFile}" />
+  <context:property-placeholder location="classpath:acceptance-default.properties,file://${acceptance.configurationFile}"/>
 
   <!-- Activate annotation configured components -->
-  <context:annotation-config />
+  <context:annotation-config/>
 
   <!-- Scan components for annotations within the configured package -->
-  <context:component-scan base-package="org.exoplatform.acceptance">
-    <context:exclude-filter type="annotation" expression="org.springframework.context.annotation.Configuration" />
-  </context:component-scan>
+  <context:component-scan base-package="org.exoplatform.acceptance"/>
+
+  <!-- Load MVC for REST -->
+  <mvc:annotation-driven/>
+
+  <!-- JSON Support for REST services -->
+  <bean name="handlerAdapter"
+        class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+    <property name="messageConverters">
+      <list>
+        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        <ref bean="jsonConverter"/>
+      </list>
+    </property>
+    <property name="requireSession" value="false"/>
+  </bean>
+  <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <property name="supportedMediaTypes" value="application/json"/>
+  </bean>
 
   <!-- Boostrap JSR-303 Bean Validation -->
-  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
   <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
-    <constructor-arg ref="validator" />
+    <constructor-arg ref="validator"/>
   </bean>
 
-  <mongo:repositories base-package="org.exoplatform.acceptance.repositories" />
-
+  <mongo:repositories base-package="org.exoplatform.acceptance.repositories"/>
   <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-    <constructor-arg name="mongo" ref="mongo" />
-    <constructor-arg name="databaseName" value="acceptance" />
+    <constructor-arg name="mongo" ref="mongo"/>
+    <constructor-arg name="databaseName" value="acceptance"/>
   </bean>
-
   <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
   <!--<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">-->
   <!--<property name="host" value="${mongodb.host}"/>-->
@@ -69,6 +85,5 @@
   </bean>
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
-  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
+  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 </beans>
