@@ -39,6 +39,7 @@
   <logger name="org.exoplatform.acceptance" level="DEBUG" />
 
   <!-- Spring -->
+  <logger name="org.springframework" level="INFO" />
   <logger name="org.springframework.beans" level="INFO" />
   <logger name="org.springframework.context" level="INFO" />
 
