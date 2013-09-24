@@ -118,20 +118,11 @@
     <dependencySet>
       <outputDirectory>/lib</outputDirectory>
       <includes>
-        <include>org.slf4j:slf4j-api:*</include>
-        <include>org.slf4j:jul-to-slf4j:*</include>
-      </includes>
-      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
-      <useProjectArtifact>false</useProjectArtifact>
-    </dependencySet>
-    <dependencySet>
-      <outputDirectory>/lib</outputDirectory>
-      <includes>
         <!-- This artifact isn't by default in tomcat -->
         <include>org.apache.tomcat:tomcat-catalina-jmx-remote:*</include>
+        <include>org.slf4j:*:*</include>
         <!-- Logback -->
-        <include>ch.qos.logback:logback-classic:*</include>
-        <include>ch.qos.logback:logback-core:*</include>
+        <include>ch.qos.logback:*:*</include>
         <!-- Required by logback for colorized console on windows -->
         <include>org.fusesource.jansi:jansi:*</include>
       </includes>
@@ -142,15 +133,14 @@
     <!-- ================================ -->
     <!-- we reference each war to package -->
     <!-- ================================ -->
-    <!-- Portal wars -->
     <dependencySet>
       <outputDirectory>/webapps</outputDirectory>
       <includes>
-        <include>${project.groupId}:${project.artifactId}:war</include>
+        <include>${project.groupId}:acceptance-webapp:war</include>
       </includes>
       <scope>provided</scope>
       <outputFileNameMapping>ROOT.war</outputFileNameMapping>
-      <useProjectArtifact>true</useProjectArtifact>
+      <useProjectArtifact>false</useProjectArtifact>
     </dependencySet>
   </dependencySets>
 </assembly>

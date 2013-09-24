@@ -25,12 +25,12 @@
     <artifactId>maven-parent-pom</artifactId>
     <groupId>org.exoplatform</groupId>
     <version>12-SNAPSHOT</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>org.exoplatform.swf</groupId>
   <artifactId>acceptance</artifactId>
   <version>2.0.x-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>pom</packaging>
   <name>eXo Acceptance</name>
   <description>eXo Acceptance</description>
   <inceptionYear>2011</inceptionYear>
@@ -76,12 +76,6 @@
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
-    <!-- Development settings -->
-    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
-    <acceptance.dev.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.dev.crowd.application.password>
-    <acceptance.dev.crowd.application.login.url>http://localhost:8080/signin</acceptance.dev.crowd.application.login.url>
-    <acceptance.dev.crowd.cookie.domain>localhost</acceptance.dev.crowd.cookie.domain>
-    <acceptance.dev.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.dev.crowd.server.url>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -240,6 +234,14 @@
             <artifactId>weld-core</artifactId>
             <groupId>org.jboss.weld</groupId>
           </exclusion>
+          <exclusion>
+            <artifactId>commons-logging</artifactId>
+            <groupId>commons-logging</groupId>
+          </exclusion>
+          <exclusion>
+            <artifactId>slf4j-simple</artifactId>
+            <groupId>org.slf4j</groupId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -315,86 +317,86 @@
           Define this if you use Spring Utility APIs
           (org.springframework.core.*/org.springframework.util.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-core</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Expression Language (depends on spring-core)
           Define this if you use Spring Expression APIs
           (org.springframework.expression.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-expression</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-expression</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Bean Factory and JavaBeans utilities (depends on spring-core)
           Define this if you use Spring Bean APIs
           (org.springframework.beans.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-beans</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-beans</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Aspect Oriented Programming (AOP) Framework
           (depends on spring-core, spring-beans)
           Define this if you use Spring AOP APIs
           (org.springframework.aop.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-aop</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Application Context
           (depends on spring-core, spring-expression, spring-aop, spring-beans)
           This is the central artifact for Spring's Dependency Injection Container
           and is generally always defined-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-context</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Various Application Context utilities, including EhCache, JavaMail, Quartz,
           and Freemarker integration
           Define this if you need any of these integrations-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-context-support</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Transaction Management Abstraction
           (depends on spring-core, spring-beans, spring-aop, spring-context)
           Define this if you use Spring Transactions or DAO Exception Hierarchy
           (org.springframework.transaction.*/org.springframework.dao.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-tx</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- JDBC Data Access Library
           (depends on spring-core, spring-beans, spring-context, spring-tx)
           Define this if you use Spring's JdbcTemplate API
           (org.springframework.jdbc.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-jdbc</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA and iBatis.
           (depends on spring-core, spring-beans, spring-context, spring-tx)
           Define this if you need ORM (org.springframework.orm.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-orm</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Object-to-XML Mapping (OXM) abstraction and integration with JAXB, JiBX,
           Castor, XStream, and XML Beans.
           (depends on spring-core, spring-beans, spring-context)
           Define this if you need OXM (org.springframework.oxm.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-oxm</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-oxm</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Web application development utilities applicable to both Servlet and
           Portlet Environments
@@ -402,36 +404,36 @@
           Define this if you use Spring MVC, or wish to use Struts, JSF, or another
           web framework with Spring (org.springframework.web.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-web</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Spring MVC for Servlet Environments
           (depends on spring-core, spring-beans, spring-context, spring-web)
           Define this if you use Spring MVC with a Servlet Container such as
           Apache Tomcat (org.springframework.web.servlet.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Spring MVC for Portlet Environments
           (depends on spring-core, spring-beans, spring-context, spring-web)
           Define this if you use Spring MVC with a Portlet Container
           (org.springframework.web.portlet.*)-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc-portlet</artifactId>
-          <version>${spring.version}</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc-portlet</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <!-- Support for testing Spring applications with tools such as JUnit and TestNG
           This artifact is generally always defined with a 'test' scope for the
           integration testing framework and unit testing stubs-->
       <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-test</artifactId>
-          <version>${spring.version}</version>
-          <scope>test</scope>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+        <scope>test</scope>
       </dependency>
       <!-- **************************************** -->
       <!-- Spring Data Framework -->
@@ -471,466 +473,8 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <dependencies>
-    <!-- **************************************** -->
-    <!-- Use logback for tests outputs -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Crowd -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>com.atlassian.crowd</groupId>
-      <artifactId>crowd-integration-client-soap</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.atlassian.crowd</groupId>
-      <artifactId>crowd-integration-springsecurity</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Embedded MongoDB -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>cz.jirutka.spring</groupId>
-      <artifactId>embedmongo-spring</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- javax.* -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- JUnit -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Apache Tomcat -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat</artifactId>
-      <version>${tomcat.version}</version>
-      <type>zip</type>
-      <scope>provided</scope>
-    </dependency>
-    <!-- Additional Tomcat JAR to allow to fix JMX ports. Useful when the server is behind a firewall -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina-jmx-remote</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Build resource used to import license related files -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.exoplatform.resources</groupId>
-      <artifactId>exo-lgpl-license-resource-bundle</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Required by logback for colorized console on windows -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.fusesource.jansi</groupId>
-      <artifactId>jansi</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Hibernate Validator Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <!-- ########################################### -->
-    <!-- Juzu Frameworks -->
-    <!-- ########################################### -->
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-core</artifactId>
-      <scope>compile</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>slf4j-simple</artifactId>
-          <groupId>org.slf4j</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-plugins-servlet</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-arquillian</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Lombok -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- SLF4J -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Data Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Security Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
-  <build>
-    <resources>
-      <!-- Filtered main resources -->
-      <resource>
-        <filtering>true</filtering>
-        <directory>${project.basedir}/src/main/resources</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-      </resource>
-      <!-- Not filtered main resources -->
-      <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
-        <excludes>
-          <exclude>**/*.properties</exclude>
-        </excludes>
-      </resource>
-    </resources>
-    <testResources>
-      <!-- Filtered test resources -->
-      <testResource>
-        <filtering>true</filtering>
-        <directory>${project.basedir}/src/test/resources</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-      </testResource>
-      <!-- Not filtered test resources -->
-      <testResource>
-        <directory>${project.basedir}/src/test/resources</directory>
-        <excludes>
-          <exclude>**/*.properties</exclude>
-        </excludes>
-      </testResource>
-    </testResources>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>reserve-network-port</id>
-              <goals>
-                <goal>reserve-network-port</goal>
-              </goals>
-              <phase>process-resources</phase>
-              <configuration>
-                <portNames>
-                  <portName>tomcat.http.port</portName>
-                </portNames>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <!-- Configure Groovy Compile for Juzu -->
-          <groupId>org.codehaus.gmaven</groupId>
-          <artifactId>gmaven-plugin</artifactId>
-          <configuration>
-            <sources>
-              <fileset>
-                <directory>${project.build.outputDirectory}</directory>
-                <includes>
-                  <include>**/*.groovy</include>
-                </includes>
-              </fileset>
-            </sources>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <systemProperties>
-              <!-- test configuration file -->
-              <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
-              <!-- debug logback setup -->
-              <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
-              <!-- Port used for Tomcat HTTP connector -->
-              <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
-              <!-- Maven infos to tests -->
-              <project.version>${project.version}</project.version>
-              <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
-              <project.organization.name>${project.organization.name}</project.organization.name>
-              <project.organization.url>${project.organization.url}</project.organization.url>
-            </systemProperties>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>copy-resources-for-tomcat-run</id>
-              <phase>generate-resources</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
-                <resources>
-                  <resource>
-                    <filtering>true</filtering>
-                    <directory>${project.basedir}/src/test/resources</directory>
-                    <includes>
-                      <include>acceptance.properties</include>
-                      <include>logback.xml</include>
-                      <include>tomcat-context.xml</include>
-                    </includes>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat7-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>default-cli</id>
-              <goals>
-                <goal>run</goal>
-              </goals>
-              <configuration>
-                <path>/</path>
-                <!-- Use a separation classloader to avoid conflicts with SLF4J -->
-                <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-                <!-- The delay in seconds between each classPathScanning change invocation -->
-                <backgroundProcessorDelay>30</backgroundProcessorDelay>
-                <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-                <contextReloadable>true</contextReloadable>
-                <!-- Specific context for development mode -->
-                <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
-                <!-- System properties to test -->
-                <systemProperties>
-                  <!-- test configuration file -->
-                  <acceptance.configurationFile>${project.build.directory}/tomcat-run-conf/acceptance.properties</acceptance.configurationFile>
-                  <!-- logback configuration file -->
-                  <logback.configurationFile>${project.build.directory}/tomcat-run-conf/logback.xml</logback.configurationFile>
-                  <!-- debug logback setup -->
-                  <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
-                </systemProperties>
-              </configuration>
-            </execution>
-          </executions>
-          <dependencies>
-            <dependency>
-              <groupId>ch.qos.logback</groupId>
-              <artifactId>logback-classic</artifactId>
-              <version>${logback.version}</version>
-              <scope>runtime</scope>
-            </dependency>
-          </dependencies>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <!-- Create the distribution directory with all content -->
-          <execution>
-            <id>tomcat-distribution-content</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <attach>false</attach>
-              <appendAssemblyId>false</appendAssemblyId>
-              <descriptors>
-                <descriptor>src/main/assemblies/extract-dependencies.xml</descriptor>
-                <descriptor>src/main/assemblies/tomcat-packaging.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-  <profiles>
-    <profile>
-      <id>exo-release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <!-- Create the distribution zip and attach it to maven -->
-              <execution>
-                <id>tomcat-zip</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <appendAssemblyId>false</appendAssemblyId>
-                  <descriptors>
-                    <descriptor>src/main/assemblies/tomcat-zip.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <!-- Build License related files bundled directly in the archive -->
-          <!-- This is a long process and really useful only for released stuffs -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-remote-resources-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>process</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <resourceBundles>
-                <resourceBundle>org.exoplatform.resources:exo-lgpl-license-resource-bundle:${version.exo-lgpl-license-resource-bundle}</resourceBundle>
-              </resourceBundles>
-              <includeScope>provided</includeScope>
-              <excludeGroupIds>org.exoplatform,com.exoplatform</excludeGroupIds>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+  <modules>
+    <module>acceptance-webapp</module>
+    <module>acceptance-standalone</module>
+  </modules>
 </project>

@@ -66,10 +66,10 @@ public abstract class BaseController {
           .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\"></link>")
           ;
     } catch (ParserConfigurationException e) {
-      log.error("Impossible to insert the favicon header in the page", e);
+      BaseController.log.error("Impossible to insert the favicon header in the page", e);
       return content;
     } catch (SAXException e) {
-      log.error("Impossible to insert the favicon header in the page", e);
+      BaseController.log.error("Impossible to insert the favicon header in the page", e);
       return content;
     }
   }

@@ -28,7 +28,9 @@ SET LOGGING_MANAGER=-Dnop
 REM # Add additional bootstrap entries for logging purpose using SLF4J+Logback
 REM # SLF4J deps
 SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\slf4j-api-${slf4j.version}.jar
+SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\jcl-over-slf4j-${slf4j.version}.jar
 SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\jul-to-slf4j-${slf4j.version}.jar
+SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\log4j-over-slf4j-${slf4j.version}.jar
 REM # LogBack deps
 SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\logback-core-${logback.version}.jar
 SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\logback-classic-${logback.version}.jar

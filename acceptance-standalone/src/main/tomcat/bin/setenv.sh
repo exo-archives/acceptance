@@ -27,7 +27,9 @@ LOGGING_MANAGER="-Dnop"
 # Add additional bootstrap entries for logging purpose using SLF4J+Logback
 # SLF4J deps
 CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/slf4j-api-${slf4j.version}.jar"
+CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/jcl-over-slf4j-${slf4j.version}.jar"
 CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/jul-to-slf4j-${slf4j.version}.jar"
+CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/log4j-over-slf4j-${slf4j.version}.jar"
 # LogBack deps
 CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/logback-core-${logback.version}.jar"
 CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/logback-classic-${logback.version}.jar"

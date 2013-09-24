@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2003-2013 eXo Platform SAS.
+
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation; either version 3 of
+    the License, or (at your option) any later version.
+
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this software; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.exoplatform.swf</groupId>
+    <artifactId>acceptance</artifactId>
+    <version>2.0.x-SNAPSHOT</version>
+  </parent>
+  <artifactId>acceptance-standalone</artifactId>
+  <packaging>pom</packaging>
+  <name>eXo Acceptance Distribution</name>
+  <description>eXo Acceptance - Standalone distribution</description>
+  <dependencies>
+    <!-- **************************************** -->
+    <!-- Use logback to have colored output -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Apache Tomcat -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat</artifactId>
+      <version>${tomcat.version}</version>
+      <type>zip</type>
+      <scope>provided</scope>
+    </dependency>
+    <!-- Additional Tomcat JAR to allow to fix JMX ports. Useful when the server is behind a firewall -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina-jmx-remote</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Build resource used to import license related files -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.exoplatform.resources</groupId>
+      <artifactId>exo-lgpl-license-resource-bundle</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Required by logback for colorized console on windows -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- SLF4J -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Our Webapp -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>acceptance-webapp</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <!-- Build License related files bundled directly in the archive -->
+      <!-- This is a long process and really useful only for released stuffs -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-remote-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>process</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <resourceBundles>
+            <resourceBundle>org.exoplatform.resources:exo-lgpl-license-resource-bundle:${version.exo-lgpl-license-resource-bundle}</resourceBundle>
+          </resourceBundles>
+          <includeScope>provided</includeScope>
+          <excludeGroupIds>org.exoplatform,com.exoplatform</excludeGroupIds>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <!-- Create the distribution directory with all content -->
+          <execution>
+            <id>tomcat-distribution-content</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/main/assemblies/extract-dependencies.xml</descriptor>
+                <descriptor>src/main/assemblies/tomcat-packaging.xml</descriptor>
+                <descriptor>src/main/assemblies/tomcat-zip.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>exo-release</id>
+      <build>
+        <plugins>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
