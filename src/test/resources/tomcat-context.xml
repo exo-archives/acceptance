@@ -20,9 +20,7 @@
 
 -->
 <!-- Dedicated context file for development mode -->
-<Context reloadable="true" antiJARLocking="true" antiResourceLocking="true">
-
+<Context xmlValidation="true" xmlNamespaceAware="true">
   <!-- Juzu in development mode -->
-  <Parameter name="juzu.run_mode" description="Juzu running mode" value="dev" override="false" />
-
+  <Parameter name="juzu.run_mode" description="Juzu running mode" value="dev" override="false"/>
 </Context>
