@@ -15,4 +15,13 @@ public class Settings {
 
   @Value("${acceptance.version}")
   private String version;
+
+  @Value("${acceptance.inceptionYear}")
+  private String inceptionYear;
+
+  @Value("${acceptance.organizationName}")
+  private String organizationName;
+
+  @Value("${acceptance.organizationUrl}")
+  private String organizationUrl;
 }

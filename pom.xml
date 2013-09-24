@@ -33,6 +33,7 @@
   <packaging>war</packaging>
   <name>eXo Acceptance</name>
   <description>eXo Acceptance</description>
+  <inceptionYear>2011</inceptionYear>
   <scm>
     <connection>scm:git:git://github.com/exoplatform/acceptance.git</connection>
     <developerConnection>scm:git:git@github.com:exoplatform/acceptance.git</developerConnection>
@@ -694,8 +695,11 @@
               <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
               <!-- Port used for Tomcat HTTP connector -->
               <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
-              <!-- The project version -->
+              <!-- Maven infos to tests -->
               <project.version>${project.version}</project.version>
+              <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
+              <project.organization.name>${project.organization.name}</project.organization.name>
+              <project.organization.url>${project.organization.url}</project.organization.url>
             </systemProperties>
           </configuration>
         </plugin>

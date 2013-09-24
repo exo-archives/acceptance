@@ -17,10 +17,11 @@ public class SettingsTest {
   Settings settings;
 
   @Test
-  /** Validate that we inject and retrieve correctly the current version of the project */
-  public void testGetVersion() throws Exception {
-    log.info(">>>> Settings : {}", settings);
+  public void testMavenProperties() throws Exception {
     Assert.assertEquals(System.getProperty("project.version"), settings.getVersion());
-
+    Assert.assertEquals(System.getProperty("project.inceptionYear"), settings.getInceptionYear());
+    Assert.assertEquals(System.getProperty("project.organization.name"), settings.getOrganizationName());
+    Assert.assertEquals(System.getProperty("project.organization.url"), settings.getOrganizationUrl());
   }
+
 }
