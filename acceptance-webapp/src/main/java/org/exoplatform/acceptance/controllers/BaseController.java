@@ -63,7 +63,7 @@ public abstract class BaseController {
   protected Response.Content makeResponse(Response.Content content) {
     try {
       return content
-          .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\"></link>")
+          .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/org/exoplatform/acceptance/assets/images/favicon.ico\"></link>")
           ;
     } catch (ParserConfigurationException e) {
       BaseController.log.error("Impossible to insert the favicon header in the page", e);

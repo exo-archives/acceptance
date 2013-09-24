@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="@{ Home.index()}">eXo Acceptance&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open"></span></a>
+      <a class="navbar-brand" href="@{ Home.index()}"><img class="navbar-brand" src="/assets/org/exoplatform/acceptance/assets/images/exo-logo.png">&nbsp;Acceptance</a>
     </div>
     <% if (user.isAuthenticated()) { %>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,8 +36,9 @@
         <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user.fullName}</a></li>
         <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  <% } %>
+    </div>
+    <!-- /.navbar-collapse -->
+    <% } %>
   </div>
 </nav>
 
