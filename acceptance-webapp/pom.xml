@@ -43,6 +43,14 @@
   </properties>
   <dependencies>
     <!-- **************************************** -->
+    <!-- Our Agent -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>acceptance-agent</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Use logback for tests outputs -->
     <!-- **************************************** -->
     <dependency>

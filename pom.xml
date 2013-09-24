@@ -35,6 +35,7 @@
   <description>eXo Acceptance</description>
   <inceptionYear>2011</inceptionYear>
   <modules>
+    <module>acceptance-agent</module>
     <module>acceptance-webapp</module>
     <module>acceptance-standalone</module>
   </modules>
