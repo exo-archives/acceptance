@@ -13,6 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 @Data
 public class Settings {
 
-  @Value("acceptance.version")
+  @Value("${acceptance.version}")
   private String version;
 }
