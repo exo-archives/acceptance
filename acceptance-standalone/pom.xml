@@ -133,7 +133,23 @@
         <executions>
           <!-- Create the distribution directory with all content -->
           <execution>
-            <id>tomcat-distribution-content</id>
+            <id>tomcat-distribution-prepare-content</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <attach>false</attach>
+              <descriptors>
+                <descriptor>src/main/assemblies/extract-dependencies.xml</descriptor>
+                <descriptor>src/main/assemblies/tomcat-packaging.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+          <!-- Package the archive -->
+          <execution>
+            <id>tomcat-distribution-create-archive</id>
             <phase>package</phase>
             <goals>
               <goal>single</goal>
@@ -141,8 +157,6 @@
             <configuration>
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
-                <descriptor>src/main/assemblies/extract-dependencies.xml</descriptor>
-                <descriptor>src/main/assemblies/tomcat-packaging.xml</descriptor>
                 <descriptor>src/main/assemblies/tomcat-zip.xml</descriptor>
               </descriptors>
             </configuration>

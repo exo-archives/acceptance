@@ -122,6 +122,31 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>org.jboss.arquillian.container</groupId>
+      <artifactId>arquillian-container-test-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-drone-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.test</groupId>
+      <artifactId>arquillian-test-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.shrinkwrap</groupId>
+      <artifactId>shrinkwrap-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-bom-arquillian</artifactId>
       <scope>test</scope>
@@ -157,6 +182,11 @@
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- **************************************** -->
     <!-- SLF4J -->
     <!-- **************************************** -->
@@ -183,6 +213,11 @@
     <!-- **************************************** -->
     <!-- Spring Framework -->
     <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
@@ -234,6 +269,11 @@
       <artifactId>spring-security-core</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <resources>
@@ -273,85 +313,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>reserve-network-port</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>reserve-network-port</goal>
-              </goals>
-              <configuration>
-                <portNames>
-                  <portName>tomcat.http.port</portName>
-                </portNames>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <!-- Configure Groovy Compile for Juzu -->
-          <groupId>org.codehaus.gmaven</groupId>
-          <artifactId>gmaven-plugin</artifactId>
-          <configuration>
-            <sources>
-              <fileset>
-                <directory>${project.build.outputDirectory}</directory>
-                <includes>
-                  <include>**/*.groovy</include>
-                </includes>
-              </fileset>
-            </sources>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <systemProperties>
-              <!-- test configuration file -->
-              <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
-              <!-- debug logback setup -->
-              <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
-              <!-- Port used for Tomcat HTTP connector -->
-              <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
-              <!-- Maven infos to tests -->
-              <project.version>${project.version}</project.version>
-              <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
-              <project.organization.name>${project.organization.name}</project.organization.name>
-              <project.organization.url>${project.organization.url}</project.organization.url>
-            </systemProperties>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>copy-resources-for-tomcat-run</id>
-              <phase>generate-resources</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
-                <resources>
-                  <resource>
-                    <filtering>true</filtering>
-                    <directory>${project.basedir}/src/test/resources</directory>
-                    <includes>
-                      <include>acceptance.properties</include>
-                      <include>logback.xml</include>
-                      <include>tomcat-context.xml</include>
-                    </includes>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <executions>
@@ -383,8 +344,83 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>reserve-network-port</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>reserve-network-port</goal>
+            </goals>
+            <configuration>
+              <portNames>
+                <portName>tomcat.http.port</portName>
+              </portNames>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <!-- Configure Groovy Compile for Juzu -->
         <groupId>org.codehaus.gmaven</groupId>
         <artifactId>gmaven-plugin</artifactId>
+        <configuration>
+          <sources>
+            <fileset>
+              <directory>${project.build.outputDirectory}</directory>
+              <includes>
+                <include>**/*.groovy</include>
+              </includes>
+            </fileset>
+          </sources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemProperties>
+            <!-- test configuration file -->
+            <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
+            <!-- debug logback setup -->
+            <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
+            <!-- Port used for Tomcat HTTP connector -->
+            <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
+            <!-- Maven infos to tests -->
+            <project.version>${project.version}</project.version>
+            <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
+            <project.organization.name>${project.organization.name}</project.organization.name>
+            <project.organization.url>${project.organization.url}</project.organization.url>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources-for-tomcat-run</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
+              <resources>
+                <resource>
+                  <filtering>true</filtering>
+                  <directory>${project.basedir}/src/test/resources</directory>
+                  <includes>
+                    <include>acceptance.properties</include>
+                    <include>logback.xml</include>
+                    <include>tomcat-context.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
