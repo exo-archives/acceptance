@@ -21,7 +21,6 @@
 -->
 <arquillian>
   <extension qualifier="webdriver">
-    <property name="javascriptEnabled">true</property>
     <property name="browserCapabilities">htmlUnit</property>
   </extension>
   <container qualifier="tomcat" default="true">

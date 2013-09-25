@@ -129,6 +129,9 @@
       <artifactId>hibernate-validator</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- Arquillian -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>org.jboss.arquillian.container</groupId>
       <artifactId>arquillian-container-test-api</artifactId>
@@ -140,8 +143,23 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-warp-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-warp-impl</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -189,11 +207,6 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-api</artifactId>
-      <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- SLF4J -->
@@ -400,6 +413,28 @@
             <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
             <project.organization.name>${project.organization.name}</project.organization.name>
             <project.organization.url>${project.organization.url}</project.organization.url>
+            <!-- Spring profile for test -->
+            <spring.profiles.active>test</spring.profiles.active>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+          <systemProperties>
+            <!-- test configuration file -->
+            <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
+            <!-- debug logback setup -->
+            <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
+            <!-- Port used for Tomcat HTTP connector -->
+            <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
+            <!-- Used to identify the archive to test-->
+            <archiveName>${project.build.finalName}.war</archiveName>
+            <targetDir>${project.build.directory}</targetDir>
+            <!-- Spring profile for test -->
+            <spring.profiles.active>test</spring.profiles.active>
           </systemProperties>
         </configuration>
       </plugin>

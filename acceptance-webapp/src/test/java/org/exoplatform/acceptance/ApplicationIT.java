@@ -18,28 +18,34 @@
  */
 package org.exoplatform.acceptance;
 
-import static org.junit.Assert.assertEquals;
-
+import java.io.File;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
-import juzu.arquillian.Helper;
 import lombok.extern.slf4j.Slf4j;
-import org.exoplatform.acceptance.Application;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.arquillian.warp.Activity;
+import org.jboss.arquillian.warp.Inspection;
+import org.jboss.arquillian.warp.Warp;
+import org.jboss.arquillian.warp.WarpTest;
+import org.jboss.arquillian.warp.servlet.AfterServlet;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 @RunWith(Arquillian.class)
+@WarpTest
 @Slf4j
-public class ApplicationTestCase {
+public class ApplicationIT {
 
   @Drone
   WebDriver driver;
@@ -49,17 +55,50 @@ public class ApplicationTestCase {
 
   @Deployment
   public static WebArchive createDeployment() {
-    WebArchive war = Helper.createBaseServletDeployment("spring");
-    war.addPackages(true, Application.class.getPackage());
+    WebArchive war = ShrinkWrap.create(ZipImporter.class, "ROOT.war").importFrom(new File(System.getProperty("targetDir"), System.getProperty("archiveName"))).as(WebArchive.class);
+    log.debug("Archive content : \n {}", war.toString(true));
     return war;
   }
 
   @Test
   @RunAsClient
+  @Ignore
+  /**
+   * Need to manage authentication before being able to do such tests
+   */
   public void testFoo() {
     driver.get(deploymentURL.toString());
-    ApplicationTestCase.log.info("Source: " + driver.getPageSource());
+    driver.quit();
+    log.info("Source: " + driver.getPageSource());
     //WebElement body = driver.findElement(By.tagName("body"));
     //assertEquals("Hello World", body.getText());
+  }
+
+  @Test
+  @Ignore
+  public void shouldReturnUnAuthorizedOnAuthFailure() throws Exception {
+    Warp.initiate(new Activity() {
+
+      @Override
+      public void perform() {
+        try {
+          final HttpURLConnection conn = (HttpURLConnection) deploymentURL.openConnection();
+          conn.setInstanceFollowRedirects(false);
+          Assert.assertEquals(401, conn.getResponseCode());
+        } catch (Exception e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }).inspect(new Inspection() {
+      @AfterServlet
+      public void validate() {
+        Assert.assertTrue(true);
+      }
+
+      @Override
+      public int hashCode() {
+        return super.hashCode();
+      }
+    });
   }
 }
