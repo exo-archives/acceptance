@@ -80,7 +80,7 @@
   </appender>
 
   <!-- Acceptance -->
-  <logger name="org.acceptance.acceptance" level="INFO"/>
+  <logger name="org.exoplatform.acceptance" level="INFO"/>
 
   <!-- Spring -->
   <logger name="org.springframework" level="WARN"/>
