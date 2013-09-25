@@ -30,10 +30,7 @@
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
   <!-- Properties configuration -->
-  <context:property-placeholder location="classpath:acceptance-default.properties,file://${acceptance.configurationFile}"/>
-
-  <!-- Activate annotation configured components -->
-  <context:annotation-config/>
+  <context:property-placeholder location="classpath:acceptance-default.properties,file://${acceptance.configurationFile}" ignore-unresolvable="false" ignore-resource-not-found="false"/>
 
   <!-- Scan components for annotations within the configured package -->
   <context:component-scan base-package="org.exoplatform.acceptance"/>
@@ -51,24 +48,23 @@
   <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg name="mongo" ref="mongo"/>
-    <constructor-arg name="databaseName" value="acceptance"/>
-  </bean>
-  <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
-  <!--<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">-->
-  <!--<property name="host" value="${mongodb.host}"/>-->
-  <!--<property name="port" value="${mongodb.port}" />-->
-  <!--</bean>-->
-
-  <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR TESTING PURPOSE ONLY /!\) -->
-  <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean">
-    <!--
-    <property name="version" value="${mongodb.version}" />
-    <property name="bindIp" value="${mongodb.host}" />
-    -->
-    <!-- We don't set a port so that a random free port will be taken -->
-    <!--<property name="port" value="${mongodb.port}"/>-->
+    <constructor-arg name="databaseName" value="${mongodb.name}"/>
   </bean>
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
   <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+  <beans profile="prod">
+    <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+      <property name="host" value="${mongodb.host}"/>
+      <property name="port" value="${mongodb.port}"/>
+    </bean>
+  </beans>
+
+  <beans profile="dev,test">
+    <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
+    <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean"/>
+  </beans>
+
 </beans>

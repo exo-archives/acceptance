@@ -30,6 +30,11 @@
     <param-name>juzu.inject</param-name>
     <param-value>spring</param-value>
   </context-param>
+  <!-- Spring default active profiles -->
+  <context-param>
+    <param-name>spring.profiles.default</param-name>
+    <param-value>prod</param-value>
+  </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
