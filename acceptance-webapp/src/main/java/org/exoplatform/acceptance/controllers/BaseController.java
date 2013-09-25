@@ -19,6 +19,7 @@
 package org.exoplatform.acceptance.controllers;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
 import juzu.plugin.asset.WithAssets;
@@ -37,10 +38,12 @@ import org.xml.sax.SAXException;
 public abstract class BaseController {
 
   @Inject
+  @Named("user")
   @Getter
   private User user;
 
   @Inject
+  @Named("settings")
   @Getter
   private Settings settings;
 
