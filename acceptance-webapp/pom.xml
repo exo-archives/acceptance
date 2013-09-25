@@ -421,7 +421,6 @@
                   <directory>${project.basedir}/src/test/resources</directory>
                   <includes>
                     <include>acceptance.properties</include>
-                    <include>logback.xml</include>
                     <include>tomcat-context.xml</include>
                   </includes>
                 </resource>
