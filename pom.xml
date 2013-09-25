@@ -64,7 +64,7 @@
     <javax.validation.version>1.0.0.GA</javax.validation.version>
     <javax.ws.rs.version>1.0</javax.ws.rs.version>
     <junit.version>4.11</junit.version>
-    <juzu.version>0.7.0-beta20-SNAPSHOT</juzu.version>
+    <juzu.version>0.7.0-beta21</juzu.version>
     <logback.version>1.0.13</logback.version>
     <lombok.version>0.12.0</lombok.version>
     <mongodb.driver.version>2.11.2</mongodb.driver.version>
