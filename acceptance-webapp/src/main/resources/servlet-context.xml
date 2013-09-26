@@ -29,8 +29,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
-  <!-- Properties configuration -->
-  <context:property-placeholder location="classpath:acceptance-default.properties,file://${acceptance.configurationFile}" ignore-unresolvable="false" ignore-resource-not-found="false"/>
+  <!-- Default configuration -->
+  <context:property-placeholder location="classpath:acceptance-default.properties" ignore-unresolvable="false" ignore-resource-not-found="false" order="0"/>
+  <!-- User configuration -->
+  <context:property-placeholder location="file://${acceptance.configurationFile}" ignore-unresolvable="true" ignore-resource-not-found="true" order="1"/>
 
   <!-- Scan components for annotations within the configured package -->
   <context:component-scan base-package="org.exoplatform.acceptance"/>
