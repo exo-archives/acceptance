@@ -9,9 +9,9 @@ public class MockedCrowdUserDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     switch (username) {
       case MockedAcceptanceUser.User.USERNAME:
-        return MockedAcceptanceUser.ADMIN;
-      case MockedAcceptanceUser.Administrator.USERNAME:
         return MockedAcceptanceUser.USER;
+      case MockedAcceptanceUser.Administrator.USERNAME:
+        return MockedAcceptanceUser.ADMIN;
       default:
         throw new UsernameNotFoundException("Unknown user : " + username);
     }
