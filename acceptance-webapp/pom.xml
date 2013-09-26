@@ -156,6 +156,14 @@
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
+    <!-- Use logback -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
     <!-- **************************************** -->
     <dependency>
@@ -166,6 +174,14 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Required by logback for colorized console on windows -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
@@ -221,27 +237,11 @@
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
-    <!-- Use logback for tests outputs -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
     <!-- JUnit -->
     <!-- **************************************** -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Required by logback for colorized console on windows -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.fusesource.jansi</groupId>
-      <artifactId>jansi</artifactId>
       <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
