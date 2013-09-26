@@ -43,15 +43,6 @@
   </properties>
   <dependencies>
     <!-- **************************************** -->
-    <!-- Our Agent -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>acceptance-agent</artifactId>
-      <version>${project.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!-- **************************************** -->
     <!-- Crowd -->
     <!-- **************************************** -->
     <dependency>
@@ -63,19 +54,6 @@
       <groupId>com.atlassian.crowd</groupId>
       <artifactId>crowd-integration-springsecurity</artifactId>
       <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Embedded MongoDB -->
@@ -92,14 +70,6 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
       <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Juzu Frameworks -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-core</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.juzu</groupId>
@@ -139,11 +109,6 @@
       <artifactId>spring-web</artifactId>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <scope>runtime</scope>
-    </dependency>
     <!-- **************************************** -->
     <!-- Spring Data Framework -->
     <!-- **************************************** -->
@@ -182,11 +147,64 @@
       <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
+    <!-- Our Agent -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>acceptance-agent</artifactId>
+      <version>${project.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Hibernate Validator Framework -->
     <!-- **************************************** -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Juzu Frameworks -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-core</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- SLF4J -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
@@ -291,24 +309,6 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- SLF4J -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
