@@ -49,14 +49,7 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>acceptance-agent</artifactId>
       <version>${project.version}</version>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Use logback for tests outputs -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>test</scope>
+      <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Crowd -->
@@ -77,12 +70,12 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <scope>compile</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <scope>compile</scope>
+      <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Embedded MongoDB -->
@@ -100,10 +93,117 @@
       <artifactId>javax.inject</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- Juzu Frameworks -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-bom-core</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-core</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-plugins-servlet</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Data Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Security Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Servlet -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Lombok -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Hibernate Validator Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Security Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Use logback for tests outputs -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- JUnit -->
@@ -120,14 +220,6 @@
       <groupId>org.fusesource.jansi</groupId>
       <artifactId>jansi</artifactId>
       <scope>test</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Hibernate Validator Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- Arquillian -->
@@ -154,12 +246,12 @@
     </dependency>
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
-      <artifactId>arquillian-junit-core</artifactId>
+      <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
-      <artifactId>arquillian-junit-container</artifactId>
+      <artifactId>arquillian-junit-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -172,6 +264,9 @@
       <artifactId>shrinkwrap-api</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- Juzu -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-bom-arquillian</artifactId>
@@ -182,31 +277,21 @@
       <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- ########################################### -->
-    <!-- Juzu Frameworks -->
-    <!-- ########################################### -->
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-bom-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.juzu</groupId>
-      <artifactId>juzu-plugins-servlet</artifactId>
-      <scope>compile</scope>
-    </dependency>
     <!-- **************************************** -->
-    <!-- Lombok -->
+    <!-- Moquito -->
     <!-- **************************************** -->
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Selenium -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
     <!-- SLF4J -->
@@ -227,68 +312,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Data Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-commons</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-mongodb</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Security Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>xml-apis</groupId>

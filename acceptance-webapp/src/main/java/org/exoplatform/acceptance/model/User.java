@@ -18,15 +18,20 @@
  */
 package org.exoplatform.acceptance.model;
 
+import java.util.Collection;
+
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsService;
 import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.SessionScoped;
-import lombok.Delegate;
 import lombok.Getter;
+import org.exoplatform.acceptance.security.AcceptanceUser;
+import org.exoplatform.acceptance.security.CrowdAcceptanceUser;
+import org.exoplatform.acceptance.security.MockedAcceptanceUser;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * A User object which is a wrapper on the current CrowdUserDetails
@@ -35,13 +40,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 @SessionScoped
 public class User {
 
+  @Getter(lazy = true)
+  private final AcceptanceUser userImpl = loadUserDetails();
+
   @Inject
   @Named("crowdUserDetailsService")
-  private CrowdUserDetailsService userDetailsService;
-
-  @Getter(lazy = true)
-  @Delegate
-  private final CrowdUserDetails userDetails = loadUserDetails();
+  private UserDetailsService userDetailsService;
 
   public boolean isAuthenticated() {
     try {
@@ -51,16 +55,106 @@ public class User {
     }
   }
 
-  private CrowdUserDetails loadUserDetails() {
-    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    String username;
-    if (principal instanceof UserDetails) {
-      username = ((UserDetails) principal).getUsername();
-    } else if (principal instanceof CrowdUserDetails) {
-      username = ((CrowdUserDetails) principal).getUsername();
-    } else {
-      username = principal.toString();
-    }
-    return userDetailsService.loadUserByUsername(username);
+  private AcceptanceUser loadUserDetails() {
+    if (isAuthenticated()) {
+      UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername());
+      if (userDetails instanceof CrowdUserDetails)
+        return new CrowdAcceptanceUser((CrowdUserDetails) userDetails);
+      else if (userDetails instanceof MockedAcceptanceUser)
+        return (MockedAcceptanceUser) userDetails;
+      else
+        throw new RuntimeException("Unknown UserDetails implementation : " + userDetails.getClass().getName());
+    } else return null;
+  }
+
+  private String getUsername() {
+    if (isAuthenticated()) {
+      Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      if (principal instanceof UserDetails) {
+        return ((UserDetails) principal).getUsername();
+      } else if (principal instanceof CrowdUserDetails) {
+        return ((CrowdUserDetails) principal).getUsername();
+      } else {
+        return principal.toString();
+      }
+    } else return null;
+  }
+
+  /**
+   * Returns the authorities granted to the user. Cannot return <code>null</code>.
+   *
+   * @return the authorities, sorted by natural key (never <code>null</code>)
+   */
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return getUserImpl().getAuthorities();
+  }
+
+  /**
+   * Returns the password used to authenticate the user.
+   *
+   * @return the password
+   */
+  public String getPassword() {
+    return getUserImpl().getPassword();
+  }
+
+  /**
+   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
+   *
+   * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
+   * (ie expired)
+   */
+  public boolean isAccountNonExpired() {
+    return getUserImpl().isAccountNonExpired();
+  }
+
+  /**
+   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
+   *
+   * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
+   */
+  public boolean isAccountNonLocked() {
+    return getUserImpl().isAccountNonLocked();
+  }
+
+  /**
+   * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
+   * authentication.
+   *
+   * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
+   * valid (ie expired)
+   */
+  public boolean isCredentialsNonExpired() {
+    return getUserImpl().isCredentialsNonExpired();
+  }
+
+  /**
+   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
+   *
+   * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
+   */
+  public boolean isEnabled() {
+    return getUserImpl().isEnabled();
+  }
+
+  /**
+   * Returns the user's first name
+   */
+  public String getFirstName() {
+    return getUserImpl().getFirstName();
+  }
+
+  /**
+   * Returns the user's fullname
+   */
+  public String getFullName() {
+    return getUserImpl().getFullName();
+  }
+
+  /**
+   * Returns the user's last name
+   */
+  public String getLastName() {
+    return getUserImpl().getLastName();
   }
 }

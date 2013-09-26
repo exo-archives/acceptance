@@ -30,9 +30,6 @@ import juzu.template.Template;
 public class Administration extends BaseController {
 
   @Inject
-  private CrowdUserDetailsService userDetailsService;
-
-  @Inject
   @Path("administration/index.gtmpl")
   Template index;
 

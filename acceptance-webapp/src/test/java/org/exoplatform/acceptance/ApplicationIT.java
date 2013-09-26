@@ -56,7 +56,7 @@ public class ApplicationIT {
   @Deployment
   public static WebArchive createDeployment() {
     WebArchive war = ShrinkWrap.create(ZipImporter.class, "ROOT.war").importFrom(new File(System.getProperty("targetDir"), System.getProperty("archiveName"))).as(WebArchive.class);
-    log.debug("Archive content : \n {}", war.toString(true));
+    //log.debug("Archive content : \n {}", war.toString(true));
     return war;
   }
 
@@ -67,8 +67,7 @@ public class ApplicationIT {
    * Need to manage authentication before being able to do such tests
    */
   public void testFoo() {
-    driver.get(deploymentURL.toString());
-    driver.quit();
+    driver.get(deploymentURL.toString()+"/signin");
     log.info("Source: " + driver.getPageSource());
     //WebElement body = driver.findElement(By.tagName("body"));
     //assertEquals("Hello World", body.getText());

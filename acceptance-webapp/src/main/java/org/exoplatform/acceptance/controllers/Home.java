@@ -19,7 +19,6 @@
 package org.exoplatform.acceptance.controllers;
 
 
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsService;
 import javax.inject.Inject;
 import juzu.Action;
 import juzu.Path;
@@ -30,9 +29,6 @@ import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 
 public class Home extends BaseController {
-
-  @Inject
-  private CrowdUserDetailsService userDetailsService;
 
   @Inject
   @Path("index.gtmpl")
