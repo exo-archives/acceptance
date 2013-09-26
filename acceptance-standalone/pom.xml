@@ -83,31 +83,39 @@
     </dependency>
   </dependencies>
   <build>
-    <testResources>
-      <!-- Filtered test resources -->
-      <testResource>
-        <targetPath>${project.build.directory}/test-conf</targetPath>
-        <filtering>true</filtering>
-        <directory>${project.basedir}/src/test/resources</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-      </testResource>
-    </testResources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven2-plugin</artifactId>
+          <configuration>
+            <container>
+              <containerId>tomcat7x</containerId>
+              <type>installed</type>
+              <home>${project.build.directory}/${project.build.finalName}/${project.build.finalName}</home>
+              <systemProperties>
+                <acceptance.crowd.application.name>${acceptance.dev.crowd.application.name}</acceptance.crowd.application.name>
+                <acceptance.crowd.application.password>${acceptance.dev.crowd.application.password}</acceptance.crowd.application.password>
+                <acceptance.crowd.application.login.url>${acceptance.dev.crowd.application.login.url}</acceptance.crowd.application.login.url>
+                <acceptance.crowd.cookie.domain>${acceptance.dev.crowd.cookie.domain}</acceptance.crowd.cookie.domain>
+                <acceptance.crowd.server.url>${acceptance.dev.crowd.server.url}</acceptance.crowd.server.url>
+                <acceptance.mongodb.host>${acceptance.dev.mongodb.host}</acceptance.mongodb.host>
+                <acceptance.mongodb.port>${acceptance.dev.mongodb.port}</acceptance.mongodb.port>
+                <acceptance.mongodb.name>${acceptance.dev.mongodb.name}</acceptance.mongodb.name>
+                <acceptance.mongodb.username>${acceptance.dev.mongodb.username}</acceptance.mongodb.username>
+                <acceptance.mongodb.password>${acceptance.dev.mongodb.password}</acceptance.mongodb.password>
+                <logback.configurationFile>${project.basedir}/src/main/tomcat/conf/logback.xml</logback.configurationFile>
+              </systemProperties>
+            </container>
+            <configuration>
+              <type>existing</type>
+              <home>${project.build.directory}/${project.build.finalName}/${project.build.finalName}</home>
+            </configuration>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-test-conf</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>testResources</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <!-- Build License related files bundled directly in the archive -->
       <!-- This is a long process and really useful only for released stuffs -->
       <plugin>
