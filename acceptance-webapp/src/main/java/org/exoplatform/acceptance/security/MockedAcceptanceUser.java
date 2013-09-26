@@ -46,7 +46,7 @@ public class MockedAcceptanceUser implements AcceptanceUser {
   }
 
   public static class Administrator extends MockedAcceptanceUser {
-    public final static String USERNAME = "user";
+    public final static String USERNAME = "admin";
 
     private Administrator() {
       setPassword(USERNAME);
@@ -61,7 +61,7 @@ public class MockedAcceptanceUser implements AcceptanceUser {
   }
 
   public static class User extends MockedAcceptanceUser {
-    public final static String USERNAME = "admin";
+    public final static String USERNAME = "user";
 
     private User() {
       setPassword(USERNAME);
