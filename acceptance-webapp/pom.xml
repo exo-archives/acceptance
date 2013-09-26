@@ -430,8 +430,6 @@
           <systemProperties>
             <!-- test configuration file -->
             <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
-            <!-- debug logback setup -->
-            <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
             <!-- Maven infos to tests -->
@@ -452,8 +450,6 @@
           <systemProperties>
             <!-- test configuration file -->
             <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
-            <!-- debug logback setup -->
-            <logback.statusListenerClass>ch.qos.logback.core.status.OnConsoleStatusListener</logback.statusListenerClass>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
             <!-- Used to identify the archive to test-->
