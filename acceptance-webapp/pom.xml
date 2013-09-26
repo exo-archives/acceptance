@@ -215,6 +215,11 @@
       <artifactId>spring-security-config</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <scope>runtime</scope>
+    </dependency>
     <!-- **************************************** -->
     <!-- Use logback for tests outputs -->
     <!-- **************************************** -->
@@ -314,11 +319,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
