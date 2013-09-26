@@ -382,6 +382,8 @@
                 <systemProperties>
                   <!-- test configuration file -->
                   <acceptance.configurationFile>${project.build.directory}/tomcat-run-conf/acceptance.properties</acceptance.configurationFile>
+                  <!-- Port used for embedded Mongo -->
+                  <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
                 </systemProperties>
               </configuration>
             </execution>
@@ -403,6 +405,7 @@
             <configuration>
               <portNames>
                 <portName>tomcat.http.port</portName>
+                <portName>mongodb.embedded.port</portName>
               </portNames>
             </configuration>
           </execution>
@@ -432,6 +435,8 @@
             <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
+            <!-- Port used for embedded Mongo -->
+            <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
             <!-- Maven infos to tests -->
             <project.version>${project.version}</project.version>
             <project.inceptionYear>${project.inceptionYear}</project.inceptionYear>
@@ -452,6 +457,8 @@
             <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
+            <!-- Port used for embedded Mongo -->
+            <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
             <!-- Used to identify the archive to test-->
             <archiveName>${project.build.finalName}.war</archiveName>
             <targetDir>${project.build.directory}</targetDir>

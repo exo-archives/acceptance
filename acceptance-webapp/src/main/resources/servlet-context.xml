@@ -49,6 +49,12 @@
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg name="mongo" ref="mongo"/>
     <constructor-arg name="databaseName" value="${mongodb.name}"/>
+    <constructor-arg name="userCredentials" ref="userCredentials"/>
+  </bean>
+
+  <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+    <constructor-arg name="username" value="${mongodb.username}"/>
+    <constructor-arg name="password" value="${mongodb.password}"/>
   </bean>
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
@@ -64,7 +70,14 @@
 
   <beans profile="dev,test">
     <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
-    <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean"/>
+    <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean">
+      <!-- The port on which the embedded mongo will listen -->
+      <property name="port" value="${mongodb.embedded.port}"/>
+      <!-- The version of embedded mongo to use -->
+      <property name="version" value="${mongodb.embedded.version}"/>
+      <!-- An IP address for the MongoDB instance to be bound to during its execution. Default is localhost. -->
+      <property name="bindIp" value="${mongodb.embedded.bindIp}"/>
+    </bean>
   </beans>
 
 </beans>
