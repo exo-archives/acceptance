@@ -58,14 +58,6 @@
       <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
-    <!-- Use logback to have colored output -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
     <!-- Apache Tomcat -->
     <!-- **************************************** -->
     <dependency>
@@ -87,37 +79,6 @@
     <dependency>
       <groupId>org.exoplatform.resources</groupId>
       <artifactId>exo-lgpl-license-resource-bundle</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- Required by logback for colorized console on windows -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.fusesource.jansi</groupId>
-      <artifactId>jansi</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
-    <!-- SLF4J -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jul-to-slf4j</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
       <scope>provided</scope>
     </dependency>
   </dependencies>

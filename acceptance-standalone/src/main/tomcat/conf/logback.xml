@@ -33,9 +33,6 @@
   <!-- Number of archives to keep -->
   <property name="acceptance.logs.rolling.maxHistory" value="60"/>
 
-  <!-- Load user configuration to customize this setup -->
-  <property file="${catalina.base}/conf/acceptance.properties"/>
-
   <!--
   LevelChangePropagator propagates changes made to the level of any logback-classic logger onto the java.util.logging framework.
   Such propagation eliminates the performance impact of disabled log statements.

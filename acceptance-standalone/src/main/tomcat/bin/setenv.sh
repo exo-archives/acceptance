@@ -18,26 +18,6 @@
 # 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 #
 
-# -----------------------------------------------------------------------------
-# Logs customization (Managed by slf4J/logback instead of tomcat-juli & co)
-# -----------------------------------------------------------------------------
-
-# Deactivate j.u.l
-LOGGING_MANAGER="-Dnop"
-# Add additional bootstrap entries for logging purpose using SLF4J+Logback
-# SLF4J deps
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/slf4j-api-${slf4j.version}.jar"
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/jcl-over-slf4j-${slf4j.version}.jar"
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/jul-to-slf4j-${slf4j.version}.jar"
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/log4j-over-slf4j-${slf4j.version}.jar"
-# LogBack deps
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/logback-core-${logback.version}.jar"
-CLASSPATH="$CLASSPATH":"$CATALINA_HOME/lib/logback-classic-${logback.version}.jar"
-
-# -----------------------------------------------------------------------------
-# Compute the CATALINA_OPTS
-# -----------------------------------------------------------------------------
-
 # Logback configuration file
 CATALINA_OPTS="$CATALINA_OPTS -Dlogback.configurationFile=\"$CATALINA_BASE/conf/logback.xml\""
 

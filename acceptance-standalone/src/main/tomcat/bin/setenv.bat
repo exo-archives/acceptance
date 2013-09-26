@@ -19,28 +19,6 @@
 
 @ECHO off
 
-REM # ---------------------------------------------------------------------------
-REM # Logs customization (Managed by slf4J\logback instead of tomcat-juli & co)
-REM # ---------------------------------------------------------------------------
-
-REM # Deactivate j.u.l
-SET LOGGING_MANAGER=-Dnop
-REM # Add additional bootstrap entries for logging purpose using SLF4J+Logback
-REM # SLF4J deps
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\slf4j-api-${slf4j.version}.jar
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\jcl-over-slf4j-${slf4j.version}.jar
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\jul-to-slf4j-${slf4j.version}.jar
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\log4j-over-slf4j-${slf4j.version}.jar
-REM # LogBack deps
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\logback-core-${logback.version}.jar
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\logback-classic-${logback.version}.jar
-REM # Jansi deps for colorized output on windows
-SET CLASSPATH=%CLASSPATH%;%CATALINA_HOME%\lib\jansi-${jansi.version}.jar
-
-REM # ---------------------------------------------------------------------------
-REM # Compute the CATALINA_OPTS
-REM # ---------------------------------------------------------------------------
-
 REM # Logback configuration file
 SET CATALINA_OPTS=%CATALINA_OPTS% -Dlogback.configurationFile="%CATALINA_BASE%\conf\logback.xml"
 

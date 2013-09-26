@@ -47,7 +47,6 @@
       <excludes>
         <exclude>**/*.sh</exclude>
         <!-- We need to exclude everything we override -->
-        <exclude>**/conf/logging.properties</exclude>
         <exclude>**/conf/Catalina/localhost/*</exclude>
         <exclude>**/conf/tomcat-users.xml</exclude>
         <exclude>**/webapps/**</exclude>
@@ -120,11 +119,6 @@
       <includes>
         <!-- This artifact isn't by default in tomcat -->
         <include>org.apache.tomcat:tomcat-catalina-jmx-remote:*</include>
-        <include>org.slf4j:*:*</include>
-        <!-- Logback -->
-        <include>ch.qos.logback:*:*</include>
-        <!-- Required by logback for colorized console on windows -->
-        <include>org.fusesource.jansi:jansi:*</include>
       </includes>
       <scope>provided</scope>
       <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
