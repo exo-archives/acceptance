@@ -30,17 +30,6 @@
   <packaging>war</packaging>
   <name>eXo Acceptance Webapp</name>
   <description>eXo Acceptance - Web Application</description>
-  <properties>
-    <!-- ************** -->
-    <!-- Build settings -->
-    <!-- ************** -->
-    <!-- Development settings -->
-    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
-    <acceptance.dev.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.dev.crowd.application.password>
-    <acceptance.dev.crowd.application.login.url>http://localhost:8080/signin</acceptance.dev.crowd.application.login.url>
-    <acceptance.dev.crowd.cookie.domain>localhost</acceptance.dev.crowd.cookie.domain>
-    <acceptance.dev.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.dev.crowd.server.url>
-  </properties>
   <dependencies>
     <!-- **************************************** -->
     <!-- Crowd -->
@@ -340,23 +329,6 @@
         </excludes>
       </resource>
     </resources>
-    <testResources>
-      <!-- Filtered test resources -->
-      <testResource>
-        <filtering>true</filtering>
-        <directory>${project.basedir}/src/test/resources</directory>
-        <includes>
-          <include>**/*.properties</include>
-        </includes>
-      </testResource>
-      <!-- Not filtered test resources -->
-      <testResource>
-        <directory>${project.basedir}/src/test/resources</directory>
-        <excludes>
-          <exclude>**/*.properties</exclude>
-        </excludes>
-      </testResource>
-    </testResources>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -380,8 +352,6 @@
                 <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
                 <!-- System properties to test -->
                 <systemProperties>
-                  <!-- test configuration file -->
-                  <acceptance.configurationFile>${project.build.directory}/tomcat-run-conf/acceptance.properties</acceptance.configurationFile>
                   <!-- Port used for embedded Mongo -->
                   <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
                 </systemProperties>
@@ -431,8 +401,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <systemProperties>
-            <!-- test configuration file -->
-            <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
             <!-- Port used for embedded Mongo -->
@@ -453,8 +421,6 @@
         <configuration>
           <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
           <systemProperties>
-            <!-- test configuration file -->
-            <acceptance.configurationFile>${project.build.testOutputDirectory}/acceptance.properties</acceptance.configurationFile>
             <!-- Port used for Tomcat HTTP connector -->
             <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
             <!-- Port used for embedded Mongo -->

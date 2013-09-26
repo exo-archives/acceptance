@@ -30,6 +30,22 @@
   <packaging>pom</packaging>
   <name>eXo Acceptance Distribution</name>
   <description>eXo Acceptance - Standalone distribution</description>
+  <properties>
+    <!-- ************** -->
+    <!-- Build settings -->
+    <!-- ************** -->
+    <!-- Development settings -->
+    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
+    <acceptance.dev.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.dev.crowd.application.password>
+    <acceptance.dev.crowd.application.login.url>http://localhost:8080/signin</acceptance.dev.crowd.application.login.url>
+    <acceptance.dev.crowd.cookie.domain>localhost</acceptance.dev.crowd.cookie.domain>
+    <acceptance.dev.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.dev.crowd.server.url>
+    <acceptance.dev.mongodb.host>localhost</acceptance.dev.mongodb.host>
+    <acceptance.dev.mongodb.port>27017</acceptance.dev.mongodb.port>
+    <acceptance.dev.mongodb.name>acceptance-dev</acceptance.dev.mongodb.name>
+    <acceptance.dev.mongodb.username />
+    <acceptance.dev.mongodb.password />
+  </properties>
   <dependencies>
     <!-- **************************************** -->
     <!-- Our Webapp -->
@@ -106,7 +122,31 @@
     </dependency>
   </dependencies>
   <build>
+    <testResources>
+      <!-- Filtered test resources -->
+      <testResource>
+        <targetPath>${project.build.directory}/test-conf</targetPath>
+        <filtering>true</filtering>
+        <directory>${project.basedir}/src/test/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+        </includes>
+      </testResource>
+    </testResources>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-test-conf</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>testResources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <!-- Build License related files bundled directly in the archive -->
       <!-- This is a long process and really useful only for released stuffs -->
       <plugin>

@@ -29,10 +29,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
-  <!-- Default configuration -->
-  <context:property-placeholder location="classpath:acceptance-default.properties" ignore-unresolvable="false" ignore-resource-not-found="false" order="0"/>
   <!-- User configuration -->
-  <context:property-placeholder location="file://${acceptance.configurationFile}" ignore-unresolvable="true" ignore-resource-not-found="true" order="1"/>
+  <context:property-placeholder location="file://${acceptance.configurationFile}" ignore-unresolvable="true" ignore-resource-not-found="true" order="0"/>
+  <!-- Default configuration -->
+  <context:property-placeholder location="classpath:acceptance-default.properties" ignore-unresolvable="false" ignore-resource-not-found="false" order="1"/>
 
   <!-- Scan components for annotations within the configured package -->
   <context:component-scan base-package="org.exoplatform.acceptance"/>
@@ -50,13 +50,13 @@
   <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg name="mongo" ref="mongo"/>
-    <constructor-arg name="databaseName" value="${mongodb.name}"/>
+    <constructor-arg name="databaseName" value="${acceptance.mongodb.name}"/>
     <constructor-arg name="userCredentials" ref="userCredentials"/>
   </bean>
 
   <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
-    <constructor-arg name="username" value="${mongodb.username}"/>
-    <constructor-arg name="password" value="${mongodb.password}"/>
+    <constructor-arg name="username" value="${acceptance.mongodb.username}"/>
+    <constructor-arg name="password" value="${acceptance.mongodb.password}"/>
   </bean>
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
@@ -65,8 +65,8 @@
   <beans profile="prod">
     <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
     <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-      <property name="host" value="${mongodb.host}"/>
-      <property name="port" value="${mongodb.port}"/>
+      <property name="host" value="${acceptance.mongodb.host}"/>
+      <property name="port" value="${acceptance.mongodb.port}"/>
     </bean>
   </beans>
 
@@ -74,11 +74,11 @@
     <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
     <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean">
       <!-- The port on which the embedded mongo will listen -->
-      <property name="port" value="${mongodb.embedded.port}"/>
+      <property name="port" value="${acceptance.mongodb.embedded.port}"/>
       <!-- The version of embedded mongo to use -->
-      <property name="version" value="${mongodb.embedded.version}"/>
+      <property name="version" value="${acceptance.mongodb.embedded.version}"/>
       <!-- An IP address for the MongoDB instance to be bound to during its execution. Default is localhost. -->
-      <property name="bindIp" value="${mongodb.embedded.bindIp}"/>
+      <property name="bindIp" value="${acceptance.mongodb.embedded.bindIp}"/>
     </bean>
   </beans>
 
