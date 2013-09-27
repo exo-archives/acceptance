@@ -350,10 +350,6 @@
                 <path>/</path>
                 <!-- Use a separation classloader to avoid conflicts with SLF4J -->
                 <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-                <!-- The delay in seconds between each classPathScanning change invocation -->
-                <backgroundProcessorDelay>30</backgroundProcessorDelay>
-                <!-- Force context scanning if you don't use a context file with reloadable = "true" -->
-                <contextReloadable>true</contextReloadable>
                 <!-- Specific context for development mode -->
                 <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
                 <!-- System properties to test -->
