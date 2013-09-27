@@ -31,20 +31,25 @@
   <name>eXo Acceptance Distribution</name>
   <description>eXo Acceptance - Standalone distribution</description>
   <properties>
-    <!-- ************** -->
-    <!-- Build settings -->
-    <!-- ************** -->
-    <!-- Development settings -->
-    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
-    <acceptance.dev.crowd.application.password>TO_DEFINE_IN_YOUR_SETTINGS</acceptance.dev.crowd.application.password>
-    <acceptance.dev.crowd.application.login.url>http://localhost:8080/signin</acceptance.dev.crowd.application.login.url>
-    <acceptance.dev.crowd.cookie.domain>localhost</acceptance.dev.crowd.cookie.domain>
+    <!-- ************************* -->
+    <!-- Test environment settings -->
+    <!-- ************************* -->
+    <!-- The URL to use when connecting with the integration libraries to communicate with the Crowd server. ex : http(s)://your_crowd_server_host:your_crowd_server_port/services/ -->
     <acceptance.dev.crowd.server.url>https://identity.exoplatform.org/services/</acceptance.dev.crowd.server.url>
+    <!-- The name that the application will use when authenticating with the Crowd server. -->
+    <acceptance.dev.crowd.application.name>acceptanceng.exoplatform.org</acceptance.dev.crowd.application.name>
+    <!-- The password that the application will use when authenticating with the Crowd server. -->
+    <acceptance.dev.crowd.application.password>TO_BE_DEFINED</acceptance.dev.crowd.application.password>
+    <!-- The MongoDB hostname -->
     <acceptance.dev.mongodb.host>localhost</acceptance.dev.mongodb.host>
+    <!-- The MongoDB port -->
     <acceptance.dev.mongodb.port>27017</acceptance.dev.mongodb.port>
+    <!-- The MongoDB instance name -->
     <acceptance.dev.mongodb.name>acceptance-dev</acceptance.dev.mongodb.name>
-    <acceptance.dev.mongodb.username />
-    <acceptance.dev.mongodb.password />
+    <!-- The MongoDB username -->
+    <acceptance.dev.mongodb.username/>
+    <!-- The MongoDB password -->
+    <acceptance.dev.mongodb.password/>
   </properties>
   <dependencies>
     <!-- **************************************** -->
@@ -96,8 +101,6 @@
               <systemProperties>
                 <acceptance.crowd.application.name>${acceptance.dev.crowd.application.name}</acceptance.crowd.application.name>
                 <acceptance.crowd.application.password>${acceptance.dev.crowd.application.password}</acceptance.crowd.application.password>
-                <acceptance.crowd.application.login.url>${acceptance.dev.crowd.application.login.url}</acceptance.crowd.application.login.url>
-                <acceptance.crowd.cookie.domain>${acceptance.dev.crowd.cookie.domain}</acceptance.crowd.cookie.domain>
                 <acceptance.crowd.server.url>${acceptance.dev.crowd.server.url}</acceptance.crowd.server.url>
                 <acceptance.mongodb.host>${acceptance.dev.mongodb.host}</acceptance.mongodb.host>
                 <acceptance.mongodb.port>${acceptance.dev.mongodb.port}</acceptance.mongodb.port>
