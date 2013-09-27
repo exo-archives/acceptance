@@ -358,8 +358,6 @@
                 <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
                 <!-- System properties to test -->
                 <systemProperties>
-                  <!-- Port used for embedded Mongo -->
-                  <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
                   <!-- Use the logs configuration for tests -->
                   <logback.configurationFile>${project.basedir}/src/test/resources/logback-test.xml</logback.configurationFile>
                 </systemProperties>
