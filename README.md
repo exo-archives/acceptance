@@ -3,7 +3,7 @@ eXo Acceptance
 
 ## DESCRIPTION
 
-eXo Acceptance allow to manage a set of automated deployments.
+eXo Acceptance allows to manage a set of automated deployments.
 
 TBD
 
