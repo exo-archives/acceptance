@@ -19,13 +19,6 @@
 @Application(defaultController = Home.class,name = "AcceptanceApplication")
 @Servlet("/")
 
-@Bindings(value = {
-    @Binding(User.class),
-    @Binding(Flash.class),
-    @Binding(Settings.class)
-})
-
-
 @Assets({
     @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
     @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js", location = AssetLocation.URL),
@@ -40,10 +33,5 @@ import juzu.Application;
 import juzu.asset.AssetLocation;
 import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
-import juzu.plugin.binding.Binding;
-import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
 import org.exoplatform.acceptance.controllers.Home;
-import org.exoplatform.acceptance.model.Flash;
-import org.exoplatform.acceptance.model.Settings;
-import org.exoplatform.acceptance.model.User;
