@@ -72,5 +72,5 @@
 </div>
 
 <div id="footer">
-  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${settings.version} - Copyright &copy; ${settings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${settings.organizationUrl}">${settings.organizationUrl}</a>. - Powered by <a href="http://juzuweb.org/">juzu</a></p>
+  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${settings.version} - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${settings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${settings.organizationUrl}">${settings.organizationName}</a>.</p>
 </div>
