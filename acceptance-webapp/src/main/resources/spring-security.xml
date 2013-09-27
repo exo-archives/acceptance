@@ -39,37 +39,92 @@
   <!-- no security on the signin page or we can't even login -->
   <security:http pattern='/signin' security='none'/>
 
-  <security:http auto-config="true" authentication-manager-ref="authenticationManager">
-    <security:intercept-url pattern="/" access="ROLE_acceptance-users"/>
-    <security:intercept-url pattern="/admin" access="ROLE_acceptance-administrators"/>
-    <security:intercept-url pattern="/admin/*" access="ROLE_acceptance-administrators"/>
-    <security:intercept-url pattern="/search" access="ROLE_acceptance-users"/>
-    <security:intercept-url pattern="/profile" access="ROLE_acceptance-users"/>
-    <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
-    <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
-    <security:intercept-url pattern="/WEB-INF" access="ROLE_NON_EXISTING"/>
-
-    <security:form-login login-page="/signin" login-processing-url="/login" authentication-failure-url="/signin?error=true" default-target-url="/" password-parameter="password" username-parameter="username"/>
-
-    <security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/signin" logout-url="/logout"/>
-
-    <security:access-denied-handler error-page="/403"/>
-  </security:http>
-
   <beans profile="test,dev">
+    <!-- test and dev profiles are using hardcoded accounts -->
+    <security:http auto-config="true" authentication-manager-ref="authenticationManager">
+
+      <security:intercept-url pattern="/" access="ROLE_acceptance-users"/>
+      <security:intercept-url pattern="/admin" access="ROLE_acceptance-administrators"/>
+      <security:intercept-url pattern="/admin/*" access="ROLE_acceptance-administrators"/>
+      <security:intercept-url pattern="/search" access="ROLE_acceptance-users"/>
+      <security:intercept-url pattern="/profile" access="ROLE_acceptance-users"/>
+      <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
+      <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
+      <security:intercept-url pattern="/WEB-INF" access="ROLE_NON_EXISTING"/>
+
+      <security:form-login login-page="/signin" login-processing-url="/login" authentication-failure-url="/signin?error=true" default-target-url="/" password-parameter="password" username-parameter="username"/>
+      <security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/signin" logout-url="/logout"/>
+
+      <security:access-denied-handler error-page="/403"/>
+    </security:http>
+
     <security:authentication-manager alias="authenticationManager">
       <security:authentication-provider ref="mockedAuthenticationProvider"/>
     </security:authentication-manager>
     <bean id="crowdUserDetailsService" class="org.exoplatform.acceptance.security.MockedCrowdUserDetailsService"/>
   </beans>
 
+  <!-- prod profile is using crowd and SSO -->
   <beans profile="prod">
+
+    <security:http auto-config="false" authentication-manager-ref="authenticationManager" entry-point-ref="crowdAuthenticationProcessingFilterEntryPoint">
+
+      <security:custom-filter position="FORM_LOGIN_FILTER" ref='authenticationProcessingFilter'/>
+      <security:custom-filter position="LOGOUT_FILTER" ref='logoutFilter'/>
+
+      <security:intercept-url pattern="/" access="ROLE_acceptance-users"/>
+      <security:intercept-url pattern="/admin" access="ROLE_acceptance-administrators"/>
+      <security:intercept-url pattern="/admin/*" access="ROLE_acceptance-administrators"/>
+      <security:intercept-url pattern="/search" access="ROLE_acceptance-users"/>
+      <security:intercept-url pattern="/profile" access="ROLE_acceptance-users"/>
+      <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
+      <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
+      <security:intercept-url pattern="/WEB-INF" access="ROLE_NON_EXISTING"/>
+
+      <security:access-denied-handler error-page="/403"/>
+    </security:http>
+
     <security:authentication-manager alias="authenticationManager">
       <security:authentication-provider ref='crowdAuthenticationProvider'/>
     </security:authentication-manager>
 
     <!-- Import the Crowd Client Spring configuration provided with the client lib -->
     <import resource="classpath:/applicationContext-CrowdClient.xml"/>
+
+    <bean id="crowdAuthenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+      <constructor-arg name="loginFormUrl" value="/signin"/>
+    </bean>
+
+    <bean id="authenticationProcessingFilter" class="com.atlassian.crowd.integration.springsecurity.CrowdSSOAuthenticationProcessingFilter">
+      <property name="httpAuthenticator" ref="httpAuthenticator"/>
+      <property name="authenticationManager" ref="authenticationManager"/>
+      <property name="filterProcessesUrl" value="/login"/>
+      <property name="authenticationFailureHandler">
+        <bean class="com.atlassian.crowd.integration.springsecurity.UsernameStoringAuthenticationFailureHandler">
+          <property name="defaultFailureUrl" value="/signin?error=true"/>
+        </bean>
+      </property>
+      <property name="authenticationSuccessHandler">
+        <bean class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+          <property name="defaultTargetUrl" value="/"/>
+        </bean>
+      </property>
+    </bean>
+
+    <bean id="crowdLogoutHandler" class="com.atlassian.crowd.integration.springsecurity.CrowdLogoutHandler">
+      <property name="httpAuthenticator" ref="httpAuthenticator"/>
+    </bean>
+
+    <bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+      <constructor-arg value="/signin"/>
+      <constructor-arg>
+        <list>
+          <ref bean="crowdLogoutHandler"/>
+          <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+        </list>
+      </constructor-arg>
+      <property name="filterProcessesUrl" value="/logout"/>
+    </bean>
 
     <!-- CROWD configuration -->
     <bean id="clientProperties" class="com.atlassian.crowd.service.soap.client.SoapClientPropertiesImpl" factory-method="newInstanceFromPropertiesWithoutOverrides">
