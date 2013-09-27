@@ -21,7 +21,7 @@
 -->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans" xmlns:bean="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
@@ -40,11 +40,11 @@
   <security:http pattern='/signin' security='none'/>
 
   <security:http auto-config="true" authentication-manager-ref="authenticationManager">
-    <security:intercept-url pattern="/" access="ROLE_acceptance-users"/>
-    <security:intercept-url pattern="/admin" access="ROLE_acceptance-administrators"/>
-    <security:intercept-url pattern="/admin/*" access="ROLE_acceptance-administrators"/>
-    <security:intercept-url pattern="/search" access="ROLE_acceptance-users"/>
-    <security:intercept-url pattern="/profile" access="ROLE_acceptance-users"/>
+    <security:intercept-url pattern="/" access="ROLE_${acceptance.crowd.group.users}"/>
+    <security:intercept-url pattern="/admin" access="ROLE_${acceptance.crowd.group.administrators}"/>
+    <security:intercept-url pattern="/admin/*" access="ROLE_${acceptance.crowd.group.administrators}"/>
+    <security:intercept-url pattern="/search" access="ROLE_${acceptance.crowd.group.users}"/>
+    <security:intercept-url pattern="/profile" access="ROLE_${acceptance.crowd.group.users}"/>
     <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
     <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
     <security:intercept-url pattern="/WEB-INF" access="ROLE_NON_EXISTING"/>
@@ -56,11 +56,50 @@
     <security:access-denied-handler error-page="/403"/>
   </security:http>
 
+  <!-- Administration Role -->
+  <bean id="adminRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+    <bean:constructor-arg value="ROLE_${acceptance.crowd.group.administrators}"/>
+  </bean>
+  <!-- User Role -->
+  <bean id="userRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+    <bean:constructor-arg value="ROLE_${acceptance.crowd.group.users}"/>
+  </bean>
+
   <beans profile="test,dev">
     <security:authentication-manager alias="authenticationManager">
       <security:authentication-provider ref="mockedAuthenticationProvider"/>
     </security:authentication-manager>
-    <bean id="crowdUserDetailsService" class="org.exoplatform.acceptance.security.MockedCrowdUserDetailsService"/>
+    <bean id="mockedAdministrator" class="org.exoplatform.acceptance.security.MockedAcceptanceUser">
+      <bean:property name="username" value="admin"/>
+      <bean:property name="password" value="admin"/>
+      <bean:property name="firstName" value="Super"/>
+      <bean:property name="lastName" value="Admin"/>
+      <bean:property name="authorities">
+        <list>
+          <bean:ref bean="adminRole"/>
+          <bean:ref bean="userRole"/>
+        </list>
+      </bean:property>
+    </bean>
+    <bean id="mockedUser" class="org.exoplatform.acceptance.security.MockedAcceptanceUser">
+      <bean:property name="username" value="user"/>
+      <bean:property name="password" value="user"/>
+      <bean:property name="firstName" value="Famous"/>
+      <bean:property name="lastName" value="User"/>
+      <bean:property name="authorities">
+        <list>
+          <bean:ref bean="userRole"/>
+        </list>
+      </bean:property>
+    </bean>
+    <bean id="crowdUserDetailsService" class="org.exoplatform.acceptance.security.MockedCrowdUserDetailsService">
+      <bean:property name="user" ref="mockedUser"/>
+      <bean:property name="administrator" ref="mockedAdministrator"/>
+    </bean>
+    <bean id="mockedAuthenticationProvider" class="org.exoplatform.acceptance.security.MockedAuthenticationProvider">
+      <bean:property name="user" ref="mockedUser"/>
+      <bean:property name="administrator" ref="mockedAdministrator"/>
+    </bean>
   </beans>
 
   <beans profile="prod">

@@ -61,7 +61,7 @@ You may also want to test the application in its ```production``` mode, in that 
 - a [MongoDB](http://www.mongodb.org/) instance
 - an [Atlassian Crowd](https://www.atlassian.com/software/crowd/) instance with :
   - An [application](https://confluence.atlassian.com/display/CROWD/Adding+an+Application) to let acceptance logon on it
-  - Two groups of users : ```acceptance-users``` and ```acceptance-administrators```
+  - Two groups of users : ```acceptance-users``` and ```acceptance-administrators``` (They can be changed with configuration properties ```acceptance.crowd.group.users``` and ```acceptance.crowd.group.administrators```
 
 In your maven configuration file ```~.m2/settings.xml``` you may have to define some of these properties to adapt them to your environment :
 

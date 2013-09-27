@@ -1,19 +1,22 @@
 package org.exoplatform.acceptance.security;
 
+import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+@Data
 public class MockedCrowdUserDetailsService implements UserDetailsService {
+  private MockedAcceptanceUser administrator;
+  private MockedAcceptanceUser user;
+
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    switch (username) {
-      case MockedAcceptanceUser.User.USERNAME:
-        return MockedAcceptanceUser.USER;
-      case MockedAcceptanceUser.Administrator.USERNAME:
-        return MockedAcceptanceUser.ADMIN;
-      default:
-        throw new UsernameNotFoundException("Unknown user : " + username);
-    }
+    if (user.getUsername().equals(username))
+      return user;
+    else if (administrator.getUsername().equals(username))
+      return administrator;
+    else
+      throw new UsernameNotFoundException("Unknown user : " + username);
   }
 }
