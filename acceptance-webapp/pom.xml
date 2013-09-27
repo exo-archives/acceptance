@@ -70,6 +70,9 @@
       <artifactId>juzu-plugins-servlet</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- SLF4J -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -207,19 +210,22 @@
       <artifactId>log4j-over-slf4j</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Security Framework -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Security Framework -->
-    <!-- **************************************** -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <!-- **************************************** -->
+    <!-- XML APIs -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis</artifactId>
@@ -354,6 +360,8 @@
                 <systemProperties>
                   <!-- Port used for embedded Mongo -->
                   <mongodb.embedded.port>${mongodb.embedded.port}</mongodb.embedded.port>
+                  <!-- Use the logs configuration for tests -->
+                  <logback.configurationFile>${project.basedir}/src/test/resources/logback-test.xml</logback.configurationFile>
                 </systemProperties>
               </configuration>
             </execution>
