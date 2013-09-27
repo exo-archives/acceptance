@@ -26,6 +26,7 @@ import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.exoplatform.acceptance.model.Flash;
 import org.exoplatform.acceptance.model.Settings;
 import org.exoplatform.acceptance.model.User;
 import org.xml.sax.SAXException;
@@ -36,6 +37,11 @@ import org.xml.sax.SAXException;
 @WithAssets({"acceptance.js", "acceptance.css"})
 @Slf4j
 public abstract class BaseController {
+
+  @Inject
+  @Named("flash")
+  @Getter
+  private Flash flash;
 
   @Inject
   @Named("user")

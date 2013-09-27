@@ -19,6 +19,7 @@
 package org.exoplatform.acceptance.controllers;
 
 
+import com.google.common.base.Strings;
 import javax.inject.Inject;
 import juzu.Action;
 import juzu.Path;
@@ -61,7 +62,10 @@ public class Home extends BaseController {
   @View
   @Route("/signin")
   @WithAssets("signin.css")
-  public Response.Content signin() {
+  public Response.Content signin(String error) {
+    if (!Strings.isNullOrEmpty(error)) {
+      getFlash().setError("Erroneous username or password !");
+    }
     return makeResponse(signin.with().ok());
   }
 

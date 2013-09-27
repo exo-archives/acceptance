@@ -52,10 +52,16 @@
   <div class="container">
     <div class="content">
       <% if (flash.error != "") { %>
-      <div class="alert alert-error">${flash.error}</div>
+      <div class="alert alert-danger alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        ${flash.error}
+      </div>
       <% } %>
       <% if (flash.success != "") { %>
-      <div class="alert alert-success">${flash.success}</div>
+      <div class="alert alert-success alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        ${flash.success}
+      </div>
       <% } %>
       #{insert/}
     </div>
