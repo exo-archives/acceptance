@@ -1,8 +1,27 @@
 #{decorate path=main.gtmpl/}
 #{title value="Your profile"/}
 
-<div class="jumbotron">
-  <h1>Be patient ... ;-) &nbsp;<small>implementation in progress ...</small></h1>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">${user.fullName}</h3>
+    </div>
+    <!-- Table -->
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>First Name</th>
+        <td>${user.firstName}</td>
+      </tr>
+      <tr>
+        <th>Last Name</th>
+        <td>${user.lastName}</td>
+      </tr>
+      <tr>
+        <th>Login identifier</th>
+        <td>${user.username}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
