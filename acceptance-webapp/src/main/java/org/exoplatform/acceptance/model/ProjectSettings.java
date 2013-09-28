@@ -36,27 +36,27 @@ import org.springframework.beans.factory.annotation.Value;
 @Slf4j
 public class ProjectSettings {
 
-  @Value("${application.version}")
+  @Value("${project.version}")
   private String version;
 
-  @Value("${application.scm.url}")
+  @Value("${project.scm.url}")
   private URL scmUrl;
 
-  @Value("${application.scm.revision}")
+  @Value("${project.scm.revision}")
   private String scmRevision;
 
-  @Value("${application.scm.revision.url}")
+  @Value("${project.scm.revision.url}")
   private String scmRevisionUrl;
 
-  @Value("#{new java.text.SimpleDateFormat('${application.build.timestamp.format}').parse('${application.build.timestamp}')}")
+  @Value("#{new java.text.SimpleDateFormat('${project.build.timestamp.format}').parse('${project.build.timestamp}')}")
   private Date buildDate;
 
-  @Value("${application.inceptionYear}")
+  @Value("${project.inceptionYear}")
   private String inceptionYear;
 
-  @Value("${application.organizationName}")
+  @Value("${project.organizationName}")
   private String organizationName;
 
-  @Value("${application.organizationUrl}")
+  @Value("${project.organizationUrl}")
   private String organizationUrl;
 }
