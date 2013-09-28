@@ -29,6 +29,7 @@
             <li><a href="@{ Administration.index()}">Deployments</a></li>
           </ul>
         </li>
+        <li><a href="@{ Home.about()}" title="About">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form action="@{ Search.deployments()}" method="get" class="navbar-form navbar-left" role="search">
@@ -72,5 +73,5 @@
 </div>
 
 <div id="footer">
-  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${settings.version} - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${settings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${settings.organizationUrl}">${settings.organizationName}</a>.</p>
+  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${projectSettings.version} - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${projectSettings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${projectSettings.organizationUrl}">${projectSettings.organizationName}</a>.</p>
 </div>

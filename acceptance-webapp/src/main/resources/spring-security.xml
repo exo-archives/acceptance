@@ -45,6 +45,7 @@
     <security:intercept-url pattern="/admin/*" access="ROLE_${acceptance.crowd.group.administrators}"/>
     <security:intercept-url pattern="/search" access="ROLE_${acceptance.crowd.group.users}"/>
     <security:intercept-url pattern="/profile" access="ROLE_${acceptance.crowd.group.users}"/>
+    <security:intercept-url pattern="/about" access="ROLE_${acceptance.crowd.group.users}"/>
     <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
     <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
     <security:intercept-url pattern="/WEB-INF" access="ROLE_NON_EXISTING"/>

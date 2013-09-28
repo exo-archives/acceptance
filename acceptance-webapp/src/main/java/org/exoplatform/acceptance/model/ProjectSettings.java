@@ -18,28 +18,45 @@
  */
 package org.exoplatform.acceptance.model;
 
+import java.net.URL;
+import java.util.Date;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- * Acceptance Settings
+ * Miscellaneous details about the project
  */
-@Named("settings")
+@Named("projectSettings")
 @Singleton
 @Data
-public class Settings {
+@Slf4j
+public class ProjectSettings {
 
-  @Value("${acceptance.version}")
+  @Value("${application.version}")
   private String version;
 
-  @Value("${acceptance.inceptionYear}")
+  @Value("${application.scm.url}")
+  private URL scmUrl;
+
+  @Value("${application.scm.revision}")
+  private String scmRevision;
+
+  @Value("${application.scm.revision.url}")
+  private String scmRevisionUrl;
+
+  @Value("#{new java.text.SimpleDateFormat('${application.build.timestamp.format}').parse('${application.build.timestamp}')}")
+  private Date buildDate;
+
+  @Value("${application.inceptionYear}")
   private String inceptionYear;
 
-  @Value("${acceptance.organizationName}")
+  @Value("${application.organizationName}")
   private String organizationName;
 
-  @Value("${acceptance.organizationUrl}")
+  @Value("${application.organizationUrl}")
   private String organizationUrl;
 }

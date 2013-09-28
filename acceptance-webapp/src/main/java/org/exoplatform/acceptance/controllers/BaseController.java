@@ -27,7 +27,7 @@ import juzu.template.Template;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.model.Flash;
-import org.exoplatform.acceptance.model.Settings;
+import org.exoplatform.acceptance.model.ProjectSettings;
 import org.exoplatform.acceptance.model.User;
 import org.xml.sax.SAXException;
 
@@ -49,9 +49,9 @@ public abstract class BaseController {
   private User user;
 
   @Inject
-  @Named("settings")
+  @Named("projectSettings")
   @Getter
-  private Settings settings;
+  private ProjectSettings projectSettings;
 
   protected void render(Template template) {
     this.render(template.with());

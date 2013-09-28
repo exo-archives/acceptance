@@ -31,17 +31,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class SettingsTest {
+public class ProjectSettingsTest {
 
   @Inject
-  Settings settings;
+  ProjectSettings projectSettings;
 
   @Test
   public void testMavenProperties() throws Exception {
-    Assert.assertEquals(System.getProperty("project.version"), settings.getVersion());
-    Assert.assertEquals(System.getProperty("project.inceptionYear"), settings.getInceptionYear());
-    Assert.assertEquals(System.getProperty("project.organization.name"), settings.getOrganizationName());
-    Assert.assertEquals(System.getProperty("project.organization.url"), settings.getOrganizationUrl());
+    Assert.assertEquals(System.getProperty("project.version"), projectSettings.getVersion());
+    Assert.assertEquals(System.getProperty("project.inceptionYear"), projectSettings.getInceptionYear());
+    Assert.assertEquals(System.getProperty("project.organization.name"), projectSettings.getOrganizationName());
+    Assert.assertEquals(System.getProperty("project.organization.url"), projectSettings.getOrganizationUrl());
   }
 
 }

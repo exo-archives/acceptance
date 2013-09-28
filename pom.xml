@@ -78,6 +78,11 @@
     <!-- ************** -->
     <!-- Build settings -->
     <!-- ************** -->
+    <!-- Build Timestamp to use in filtering - http://jira.codehaus.org/browse/MRESOURCES-99 -->
+    <maven.build.timestamp>${maven.build.timestamp}</maven.build.timestamp>
+    <maven.build.timestamp.format>yyyy-MM-dd HH:mm Z</maven.build.timestamp.format>
+    <scm.url>https://github.com/exoplatform/acceptance</scm.url>
+    <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>

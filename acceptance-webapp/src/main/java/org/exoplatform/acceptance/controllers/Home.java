@@ -40,6 +40,10 @@ public class Home extends BaseController {
   Template profile;
 
   @Inject
+  @Path("about.gtmpl")
+  Template about;
+
+  @Inject
   @Path("signin.gtmpl")
   Template signin;
 
@@ -57,6 +61,12 @@ public class Home extends BaseController {
   @Route("/profile")
   public Response.Content profile() {
     return makeResponse(profile);
+  }
+
+  @View
+  @Route("/about")
+  public Response.Content about() {
+    return makeResponse(about);
   }
 
   @View
