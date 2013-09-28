@@ -1,15 +1,16 @@
 package org.exoplatform.acceptance.security;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-@Data
+@AllArgsConstructor
 public class MockedAuthenticationProvider implements AuthenticationProvider {
   private MockedAcceptanceUser administrator;
+
   private MockedAcceptanceUser user;
 
   @Override

@@ -1,13 +1,14 @@
 package org.exoplatform.acceptance.security;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-@Data
+@AllArgsConstructor
 public class MockedCrowdUserDetailsService implements UserDetailsService {
   private MockedAcceptanceUser administrator;
+
   private MockedAcceptanceUser user;
 
   @Override

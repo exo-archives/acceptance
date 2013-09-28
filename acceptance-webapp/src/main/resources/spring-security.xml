@@ -93,12 +93,12 @@
       </bean:property>
     </bean>
     <bean id="crowdUserDetailsService" class="org.exoplatform.acceptance.security.MockedCrowdUserDetailsService">
-      <bean:property name="user" ref="mockedUser"/>
-      <bean:property name="administrator" ref="mockedAdministrator"/>
+      <bean:constructor-arg name="user" ref="mockedUser"/>
+      <bean:constructor-arg name="administrator" ref="mockedAdministrator"/>
     </bean>
     <bean id="mockedAuthenticationProvider" class="org.exoplatform.acceptance.security.MockedAuthenticationProvider">
-      <bean:property name="user" ref="mockedUser"/>
-      <bean:property name="administrator" ref="mockedAdministrator"/>
+      <bean:constructor-arg name="user" ref="mockedUser"/>
+      <bean:constructor-arg name="administrator" ref="mockedAdministrator"/>
     </bean>
   </beans>
 
