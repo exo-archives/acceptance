@@ -16,8 +16,13 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-@Application(defaultController = Home.class,name = "AcceptanceApplication")
+@Application(defaultController = Home.class, name = "AcceptanceApplication")
 @Servlet("/")
+
+@Bindings({
+    @Binding(User.class),
+    @Binding(Flash.class)
+})
 
 @Assets({
     @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
@@ -33,5 +38,9 @@ import juzu.Application;
 import juzu.asset.AssetLocation;
 import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
+import juzu.plugin.binding.Binding;
+import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
 import org.exoplatform.acceptance.controllers.Home;
+import org.exoplatform.acceptance.model.Flash;
+import org.exoplatform.acceptance.model.User;
