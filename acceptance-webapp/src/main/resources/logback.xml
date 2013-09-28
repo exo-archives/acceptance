@@ -44,7 +44,7 @@
   <logger name="org.exoplatform.acceptance" level="INFO"/>
 
   <!-- Spring -->
-  <logger name="org.springframework" level="WARN"/>
+  <logger name="org.springframework" level="INFO"/>
 
   <root level="INFO">
     <appender-ref ref="CONSOLE"/>
