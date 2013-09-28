@@ -22,4 +22,4 @@
 CATALINA_OPTS="$CATALINA_OPTS -Dlogback.configurationFile=\"$CATALINA_BASE/conf/logback.xml\""
 
 # Acceptance configuration file
-CATALINA_OPTS="$CATALINA_OPTS -Dacceptance.configurationFile=\"$CATALINA_BASE/conf/acceptance.properties\""
+CATALINA_OPTS="$CATALINA_OPTS -Dapplication.configurationFile=\"$CATALINA_BASE/conf/acceptance.properties\""

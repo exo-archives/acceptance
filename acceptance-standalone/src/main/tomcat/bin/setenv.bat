@@ -23,7 +23,7 @@ REM # Logback configuration file
 SET CATALINA_OPTS=%CATALINA_OPTS% -Dlogback.configurationFile="%CATALINA_BASE%\conf\logback.xml"
 
 REM # Acceptance configuration file
-SET CATALINA_OPTS=%CATALINA_OPTS% -Dacceptance.configurationFile="%CATALINA_BASE%\conf\acceptance.properties"
+SET CATALINA_OPTS=%CATALINA_OPTS% -Dapplication.configurationFile="%CATALINA_BASE%\conf\acceptance.properties"
 
 REM # Set the window name
 SET TITLE=eXo Acceptance ${project.version}

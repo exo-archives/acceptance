@@ -99,14 +99,14 @@
               <type>installed</type>
               <home>${project.build.directory}/${project.build.finalName}/${project.build.finalName}</home>
               <systemProperties>
-                <acceptance.crowd.application.name>${acceptance.dev.crowd.application.name}</acceptance.crowd.application.name>
-                <acceptance.crowd.application.password>${acceptance.dev.crowd.application.password}</acceptance.crowd.application.password>
-                <acceptance.crowd.server.url>${acceptance.dev.crowd.server.url}</acceptance.crowd.server.url>
-                <acceptance.mongodb.host>${acceptance.dev.mongodb.host}</acceptance.mongodb.host>
-                <acceptance.mongodb.port>${acceptance.dev.mongodb.port}</acceptance.mongodb.port>
-                <acceptance.mongodb.name>${acceptance.dev.mongodb.name}</acceptance.mongodb.name>
-                <acceptance.mongodb.username>${acceptance.dev.mongodb.username}</acceptance.mongodb.username>
-                <acceptance.mongodb.password>${acceptance.dev.mongodb.password}</acceptance.mongodb.password>
+                <crowd.application.name>${acceptance.dev.crowd.application.name}</crowd.application.name>
+                <crowd.application.password>${acceptance.dev.crowd.application.password}</crowd.application.password>
+                <crowd.server.url>${acceptance.dev.crowd.server.url}</crowd.server.url>
+                <mongodb.host>${acceptance.dev.mongodb.host}</mongodb.host>
+                <mongodb.port>${acceptance.dev.mongodb.port}</mongodb.port>
+                <mongodb.name>${acceptance.dev.mongodb.name}</mongodb.name>
+                <mongodb.username>${acceptance.dev.mongodb.username}</mongodb.username>
+                <mongodb.password>${acceptance.dev.mongodb.password}</mongodb.password>
                 <logback.configurationFile>${project.basedir}/src/main/tomcat/conf/logback.xml</logback.configurationFile>
               </systemProperties>
             </container>
