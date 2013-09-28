@@ -4,7 +4,7 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">About eXo Acceptance</h3>
+      <h3 class="panel-title">eXo Acceptance</h3>
     </div>
     <!-- Table -->
     <table class="table">
@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <th>Sources</th>
-        <td>rev <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision}</a> (<a href="${projectSettings.scmUrl}" target="_blank" title="SCM">Github project</a>)</td>
+        <td>rev. <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision}</a> (<a href="${projectSettings.scmUrl}" target="_blank" title="SCM">Github project</a>)</td>
       </tr>
       <tr>
         <th>Build Date</th>

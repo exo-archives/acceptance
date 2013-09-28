@@ -29,7 +29,6 @@
             <li><a href="@{ Administration.index()}">Deployments</a></li>
           </ul>
         </li>
-        <li><a href="@{ Home.about()}" title="About">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form action="@{ Search.deployments()}" method="get" class="navbar-form navbar-left" role="search">
@@ -38,6 +37,7 @@
           </div>
           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
+        <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user.fullName}</a></li>
         <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
       </ul>

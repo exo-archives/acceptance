@@ -19,13 +19,13 @@
     02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>maven-parent-pom</artifactId>
     <groupId>org.exoplatform</groupId>
     <version>12-SNAPSHOT</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>org.exoplatform.swf</groupId>
   <artifactId>acceptance</artifactId>
@@ -78,17 +78,21 @@
     <!-- ************** -->
     <!-- Build settings -->
     <!-- ************** -->
-    <!-- Build Timestamp to use in filtering - http://jira.codehaus.org/browse/MRESOURCES-99 -->
-    <project.build.timestamp>${maven.build.timestamp}</project.build.timestamp>
+    <!-- Use a custom timestamp format to include its TZ -->
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm Z</maven.build.timestamp.format>
-    <scm.url>https://github.com/exoplatform/acceptance</scm.url>
-    <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
+    <!-- Properties used to filter resources -->
+    <!-- Build Timestamp to use in filtering - http://jira.codehaus.org/browse/MRESOURCES-99 -->
+    <project.build.timestamp>${maven.build.timestamp}</project.build.timestamp>
+    <project.build.timestamp.format>${maven.build.timestamp.format}</project.build.timestamp.format>
+    <project.scm.url>https://github.com/exoplatform/acceptance</project.scm.url>
+    <project.scm.revision>${buildNumber}</project.scm.revision>
+    <project.scm.revision.url>${project.scm.url}/commit/${buildNumber}</project.scm.revision.url>
   </properties>
   <dependencyManagement>
     <dependencies>
