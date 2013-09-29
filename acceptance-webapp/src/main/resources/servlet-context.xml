@@ -40,47 +40,6 @@
   <!-- Load MVC for REST -->
   <mvc:annotation-driven/>
 
-  <!-- Boostrap JSR-303 Bean Validation -->
-  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-  <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
-    <constructor-arg ref="validator"/>
-  </bean>
-
-  <mongo:repositories base-package="org.exoplatform.acceptance.repositories"/>
-
-  <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
-  <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-    <constructor-arg name="mongo" ref="mongo"/>
-    <constructor-arg name="databaseName" value="${mongodb.name}"/>
-    <constructor-arg name="userCredentials" ref="userCredentials"/>
-  </bean>
-
-  <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
-    <constructor-arg name="username" value="${mongodb.username}"/>
-    <constructor-arg name="password" value="${mongodb.password}"/>
-  </bean>
-
-  <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
-  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
-
-  <beans profile="prod">
-    <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
-    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-      <property name="host" value="${mongodb.host}"/>
-      <property name="port" value="${mongodb.port}"/>
-    </bean>
-  </beans>
-
-  <beans profile="dev,test">
-    <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
-    <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean">
-      <!-- The port on which the embedded mongo will listen -->
-      <property name="port" value="${mongodb.embedded.port}"/>
-      <!-- The version of embedded mongo to use -->
-      <property name="version" value="${mongodb.embedded.version}"/>
-      <!-- An IP address for the MongoDB instance to be bound to during its execution. Default is localhost. -->
-      <property name="bindIp" value="${mongodb.embedded.bindIp}"/>
-    </bean>
-  </beans>
+  <import resource="classpath:/spring-data.xml"/>
 
 </beans>
