@@ -24,7 +24,6 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import juzu.template.Template;
 
 /**
  *
@@ -33,7 +32,7 @@ public class Search extends BaseController {
 
   @Inject
   @Path("deployments/search.gtmpl")
-  Template search;
+  org.exoplatform.acceptance.templates.deployments.search search;
 
   @View
   @Route(value = "/search")

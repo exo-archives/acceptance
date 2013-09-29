@@ -19,19 +19,17 @@
 package org.exoplatform.acceptance.controllers;
 
 
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsService;
 import javax.inject.Inject;
 import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import juzu.template.Template;
 
 public class Administration extends BaseController {
 
   @Inject
   @Path("administration/index.gtmpl")
-  Template index;
+  org.exoplatform.acceptance.templates.administration.index index;
 
   @View
   @Route("/admin")

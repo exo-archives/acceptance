@@ -27,29 +27,28 @@ import juzu.Response;
 import juzu.Route;
 import juzu.View;
 import juzu.plugin.asset.WithAssets;
-import juzu.template.Template;
 
 public class Home extends BaseController {
 
   @Inject
   @Path("index.gtmpl")
-  Template index;
+  org.exoplatform.acceptance.templates.index index;
 
   @Inject
   @Path("profile.gtmpl")
-  Template profile;
+  org.exoplatform.acceptance.templates.profile profile;
 
   @Inject
   @Path("about.gtmpl")
-  Template about;
+  org.exoplatform.acceptance.templates.about about;
 
   @Inject
   @Path("signin.gtmpl")
-  Template signin;
+  org.exoplatform.acceptance.templates.signin signin;
 
   @Inject
   @Path("error403.gtmpl")
-  Template error403;
+  org.exoplatform.acceptance.templates.error403 error403;
 
   @View
   @Route("/")
