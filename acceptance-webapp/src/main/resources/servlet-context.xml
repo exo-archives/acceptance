@@ -47,6 +47,7 @@
   </bean>
 
   <mongo:repositories base-package="org.exoplatform.acceptance.repositories"/>
+
   <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg name="mongo" ref="mongo"/>
