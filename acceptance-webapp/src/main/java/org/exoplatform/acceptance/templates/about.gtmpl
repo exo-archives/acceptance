@@ -6,23 +6,17 @@
     <div class="panel-heading">
       <h3 class="panel-title">eXo Acceptance</h3>
     </div>
-    <!-- Table -->
-    <table class="table">
-      <tbody>
-      <tr>
-        <th>Version</th>
-        <td>${projectSettings.version}</td>
-      </tr>
-      <tr>
-        <th>Sources</th>
-        <td>rev. <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision}</a> (<a href="${projectSettings.scmUrl}" target="_blank" title="SCM">Github project</a>)</td>
-      </tr>
-      <tr>
-        <th>Build Date</th>
-        <td>${projectSettings.buildDate.format('EEE, d MMM yyyy HH:mm:ss z')}</td>
-      </tr>
-      </tbody>
-    </table>
+
+    <div class="panel-body">
+      <dl class="dl-horizontal">
+        <dt>Version</dt>
+        <dd>${projectSettings.version}</dd>
+        <dt>Sources</dt>
+        <dd>rev. <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision}</a> (<a href="${projectSettings.scmUrl}" target="_blank" title="SCM">Github project</a>)</dd>
+        <dt>Build Date</dt>
+        <dd>${projectSettings.buildDate.format('EEE, d MMM yyyy HH:mm:ss z')}</dd>
+      </dl>
+    </div>
   </div>
 </div>
 
