@@ -72,8 +72,6 @@ public class User {
       Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       if (principal instanceof UserDetails) {
         return ((UserDetails) principal).getUsername();
-      } else if (principal instanceof CrowdUserDetails) {
-        return ((CrowdUserDetails) principal).getUsername();
       } else {
         return principal.toString();
       }
