@@ -88,11 +88,11 @@
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
     <!-- Properties used to filter resources -->
     <!-- Build Timestamp to use in filtering - http://jira.codehaus.org/browse/MRESOURCES-99 -->
-    <project.build.timestamp>${maven.build.timestamp}</project.build.timestamp>
-    <project.build.timestamp.format>${maven.build.timestamp.format}</project.build.timestamp.format>
-    <project.scm.url>https://github.com/exoplatform/acceptance</project.scm.url>
-    <project.scm.revision>${buildNumber}</project.scm.revision>
-    <project.scm.revision.url>${project.scm.url}/commit/${buildNumber}</project.scm.revision.url>
+    <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    <build.timestamp.format>${maven.build.timestamp.format}</build.timestamp.format>
+    <scm.url>https://github.com/exoplatform/acceptance</scm.url>
+    <scm.revision>${buildNumber}</scm.revision>
+    <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
   </properties>
   <dependencyManagement>
     <dependencies>
