@@ -23,17 +23,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Represent a Software manageable by acceptance.
- */
-@Document(collection = "application")
-@TypeAlias("Application")
 @Data
-public class Application {
-
+@Document(collection = "agent")
+@TypeAlias("Agent")
+public class Agent {
   @Id
   private String id;
-
-  private String name;
 
 }

@@ -18,20 +18,21 @@
  */
 package org.exoplatform.acceptance.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Represent an acceptance deployment
  */
+@Data
 @Document(collection = "deployment")
 @TypeAlias("Deployment")
 public class Deployment {
-  @Getter
-  @Setter
+  @Id
+  private String id;
   private Application application;
-  //private JVM jvm;
-  //private OS os;
+  private Agent agent;
+  private Environment environment;
 }
