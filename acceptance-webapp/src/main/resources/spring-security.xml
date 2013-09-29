@@ -70,7 +70,7 @@
     <security:authentication-manager alias="authenticationManager">
       <security:authentication-provider ref="mockedAuthenticationProvider"/>
     </security:authentication-manager>
-    <bean id="mockedAdministrator" class="org.exoplatform.acceptance.security.MockedAcceptanceUser">
+    <bean id="mockedAdministrator" class="org.exoplatform.acceptance.security.MockedUser">
       <bean:property name="username" value="admin"/>
       <bean:property name="password" value="admin"/>
       <bean:property name="firstName" value="Super"/>
@@ -82,7 +82,7 @@
         </list>
       </bean:property>
     </bean>
-    <bean id="mockedUser" class="org.exoplatform.acceptance.security.MockedAcceptanceUser">
+    <bean id="mockedUser" class="org.exoplatform.acceptance.security.MockedUser">
       <bean:property name="username" value="user"/>
       <bean:property name="password" value="user"/>
       <bean:property name="firstName" value="Famous"/>

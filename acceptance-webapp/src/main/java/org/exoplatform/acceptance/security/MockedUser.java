@@ -28,7 +28,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Data
 @NoArgsConstructor
-public class MockedAcceptanceUser implements AcceptanceUser {
+public class MockedUser implements ICrowdUser {
 
   @NonNull
   private String username;

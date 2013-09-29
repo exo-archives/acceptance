@@ -25,9 +25,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.SessionScoped;
 import lombok.Getter;
-import org.exoplatform.acceptance.security.AcceptanceUser;
-import org.exoplatform.acceptance.security.CrowdAcceptanceUser;
-import org.exoplatform.acceptance.security.MockedAcceptanceUser;
+import org.exoplatform.acceptance.security.CrowdUser;
+import org.exoplatform.acceptance.security.ICrowdUser;
+import org.exoplatform.acceptance.security.MockedUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,7 +41,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class User {
 
   @Getter(lazy = true)
-  private final AcceptanceUser userImpl = loadUserDetails();
+  private final ICrowdUser userImpl = loadUserDetails();
 
   @Inject
   @Named("crowdUserDetailsService")
@@ -55,13 +55,13 @@ public class User {
     }
   }
 
-  private AcceptanceUser loadUserDetails() {
+  private ICrowdUser loadUserDetails() {
     if (isAuthenticated()) {
       UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername());
       if (userDetails instanceof CrowdUserDetails)
-        return new CrowdAcceptanceUser((CrowdUserDetails) userDetails);
-      else if (userDetails instanceof MockedAcceptanceUser)
-        return (MockedAcceptanceUser) userDetails;
+        return new CrowdUser((CrowdUserDetails) userDetails);
+      else if (userDetails instanceof MockedUser)
+        return (MockedUser) userDetails;
       else
         throw new RuntimeException("Unknown UserDetails implementation : " + userDetails.getClass().getName());
     } else return null;

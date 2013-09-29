@@ -25,9 +25,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @AllArgsConstructor
 public class MockedCrowdUserDetailsService implements UserDetailsService {
-  private MockedAcceptanceUser administrator;
+  private MockedUser administrator;
 
-  private MockedAcceptanceUser user;
+  private MockedUser user;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -18,16 +18,21 @@
  */
 package org.exoplatform.acceptance.security;
 
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
-import lombok.Delegate;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@RequiredArgsConstructor
-public class CrowdAcceptanceUser implements AcceptanceUser {
+public interface ICrowdUser extends UserDetails {
+  /**
+   * Returns the user's first name
+   */
+  String getFirstName();
 
-  @NonNull
-  @Delegate
-  private CrowdUserDetails crowdUserDetails;
+  /**
+   * Returns the user's last name
+   */
+  String getLastName();
 
+  /**
+   * Returns the user's fullname
+   */
+  String getFullName();
 }
