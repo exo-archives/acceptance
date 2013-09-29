@@ -20,7 +20,6 @@ package org.exoplatform.acceptance.security;
 
 import java.util.Collection;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
