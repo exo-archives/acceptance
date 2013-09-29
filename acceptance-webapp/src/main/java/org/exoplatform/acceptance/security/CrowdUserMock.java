@@ -24,10 +24,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Data
 @NoArgsConstructor
-public class MockedUser implements ICrowdUser {
+public class CrowdUserMock implements CrowdUser {
 
   @NonNull
   private String username;
@@ -40,6 +41,9 @@ public class MockedUser implements ICrowdUser {
 
   @NonNull
   private String lastName;
+
+  @NonNull
+  private String email;
 
   private boolean accountNonExpired = true;
 
@@ -55,5 +59,20 @@ public class MockedUser implements ICrowdUser {
   public String getFullName() {
     return getFirstName() + " " + getLastName();
   }
+
+  /**
+   * Is the user authenticated ?
+   *
+   * @return true if the user is authenticated
+   */
+  @Override
+  public boolean isAuthenticated() {
+    try {
+      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    } catch (NullPointerException npe) {
+      return false;
+    }
+  }
+
 
 }

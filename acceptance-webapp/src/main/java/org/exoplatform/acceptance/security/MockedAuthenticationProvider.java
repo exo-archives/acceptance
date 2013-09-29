@@ -27,9 +27,9 @@ import org.springframework.security.core.AuthenticationException;
 
 @AllArgsConstructor
 public class MockedAuthenticationProvider implements AuthenticationProvider {
-  private MockedUser administrator;
+  private CrowdUserMock administrator;
 
-  private MockedUser user;
+  private CrowdUserMock user;
 
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {

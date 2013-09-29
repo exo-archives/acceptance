@@ -20,15 +20,16 @@ package org.exoplatform.acceptance.controllers;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
 import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.model.Flash;
 import org.exoplatform.acceptance.model.ProjectSettings;
-import org.exoplatform.acceptance.model.User;
+import org.exoplatform.acceptance.security.CrowdUser;
+import org.exoplatform.acceptance.security.CurrentUser;
 import org.xml.sax.SAXException;
 
 /**
@@ -40,18 +41,15 @@ public abstract class BaseController {
 
   @Inject
   @Named("flash")
-  @Getter
-  private Flash flash;
+  Flash flash;
 
   @Inject
   @Named("user")
-  @Getter
-  private User user;
+  CurrentUser user;
 
   @Inject
   @Named("projectSettings")
-  @Getter
-  private ProjectSettings projectSettings;
+  ProjectSettings projectSettings;
 
   protected void render(Template template) {
     this.render(template.with());

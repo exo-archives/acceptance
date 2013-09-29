@@ -18,21 +18,30 @@
  */
 package org.exoplatform.acceptance.security;
 
-import org.springframework.security.core.userdetails.UserDetails;
+import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
+import lombok.Delegate;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 
-public interface ICrowdUser extends UserDetails {
-  /**
-   * Returns the user's first name
-   */
-  String getFirstName();
+@RequiredArgsConstructor
+public class CrowdUserImpl implements CrowdUser {
+
+  @NonNull
+  @Delegate
+  private CrowdUserDetails crowdUserDetails;
 
   /**
-   * Returns the user's last name
+   * Is the user authenticated ?
+   *
+   * @return true if the user is authenticated
    */
-  String getLastName();
-
-  /**
-   * Returns the user's fullname
-   */
-  String getFullName();
+  @Override
+  public boolean isAuthenticated() {
+    try {
+      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    } catch (NullPointerException npe) {
+      return false;
+    }
+  }
 }

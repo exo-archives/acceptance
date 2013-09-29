@@ -73,7 +73,7 @@ public class Home extends BaseController {
   @WithAssets("signin.css")
   public Response.Content signin(String error) {
     if (!Strings.isNullOrEmpty(error)) {
-      getFlash().setError("Erroneous username or password !");
+      flash.setError("Erroneous username or password !");
     }
     return makeResponse(signin.with().ok());
   }

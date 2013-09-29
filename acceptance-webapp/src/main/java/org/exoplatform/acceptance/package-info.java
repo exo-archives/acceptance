@@ -20,8 +20,8 @@
 @Servlet("/")
 
 @Bindings({
-    @Binding(User.class),
-    @Binding(Flash.class)
+    @Binding(value = CurrentUser.class, scope = Scope.SESSION),
+    @Binding(value = Flash.class, scope = Scope.FLASH)
 })
 
 @Assets({
@@ -35,6 +35,7 @@
 }) package org.exoplatform.acceptance;
 
 import juzu.Application;
+import juzu.Scope;
 import juzu.asset.AssetLocation;
 import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
@@ -43,4 +44,4 @@ import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
 import org.exoplatform.acceptance.controllers.Home;
 import org.exoplatform.acceptance.model.Flash;
-import org.exoplatform.acceptance.model.User;
+import org.exoplatform.acceptance.security.CurrentUser;

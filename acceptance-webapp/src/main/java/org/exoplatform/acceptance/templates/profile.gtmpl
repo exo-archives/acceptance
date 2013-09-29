@@ -13,6 +13,8 @@
         <dd>${user.firstName}</dd>
         <dt>Last Name</dt>
         <dd>${user.lastName}</dd>
+        <dt>eMail</dt>
+        <dd>${user.email}</dd>
         <dt>Login Identifier</dt>
         <dd>${user.username}</dd>
       </dl>

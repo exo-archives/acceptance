@@ -21,11 +21,9 @@ package org.exoplatform.acceptance.model;
 import java.io.Serializable;
 
 import javax.inject.Named;
-import juzu.FlashScoped;
 import lombok.Data;
 
 @Named("flash")
-@FlashScoped
 @Data
 public class Flash implements Serializable {
 
