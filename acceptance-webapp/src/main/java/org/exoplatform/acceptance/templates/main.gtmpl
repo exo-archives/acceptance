@@ -73,5 +73,5 @@
 </div>
 
 <div id="footer">
-  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${projectSettings.version} - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${projectSettings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${projectSettings.organizationUrl}">${projectSettings.organizationName}</a>.</p>
+  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${projectSettings.version} (rev. <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision.substring(0,6)}</a>) - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${projectSettings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${projectSettings.organizationUrl}">${projectSettings.organizationName}</a>.</p>
 </div>
