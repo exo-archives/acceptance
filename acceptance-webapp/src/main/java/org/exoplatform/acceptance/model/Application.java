@@ -31,6 +31,7 @@ public class Application {
 
   @Id
   private String id;
+
   private String name;
 
   public String getId() {

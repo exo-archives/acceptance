@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class MockedCrowdUserDetailsService implements UserDetailsService {
   private CrowdUserMock administrator;
+
   private CrowdUserMock user;
 
   public MockedCrowdUserDetailsService(CrowdUserMock administrator, CrowdUserMock user) {

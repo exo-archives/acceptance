@@ -34,7 +34,7 @@
   <bean id="adminRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
     <bean:constructor-arg value="ROLE_${crowd.group.administrators}"/>
   </bean>
-  
+
   <!-- User Role -->
   <bean id="userRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
     <bean:constructor-arg value="ROLE_${crowd.group.users}"/>

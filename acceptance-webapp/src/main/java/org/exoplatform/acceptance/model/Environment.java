@@ -27,6 +27,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Environment {
   @Id
   private String id;
+
   private String jvm;
 
   public String getId() {

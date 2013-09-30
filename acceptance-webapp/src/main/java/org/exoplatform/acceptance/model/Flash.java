@@ -20,14 +20,15 @@ package org.exoplatform.acceptance.model;
 
 import java.io.Serializable;
 
-
 import javax.inject.Named;
 
 @Named("flash")
 public class Flash implements Serializable {
 
   private String success = "";
+
   private String error = "";
+
   private String username = "";
 
   public String getSuccess() {

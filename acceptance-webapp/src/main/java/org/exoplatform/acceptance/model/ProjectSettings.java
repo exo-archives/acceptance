@@ -21,7 +21,6 @@ package org.exoplatform.acceptance.model;
 import java.net.URL;
 import java.util.Date;
 
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 import org.slf4j.Logger;
@@ -35,20 +34,28 @@ import org.springframework.beans.factory.annotation.Value;
 @Singleton
 public class ProjectSettings {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectSettings.class);
+
   @Value("${project.version}")
   private String version;
+
   @Value("${project.scm.url}")
   private URL scmUrl;
+
   @Value("${project.scm.revision}")
   private String scmRevision;
+
   @Value("${project.scm.revision.url}")
   private String scmRevisionUrl;
+
   @Value("#{new java.text.SimpleDateFormat('${project.build.timestamp.format}').parse('${project.build.timestamp}')}")
   private Date buildDate;
+
   @Value("${project.inceptionYear}")
   private String inceptionYear;
+
   @Value("${project.organizationName}")
   private String organizationName;
+
   @Value("${project.organizationUrl}")
   private String organizationUrl;
 

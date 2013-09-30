@@ -20,7 +20,6 @@ package org.exoplatform.acceptance.security;
 
 import java.util.Collection;
 
-
 import com.atlassian.crowd.integration.soap.SOAPPrincipal;
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import org.springframework.security.core.GrantedAuthority;

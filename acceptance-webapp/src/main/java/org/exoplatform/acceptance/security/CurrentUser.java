@@ -20,7 +20,6 @@ package org.exoplatform.acceptance.security;
 
 import java.util.Collection;
 
-
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -35,6 +34,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @Named("user")
 public class CurrentUser implements CrowdUser {
   private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUser.class);
+
   @Inject
   @Named("crowdUserDetailsService")
   private UserDetailsService userDetailsService;
@@ -128,7 +128,7 @@ public class CurrentUser implements CrowdUser {
    * Indicates whether the user's account has expired. An expired account cannot be authenticated.
    *
    * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
-   *         (ie expired)
+   * (ie expired)
    */
   @Override
   public boolean isAccountNonExpired() {
@@ -150,7 +150,7 @@ public class CurrentUser implements CrowdUser {
    * authentication.
    *
    * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
-   *         valid (ie expired)
+   * valid (ie expired)
    */
   @Override
   public boolean isCredentialsNonExpired() {

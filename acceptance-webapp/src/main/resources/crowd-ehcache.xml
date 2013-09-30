@@ -29,7 +29,7 @@
        user.home - User's home directory
        user.dir - User's current working directory
        java.io.tmpdir - Default temp file path -->
-  <diskStore path="java.io.tmpdir" />
+  <diskStore path="java.io.tmpdir"/>
 
 
   <!--Default Cache configuration. These will applied to caches programmatically created through
@@ -67,7 +67,7 @@
       timeToIdleSeconds="300"
       timeToLiveSeconds="300"
       diskPersistent="false"
-      diskExpiryThreadIntervalSeconds="120" />
+      diskExpiryThreadIntervalSeconds="120"/>
 
   <!-- Database-stored tokens in Hibernate's second-level cache -->
   <cache name="com.atlassian.crowd.model.token.Token"

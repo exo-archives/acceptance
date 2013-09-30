@@ -20,20 +20,28 @@ package org.exoplatform.acceptance.security;
 
 import java.util.Collection;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CrowdUserMock implements CrowdUser {
   private String username;
+
   private String password;
+
   private String firstName;
+
   private String lastName;
+
   private String email;
+
   private boolean accountNonExpired = true;
+
   private boolean accountNonLocked = true;
+
   private boolean credentialsNonExpired = true;
+
   private boolean enabled = true;
+
   private Collection<GrantedAuthority> authorities;
 
   public CrowdUserMock() {

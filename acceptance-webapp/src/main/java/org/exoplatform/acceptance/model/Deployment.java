@@ -30,8 +30,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Deployment {
   @Id
   private String id;
+
   private Application application;
+
   private Agent agent;
+
   private Environment environment;
 
   public String getId() {

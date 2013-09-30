@@ -33,6 +33,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ProjectSettingsTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectSettingsTest.class);
+
   @Inject
   ProjectSettings projectSettings;
 

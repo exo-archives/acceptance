@@ -5,7 +5,9 @@
   <% if (user.isAuthenticated()) { %>
 
   <div class="jumbotron">
-    <h1>You are already authenticated &nbsp;<small>why do you want to sign in again ... ?</small></h1>
+    <h1>You are already authenticated &nbsp;
+      <small>why do you want to sign in again ... ?</small>
+    </h1>
 
     <p>But if you really want to resign, just click on the following button first</p>
 

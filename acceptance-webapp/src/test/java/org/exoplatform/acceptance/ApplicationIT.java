@@ -22,7 +22,6 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -49,8 +48,10 @@ import org.slf4j.LoggerFactory;
 public class ApplicationIT {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
+
   @Drone
   WebDriver driver;
+
   @ArquillianResource
   URL deploymentURL;
 
