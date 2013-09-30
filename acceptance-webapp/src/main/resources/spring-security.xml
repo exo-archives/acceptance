@@ -28,9 +28,6 @@
   <!-- Load everything required by our application -->
   <import resource="classpath:/servlet-context.xml"/>
 
-  <!-- Import all specif configurations -->
-  <import resource="classpath:/spring-security-*.xml"/>
-
   <!-- no security for assets (js/css/img)-->
   <security:http pattern='/assets/**/*.css' security='none'/>
   <security:http pattern='/assets/**/*.js' security='none'/>
@@ -68,5 +65,9 @@
   <bean id="userRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
     <bean:constructor-arg value="ROLE_${crowd.group.users}"/>
   </bean>
+
+  <!-- Import all specific configurations -->
+  <import resource="classpath:/spring-security-mock.xml"/>
+  <import resource="classpath:/spring-security-crowd.xml"/>
 
 </beans>

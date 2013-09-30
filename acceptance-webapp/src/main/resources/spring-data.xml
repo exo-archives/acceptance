@@ -27,8 +27,6 @@
 
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
-  <import resource="classpath:/spring-data-*.xml"/>
-
   <!-- Boostrap JSR-303 Bean Validation -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
   <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
@@ -51,5 +49,9 @@
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
   <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+  <!-- Import specific mongo config -->
+  <import resource="classpath:/spring-data-mongo.xml"/>
+  <import resource="classpath:/spring-data-mongo-embedded.xml"/>
 
 </beans>
