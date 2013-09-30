@@ -78,8 +78,6 @@
     <!-- ************** -->
     <!-- Build settings -->
     <!-- ************** -->
-    <!-- Use a custom timestamp format to include its TZ -->
-    <maven.build.timestamp.format>yyyy-MM-dd HH:mm Z</maven.build.timestamp.format>
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
@@ -87,9 +85,7 @@
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
     <!-- Properties used to filter resources -->
-    <!-- Build Timestamp to use in filtering - http://jira.codehaus.org/browse/MRESOURCES-99 -->
-    <build.timestamp>${maven.build.timestamp}</build.timestamp>
-    <build.timestamp.format>${maven.build.timestamp.format}</build.timestamp.format>
+    <build.timestamp.format>yyyy-MM-dd HH:mm Z</build.timestamp.format>
     <scm.url>https://github.com/exoplatform/acceptance</scm.url>
     <scm.revision>${buildNumber}</scm.revision>
     <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
@@ -514,6 +510,27 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <build>
+    <plugins>
+      <!-- Computes a custom timestamp for the build -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-timestamp</id>
+            <goals>
+              <goal>create-timestamp</goal>
+            </goals>
+            <configuration>
+              <timestampPropertyName>build.timestamp</timestampPropertyName>
+              <timestampFormat>${build.timestamp.format}</timestampFormat>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
   <profiles>
     <profile>
       <id>project-repositories</id>
