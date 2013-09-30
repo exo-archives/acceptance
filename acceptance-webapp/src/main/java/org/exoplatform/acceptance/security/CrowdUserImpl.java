@@ -18,18 +18,84 @@
  */
 package org.exoplatform.acceptance.security;
 
+import java.util.Collection;
+
+
+import com.atlassian.crowd.integration.soap.SOAPPrincipal;
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
-import lombok.Delegate;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-@RequiredArgsConstructor
 public class CrowdUserImpl implements CrowdUser {
 
-  @NonNull
-  @Delegate
   private CrowdUserDetails crowdUserDetails;
+
+  public CrowdUserImpl(CrowdUserDetails crowdUserDetails) {
+    this.crowdUserDetails = crowdUserDetails;
+  }
+
+  @Override
+  public String getFullName() {
+    return crowdUserDetails.getFullName();
+  }
+
+  @Override
+  public Collection<GrantedAuthority> getAuthorities() {
+    return crowdUserDetails.getAuthorities();
+  }
+
+  public SOAPPrincipal getRemotePrincipal() {
+    return crowdUserDetails.getRemotePrincipal();
+  }
+
+  @Override
+  public String getPassword() {
+    return crowdUserDetails.getPassword();
+  }
+
+  @Override
+  public String getUsername() {
+    return crowdUserDetails.getUsername();
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return crowdUserDetails.isAccountNonExpired();
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return crowdUserDetails.isAccountNonLocked();
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return crowdUserDetails.isCredentialsNonExpired();
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return crowdUserDetails.isEnabled();
+  }
+
+  @Override
+  public String getFirstName() {
+    return crowdUserDetails.getFirstName();
+  }
+
+  @Override
+  public String getLastName() {
+    return crowdUserDetails.getLastName();
+  }
+
+  @Override
+  public String getEmail() {
+    return crowdUserDetails.getEmail();
+  }
+
+  public String getAttribute(String attributeName) {
+    return crowdUserDetails.getAttribute(attributeName);
+  }
 
   /**
    * Is the user authenticated ?

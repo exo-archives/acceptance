@@ -20,33 +20,29 @@ package org.exoplatform.acceptance.controllers;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Provider;
 import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
 import juzu.plugin.asset.WithAssets;
 import juzu.template.Template;
-import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.model.Flash;
 import org.exoplatform.acceptance.model.ProjectSettings;
-import org.exoplatform.acceptance.security.CrowdUser;
 import org.exoplatform.acceptance.security.CurrentUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
  *
  */
 @WithAssets({"acceptance.js", "acceptance.css"})
-@Slf4j
 public abstract class BaseController {
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
   @Inject
   @Named("flash")
   Flash flash;
-
   @Inject
   @Named("user")
   CurrentUser user;
-
   @Inject
   @Named("projectSettings")
   ProjectSettings projectSettings;
@@ -73,10 +69,10 @@ public abstract class BaseController {
           .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/org/exoplatform/acceptance/assets/images/favicon.ico\"></link>")
           ;
     } catch (ParserConfigurationException e) {
-      BaseController.log.error("Impossible to insert the favicon header in the page", e);
+      BaseController.LOGGER.error("Impossible to insert the favicon header in the page", e);
       return content;
     } catch (SAXException e) {
-      BaseController.log.error("Impossible to insert the favicon header in the page", e);
+      BaseController.LOGGER.error("Impossible to insert the favicon header in the page", e);
       return content;
     }
   }

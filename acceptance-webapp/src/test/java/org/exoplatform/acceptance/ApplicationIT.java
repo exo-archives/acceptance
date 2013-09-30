@@ -22,7 +22,7 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -41,22 +41,23 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RunWith(Arquillian.class)
 @WarpTest
-@Slf4j
 public class ApplicationIT {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
   @Drone
   WebDriver driver;
-
   @ArquillianResource
   URL deploymentURL;
 
   @Deployment
   public static WebArchive createDeployment() {
     WebArchive war = ShrinkWrap.create(ZipImporter.class, "ROOT.war").importFrom(new File(System.getProperty("targetDir"), System.getProperty("archiveName"))).as(WebArchive.class);
-    //log.debug("Archive content : \n {}", war.toString(true));
+    //LOGGER.debug("Archive content : \n {}", war.toString(true));
     return war;
   }
 
@@ -67,8 +68,8 @@ public class ApplicationIT {
    * Need to manage authentication before being able to do such tests
    */
   public void testFoo() {
-    driver.get(deploymentURL.toString()+"/signin");
-    log.info("Source: " + driver.getPageSource());
+    driver.get(deploymentURL.toString() + "/signin");
+    LOGGER.info("Source: " + driver.getPageSource());
     //WebElement body = driver.findElement(By.tagName("body"));
     //assertEquals("Hello World", body.getText());
   }

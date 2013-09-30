@@ -63,7 +63,6 @@
     <junit.version>4.11</junit.version>
     <juzu.version>0.7.0-beta22-SNAPSHOT</juzu.version>
     <logback.version>1.0.13</logback.version>
-    <lombok.version>0.12.0</lombok.version>
     <mockito.version>1.9.5</mockito.version>
     <mongodb.driver.version>2.11.2</mongodb.driver.version>
     <selenium.version>2.31.0</selenium.version>
@@ -302,14 +301,6 @@
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
         <version>${mongodb.driver.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Lombok -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Selenium -->

@@ -18,18 +18,20 @@
  */
 package org.exoplatform.acceptance.security;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-@AllArgsConstructor
 public class MockedAuthenticationProvider implements AuthenticationProvider {
   private CrowdUserMock administrator;
-
   private CrowdUserMock user;
+
+  public MockedAuthenticationProvider(CrowdUserMock administrator, CrowdUserMock user) {
+    this.administrator = administrator;
+    this.user = user;
+  }
 
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {

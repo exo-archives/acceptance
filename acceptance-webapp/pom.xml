@@ -131,14 +131,6 @@
       <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
-    <!-- Lombok -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- **************************************** -->
     <!-- Our Agent -->
     <!-- **************************************** -->
     <dependency>

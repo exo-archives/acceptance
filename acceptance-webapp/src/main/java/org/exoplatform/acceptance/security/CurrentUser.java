@@ -24,17 +24,17 @@ import java.util.Collection;
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import javax.inject.Inject;
 import javax.inject.Named;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-@Slf4j
 @Named("user")
 public class CurrentUser implements CrowdUser {
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUser.class);
   @Inject
   @Named("crowdUserDetailsService")
   private UserDetailsService userDetailsService;
@@ -190,7 +190,7 @@ public class CurrentUser implements CrowdUser {
         } else if (userDetails instanceof CrowdUserMock) {
           currentUser = (CrowdUserMock) userDetails;
         } else {
-          log.error("Unknown UserDetails implementation : {}", userDetails.getClass().getName());
+          LOGGER.error("Unknown UserDetails implementation : {}", userDetails.getClass().getName());
         }
       }
     }

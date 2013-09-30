@@ -18,16 +18,18 @@
  */
 package org.exoplatform.acceptance.security;
 
-import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-@AllArgsConstructor
 public class MockedCrowdUserDetailsService implements UserDetailsService {
   private CrowdUserMock administrator;
-
   private CrowdUserMock user;
+
+  public MockedCrowdUserDetailsService(CrowdUserMock administrator, CrowdUserMock user) {
+    this.administrator = administrator;
+    this.user = user;
+  }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
