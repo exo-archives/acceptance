@@ -35,6 +35,12 @@ import org.springframework.beans.factory.annotation.Value;
 public class ProjectSettings {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectSettings.class);
 
+  @Value("ROLE_${crowd.group.users}")
+  String userRole;
+
+  @Value("ROLE_${crowd.group.administrators}")
+  String adminRole;
+
   @Value("${project.version}")
   private String version;
 
@@ -63,63 +69,39 @@ public class ProjectSettings {
     return version;
   }
 
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
   public URL getScmUrl() {
     return scmUrl;
-  }
-
-  public void setScmUrl(URL scmUrl) {
-    this.scmUrl = scmUrl;
   }
 
   public String getScmRevision() {
     return scmRevision;
   }
 
-  public void setScmRevision(String scmRevision) {
-    this.scmRevision = scmRevision;
-  }
-
   public String getScmRevisionUrl() {
     return scmRevisionUrl;
-  }
-
-  public void setScmRevisionUrl(String scmRevisionUrl) {
-    this.scmRevisionUrl = scmRevisionUrl;
   }
 
   public Date getBuildDate() {
     return buildDate;
   }
 
-  public void setBuildDate(Date buildDate) {
-    this.buildDate = buildDate;
-  }
-
   public String getInceptionYear() {
     return inceptionYear;
-  }
-
-  public void setInceptionYear(String inceptionYear) {
-    this.inceptionYear = inceptionYear;
   }
 
   public String getOrganizationName() {
     return organizationName;
   }
 
-  public void setOrganizationName(String organizationName) {
-    this.organizationName = organizationName;
-  }
-
   public String getOrganizationUrl() {
     return organizationUrl;
   }
 
-  public void setOrganizationUrl(String organizationUrl) {
-    this.organizationUrl = organizationUrl;
+  public String getUserRole() {
+    return userRole;
+  }
+
+  public String getAdminRole() {
+    return adminRole;
   }
 }

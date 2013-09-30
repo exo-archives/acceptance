@@ -47,4 +47,5 @@ public interface CrowdUser extends UserDetails {
    * @return true if the user is authenticated
    */
   boolean isAuthenticated();
+
 }

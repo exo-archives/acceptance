@@ -29,7 +29,6 @@ import org.exoplatform.acceptance.model.ProjectSettings;
 import org.exoplatform.acceptance.security.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.xml.sax.SAXException;
 
 /**
@@ -50,12 +49,6 @@ public abstract class BaseController {
   @Inject
   @Named("projectSettings")
   ProjectSettings projectSettings;
-
-  @Value("ROLE_${crowd.group.users}")
-  String userRole;
-
-  @Value("ROLE_${crowd.group.administrators}")
-  String adminRole;
 
   protected void render(Template template) {
     this.render(template.with());

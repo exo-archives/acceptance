@@ -167,7 +167,6 @@ public class CurrentUser implements CrowdUser {
     return getCurrentUser().isEnabled();
   }
 
-
   /**
    * Provides a fully-constructed and injected instance of {@code T}.
    *
@@ -195,6 +194,13 @@ public class CurrentUser implements CrowdUser {
       }
     }
     return currentUser;
+  }
+
+  public boolean hasRole(String role) {
+    for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
+      if (authority.getAuthority().equalsIgnoreCase(role)) return true;
+    }
+    return false;
   }
 
 }
