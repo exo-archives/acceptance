@@ -30,6 +30,16 @@
     <security:authentication-provider ref="mockedAuthenticationProvider"/>
   </security:authentication-manager>
 
+  <!-- Administration Role -->
+  <bean id="adminRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+    <bean:constructor-arg value="ROLE_${crowd.group.administrators}"/>
+  </bean>
+  
+  <!-- User Role -->
+  <bean id="userRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+    <bean:constructor-arg value="ROLE_${crowd.group.users}"/>
+  </bean>
+
   <bean id="mockedAdministrator" class="org.exoplatform.acceptance.security.CrowdUserMock">
     <bean:property name="username" value="admin"/>
     <bean:property name="password" value="admin"/>
