@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles("test")
 public class MockedCrowdUserDetailsServiceTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(MockedCrowdUserDetailsServiceTest.class);
 
