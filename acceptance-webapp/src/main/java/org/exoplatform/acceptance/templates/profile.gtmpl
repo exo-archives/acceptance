@@ -25,7 +25,7 @@
   </div>
   <div class="col-md-3">
     <a href="#" class="thumbnail">
-      <img src="${user.getGravatarUrl(256,context.isSecured())}" alt="Your gravatar" class="img-thumbnail">
+      <img src="${user.getGravatarUrl(256,context.isSecured())}" alt="Your gravatar">
     </a>
   </div>
 </div>
