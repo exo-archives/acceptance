@@ -45,9 +45,12 @@ public class MockedCrowdUserDetailsServiceTest {
     Assert.assertEquals(user, userDetailsService.loadUserByUsername(user.getUsername()));
   }
 
-  @Test
+  /**
+   * Crowd's UserDetailsService returns a UsernameNotFoundException for anonymous
+   */
+  @Test(expected = UsernameNotFoundException.class)
   public void testLoadUserByUsernameAnonymous() throws Exception {
-    Assert.assertEquals(anonymous, userDetailsService.loadUserByUsername(anonymous.getUsername()));
+    userDetailsService.loadUserByUsername(anonymous.getUsername());
   }
 
   @Test(expected = UsernameNotFoundException.class)

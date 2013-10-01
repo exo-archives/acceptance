@@ -41,8 +41,6 @@ public class MockedCrowdUserDetailsService implements UserDetailsService {
       return user;
     else if (administrator.getUsername().equals(username))
       return administrator;
-    else if (anonymous.getUsername().equals(username))
-      return anonymous;
     else
       throw new UsernameNotFoundException("Unknown user : " + username);
   }

@@ -23,6 +23,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
+
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import com.google.common.base.Strings;
 import javax.inject.Inject;
@@ -132,7 +133,7 @@ public class CurrentUser implements CrowdUser {
    * Indicates whether the user's account has expired. An expired account cannot be authenticated.
    *
    * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
-   * (ie expired)
+   *         (ie expired)
    */
   @Override
   public boolean isAccountNonExpired() {
@@ -154,7 +155,7 @@ public class CurrentUser implements CrowdUser {
    * authentication.
    *
    * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
-   * valid (ie expired)
+   *         valid (ie expired)
    */
   @Override
   public boolean isCredentialsNonExpired() {
@@ -174,7 +175,7 @@ public class CurrentUser implements CrowdUser {
   /**
    * Retrieves the current crowd user.
    */
-  private CrowdUser getCurrentUser() {
+  private CrowdUser getCurrentUser() throws UsernameNotFoundException {
     if (currentUser == null) {
       // Try to load it
       if (isAuthenticated()) {
@@ -218,10 +219,15 @@ public class CurrentUser implements CrowdUser {
    * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
    */
   public boolean hasRole(String role) {
-    if (getCurrentUser() != null) {
-      for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
-        if (authority.getAuthority().equals(role)) return true;
+    try {
+      if (getCurrentUser() != null) {
+        for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
+          if (authority.getAuthority().equals(role)) return true;
+        }
       }
+    } catch (UsernameNotFoundException unfe) {
+      // The use doesn't exist thus he has no role
+      return false;
     }
     return false;
   }
