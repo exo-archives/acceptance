@@ -13,8 +13,8 @@ TBD
 
 ## SYSTEM REQUIREMENTS
 
-- Java 7+ (Build & Run)
-- Apache Maven 3.0.4+ (Build)
+- [Java](http://www.oracle.com/technetwork/java/javase/downloads/) 7+ (Build & Run)
+- [Apache Maven](http://maven.apache.org) 3.0.4+ (Build)
 - [Atlassian Crowd](https://www.atlassian.com/software/crowd/) 2.6+ (Run)
 - [MongoDB](http://www.mongodb.org/) 2.4+ (Run)
 
