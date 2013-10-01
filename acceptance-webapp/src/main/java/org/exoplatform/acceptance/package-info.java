@@ -21,7 +21,8 @@
 
 @Bindings({
     @Binding(value = CurrentUser.class, scope = Scope.SESSION),
-    @Binding(value = Flash.class, scope = Scope.FLASH)
+    @Binding(value = Flash.class, scope = Scope.FLASH),
+    @Binding(value = Context.class, scope = Scope.REQUEST)
 })
 
 @Assets({
@@ -43,5 +44,6 @@ import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
 import org.exoplatform.acceptance.controllers.Home;
+import org.exoplatform.acceptance.model.Context;
 import org.exoplatform.acceptance.model.Flash;
 import org.exoplatform.acceptance.security.CurrentUser;
