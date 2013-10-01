@@ -18,9 +18,13 @@
  */
 package org.exoplatform.acceptance.security;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
+import com.google.common.base.Strings;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.slf4j.Logger;
@@ -168,16 +172,7 @@ public class CurrentUser implements CrowdUser {
   }
 
   /**
-   * Provides a fully-constructed and injected instance of {@code T}.
-   *
-   * @throws UsernameNotFoundException if the injector encounters an error while
-   *                                   providing an instance. For example, if an injectable member on
-   * @throws RuntimeException          if the injector encounters an error while
-   *                                   providing an instance. For example, if an injectable member on
-   *                                   {@code T} throws an exception, the injector may wrap the exception
-   *                                   and throw it to the caller of {@code get()}. Callers should not try
-   *                                   to handle such exceptions as the behavior may vary across injector
-   *                                   implementations and even different configurations of the same injector.
+   * Retrieves the current crowd user.
    */
   private CrowdUser getCurrentUser() {
     if (currentUser == null) {
@@ -196,11 +191,22 @@ public class CurrentUser implements CrowdUser {
     return currentUser;
   }
 
-  public boolean hasRole(String role) {
-    for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
-      if (authority.getAuthority().equalsIgnoreCase(role)) return true;
+  /**
+   * Computes the gravatar URL associated to the user email
+   *
+   * @param size  The size (width) of the image to generate
+   * @param https If the URL must be in HTTPs or no
+   * @return The URL of the gravatar
+   * @throws NoSuchAlgorithmException If MD5 Algorithm isn't available
+   */
+  public String getGravatarUrl(int size, boolean https) throws NoSuchAlgorithmException {
+    MessageDigest digest = MessageDigest.getInstance("MD5");
+    digest.update(getEmail().trim().toLowerCase().getBytes());
+    String hash = Strings.padStart(new BigInteger(1, digest.digest()).toString(16), 32, '0');
+    if (https) {
+      return "https://secure.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";
+    } else {
+      return "http://www.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";
     }
-    return false;
   }
-
 }
