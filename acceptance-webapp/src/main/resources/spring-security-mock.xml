@@ -65,9 +65,23 @@
       </list>
     </bean:property>
   </bean>
+  <bean id="mockedAnonymous" class="org.exoplatform.acceptance.security.CrowdUserMock">
+    <bean:property name="username" value="anonymousUser"/>
+    <bean:property name="firstName" value="Anonymous"/>
+    <bean:property name="lastName" value="User"/>
+    <bean:property name="email" value="exo-swf@exoplatform.com"/>
+    <bean:property name="authorities">
+      <list>
+        <bean id="anonymousRole" class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+          <bean:constructor-arg value="ROLE_ANONYMOUS"/>
+        </bean>
+      </list>
+    </bean:property>
+  </bean>
   <bean id="crowdUserDetailsService" class="org.exoplatform.acceptance.security.MockedCrowdUserDetailsService">
     <bean:constructor-arg name="user" ref="mockedUser"/>
     <bean:constructor-arg name="administrator" ref="mockedAdministrator"/>
+    <bean:constructor-arg name="anonymous" ref="mockedAnonymous"/>
   </bean>
   <bean id="mockedAuthenticationProvider" class="org.exoplatform.acceptance.security.MockedAuthenticationProvider">
     <bean:constructor-arg name="user" ref="mockedUser"/>

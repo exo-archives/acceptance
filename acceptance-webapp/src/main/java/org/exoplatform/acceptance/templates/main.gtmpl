@@ -11,10 +11,10 @@
       </button>
       <a class="navbar-brand" href="@{ Home.index()}"><img class="navbar-brand" src="/assets/org/exoplatform/acceptance/assets/images/exo-logo.png">&nbsp;Acceptance</a>
     </div>
-    <% if (user.isAuthenticated()) { %>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
+        <% if (user.isAuthenticated() && user.hasRole(projectSettings.userRole)) { %>
         <li><a href="@{ Home.index()}">Deployments</a></li>
         <li><a href="@{ Home.index()}">Sources</a></li>
         <% if (user.hasRole(projectSettings.adminRole)) { %>
@@ -31,8 +31,10 @@
           </ul>
         </li>
         <% } %>
+        <% } %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if (user.isAuthenticated() && user.hasRole(projectSettings.userRole)) { %>
         <form action="@{ Search.deployments()}" method="get" class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input id="search" type="text" name="q" class="form-control" placeholder="Search">
@@ -42,10 +44,12 @@
         <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user.fullName}</a></li>
         <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
+        <% } else { %>
+        <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+        <% } %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
-    <% } %>
   </div>
 </nav>
 
@@ -75,5 +79,5 @@
 </div>
 
 <div id="footer">
-  <p class="muted credit"><a href="/">eXo Acceptance</a> v ${projectSettings.version} (rev. <a href="${projectSettings.scmRevisionUrl}" target="_blank" title="SCM Revision URL">${projectSettings.scmRevision.substring(0,6)}</a>) - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${projectSettings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${projectSettings.organizationUrl}">${projectSettings.organizationName}</a>.</p>
+  <p class="muted credit">eXo Acceptance <a href="/about">${projectSettings.version} (rev. ${projectSettings.scmRevision.substring(0,6)})</a> - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${projectSettings.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${projectSettings.organizationUrl}">${projectSettings.organizationName}</a>.</p>
 </div>

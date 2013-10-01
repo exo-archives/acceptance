@@ -209,4 +209,24 @@ public class CurrentUser implements CrowdUser {
       return "http://www.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";
     }
   }
+
+  /**
+   * Simple searches for an exactly matching {@link org.springframework.security.core.GrantedAuthority.getAuthority()}.
+   * Will always return false if the SecurityContextHolder contains an Authentication with nullprincipal and/or GrantedAuthority[] objects.
+   *
+   * @param role the GrantedAuthorityString representation to check for
+   * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
+   */
+  public boolean hasRole(String role) {
+    if (getCurrentUser() != null) {
+      for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
+        if (authority.getAuthority().equals(role)) return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean isAnonymous() {
+    return hasRole("ROLE_ANONYMOUS");
+  }
 }

@@ -2,7 +2,7 @@
 #{title value="Authentication required"/}
 
 <div class="container">
-  <% if (user.isAuthenticated()) { %>
+  <% if (user.isAuthenticated() && !user.isAnonymous()) { %>
 
   <div class="jumbotron">
     <h1>You are already authenticated &nbsp;
