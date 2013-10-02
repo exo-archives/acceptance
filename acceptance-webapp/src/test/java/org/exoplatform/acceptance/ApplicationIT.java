@@ -18,25 +18,19 @@
  */
 package org.exoplatform.acceptance;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
+import junit.framework.AssertionFailedError;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.arquillian.warp.Activity;
-import org.jboss.arquillian.warp.Inspection;
-import org.jboss.arquillian.warp.Warp;
-import org.jboss.arquillian.warp.WarpTest;
-import org.jboss.arquillian.warp.servlet.AfterServlet;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -44,7 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RunWith(Arquillian.class)
-@WarpTest
 public class ApplicationIT {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
@@ -56,50 +49,33 @@ public class ApplicationIT {
   URL deploymentURL;
 
   @Deployment
-  public static WebArchive createDeployment() {
-    WebArchive war = ShrinkWrap.create(ZipImporter.class, "ROOT.war").importFrom(new File(System.getProperty("targetDir"), System.getProperty("archiveName"))).as(WebArchive.class);
-    //LOGGER.debug("Archive content : \n {}", war.toString(true));
+  public static WebArchive deployment() {
+    WebArchive war = ShrinkWrap.create(WebArchive.class);
+    war.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
+    war.addAsWebInfResource(new File("src/main/webapp/WEB-INF/applicationContext.xml"));
+    war.addAsWebInfResource(new File("src/main/webapp/WEB-INF/rest-servlet.xml"));
+    war.addPackages(true, "org.exoplatform.acceptance");
     return war;
+  }
+
+  public URL getApplicationURL(String application) {
+    try {
+      return deploymentURL.toURI().resolve(application).toURL();
+    }
+    catch (Exception e) {
+      AssertionFailedError afe = new AssertionFailedError();
+      afe.initCause(e);
+      throw afe;
+    }
   }
 
   @Test
   @RunAsClient
-  @Ignore
-  /**
-   * Need to manage authentication before being able to do such tests
-   */
-  public void testFoo() {
-    driver.get(deploymentURL.toString() + "/signin");
-    LOGGER.info("Source: " + driver.getPageSource());
-    //WebElement body = driver.findElement(By.tagName("body"));
-    //assertEquals("Hello World", body.getText());
+  public void testAboutTitle() throws Exception {
+    URL url = getApplicationURL("about");
+    driver.get(url.toString());
+    LOGGER.debug("PAGE CONTENT : {}",driver.getPageSource());
+    assertTrue(driver.getTitle().contains("About eXo Acceptance"));
   }
 
-  @Test
-  @Ignore
-  public void shouldReturnUnAuthorizedOnAuthFailure() throws Exception {
-    Warp.initiate(new Activity() {
-
-      @Override
-      public void perform() {
-        try {
-          final HttpURLConnection conn = (HttpURLConnection) deploymentURL.openConnection();
-          conn.setInstanceFollowRedirects(false);
-          Assert.assertEquals(401, conn.getResponseCode());
-        } catch (Exception e) {
-          throw new RuntimeException(e);
-        }
-      }
-    }).inspect(new Inspection() {
-      @AfterServlet
-      public void validate() {
-        Assert.assertTrue(true);
-      }
-
-      @Override
-      public int hashCode() {
-        return super.hashCode();
-      }
-    });
-  }
 }
