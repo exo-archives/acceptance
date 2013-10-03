@@ -22,6 +22,7 @@ import javax.inject.Inject;
 import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Controller to manage REST services for applications
  */
 @Controller
-@RequestMapping(value = "application", produces = "application/json")
+@RequestMapping(value = "application", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RESTApplicationController {
 
   public static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
@@ -75,7 +76,7 @@ public class RESTApplicationController {
    * @param application the application to save
    * @return the saved application
    */
-  @RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Application saveApplication(@RequestBody Application application) {
     return applicationRepository.save(application);
@@ -87,7 +88,7 @@ public class RESTApplicationController {
    * @param application the application to update
    * @return the updated application
    */
-  @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Application updateApplication(@RequestBody Application application) {
     return applicationRepository.save(application);
@@ -98,7 +99,7 @@ public class RESTApplicationController {
    *
    * @param application the application to delete
    */
-  @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
   public void deleteApplication(@RequestBody Application application) {
     applicationRepository.delete(application);
   }

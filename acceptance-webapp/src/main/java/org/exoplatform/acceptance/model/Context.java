@@ -2,19 +2,17 @@ package org.exoplatform.acceptance.model;
 
 import java.io.Serializable;
 
+
 import javax.inject.Named;
 import juzu.request.RequestContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Named("context")
 /**
  * Current request context
  */
 public class Context implements Serializable {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Context.class);
 
-  private RequestContext requestContext;
+  transient private RequestContext requestContext;
 
   public void setRequestContext(RequestContext requestContext) {
     this.requestContext = requestContext;

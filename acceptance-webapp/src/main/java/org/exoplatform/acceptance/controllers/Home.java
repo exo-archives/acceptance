@@ -80,16 +80,16 @@ public class Home extends BaseController {
 
   @Action
   @Route("/login")
+  // fake method for juzu template compilation (ex: @{Home.login()}
+  // this url is catch up by the spring security filter and the action method is never call
   public void login() {
-    // fake method for juzu template compilation (ex: @{Home.login()}
-    // this url is catch up by the spring security filter and the action method is never call
   }
 
   @Action
   @Route("/logout")
+  // fake method for juzu template compilation (ex: @{Home.logout()}
+  // this url is catch up by the spring security filter and the action method is never call
   public void logout() {
-    // fake method for juzu template compilation (ex: @{Home.logout()}
-    // this url is catch up by the spring security filter and the action method is never call
   }
 
   @View

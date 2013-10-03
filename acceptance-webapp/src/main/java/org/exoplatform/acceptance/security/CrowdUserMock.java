@@ -138,9 +138,9 @@ public class CrowdUserMock implements CrowdUser {
    */
   @Override
   public boolean isAuthenticated() {
-    try {
+    if (SecurityContextHolder.getContext().getAuthentication() != null) {
       return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-    } catch (NullPointerException npe) {
+    } else {
       return false;
     }
   }

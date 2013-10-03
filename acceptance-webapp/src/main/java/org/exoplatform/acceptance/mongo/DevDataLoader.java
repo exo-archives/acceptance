@@ -16,10 +16,26 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
   private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
   @Inject
-  ApplicationRepository applicationRepository;
+  private ApplicationRepository applicationRepository;
 
   @Inject
-  DeploymentRepository deploymentRepository;
+  private DeploymentRepository deploymentRepository;
+
+  public ApplicationRepository getApplicationRepository() {
+    return applicationRepository;
+  }
+
+  public void setApplicationRepository(ApplicationRepository applicationRepository) {
+    this.applicationRepository = applicationRepository;
+  }
+
+  public DeploymentRepository getDeploymentRepository() {
+    return deploymentRepository;
+  }
+
+  public void setDeploymentRepository(DeploymentRepository deploymentRepository) {
+    this.deploymentRepository = deploymentRepository;
+  }
 
   /**
    * Handle an application event.
@@ -36,11 +52,11 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
       Application app1 = createApplication("Application #1");
       Application app2 = createApplication("Application #2");
       Application app3 = createApplication("Application #3");
-      Deployment dep1 = createDeployment(app1);
-      Deployment dep2 = createDeployment(app1);
-      Deployment dep3 = createDeployment(app2);
-      Deployment dep4 = createDeployment(app2);
-      Deployment dep5 = createDeployment(app3);
+      createDeployment(app1);
+      createDeployment(app1);
+      createDeployment(app2);
+      createDeployment(app2);
+      createDeployment(app3);
     }
   }
 

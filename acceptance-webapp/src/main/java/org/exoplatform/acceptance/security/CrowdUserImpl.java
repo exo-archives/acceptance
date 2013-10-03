@@ -20,6 +20,7 @@ package org.exoplatform.acceptance.security;
 
 import java.util.Collection;
 
+
 import com.atlassian.crowd.integration.soap.SOAPPrincipal;
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -103,9 +104,9 @@ public class CrowdUserImpl implements CrowdUser {
    */
   @Override
   public boolean isAuthenticated() {
-    try {
+    if (SecurityContextHolder.getContext().getAuthentication() != null) {
       return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-    } catch (NullPointerException npe) {
+    } else {
       return false;
     }
   }

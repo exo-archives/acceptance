@@ -19,6 +19,7 @@
 package org.exoplatform.acceptance.security;
 
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
@@ -126,7 +127,9 @@ public class CurrentUser implements CrowdUser {
       } else {
         return principal.toString();
       }
-    } else throw new UsernameNotFoundException("User not authenticated");
+    } else {
+      throw new UsernameNotFoundException("User not authenticated");
+    }
   }
 
   /**
@@ -176,17 +179,14 @@ public class CurrentUser implements CrowdUser {
    * Retrieves the current crowd user.
    */
   private CrowdUser getCurrentUser() throws UsernameNotFoundException {
-    if (currentUser == null) {
-      // Try to load it
-      if (isAuthenticated()) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername());
-        if (userDetails instanceof CrowdUserDetails) {
-          currentUser = new CrowdUserImpl((CrowdUserDetails) userDetails);
-        } else if (userDetails instanceof CrowdUserMock) {
-          currentUser = (CrowdUserMock) userDetails;
-        } else {
-          LOGGER.error("Unknown UserDetails implementation : {}", userDetails.getClass().getName());
-        }
+    if (currentUser == null && isAuthenticated()) {
+      UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername());
+      if (userDetails instanceof CrowdUserDetails) {
+        currentUser = new CrowdUserImpl((CrowdUserDetails) userDetails);
+      } else if (userDetails instanceof CrowdUserMock) {
+        currentUser = (CrowdUserMock) userDetails;
+      } else {
+        LOGGER.error("Unknown UserDetails implementation : {}", userDetails.getClass().getName());
       }
     }
     return currentUser;
@@ -202,7 +202,7 @@ public class CurrentUser implements CrowdUser {
    */
   public String getGravatarUrl(int size, boolean https) throws NoSuchAlgorithmException {
     MessageDigest digest = MessageDigest.getInstance("MD5");
-    digest.update(getEmail().trim().toLowerCase().getBytes());
+    digest.update(getEmail().trim().toLowerCase().getBytes(Charset.defaultCharset()));
     String hash = Strings.padStart(new BigInteger(1, digest.digest()).toString(16), 32, '0');
     if (https) {
       return "https://secure.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";

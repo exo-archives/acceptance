@@ -23,6 +23,7 @@ import org.exoplatform.acceptance.model.Deployment;
 import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.exoplatform.acceptance.repositories.DeploymentRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping(value = "deployment", produces = "application/json")
+@RequestMapping(value = "deployment", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RESTDeploymentController {
 
   public static final int DEFAULT_DEPLOYMENT_PAGE_SIZE = 50;
@@ -79,7 +80,7 @@ public class RESTDeploymentController {
    * @param deployment the deployment to save
    * @return the saved deployment
    */
-  @RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Deployment saveDeployment(@RequestBody Deployment deployment) {
     return deploymentRepository.save(deployment);
@@ -91,7 +92,7 @@ public class RESTDeploymentController {
    * @param deployment the deployment to update
    * @return the updated deployment
    */
-  @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public Deployment updateDeployment(@RequestBody Deployment deployment) {
     return deploymentRepository.save(deployment);
@@ -102,7 +103,7 @@ public class RESTDeploymentController {
    *
    * @param deployment the deployment to delete
    */
-  @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = "application/json")
+  @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
   public void deleteDeployment(@RequestBody Deployment deployment) {
     deploymentRepository.delete(deployment);
   }

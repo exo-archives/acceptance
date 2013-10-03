@@ -21,10 +21,9 @@ package org.exoplatform.acceptance.model;
 import java.net.URL;
 import java.util.Date;
 
+
 import javax.inject.Named;
 import javax.inject.Singleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -33,13 +32,12 @@ import org.springframework.beans.factory.annotation.Value;
 @Named("projectSettings")
 @Singleton
 public class ProjectSettings {
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectSettings.class);
 
   @Value("ROLE_${crowd.group.users}")
-  String userRole;
+  private String userRole;
 
   @Value("ROLE_${crowd.group.administrators}")
-  String adminRole;
+  private String adminRole;
 
   @Value("${project.version}")
   private String version;

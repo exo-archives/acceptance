@@ -27,21 +27,19 @@ public class MockedCrowdUserDetailsService implements UserDetailsService {
 
   private CrowdUserMock user;
 
-  private CrowdUserMock anonymous;
-
-  public MockedCrowdUserDetailsService(CrowdUserMock administrator, CrowdUserMock user, CrowdUserMock anonymous) {
+  public MockedCrowdUserDetailsService(CrowdUserMock administrator, CrowdUserMock user) {
     this.administrator = administrator;
     this.user = user;
-    this.anonymous = anonymous;
   }
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    if (user.getUsername().equals(username))
+    if (user.getUsername().equals(username)) {
       return user;
-    else if (administrator.getUsername().equals(username))
+    } else if (administrator.getUsername().equals(username)) {
       return administrator;
-    else
+    } else {
       throw new UsernameNotFoundException("Unknown user : " + username);
+    }
   }
 }

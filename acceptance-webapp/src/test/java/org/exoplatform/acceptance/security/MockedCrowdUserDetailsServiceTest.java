@@ -30,10 +30,6 @@ public class MockedCrowdUserDetailsServiceTest {
   CrowdUser user;
 
   @Inject
-  @Named("mockedAnonymous")
-  CrowdUser anonymous;
-
-  @Inject
   @Named("crowdUserDetailsService")
   UserDetailsService userDetailsService;
 
@@ -45,14 +41,6 @@ public class MockedCrowdUserDetailsServiceTest {
   @Test
   public void testLoadUserByUsernameUser() throws Exception {
     Assert.assertEquals(user, userDetailsService.loadUserByUsername(user.getUsername()));
-  }
-
-  /**
-   * Crowd's UserDetailsService returns a UsernameNotFoundException for anonymous
-   */
-  @Test(expected = UsernameNotFoundException.class)
-  public void testLoadUserByUsernameAnonymous() throws Exception {
-    userDetailsService.loadUserByUsername(anonymous.getUsername());
   }
 
   @Test(expected = UsernameNotFoundException.class)
