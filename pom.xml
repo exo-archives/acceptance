@@ -116,7 +116,6 @@
         <groupId>com.atlassian.crowd</groupId>
         <artifactId>crowd-integration-springsecurity</artifactId>
         <version>${crowd.version}</version>
-        <scope>runtime</scope>
         <exclusions>
           <exclusion>
             <artifactId>commons-logging</artifactId>
@@ -174,7 +173,6 @@
         <groupId>org.apache.tomcat</groupId>
         <artifactId>tomcat-catalina-jmx-remote</artifactId>
         <version>${tomcat.version}</version>
-        <scope>provided</scope>
       </dependency>
       <!-- **************************************** -->
       <!-- Build resource used to import license related files -->
@@ -184,7 +182,6 @@
         <artifactId>exo-lgpl-license-resource-bundle</artifactId>
         <!-- It's version is set in parent pom -->
         <version>${version.exo-lgpl-license-resource-bundle}</version>
-        <scope>provided</scope>
       </dependency>
       <!-- **************************************** -->
       <!-- Required by logback for colorized console on windows -->
@@ -423,7 +420,6 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
-        <scope>test</scope>
       </dependency>
       <!-- Transaction Management Abstraction
       (depends on spring-core, spring-beans, spring-aop, spring-context)
