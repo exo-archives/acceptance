@@ -21,8 +21,9 @@
 -->
 <!-- Dedicated context file for development mode -->
 <Context xmlValidation="true" xmlNamespaceAware="true">
-  <!-- Juzu in development mode -->
-  <Parameter name="juzu.run_mode" description="Juzu running mode" value="dev" override="false"/>
+  <!-- Juzu in live mode -->
+  <Parameter name="juzu.run_mode" description="Juzu running mode" value="live" override="false"/>
+  <Parameter name="juzu.src_path" description="Application sources" value="${project.basedir}/src/main/java" override="false"/>
   <!-- Use Spring development profile -->
   <Parameter name="spring.profiles.active" description="Spring development profiles" value="dev" override="false"/>
 </Context>
