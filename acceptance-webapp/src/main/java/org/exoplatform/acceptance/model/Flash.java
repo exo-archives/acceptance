@@ -54,4 +54,26 @@ public class Flash implements Serializable {
   public void setUsername(String username) {
     this.username = username;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Flash)) return false;
+
+    Flash flash = (Flash) o;
+
+    if (error != null ? !error.equals(flash.error) : flash.error != null) return false;
+    if (success != null ? !success.equals(flash.success) : flash.success != null) return false;
+    if (username != null ? !username.equals(flash.username) : flash.username != null) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = success != null ? success.hashCode() : 0;
+    result = 31 * result + (error != null ? error.hashCode() : 0);
+    result = 31 * result + (username != null ? username.hashCode() : 0);
+    return result;
+  }
 }

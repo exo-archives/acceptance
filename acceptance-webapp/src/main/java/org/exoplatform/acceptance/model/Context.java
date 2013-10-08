@@ -37,4 +37,21 @@ public class Context implements Serializable {
     // NOT WORKING FOR NOW. requestContext.getSecurityContext() always null in Juzu.
     return requestContext.getSecurityContext() != null ? requestContext.getSecurityContext().isUserInRole(role) : false;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Context)) return false;
+
+    Context context = (Context) o;
+
+    if (requestContext != null ? !requestContext.equals(context.requestContext) : context.requestContext != null) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return requestContext != null ? requestContext.hashCode() : 0;
+  }
 }
