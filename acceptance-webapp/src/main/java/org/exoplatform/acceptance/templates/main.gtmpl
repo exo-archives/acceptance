@@ -14,10 +14,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <% if (user.isAuthenticated() && user.hasRole(projectSettings.userRole)) { %>
+                #{userRole}
                 <li><a href="@{ Home.index()}">Deployments</a></li>
                 <li><a href="@{ Home.index()}">Sources</a></li>
-                <% if (user.hasRole(projectSettings.adminRole)) { %>
+                #{adminRole}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -30,11 +30,11 @@
                         <li><a href="@{ Administration.index()}">Deployments</a></li>
                     </ul>
                 </li>
-                <% } %>
-                <% } %>
+                #{/adminRole}
+                #{/userRole}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <% if (user.isAuthenticated() && user.hasRole(projectSettings.userRole)) { %>
+                #{userRole}
                 <form action="@{ Search.deployments()}" method="get" class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input id="search" type="text" name="q" class="form-control" placeholder="Search">
@@ -44,9 +44,11 @@
                 <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user.fullName}</a></li>
                 <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
-                <% } else { %>
+                #{/userRole}
+                #{anonymousRole}
                 <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-                <% } %>
+                #{/anonymousRole}
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

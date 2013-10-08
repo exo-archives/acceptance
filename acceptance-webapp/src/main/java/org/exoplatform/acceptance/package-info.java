@@ -16,7 +16,10 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-@Application(defaultController = Home.class, name = "AcceptanceApplication")
+@Application(
+    defaultController = Home.class,
+    name = "AcceptanceApplication")
+
 @Servlet("/")
 
 @Bindings({
@@ -33,7 +36,16 @@
             @Asset(id = "acceptance.js", value = "acceptance.js", depends = {"jquery.js", "underscore.js", "bootstrap.js", "backbone.js"}),
             @Asset(id = "acceptance.css", value = "acceptance.css"),
             @Asset(id = "signin.css", value = "signin.css")
-        }) package org.exoplatform.acceptance;
+        })
+
+@Tags(
+    {
+        @Tag(name = "userRole", path = "userRole.gtmpl"),
+        @Tag(name = "adminRole", path = "adminRole.gtmpl"),
+        @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl")
+    })
+
+package org.exoplatform.acceptance;
 
 import juzu.Application;
 import juzu.Scope;
@@ -43,6 +55,8 @@ import juzu.plugin.asset.Assets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
+import juzu.template.Tag;
+import juzu.template.Tags;
 import org.exoplatform.acceptance.controllers.Home;
 import org.exoplatform.acceptance.model.Context;
 import org.exoplatform.acceptance.model.Flash;
