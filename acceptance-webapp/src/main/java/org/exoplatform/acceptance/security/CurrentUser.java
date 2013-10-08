@@ -221,7 +221,9 @@ public class CurrentUser implements CrowdUser {
     try {
       if (getCurrentUser() != null) {
         for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
-          if (authority.getAuthority().equals(role)) return true;
+          if (authority.getAuthority().equals(role)) {
+            return true;
+          }
         }
       }
     } catch (UsernameNotFoundException unfe) {

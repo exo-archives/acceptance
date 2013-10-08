@@ -11,7 +11,7 @@ import juzu.request.RequestContext;
  */
 public class Context implements Serializable {
 
-  transient private RequestContext requestContext;
+  private transient RequestContext requestContext;
 
   public void setRequestContext(RequestContext requestContext) {
     this.requestContext = requestContext;
@@ -54,4 +54,6 @@ public class Context implements Serializable {
   public int hashCode() {
     return requestContext != null ? requestContext.hashCode() : 0;
   }
+
+
 }
