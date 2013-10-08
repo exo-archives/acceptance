@@ -61,8 +61,7 @@ public class ApplicationIT {
   public URL getApplicationURL(String application) {
     try {
       return deploymentURL.toURI().resolve(application).toURL();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       AssertionFailedError afe = new AssertionFailedError();
       afe.initCause(e);
       throw afe;
@@ -74,7 +73,6 @@ public class ApplicationIT {
   public void testAboutTitle() throws Exception {
     URL url = getApplicationURL("about");
     driver.get(url.toString());
-    LOGGER.debug("PAGE CONTENT : {}",driver.getPageSource());
     assertTrue(driver.getTitle().contains("About eXo Acceptance"));
   }
 
