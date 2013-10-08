@@ -2,7 +2,6 @@ package org.exoplatform.acceptance.model;
 
 import java.io.Serializable;
 
-
 import javax.inject.Named;
 import juzu.request.RequestContext;
 

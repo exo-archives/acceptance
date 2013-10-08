@@ -24,7 +24,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
-
 import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import com.google.common.base.Strings;
 import javax.inject.Inject;

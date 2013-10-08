@@ -21,7 +21,6 @@ package org.exoplatform.acceptance.model;
 import java.net.URL;
 import java.util.Date;
 
-
 import javax.inject.Named;
 import javax.inject.Singleton;
 import org.springframework.beans.factory.annotation.Value;

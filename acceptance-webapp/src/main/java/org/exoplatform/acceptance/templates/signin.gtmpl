@@ -2,30 +2,30 @@
 #{title value="Authentication required"/}
 
 <div class="container">
-  <% if (user.isAuthenticated() && !user.isAnonymous()) { %>
+    <% if (user.isAuthenticated() && !user.isAnonymous()) { %>
 
-  <div class="jumbotron">
-    <h1>You are already authenticated &nbsp;
-      <small>why do you want to sign in again ... ?</small>
-    </h1>
+    <div class="jumbotron">
+        <h1>You are already authenticated &nbsp;
+            <small>why do you want to sign in again ... ?</small>
+        </h1>
 
-    <p>But if you really want to resign, just click on the following button first</p>
+        <p>But if you really want to resign, just click on the following button first</p>
 
-    <p><a class="btn btn-primary btn-lg">Sign Out</a></p>
-  </div>
+        <p><a class="btn btn-primary btn-lg">Sign Out</a></p>
+    </div>
 
-  <% } else { %>
-  <form class="form-signin" action="@{ Home.login()}" method="post">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <input type="text" class="form-control" placeholder="eXo Account" name="username" autofocus>
-    <input type="password" class="form-control" placeholder="Password" name="password">
-    <!--
-    <label class="checkbox">
-      <input type="checkbox" value="remember-me"> Remember me
-    </label
-    -->
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
-  <% } %>
+    <% } else { %>
+    <form class="form-signin" action="@{ Home.login()}" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="form-control" placeholder="eXo Account" name="username" autofocus>
+        <input type="password" class="form-control" placeholder="Password" name="password">
+        <!--
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label
+        -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <% } %>
 
 </div> <!-- /container -->

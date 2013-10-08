@@ -20,20 +20,20 @@
 @Servlet("/")
 
 @Bindings({
-    @Binding(value = CurrentUser.class, scope = Scope.SESSION),
-    @Binding(value = Flash.class, scope = Scope.FLASH),
-    @Binding(value = Context.class, scope = Scope.REQUEST)
-})
+              @Binding(value = CurrentUser.class, scope = Scope.SESSION),
+              @Binding(value = Flash.class, scope = Scope.FLASH),
+              @Binding(value = Context.class, scope = Scope.REQUEST)
+          })
 
 @Assets({
-    @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
-    @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js", location = AssetLocation.URL),
-    @Asset(id = "backbone.js", value = "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js", location = AssetLocation.URL, depends = "underscore.js"),
-    @Asset(id = "bootstrap.js", value = "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js", location = AssetLocation.URL, depends = "jquery.js"),
-    @Asset(id = "acceptance.js", value = "acceptance.js", depends = {"jquery.js", "underscore.js", "bootstrap.js", "backbone.js"}),
-    @Asset(id = "acceptance.css", value = "acceptance.css"),
-    @Asset(id = "signin.css", value = "signin.css")
-}) package org.exoplatform.acceptance;
+            @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
+            @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js", location = AssetLocation.URL),
+            @Asset(id = "backbone.js", value = "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js", location = AssetLocation.URL, depends = "underscore.js"),
+            @Asset(id = "bootstrap.js", value = "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js", location = AssetLocation.URL, depends = "jquery.js"),
+            @Asset(id = "acceptance.js", value = "acceptance.js", depends = {"jquery.js", "underscore.js", "bootstrap.js", "backbone.js"}),
+            @Asset(id = "acceptance.css", value = "acceptance.css"),
+            @Asset(id = "signin.css", value = "signin.css")
+        }) package org.exoplatform.acceptance;
 
 import juzu.Application;
 import juzu.Scope;

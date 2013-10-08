@@ -25,7 +25,7 @@
     <artifactId>maven-parent-pom</artifactId>
     <groupId>org.exoplatform</groupId>
     <version>12-SNAPSHOT</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>org.exoplatform.swf</groupId>
   <artifactId>acceptance</artifactId>
