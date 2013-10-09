@@ -1,4 +1,4 @@
-#{decorate path=main.gtmpl/}
+#{decorate path="main.gtmpl"/}
 #{title value="About eXo Acceptance"/}
 
 <div class="container">

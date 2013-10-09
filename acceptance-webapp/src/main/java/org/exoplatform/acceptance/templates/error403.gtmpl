@@ -1,4 +1,4 @@
-#{decorate path=main.gtmpl/}
+#{decorate path="main.gtmpl"/}
 #{title value="Insufficient privileges"/}
 
 <div class="container">

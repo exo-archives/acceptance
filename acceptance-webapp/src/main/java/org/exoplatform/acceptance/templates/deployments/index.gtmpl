@@ -1,3 +1,6 @@
 #{decorate path="main.gtmpl"/}
 #{title value="Deployments list"/}
-
+<ol class="breadcrumb">
+    <li><a href="@{Home.index()}">Home</a></li>
+    <li class="active">Deployments</li>
+</ol>

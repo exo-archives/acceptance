@@ -16,10 +16,16 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+package org.exoplatform.acceptance.repositories;
+
+import org.exoplatform.acceptance.model.Project;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
 /**
- * Created with IntelliJ IDEA.
- * User: fdrouet
- * Date: 13/09/13
- * Time: 10:04
- * To change this template use File | Settings | File Templates.
+ *
  */
+@Repository
+public interface ProjectRepository extends MongoRepository<Project, String> {
+  Project findByName(String name);
+}

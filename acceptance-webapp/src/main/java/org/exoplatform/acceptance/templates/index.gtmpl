@@ -1,6 +1,8 @@
-#{decorate path=main.gtmpl/}
-#{title value=Home/}
-
+#{decorate path="main.gtmpl"/}
+#{title value="Home"/}
+<ol class="breadcrumb">
+    <li class="active">Home</li>
+</ol>
 <div class="jumbotron">
     <h1>Welcome ${user.fullName} &nbsp;</h1>
 

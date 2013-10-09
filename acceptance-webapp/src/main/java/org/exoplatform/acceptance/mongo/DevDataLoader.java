@@ -1,11 +1,16 @@
 package org.exoplatform.acceptance.mongo;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.inject.Inject;
 import org.exoplatform.acceptance.controllers.BaseController;
 import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
+import org.exoplatform.acceptance.model.Project;
 import org.exoplatform.acceptance.repositories.ApplicationRepository;
 import org.exoplatform.acceptance.repositories.DeploymentRepository;
+import org.exoplatform.acceptance.repositories.ProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -21,21 +26,8 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
   @Inject
   private DeploymentRepository deploymentRepository;
 
-  public ApplicationRepository getApplicationRepository() {
-    return applicationRepository;
-  }
-
-  public void setApplicationRepository(ApplicationRepository applicationRepository) {
-    this.applicationRepository = applicationRepository;
-  }
-
-  public DeploymentRepository getDeploymentRepository() {
-    return deploymentRepository;
-  }
-
-  public void setDeploymentRepository(DeploymentRepository deploymentRepository) {
-    this.deploymentRepository = deploymentRepository;
-  }
+  @Inject
+  private ProjectRepository projectRepository;
 
   /**
    * Handle an application event.
@@ -57,6 +49,15 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
       createDeployment(app2);
       createDeployment(app2);
       createDeployment(app3);
+      createProject("Platform-UI");
+      createProject("Commons");
+      createProject("Content");
+      createProject("Calendar");
+      createProject("Social");
+      createProject("Wiki");
+      createProject("Forum");
+      createProject("Integration");
+      createProject("Platform");
     }
   }
 
@@ -74,4 +75,15 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     return deploymentRepository.save(deployment);
   }
 
+  private Project createProject(String name) {
+    Project project = new Project();
+    project.setName(name);
+    try {
+      project.setSite(new URL("http://www.exoplatform.org"));
+    } catch (MalformedURLException e) {
+    }
+    project.setDescription("This is the description of " + name);
+    LOGGER.debug("DevDataLoader - new Project : {}", project);
+    return projectRepository.save(project);
+  }
 }

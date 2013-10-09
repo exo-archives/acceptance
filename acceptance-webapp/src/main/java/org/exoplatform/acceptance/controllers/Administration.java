@@ -24,6 +24,7 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
+import juzu.plugin.asset.WithAssets;
 
 public class Administration extends BaseController {
 
@@ -31,10 +32,21 @@ public class Administration extends BaseController {
   @Path("administration/index.gtmpl")
   org.exoplatform.acceptance.templates.administration.index index;
 
+  @Inject
+  @Path("administration/project.gtmpl")
+  org.exoplatform.acceptance.templates.administration.project project;
+
   @View
   @Route("/admin")
   public Response.Content index() {
     return makeResponse(index);
+  }
+
+  @View
+  @Route("/admin/project")
+  @WithAssets({"projects-admin.js"})
+  public Response.Content project() {
+    return makeResponse(project);
   }
 
 }

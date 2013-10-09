@@ -75,3 +75,6 @@ a.navbar-brand img {
   padding : 0px 0px 0px 15px;
 }
 
+/* Bootstrap/AngularJS Customization
+-------------------------------------------------- */
+.nav, .pagination, .carousel a { cursor: pointer; }

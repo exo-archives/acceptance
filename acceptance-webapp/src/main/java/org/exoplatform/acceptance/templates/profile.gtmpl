@@ -1,4 +1,4 @@
-#{decorate path=main.gtmpl/}
+#{decorate path="main.gtmpl"/}
 #{title value="Your profile"/}
 <div class="row">
     <div class="col-md-9">

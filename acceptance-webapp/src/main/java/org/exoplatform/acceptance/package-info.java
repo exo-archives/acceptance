@@ -23,29 +23,28 @@
 @Servlet("/")
 
 @Bindings({
-              @Binding(value = CurrentUser.class, scope = Scope.SESSION),
-              @Binding(value = Flash.class, scope = Scope.FLASH),
-              @Binding(value = Context.class, scope = Scope.REQUEST)
-          })
+    @Binding(value = CurrentUser.class, scope = Scope.SESSION),
+    @Binding(value = Flash.class, scope = Scope.FLASH),
+    @Binding(value = Context.class, scope = Scope.REQUEST)
+})
 
 @Assets({
-            @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
-            @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js", location = AssetLocation.URL),
-            @Asset(id = "backbone.js", value = "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js", location = AssetLocation.URL, depends = "underscore.js"),
-            @Asset(id = "bootstrap.js", value = "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js", location = AssetLocation.URL, depends = "jquery.js"),
-            @Asset(id = "acceptance.js", value = "acceptance.js", depends = {"jquery.js", "underscore.js", "bootstrap.js", "backbone.js"}),
-            @Asset(id = "acceptance.css", value = "acceptance.css"),
-            @Asset(id = "signin.css", value = "signin.css")
-        })
+    @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
+    @Asset(id = "bootstrap.js", value = "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js", location = AssetLocation.URL, depends = "jquery.js"),
+    @Asset(id = "angular.js", value = "//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js", location = AssetLocation.URL),
+    @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js", location = AssetLocation.URL),
+    @Asset(id = "restangular.js", value = "//cdn.jsdelivr.net/restangular/1.1.3/restangular.min.js", location = AssetLocation.URL, depends = {"angular.js", "underscore.js"}),
+    @Asset(id = "ui-bootstrap.js", value = "ui-bootstrap-tpls-0.6.0.min.js", depends = {"angular.js", "bootstrap.js"}),
+    @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
+    @Asset(id = "acceptance.css", value = "acceptance.css"),
+    @Asset(id = "signin.css", value = "signin.css")
+})
 
-@Tags(
-    {
-        @Tag(name = "userRole", path = "userRole.gtmpl"),
-        @Tag(name = "adminRole", path = "adminRole.gtmpl"),
-        @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl")
-    })
-
-package org.exoplatform.acceptance;
+@Tags({
+    @Tag(name = "userRole", path = "userRole.gtmpl"),
+    @Tag(name = "adminRole", path = "adminRole.gtmpl"),
+    @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl")
+}) package org.exoplatform.acceptance;
 
 import juzu.Application;
 import juzu.Scope;
