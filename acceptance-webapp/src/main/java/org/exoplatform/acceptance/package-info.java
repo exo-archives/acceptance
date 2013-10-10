@@ -37,9 +37,8 @@
     @Asset(id = "ui-bootstrap.js", value = "ui_bootstrap_0_6_0/ui-bootstrap-tpls.min.js", depends = {"angular.js", "bootstrap.js"}),
     @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
     @Asset(id = "bootstrap.css", value = "bootstrap_3_0_0/css/bootstrap.min.css"),
-    @Asset(id = "font-awesome.css", value = "font_awesome_3_2_1/css/font-awesome.min.css"),
     @Asset(id = "bootswatch-spacelab.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
-    @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootswatch-spacelab.css","font-awesome.css"}),
+    @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootswatch-spacelab.css"}),
     @Asset(id = "signin.css", value = "signin.css")
 })
 
