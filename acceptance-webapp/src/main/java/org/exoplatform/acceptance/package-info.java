@@ -29,14 +29,17 @@
 })
 
 @Assets({
-    @Asset(id = "jquery.js", value = "//code.jquery.com/jquery-1.10.2.min.js", location = AssetLocation.URL),
-    @Asset(id = "bootstrap.js", value = "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js", location = AssetLocation.URL, depends = "jquery.js"),
-    @Asset(id = "angular.js", value = "//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js", location = AssetLocation.URL),
-    @Asset(id = "underscore.js", value = "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js", location = AssetLocation.URL),
-    @Asset(id = "restangular.js", value = "//cdn.jsdelivr.net/restangular/1.1.3/restangular.min.js", location = AssetLocation.URL, depends = {"angular.js", "underscore.js"}),
-    @Asset(id = "ui-bootstrap.js", value = "ui-bootstrap-tpls-0.6.0.min.js", depends = {"angular.js", "bootstrap.js"}),
+    @Asset(id = "jquery.js", value = "jquery_1_10_2/jquery.min.js"),
+    @Asset(id = "bootstrap.js", value = "bootstrap_3_0_0/js/bootstrap.min.js", depends = "jquery.js"),
+    @Asset(id = "angular.js", value = "angular_1_1_4/angular.min.js"),
+    @Asset(id = "underscore.js", value = "underscore_1_4_4/underscore.min.js"),
+    @Asset(id = "restangular.js", value = "restangular_1_1_3/restangular.min.js", depends = {"angular.js", "underscore.js"}),
+    @Asset(id = "ui-bootstrap.js", value = "ui_bootstrap_0_6_0/ui-bootstrap-tpls.min.js", depends = {"angular.js", "bootstrap.js"}),
     @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
-    @Asset(id = "acceptance.css", value = "acceptance.css"),
+    @Asset(id = "bootstrap.css", value = "bootstrap_3_0_0/css/bootstrap.min.css"),
+    @Asset(id = "font-awesome.css", value = "font_awesome_3_2_1/css/font-awesome.min.css"),
+    @Asset(id = "bootswatch-spacelab.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
+    @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootswatch-spacelab.css","font-awesome.css"}),
     @Asset(id = "signin.css", value = "signin.css")
 })
 
@@ -48,7 +51,6 @@
 
 import juzu.Application;
 import juzu.Scope;
-import juzu.asset.AssetLocation;
 import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
 import juzu.plugin.binding.Binding;
