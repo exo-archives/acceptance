@@ -17,7 +17,7 @@
                 <tr>
                     <th>Project</th>
                     <th>Description</th>
-                    <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+                    <th><a href="#/new"><i class="glyphicon glyphicon-plus-sign"></i></a></th>
                 </tr>
                 </thead>
                 <tbody>
