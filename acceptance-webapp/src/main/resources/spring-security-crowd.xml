@@ -28,11 +28,11 @@
        profile="prod">
 
   <security:authentication-manager alias="authenticationManager">
-    <security:authentication-provider ref='crowdAuthenticationProvider'/>
+    <security:authentication-provider ref='crowdAuthenticationProvider' />
   </security:authentication-manager>
 
   <!-- Import the Crowd Client Spring configuration provided with the client lib -->
-  <import resource="classpath:/applicationContext-CrowdClient.xml"/>
+  <import resource="classpath:/applicationContext-CrowdClient.xml" />
 
   <!-- CROWD configuration -->
   <bean id="clientProperties" class="com.atlassian.crowd.service.soap.client.SoapClientPropertiesImpl" factory-method="newInstanceFromPropertiesWithoutOverrides">
@@ -53,15 +53,15 @@
   </bean>
 
   <bean id="crowdUserDetailsService" class="com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsServiceImpl">
-    <property name="authenticationManager" ref="crowdAuthenticationManager"/>
-    <property name="groupMembershipManager" ref="crowdGroupMembershipManager"/>
-    <property name="userManager" ref="crowdUserManager"/>
-    <property name="authorityPrefix" value="ROLE_"/>
+    <property name="authenticationManager" ref="crowdAuthenticationManager" />
+    <property name="groupMembershipManager" ref="crowdGroupMembershipManager" />
+    <property name="userManager" ref="crowdUserManager" />
+    <property name="authorityPrefix" value="ROLE_" />
   </bean>
   <bean id="crowdAuthenticationProvider" class="com.atlassian.crowd.integration.springsecurity.RemoteCrowdAuthenticationProvider">
-    <constructor-arg ref="crowdAuthenticationManager"/>
-    <constructor-arg ref="httpAuthenticator"/>
-    <constructor-arg ref="crowdUserDetailsService"/>
+    <constructor-arg ref="crowdAuthenticationManager" />
+    <constructor-arg ref="httpAuthenticator" />
+    <constructor-arg ref="crowdUserDetailsService" />
   </bean>
 
 </beans>

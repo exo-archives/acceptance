@@ -47,9 +47,9 @@
     <!-- The MongoDB instance name -->
     <acceptance.dev.mongodb.name>acceptance-dev</acceptance.dev.mongodb.name>
     <!-- The MongoDB username -->
-    <acceptance.dev.mongodb.username/>
+    <acceptance.dev.mongodb.username />
     <!-- The MongoDB password -->
-    <acceptance.dev.mongodb.password/>
+    <acceptance.dev.mongodb.password />
   </properties>
   <dependencies>
     <!-- **************************************** -->

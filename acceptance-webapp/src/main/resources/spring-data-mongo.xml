@@ -26,8 +26,8 @@
 
   <!-- Factory bean that creates the Mongo instance on a MongoDB server -->
   <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-    <property name="host" value="${mongodb.host}"/>
-    <property name="port" value="${mongodb.port}"/>
+    <property name="host" value="${mongodb.host}" />
+    <property name="port" value="${mongodb.port}" />
   </bean>
 
 </beans>

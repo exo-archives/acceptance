@@ -1,31 +1,31 @@
 #{decorate path="main.gtmpl"/}
 #{title value="Your profile"/}
 <div class="row">
-    <div class="col-md-9">
-        <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">${user.fullName}</h3>
-                </div>
-
-                <div class="panel-body">
-                    <dl class="dl-horizontal">
-                        <dt>First Name</dt>
-                        <dd>${user.firstName}</dd>
-                        <dt>Last Name</dt>
-                        <dd>${user.lastName}</dd>
-                        <dt>eMail</dt>
-                        <dd>${user.email}</dd>
-                        <dt>Login Identifier</dt>
-                        <dd>${user.username}</dd>
-                    </dl>
-                </div>
-            </div>
+  <div class="col-md-9">
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">${user.fullName}</h3>
         </div>
+
+        <div class="panel-body">
+          <dl class="dl-horizontal">
+            <dt>First Name</dt>
+            <dd>${user.firstName}</dd>
+            <dt>Last Name</dt>
+            <dd>${user.lastName}</dd>
+            <dt>eMail</dt>
+            <dd>${user.email}</dd>
+            <dt>Login Identifier</dt>
+            <dd>${user.username}</dd>
+          </dl>
+        </div>
+      </div>
     </div>
-    <div class="col-md-3">
-        <a href="#" class="thumbnail">
-            <img src="${user.getGravatarUrl(256,context.isSecured())}" alt="Your gravatar">
-        </a>
-    </div>
+  </div>
+  <div class="col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="${user.getGravatarUrl(256,context.isSecured())}" alt="Your gravatar">
+    </a>
+  </div>
 </div>

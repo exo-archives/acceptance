@@ -27,16 +27,16 @@
     <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
     <bean id="mongo" class="org.exoplatform.acceptance.mongo.EmbeddedMongoSpringFactoryBean">
       <!-- The port on which the embedded mongo will listen -->
-      <property name="port" value="${mongodb.embedded.port}"/>
+      <property name="port" value="${mongodb.embedded.port}" />
       <!-- The version of embedded mongo to use -->
-      <property name="version" value="${mongodb.embedded.version}"/>
+      <property name="version" value="${mongodb.embedded.version}" />
       <!-- An IP address for the MongoDB instance to be bound to during its execution. Default is localhost. -->
-      <property name="bindIp" value="${mongodb.embedded.bindIp}"/>
+      <property name="bindIp" value="${mongodb.embedded.bindIp}" />
     </bean>
   </beans>
 
   <beans profile="dev">
     <!-- In dev profile we load some test data -->
-    <bean id="devDataLoader" class="org.exoplatform.acceptance.mongo.DevDataLoader"/>
+    <bean id="devDataLoader" class="org.exoplatform.acceptance.mongo.DevDataLoader" />
   </beans>
 </beans>

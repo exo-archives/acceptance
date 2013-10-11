@@ -22,7 +22,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.xml.parsers.ParserConfigurationException;
 import juzu.Response;
-import juzu.plugin.asset.WithAssets;
 import juzu.request.RequestContext;
 import juzu.request.RequestLifeCycle;
 import juzu.template.Template;

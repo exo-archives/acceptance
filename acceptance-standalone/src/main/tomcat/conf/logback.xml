@@ -22,16 +22,16 @@
 <configuration>
 
   <!-- Enable JMX to configure logs -->
-  <jmxConfigurator/>
+  <jmxConfigurator />
 
   <!-- Default pattern used for printing logs in files and on the console for systems that doesn't support a colorized output -->
-  <property name="acceptance.logs.default.pattern" value="%date{ISO8601} | %-5level | %msg [%logger{40}&lt;%thread&gt;] %n%xEx"/>
+  <property name="acceptance.logs.default.pattern" value="%date{ISO8601} | %-5level | %msg [%logger{40}&lt;%thread&gt;] %n%xEx" />
   <!-- Pattern used for console supporting ANSI colors -->
-  <property name="acceptance.logs.colorized.pattern" value="%date{ISO8601} | %highlight(%-5level) | %msg %green([%logger{40}){}%cyan(&lt;%thread&gt;){}%green(]){} %n%xEx"/>
+  <property name="acceptance.logs.colorized.pattern" value="%date{ISO8601} | %highlight(%-5level) | %msg %green([%logger{40}){}%cyan(&lt;%thread&gt;){}%green(]){} %n%xEx" />
   <!-- Logs are daily archived or whenever the file size reaches maxFileSize -->
-  <property name="acceptance.logs.rolling.maxFileSize" value="100Mb"/>
+  <property name="acceptance.logs.rolling.maxFileSize" value="100Mb" />
   <!-- Number of archives to keep -->
-  <property name="acceptance.logs.rolling.maxHistory" value="60"/>
+  <property name="acceptance.logs.rolling.maxHistory" value="60" />
 
   <!--
   LevelChangePropagator propagates changes made to the level of any logback-classic logger onto the java.util.logging framework.
@@ -73,17 +73,17 @@
     <queueSize>512</queueSize>
     <!-- Do not loose any event -->
     <discardingThreshold>0</discardingThreshold>
-    <appender-ref ref="FILE_ACCEPTANCE_LOG"/>
+    <appender-ref ref="FILE_ACCEPTANCE_LOG" />
   </appender>
 
   <!-- Acceptance -->
-  <logger name="org.exoplatform.acceptance" level="INFO"/>
+  <logger name="org.exoplatform.acceptance" level="INFO" />
 
   <!-- Spring -->
-  <logger name="org.springframework" level="WARN"/>
+  <logger name="org.springframework" level="WARN" />
 
   <root level="INFO">
-    <appender-ref ref="CONSOLE"/>
-    <appender-ref ref="ASYNC_ACCEPTANCE_LOG"/>
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="ASYNC_ACCEPTANCE_LOG" />
   </root>
 </configuration>

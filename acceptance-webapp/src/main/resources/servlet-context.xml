@@ -28,16 +28,16 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
   <!-- User configuration -->
-  <context:property-placeholder location="file://${application.configurationFile}" ignore-unresolvable="true" ignore-resource-not-found="true" order="0"/>
+  <context:property-placeholder location="file://${application.configurationFile}" ignore-unresolvable="true" ignore-resource-not-found="true" order="0" />
   <!-- Default configuration -->
-  <context:property-placeholder location="classpath:acceptance-default.properties" ignore-unresolvable="false" ignore-resource-not-found="false" order="1"/>
+  <context:property-placeholder location="classpath:acceptance-default.properties" ignore-unresolvable="false" ignore-resource-not-found="false" order="1" />
 
   <!-- Scan components for annotations within the configured package -->
-  <context:component-scan base-package="org.exoplatform.acceptance"/>
+  <context:component-scan base-package="org.exoplatform.acceptance" />
 
   <!-- Load MVC for REST -->
-  <mvc:annotation-driven/>
+  <mvc:annotation-driven />
 
-  <import resource="classpath:/spring-data.xml"/>
+  <import resource="classpath:/spring-data.xml" />
 
 </beans>

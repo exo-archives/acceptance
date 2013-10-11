@@ -27,34 +27,34 @@
 
 // Injection Bindings
 @Bindings({
-    @Binding(value = CurrentUser.class, scope = Scope.SESSION),
-    @Binding(value = Flash.class, scope = Scope.FLASH),
-    @Binding(value = Context.class, scope = Scope.REQUEST)
-})
+              @Binding(value = CurrentUser.class, scope = Scope.SESSION),
+              @Binding(value = Flash.class, scope = Scope.FLASH),
+              @Binding(value = Context.class, scope = Scope.REQUEST)
+          })
 
 // Declare assets
 @Assets({
-    @Asset(id = "jquery.js", value = "jquery_1_10_2/jquery.min.js"),
-    @Asset(id = "bootstrap.js", value = "bootswatch_spacelab_3_0_0/js/bootstrap.min.js", depends = "jquery.js"),
-    @Asset(id = "angular.js", value = "angular_1_1_4/angular.min.js"),
-    @Asset(id = "underscore.js", value = "underscore_1_4_4/underscore.min.js"),
-    @Asset(id = "restangular.js", value = "restangular_1_1_3/restangular.min.js", depends = {"angular.js", "underscore.js"}),
-    @Asset(id = "ui-bootstrap.js", value = "ui_bootstrap_0_6_0/ui-bootstrap-tpls.min.js", depends = {"angular.js", "bootstrap.js"}),
-    @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
-    @Asset(id = "bootstrap.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
-    @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootstrap.css"}),
-    @Asset(id = "signin.css", value = "signin.css")
-})
+            @Asset(id = "jquery.js", value = "jquery_1_10_2/jquery.min.js"),
+            @Asset(id = "bootstrap.js", value = "bootswatch_spacelab_3_0_0/js/bootstrap.min.js", depends = "jquery.js"),
+            @Asset(id = "angular.js", value = "angular_1_1_4/angular.min.js"),
+            @Asset(id = "underscore.js", value = "underscore_1_4_4/underscore.min.js"),
+            @Asset(id = "restangular.js", value = "restangular_1_1_3/restangular.min.js", depends = {"angular.js", "underscore.js"}),
+            @Asset(id = "ui-bootstrap.js", value = "ui_bootstrap_0_6_0/ui-bootstrap-tpls.min.js", depends = {"angular.js", "bootstrap.js"}),
+            @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
+            @Asset(id = "bootstrap.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
+            @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootstrap.css"}),
+            @Asset(id = "signin.css", value = "signin.css")
+        })
 
 // Always use these assets
 @WithAssets({"bootstrap.js", "acceptance.css"})
 
 // Custom tags
 @Tags({
-    @Tag(name = "userRole", path = "userRole.gtmpl"),
-    @Tag(name = "adminRole", path = "adminRole.gtmpl"),
-    @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl")
-}) package org.exoplatform.acceptance;
+          @Tag(name = "userRole", path = "userRole.gtmpl"),
+          @Tag(name = "adminRole", path = "adminRole.gtmpl"),
+          @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl")
+      }) package org.exoplatform.acceptance;
 
 import juzu.Application;
 import juzu.Scope;

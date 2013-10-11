@@ -36,12 +36,12 @@
   </appender>
 
   <!-- Acceptance -->
-  <logger name="org.exoplatform.acceptance" level="DEBUG"/>
+  <logger name="org.exoplatform.acceptance" level="DEBUG" />
 
   <!-- Spring -->
-  <logger name="org.springframework" level="INFO"/>
+  <logger name="org.springframework" level="INFO" />
 
   <root level="INFO">
-    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="CONSOLE" />
   </root>
 </configuration>

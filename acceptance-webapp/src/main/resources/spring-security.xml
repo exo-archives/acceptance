@@ -26,40 +26,40 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
   <!-- Load everything required by our application -->
-  <import resource="classpath:/servlet-context.xml"/>
+  <import resource="classpath:/servlet-context.xml" />
 
   <!-- no security for assets (js/css/img)-->
-  <security:http pattern='/assets/**/*.css' security='none'/>
-  <security:http pattern='/assets/**/*.js' security='none'/>
-  <security:http pattern='/assets/**/*.png' security='none'/>
-  <security:http pattern='/assets/**/*.gif' security='none'/>
-  <security:http pattern='/assets/**/*.jpg' security='none'/>
-  <security:http pattern='/assets/**/*.ico' security='none'/>
-  <security:http pattern='/favicon.ico' security='none'/>
+  <security:http pattern='/assets/**/*.css' security='none' />
+  <security:http pattern='/assets/**/*.js' security='none' />
+  <security:http pattern='/assets/**/*.png' security='none' />
+  <security:http pattern='/assets/**/*.gif' security='none' />
+  <security:http pattern='/assets/**/*.jpg' security='none' />
+  <security:http pattern='/assets/**/*.ico' security='none' />
+  <security:http pattern='/favicon.ico' security='none' />
   <!-- no security on the signin page or we can't even login -->
-  <security:http pattern='/signin' security='none'/>
+  <security:http pattern='/signin' security='none' />
 
   <security:http auto-config="true" authentication-manager-ref="authenticationManager" use-expressions="true">
-    <security:intercept-url pattern="/" access="hasRole('ROLE_${crowd.group.users}')"/>
-    <security:intercept-url pattern="/admin" access="hasRole('ROLE_${crowd.group.administrators}')"/>
-    <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_${crowd.group.administrators}')"/>
-    <security:intercept-url pattern="/search" access="hasRole('ROLE_${crowd.group.users}')"/>
-    <security:intercept-url pattern="/profile" access="hasRole('ROLE_${crowd.group.users}')"/>
+    <security:intercept-url pattern="/" access="hasRole('ROLE_${crowd.group.users}')" />
+    <security:intercept-url pattern="/admin" access="hasRole('ROLE_${crowd.group.administrators}')" />
+    <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_${crowd.group.administrators}')" />
+    <security:intercept-url pattern="/search" access="hasRole('ROLE_${crowd.group.users}')" />
+    <security:intercept-url pattern="/profile" access="hasRole('ROLE_${crowd.group.users}')" />
     <!-- everyone can access to it (even anonymous) -->
-    <security:intercept-url pattern="/about" access="true"/>
+    <security:intercept-url pattern="/about" access="true" />
     <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
     <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
-    <security:intercept-url pattern="/WEB-INF" access="hasRole('ROLE_NON_EXISTING')"/>
+    <security:intercept-url pattern="/WEB-INF" access="hasRole('ROLE_NON_EXISTING')" />
 
-    <security:form-login login-page="/signin" login-processing-url="/login" authentication-failure-url="/signin?error=true" default-target-url="/" password-parameter="password" username-parameter="username"/>
+    <security:form-login login-page="/signin" login-processing-url="/login" authentication-failure-url="/signin?error=true" default-target-url="/" password-parameter="password" username-parameter="username" />
 
-    <security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/signin" logout-url="/logout"/>
+    <security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/signin" logout-url="/logout" />
 
-    <security:access-denied-handler error-page="/403"/>
+    <security:access-denied-handler error-page="/403" />
   </security:http>
 
   <!-- Import all specific configurations -->
-  <import resource="classpath:/spring-security-mock.xml"/>
-  <import resource="classpath:/spring-security-crowd.xml"/>
+  <import resource="classpath:/spring-security-mock.xml" />
+  <import resource="classpath:/spring-security-crowd.xml" />
 
 </beans>

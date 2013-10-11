@@ -1,13 +1,13 @@
 #{decorate path="administration/main.gtmpl"/}
 #{title value="Administration"/}
 <ol class="breadcrumb">
-    <li><a href="@{Home.index()}">Home</a></li>
-    <li class="active">Administration</li>
+  <li><a href="@{Home.index()}">Home</a></li>
+  <li class="active">Administration</li>
 </ol>
 <div class="jumbotron">
-    <h1>Be patient ... ;-) &nbsp;
-        <small>implementation in progress ...</small>
-    </h1>
+  <h1>Be patient ... ;-) &nbsp;
+    <small>implementation in progress ...</small>
+  </h1>
 
 </div>
 

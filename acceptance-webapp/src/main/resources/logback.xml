@@ -22,7 +22,7 @@
 <configuration>
 
   <!-- Enable JMX to configure logs -->
-  <jmxConfigurator/>
+  <jmxConfigurator />
 
   <!--
   LevelChangePropagator propagates changes made to the level of any logback-classic logger onto the java.util.logging framework.
@@ -41,12 +41,12 @@
   </appender>
 
   <!-- Acceptance -->
-  <logger name="org.exoplatform.acceptance" level="INFO"/>
+  <logger name="org.exoplatform.acceptance" level="INFO" />
 
   <!-- Spring -->
-  <logger name="org.springframework" level="INFO"/>
+  <logger name="org.springframework" level="INFO" />
 
   <root level="INFO">
-    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="CONSOLE" />
   </root>
 </configuration>

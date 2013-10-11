@@ -28,30 +28,30 @@
         http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
 
   <!-- Boostrap JSR-303 Bean Validation -->
-  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
   <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
-    <constructor-arg ref="validator"/>
+    <constructor-arg ref="validator" />
   </bean>
 
-  <mongo:repositories base-package="org.exoplatform.acceptance.repositories"/>
+  <mongo:repositories base-package="org.exoplatform.acceptance.repositories" />
 
   <!-- Define the MongoTemplate which handles connectivity with MongoDB -->
   <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-    <constructor-arg name="mongo" ref="mongo"/>
-    <constructor-arg name="databaseName" value="${mongodb.name}"/>
-    <constructor-arg name="userCredentials" ref="userCredentials"/>
+    <constructor-arg name="mongo" ref="mongo" />
+    <constructor-arg name="databaseName" value="${mongodb.name}" />
+    <constructor-arg name="userCredentials" ref="userCredentials" />
   </bean>
 
   <bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
-    <constructor-arg name="username" value="${mongodb.username}"/>
-    <constructor-arg name="password" value="${mongodb.password}"/>
+    <constructor-arg name="username" value="${mongodb.username}" />
+    <constructor-arg name="password" value="${mongodb.password}" />
   </bean>
 
   <!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
-  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
   <!-- Import specific mongo config -->
-  <import resource="classpath:/spring-data-mongo.xml"/>
-  <import resource="classpath:/spring-data-mongo-embedded.xml"/>
+  <import resource="classpath:/spring-data-mongo.xml" />
+  <import resource="classpath:/spring-data-mongo-embedded.xml" />
 
 </beans>
