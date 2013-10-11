@@ -37,7 +37,6 @@ import org.xml.sax.SAXException;
 /**
  *
  */
-@WithAssets({"bootstrap.js", "acceptance.css"})
 public abstract class BaseController implements RequestLifeCycle {
   private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 

@@ -16,18 +16,23 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+
+// Application
 @Application(
     defaultController = Home.class,
     name = "AcceptanceApplication")
 
+// This is a webapp
 @Servlet("/")
 
+// Injection Bindings
 @Bindings({
     @Binding(value = CurrentUser.class, scope = Scope.SESSION),
     @Binding(value = Flash.class, scope = Scope.FLASH),
     @Binding(value = Context.class, scope = Scope.REQUEST)
 })
 
+// Declare assets
 @Assets({
     @Asset(id = "jquery.js", value = "jquery_1_10_2/jquery.min.js"),
     @Asset(id = "bootstrap.js", value = "bootswatch_spacelab_3_0_0/js/bootstrap.min.js", depends = "jquery.js"),
@@ -41,6 +46,10 @@
     @Asset(id = "signin.css", value = "signin.css")
 })
 
+// Always use these assets
+@WithAssets({"bootstrap.js", "acceptance.css"})
+
+// Custom tags
 @Tags({
     @Tag(name = "userRole", path = "userRole.gtmpl"),
     @Tag(name = "adminRole", path = "adminRole.gtmpl"),
@@ -51,6 +60,7 @@ import juzu.Application;
 import juzu.Scope;
 import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
+import juzu.plugin.asset.WithAssets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
