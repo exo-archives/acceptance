@@ -14,24 +14,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        #{userRole}
+        <% if(user.isUser()) { %>
         <li><a href="@{ Home.deployments()}">Deployments</a></li>
         <li><a href="@{ Home.sources()}">Sources</a></li>
-        #{adminRole}
+        <% if(user.isAdmin()) { %>
         <li><a href="@{ Administration.index()}">Administration</a></li>
-        #{/adminRole}
-        #{/userRole}
+        <% } %>
+        <% } %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        #{userRole}
+        <% if(user.isAnonymous()) { %>
+        <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+        <% } else { %>
         <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
         <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user.fullName}</a></li>
         <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
-        #{/userRole}
-        #{anonymousRole}
-        <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-        #{/anonymousRole}
-
+        <% } %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

@@ -1,3 +1,0 @@
-<% if (!user.isAuthenticated() || user.isAnonymous()) { %>
-#{insert/}
-<% } %>

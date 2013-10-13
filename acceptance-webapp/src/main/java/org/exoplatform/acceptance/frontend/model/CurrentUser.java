@@ -28,11 +28,13 @@ import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import com.google.common.base.Strings;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.exoplatform.acceptance.backend.model.Configuration;
 import org.exoplatform.acceptance.security.CrowdUser;
 import org.exoplatform.acceptance.security.CrowdUserImpl;
 import org.exoplatform.acceptance.security.CrowdUserMock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,6 +48,10 @@ public class CurrentUser implements CrowdUser {
   @Inject
   @Named("crowdUserDetailsService")
   private UserDetailsService userDetailsService;
+
+  @Inject
+  @Named("configuration")
+  Configuration configuration;
 
   private CrowdUser currentUser;
 
@@ -221,15 +227,26 @@ public class CurrentUser implements CrowdUser {
    * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
    */
   public boolean hasRole(String role) {
-    for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
-      if (authority.getAuthority().equals(role)) {
-        return true;
+    if (isAuthenticated()) {
+      for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+        if (authority.getAuthority().equals(role)) {
+          return true;
+        }
       }
     }
     return false;
   }
 
   public boolean isAnonymous() {
-    return hasRole("ROLE_ANONYMOUS");
+    return !isAuthenticated() || hasRole("ROLE_ANONYMOUS");
   }
+
+  public boolean isUser() {
+    return hasRole(configuration.getUserRole());
+  }
+
+  public boolean isAdmin() {
+    return hasRole(configuration.getAdminRole());
+  }
+
 }

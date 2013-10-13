@@ -51,9 +51,6 @@
 
 // Custom tags
 @Tags({
-          @Tag(name = "userRole", path = "userRole.gtmpl"),
-          @Tag(name = "adminRole", path = "adminRole.gtmpl"),
-          @Tag(name = "anonymousRole", path = "anonymousRole.gtmpl"),
           @Tag(name = "adminMenu", path = "adminMenu.gtmpl")
       }) package org.exoplatform.acceptance.frontend;
 
