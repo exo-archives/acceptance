@@ -50,7 +50,7 @@
           <li><a href="@{Home.index()}">Home</a></li>
           <li><a href="@{Administration.index()}">Administration</a></li>
           <li><a href="@{Administration.project()}">Projects</a></li>
-          <li class="active">{{project.name}}</li>
+          <li class="active">{{project.name||"New project"}}</li>
         </ol>
         <form name="projectForm" class="form-horizontal" role="form">
           <div class="form-group" ng-class="{'has-error': projectForm.name.$invalid}">
