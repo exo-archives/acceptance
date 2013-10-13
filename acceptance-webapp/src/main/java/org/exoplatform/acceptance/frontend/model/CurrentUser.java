@@ -221,17 +221,10 @@ public class CurrentUser implements CrowdUser {
    * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
    */
   public boolean hasRole(String role) {
-    try {
-      if (getCurrentUser() != null) {
-        for (GrantedAuthority authority : getCurrentUser().getAuthorities()) {
-          if (authority.getAuthority().equals(role)) {
-            return true;
-          }
-        }
+    for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+      if (authority.getAuthority().equals(role)) {
+        return true;
       }
-    } catch (UsernameNotFoundException unfe) {
-      // The use doesn't exist thus he has no role
-      return false;
     }
     return false;
   }
