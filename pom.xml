@@ -434,25 +434,25 @@
       Portlet Environments
       (depends on spring-core, spring-beans, spring-context)
       Define this if you use Spring MVC, or wish to use Struts, JSF, or another
-      web framework with Spring (org.springframework.web.*)-->
+      frontend framework with Spring (org.springframework.frontend.*)-->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-web</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- Spring MVC for Servlet Environments
-      (depends on spring-core, spring-beans, spring-context, spring-web)
+      (depends on spring-core, spring-beans, spring-context, spring-frontend)
       Define this if you use Spring MVC with a Servlet Container such as
-      Apache Tomcat (org.springframework.web.servlet.*)-->
+      Apache Tomcat (org.springframework.frontend.servlet.*)-->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
         <version>${spring.version}</version>
       </dependency>
       <!-- Spring MVC for Portlet Environments
-      (depends on spring-core, spring-beans, spring-context, spring-web)
+      (depends on spring-core, spring-beans, spring-context, spring-frontend)
       Define this if you use Spring MVC with a Portlet Container
-      (org.springframework.web.portlet.*)-->
+      (org.springframework.frontend.portlet.*)-->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc-portlet</artifactId>

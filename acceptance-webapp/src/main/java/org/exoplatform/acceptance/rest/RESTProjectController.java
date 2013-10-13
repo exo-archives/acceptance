@@ -19,8 +19,8 @@
 package org.exoplatform.acceptance.rest;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.model.Project;
-import org.exoplatform.acceptance.repositories.ProjectRepository;
+import org.exoplatform.acceptance.backend.model.Project;
+import org.exoplatform.acceptance.backend.storage.ProjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;

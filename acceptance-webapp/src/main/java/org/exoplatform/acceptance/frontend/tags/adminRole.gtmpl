@@ -1,0 +1,3 @@
+<% if (user.isAuthenticated() && user.hasRole(context.adminRole)) { %>
+#{insert/}
+<% } %>

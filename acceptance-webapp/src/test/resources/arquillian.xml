@@ -21,7 +21,7 @@
 -->
 <arquillian>
   <extension qualifier="webdriver">
-    <!-- Needed for html unit web driver -->
+    <!-- Needed for html unit frontend driver -->
     <property name="useJavaScript">false</property>
   </extension>
   <container qualifier="tomcat" default="true">

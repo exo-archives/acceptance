@@ -1,3 +1,0 @@
-<% if (user.isAuthenticated() && user.hasRole(projectSettings.userRole)) { %>
-#{insert/}
-<% } %>

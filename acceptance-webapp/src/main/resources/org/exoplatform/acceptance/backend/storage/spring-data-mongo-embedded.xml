@@ -23,5 +23,20 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-  <import resource="classpath:org/exoplatform/acceptance/spring.xml" />
+  <beans profile="dev,test">
+    <!-- Factory bean that creates the Mongo instance on an EMBEDED MongoDB server (/!\ FOR DEV PURPOSE ONLY /!\) -->
+    <bean id="mongo" class="org.exoplatform.acceptance.backend.storage.EmbeddedMongoSpringFactoryBean">
+      <!-- The port on which the embedded mongo will listen -->
+      <property name="port" value="${mongodb.embedded.port}" />
+      <!-- The version of embedded mongo to use -->
+      <property name="version" value="${mongodb.embedded.version}" />
+      <!-- An IP address for the MongoDB instance to be bound to during its execution. Default is localhost. -->
+      <property name="bindIp" value="${mongodb.embedded.bindIp}" />
+    </bean>
+  </beans>
+
+  <beans profile="dev">
+    <!-- In dev profile we load some test data -->
+    <bean id="devDataLoader" class="org.exoplatform.acceptance.backend.storage.DevDataLoader" />
+  </beans>
 </beans>

@@ -19,9 +19,9 @@
 package org.exoplatform.acceptance.rest;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.model.Deployment;
-import org.exoplatform.acceptance.repositories.ApplicationRepository;
-import org.exoplatform.acceptance.repositories.DeploymentRepository;
+import org.exoplatform.acceptance.backend.model.Deployment;
+import org.exoplatform.acceptance.backend.storage.ApplicationRepository;
+import org.exoplatform.acceptance.backend.storage.DeploymentRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
