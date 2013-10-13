@@ -1,27 +1,20 @@
 #{decorate path="administration/main.gtmpl"/}
 #{title value="Projects Administration"/}
-<div class="row">
-  <div class="col-md-2">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Administration</h3>
+<div ng-app="project">
+  <div ng-view></div>
+  <!-- CACHE FILE: list.html -->
+  <script type="text/ng-template" id="list.html">
+
+    <ol class="breadcrumb">
+      <li><a href="@{Home.index()}">Home</a></li>
+      <li><a href="@{Administration.index()}">Administration</a></li>
+      <li class="active">Projects</li>
+    </ol>
+    <div class="row">
+      <div class="col-md-2">
+        #{adminMenu/}
       </div>
-      <!-- List group -->
-      <div class="list-group">
-        <a class="list-group-item" href="@{Administration.project()}">Projects</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-10">
-    <div ng-app="project">
-      <div ng-view></div>
-      <!-- CACHE FILE: list.html -->
-      <script type="text/ng-template" id="list.html">
-        <ol class="breadcrumb">
-          <li><a href="@{Home.index()}">Home</a></li>
-          <li><a href="@{Administration.index()}">Administration</a></li>
-          <li class="active">Projects</li>
-        </ol>
+      <div class="col-md-10">
         <div class="pull-left"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" ng-model="search" class="search-query" placeholder="Search"></div>
         <div class="pull-right">{{projectsLength}} projects</div>
         <div class="table-responsive">
@@ -42,16 +35,23 @@
             </tbody>
           </table>
         </div>
-      </script>
+      </div>
+    </div>
+  </script>
 
-      <!-- CACHE FILE: detail.html -->
-      <script type="text/ng-template" id="detail.html">
-        <ol class="breadcrumb">
-          <li><a href="@{Home.index()}">Home</a></li>
-          <li><a href="@{Administration.index()}">Administration</a></li>
-          <li><a href="@{Administration.project()}">Projects</a></li>
-          <li class="active">{{project.name||"New project"}}</li>
-        </ol>
+  <!-- CACHE FILE: detail.html -->
+  <script type="text/ng-template" id="detail.html">
+    <ol class="breadcrumb">
+      <li><a href="@{Home.index()}">Home</a></li>
+      <li><a href="@{Administration.index()}">Administration</a></li>
+      <li><a href="@{Administration.project()}">Projects</a></li>
+      <li class="active">{{project.name||"New project"}}</li>
+    </ol>
+    <div class="row">
+      <div class="col-md-2">
+        #{adminMenu/}
+      </div>
+      <div class="col-md-10">
         <form name="projectForm" class="form-horizontal" role="form">
           <div class="form-group" ng-class="{'has-error': projectForm.name.$invalid}">
             <label for="projectName" class="col-lg-2 control-label">Name</label>
@@ -88,9 +88,9 @@
             </div>
           </div>
         </form>
-      </script>
+      </div>
     </div>
-  </div>
+  </script>
 </div>
 
 

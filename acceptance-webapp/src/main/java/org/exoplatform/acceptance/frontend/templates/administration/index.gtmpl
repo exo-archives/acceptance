@@ -6,15 +6,7 @@
 </ol>
 <div class="row">
   <div class="col-md-2">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Administration</h3>
-      </div>
-      <!-- List group -->
-      <div class="list-group">
-        <a class="list-group-item" href="@{Administration.project()}">Projects</a>
-      </div>
-    </div>
+    #{adminMenu/}
   </div>
   <div class="col-md-10">
     <div class="jumbotron">
