@@ -1,6 +1,0 @@
-#{decorate path="main.gtmpl"/}
-#{title value="Deployments search"/}
-#{param name="search"/}
-
-<div>Search result for <strong>${search}</strong></div>
-

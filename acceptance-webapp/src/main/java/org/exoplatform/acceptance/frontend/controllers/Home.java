@@ -35,6 +35,14 @@ public class Home extends BaseController {
   org.exoplatform.acceptance.frontend.templates.index index;
 
   @Inject
+  @Path("deployments.gtmpl")
+  org.exoplatform.acceptance.frontend.templates.deployments deployments;
+
+  @Inject
+  @Path("sources.gtmpl")
+  org.exoplatform.acceptance.frontend.templates.sources sources;
+
+  @Inject
   @Path("profile.gtmpl")
   org.exoplatform.acceptance.frontend.templates.profile profile;
 
@@ -66,6 +74,18 @@ public class Home extends BaseController {
   @Route("/about")
   public Response.Content about() {
     return makeResponse(about);
+  }
+
+  @View
+  @Route("/deployments")
+  public Response.Content deployments() {
+    return makeResponse(deployments);
+  }
+
+  @View
+  @Route("/sources")
+  public Response.Content sources() {
+    return makeResponse(sources);
   }
 
   @View

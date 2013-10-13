@@ -1,5 +1,9 @@
 #{decorate path="main.gtmpl"/}
 #{title value="Insufficient privileges"/}
+<ol class="breadcrumb">
+  <li><a href="@{Home.index()}">Home</a></li>
+  <li class="active">Insufficient privileges</li>
+</ol>
 
 <div class="container">
 

@@ -1,6 +1,9 @@
 #{decorate path="main.gtmpl"/}
 #{title value="About eXo Acceptance"/}
-
+<ol class="breadcrumb">
+  <li><a href="@{Home.index()}">Home</a></li>
+  <li class="active">About</li>
+</ol>
 <div class="container">
 <div class="panel panel-default">
   <div class="panel-heading">
