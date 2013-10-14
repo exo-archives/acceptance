@@ -16,14 +16,17 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.security;
+package org.exoplatform.acceptance.frontend.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 
-public class CrowdUserMock implements CrowdUser {
+/**
+ * This is a POJO to implement a CrowdUserDetails
+ */
+public class CrowdUserDetailsMock implements ICrowdUserDetails {
   private String username;
 
   private String password;
@@ -42,9 +45,9 @@ public class CrowdUserMock implements CrowdUser {
 
   private boolean enabled = true;
 
-  private Collection<GrantedAuthority> authorities;
+  private Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-  public CrowdUserMock() {
+  public CrowdUserDetailsMock() {
   }
 
   public String getUsername() {
@@ -130,20 +133,5 @@ public class CrowdUserMock implements CrowdUser {
   public String getFullName() {
     return getFirstName() + " " + getLastName();
   }
-
-  /**
-   * Is the user authenticated ?
-   *
-   * @return true if the user is authenticated
-   */
-  @Override
-  public boolean isAuthenticated() {
-    if (SecurityContextHolder.getContext().getAuthentication() != null) {
-      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-    } else {
-      return false;
-    }
-  }
-
 
 }

@@ -52,6 +52,11 @@
       <artifactId>embedmongo-spring</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- javax.annotation.security -->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>jsr250-api</artifactId>
+    </dependency>
     <!-- **************************************** -->
     <!-- javax.* -->
     <!-- **************************************** -->

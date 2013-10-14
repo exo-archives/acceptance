@@ -16,8 +16,9 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.rest;
+package org.exoplatform.acceptance.frontend.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Project;
 import org.exoplatform.acceptance.backend.storage.ProjectRepository;
@@ -60,6 +61,7 @@ public class RESTProjectController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Iterable<Project> getProjects(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     return projectRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
@@ -72,6 +74,7 @@ public class RESTProjectController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Project getProject(@PathVariable(value = "id") String id) {
     return projectRepository.findOne(id);
   }
@@ -84,6 +87,7 @@ public class RESTProjectController {
    */
   @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Project saveProject(@RequestBody Project project) {
     LOGGER.debug("Creating project {}", project.getName());
     return projectRepository.save(project);
@@ -98,6 +102,7 @@ public class RESTProjectController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Project updateProject(@PathVariable(value = "id") String id, @RequestBody Project project) {
     LOGGER.debug("Updating project {} with ID {}", project.getName(), project.getId());
     return projectRepository.save(project);
@@ -110,6 +115,7 @@ public class RESTProjectController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
   @ResponseStatus(HttpStatus.NO_CONTENT)
+  @RolesAllowed("ROLE_ADMIN")
   public void deleteProject(@PathVariable(value = "id") String id) {
     LOGGER.debug("Deleting project with ID {}", id);
     projectRepository.delete(id);

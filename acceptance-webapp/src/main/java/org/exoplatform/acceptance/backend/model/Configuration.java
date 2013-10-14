@@ -32,12 +32,6 @@ import org.springframework.beans.factory.annotation.Value;
 @Singleton
 public class Configuration {
 
-  @Value("ROLE_${crowd.group.users}")
-  private String userRole;
-
-  @Value("ROLE_${crowd.group.administrators}")
-  private String adminRole;
-
   @Value("${project.version}")
   private String version;
 
@@ -94,11 +88,4 @@ public class Configuration {
     return organizationUrl;
   }
 
-  public String getUserRole() {
-    return userRole;
-  }
-
-  public String getAdminRole() {
-    return adminRole;
-  }
 }

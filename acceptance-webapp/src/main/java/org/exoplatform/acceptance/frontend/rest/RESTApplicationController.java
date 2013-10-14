@@ -16,8 +16,9 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.rest;
+package org.exoplatform.acceptance.frontend.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Application;
 import org.exoplatform.acceptance.backend.storage.ApplicationRepository;
@@ -54,6 +55,7 @@ public class RESTApplicationController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Iterable<Application> getApplications(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     return applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
@@ -66,6 +68,7 @@ public class RESTApplicationController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Application getApplication(@PathVariable(value = "id") String id) {
     return applicationRepository.findOne(id);
   }
@@ -78,6 +81,7 @@ public class RESTApplicationController {
    */
   @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Application saveApplication(@RequestBody Application application) {
     return applicationRepository.save(application);
   }
@@ -90,6 +94,7 @@ public class RESTApplicationController {
    */
   @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Application updateApplication(@RequestBody Application application) {
     return applicationRepository.save(application);
   }
@@ -100,6 +105,7 @@ public class RESTApplicationController {
    * @param application the application to delete
    */
   @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @RolesAllowed("ROLE_ADMIN")
   public void deleteApplication(@RequestBody Application application) {
     applicationRepository.delete(application);
   }

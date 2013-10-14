@@ -87,6 +87,7 @@
     <scm.url>https://github.com/exoplatform/acceptance</scm.url>
     <scm.revision>${buildNumber}</scm.revision>
     <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
+    <javax.jsr250.version>1.0</javax.jsr250.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -143,6 +144,11 @@
         <groupId>cz.jirutka.spring</groupId>
         <artifactId>embedmongo-spring</artifactId>
         <version>${embedmongo-spring.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>jsr250-api</artifactId>
+        <version>${javax.jsr250.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- javax.* -->

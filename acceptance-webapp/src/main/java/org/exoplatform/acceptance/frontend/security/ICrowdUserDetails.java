@@ -16,30 +16,32 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.security;
+package org.exoplatform.acceptance.frontend.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class MockedCrowdUserDetailsService implements UserDetailsService {
-  private CrowdUserMock administrator;
+/**
+ * Interface to represent a User managed by Crowd.
+ * CrowdUserDetails doesn't implement a dedicated interface to easily provide another implementation (without using a mock library)
+ */
+public interface ICrowdUserDetails extends UserDetails {
+  /**
+   * Returns the user's first name
+   */
+  String getFirstName();
 
-  private CrowdUserMock user;
+  /**
+   * Returns the user's last name
+   */
+  String getLastName();
 
-  public MockedCrowdUserDetailsService(CrowdUserMock administrator, CrowdUserMock user) {
-    this.administrator = administrator;
-    this.user = user;
-  }
+  /**
+   * Returns the user's fullname
+   */
+  String getFullName();
 
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    if (user.getUsername().equals(username)) {
-      return user;
-    } else if (administrator.getUsername().equals(username)) {
-      return administrator;
-    } else {
-      throw new UsernameNotFoundException("Unknown user : " + username);
-    }
-  }
+  /**
+   * Returns the user's email
+   */
+  String getEmail();
 }

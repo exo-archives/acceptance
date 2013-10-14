@@ -24,17 +24,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 
-import com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails;
 import com.google.common.base.Strings;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.exoplatform.acceptance.backend.model.Configuration;
-import org.exoplatform.acceptance.security.CrowdUser;
-import org.exoplatform.acceptance.security.CrowdUserImpl;
-import org.exoplatform.acceptance.security.CrowdUserMock;
+import org.exoplatform.acceptance.frontend.security.AppAuthority;
+import org.exoplatform.acceptance.frontend.security.ICrowdUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,23 +38,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Named("user")
-public class CurrentUser implements CrowdUser {
+public class CurrentUser {
   private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUser.class);
 
   @Inject
-  @Named("crowdUserDetailsService")
+  @Named("userDetailsService")
   private UserDetailsService userDetailsService;
 
-  @Inject
-  @Named("configuration")
-  Configuration configuration;
-
-  private CrowdUser currentUser;
+  private ICrowdUserDetails currentUser;
 
   /**
    * Returns the user's first name
    */
-  @Override
   public String getFirstName() {
     return getCurrentUser().getFirstName();
   }
@@ -66,7 +57,6 @@ public class CurrentUser implements CrowdUser {
   /**
    * Returns the user's last name
    */
-  @Override
   public String getLastName() {
     return getCurrentUser().getLastName();
   }
@@ -74,7 +64,6 @@ public class CurrentUser implements CrowdUser {
   /**
    * Returns the user's fullname
    */
-  @Override
   public String getFullName() {
     return getCurrentUser().getFullName();
   }
@@ -82,23 +71,8 @@ public class CurrentUser implements CrowdUser {
   /**
    * Returns the user's email
    */
-  @Override
   public String getEmail() {
     return getCurrentUser().getEmail();
-  }
-
-  /**
-   * Is the user authenticated ?
-   *
-   * @return true if the user is authenticated
-   */
-  @Override
-  public boolean isAuthenticated() {
-    if (SecurityContextHolder.getContext().getAuthentication() != null) {
-      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-    } else {
-      return false;
-    }
   }
 
   /**
@@ -106,7 +80,6 @@ public class CurrentUser implements CrowdUser {
    *
    * @return the authorities, sorted by natural key (never <code>null</code>)
    */
-  @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return getCurrentUser().getAuthorities();
   }
@@ -116,9 +89,60 @@ public class CurrentUser implements CrowdUser {
    *
    * @return the password
    */
-  @Override
   public String getPassword() {
     return getCurrentUser().getPassword();
+  }
+
+  /**
+   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
+   *
+   * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
+   *         (ie expired)
+   */
+  public boolean isAccountNonExpired() {
+    return getCurrentUser().isAccountNonExpired();
+  }
+
+  /**
+   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
+   *
+   * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
+   */
+  public boolean isAccountNonLocked() {
+    return getCurrentUser().isAccountNonLocked();
+  }
+
+  /**
+   * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
+   * authentication.
+   *
+   * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
+   *         valid (ie expired)
+   */
+  public boolean isCredentialsNonExpired() {
+    return getCurrentUser().isCredentialsNonExpired();
+  }
+
+  /**
+   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
+   *
+   * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
+   */
+  public boolean isEnabled() {
+    return getCurrentUser().isEnabled();
+  }
+
+  /**
+   * Is the user authenticated ?
+   *
+   * @return true if the user is authenticated
+   */
+  public boolean isAuthenticated() {
+    if (SecurityContextHolder.getContext().getAuthentication() != null) {
+      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -126,7 +150,6 @@ public class CurrentUser implements CrowdUser {
    *
    * @return the username (never <code>null</code>)
    */
-  @Override
   public String getUsername() {
     if (isAuthenticated()) {
       Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -141,63 +164,48 @@ public class CurrentUser implements CrowdUser {
   }
 
   /**
-   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
+   * Simple searches for an exactly matching {@link org.springframework.security.core.GrantedAuthority.getAuthority()}.
+   * Will always return false if the SecurityContextHolder contains an Authentication with nullprincipal and/or GrantedAuthority[] objects.
    *
-   * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
-   *         (ie expired)
+   * @param role the GrantedAuthorityString representation to check for
+   * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
    */
-  @Override
-  public boolean isAccountNonExpired() {
-    return getCurrentUser().isAccountNonExpired();
-  }
-
-  /**
-   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
-   *
-   * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
-   */
-  @Override
-  public boolean isAccountNonLocked() {
-    return getCurrentUser().isAccountNonLocked();
-  }
-
-  /**
-   * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
-   * authentication.
-   *
-   * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
-   *         valid (ie expired)
-   */
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return getCurrentUser().isCredentialsNonExpired();
-  }
-
-  /**
-   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
-   *
-   * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
-   */
-  @Override
-  public boolean isEnabled() {
-    return getCurrentUser().isEnabled();
-  }
-
-  /**
-   * Retrieves the current crowd user.
-   */
-  private CrowdUser getCurrentUser() throws UsernameNotFoundException {
-    if (currentUser == null && isAuthenticated()) {
-      UserDetails userDetails = userDetailsService.loadUserByUsername(getUsername());
-      if (userDetails instanceof CrowdUserDetails) {
-        currentUser = new CrowdUserImpl((CrowdUserDetails) userDetails);
-      } else if (userDetails instanceof CrowdUserMock) {
-        currentUser = (CrowdUserMock) userDetails;
-      } else {
-        LOGGER.error("Unknown UserDetails implementation : {}", userDetails.getClass().getName());
+  public boolean hasRole(String role) {
+    if (isAuthenticated()) {
+      for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
+        if (authority.getAuthority().equals(role)) {
+          return true;
+        }
       }
     }
-    return currentUser;
+    return false;
+  }
+
+  /**
+   * Checks if the current user is anonymous.
+   *
+   * @return true only if the user isn't authenticated or has the role ANONYMOUS
+   */
+  public boolean isAnonymous() {
+    return !isAuthenticated() || hasRole(AppAuthority.ROLE_ANONYMOUS.getAuthority());
+  }
+
+  /**
+   * Checks if the current user has the application USER role.
+   *
+   * @return true only if the user has the application USER role.
+   */
+  public boolean isUser() {
+    return hasRole(AppAuthority.ROLE_USER.getAuthority());
+  }
+
+  /**
+   * Checks if the current user has the application ADMIN role.
+   *
+   * @return true only if the user has the application ADMIN role.
+   */
+  public boolean isAdmin() {
+    return hasRole(AppAuthority.ROLE_ADMIN.getAuthority());
   }
 
   /**
@@ -220,33 +228,13 @@ public class CurrentUser implements CrowdUser {
   }
 
   /**
-   * Simple searches for an exactly matching {@link org.springframework.security.core.GrantedAuthority.getAuthority()}.
-   * Will always return false if the SecurityContextHolder contains an Authentication with nullprincipal and/or GrantedAuthority[] objects.
-   *
-   * @param role the GrantedAuthorityString representation to check for
-   * @return true if an exact (case sensitive) matching granted authority is located, false otherwise
+   * Retrieves the current crowd user.
    */
-  public boolean hasRole(String role) {
-    if (isAuthenticated()) {
-      for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities()) {
-        if (authority.getAuthority().equals(role)) {
-          return true;
-        }
-      }
+  private ICrowdUserDetails getCurrentUser() throws UsernameNotFoundException {
+    if (currentUser == null) {
+      currentUser = (ICrowdUserDetails) userDetailsService.loadUserByUsername(getUsername());
     }
-    return false;
-  }
-
-  public boolean isAnonymous() {
-    return !isAuthenticated() || hasRole("ROLE_ANONYMOUS");
-  }
-
-  public boolean isUser() {
-    return hasRole(configuration.getUserRole());
-  }
-
-  public boolean isAdmin() {
-    return hasRole(configuration.getAdminRole());
+    return currentUser;
   }
 
 }

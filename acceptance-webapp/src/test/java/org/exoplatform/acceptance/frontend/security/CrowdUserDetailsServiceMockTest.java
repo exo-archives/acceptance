@@ -16,7 +16,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.security;
+package org.exoplatform.acceptance.frontend.security;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
@@ -36,33 +37,32 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
-public class MockedCrowdUserDetailsServiceTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(MockedCrowdUserDetailsServiceTest.class);
+public class CrowdUserDetailsServiceMockTest {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CrowdUserDetailsServiceMockTest.class);
 
   @Inject
-  @Named("mockedAdministrator")
-  CrowdUser administrator;
-
-  @Inject
-  @Named("mockedUser")
-  CrowdUser user;
-
-  @Inject
-  @Named("crowdUserDetailsService")
+  @Named("userDetailsService")
   UserDetailsService userDetailsService;
 
   @Test
-  public void testLoadUserByUsernameAdministrator() throws Exception {
-    Assert.assertEquals(administrator, userDetailsService.loadUserByUsername(administrator.getUsername()));
+  public void testLoadAdministrator() throws Exception {
+    UserDetails account = userDetailsService.loadUserByUsername("admin");
+    Assert.assertNotNull(account);
+    Assert.assertTrue(account.getAuthorities().contains(AppAuthority.ROLE_USER));
+    Assert.assertTrue(account.getAuthorities().contains(AppAuthority.ROLE_ADMIN));
   }
 
   @Test
   public void testLoadUserByUsernameUser() throws Exception {
-    Assert.assertEquals(user, userDetailsService.loadUserByUsername(user.getUsername()));
+    UserDetails account = userDetailsService.loadUserByUsername("user");
+    Assert.assertNotNull(account);
+    Assert.assertTrue(account.getAuthorities().contains(AppAuthority.ROLE_USER));
+    Assert.assertFalse(account.getAuthorities().contains(AppAuthority.ROLE_ADMIN));
   }
 
   @Test(expected = UsernameNotFoundException.class)
   public void testLoadUnknownUserByUsername() throws Exception {
-    userDetailsService.loadUserByUsername("foo");
+    UserDetails account = userDetailsService.loadUserByUsername("foo");
+    Assert.assertNotNull(account);
   }
 }

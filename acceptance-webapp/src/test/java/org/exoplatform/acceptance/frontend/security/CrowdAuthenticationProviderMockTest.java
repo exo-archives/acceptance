@@ -16,17 +16,14 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.security;
+package org.exoplatform.acceptance.frontend.security;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -36,44 +33,24 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
-public class MockedAuthenticationProviderTest {
+public class CrowdAuthenticationProviderMockTest {
   @Inject
-  @Named("mockedAuthenticationProvider")
-  private MockedAuthenticationProvider authenticationProviderMock;
-
-  @Inject
-  @Named("mockedAdministrator")
-  private CrowdUserMock administratorMock;
-
-  @Inject
-  @Named("mockedUser")
-  private CrowdUserMock userMock;
-
-  private void testAuthenticate(CrowdUserMock user) throws Exception {
-    Authentication administratorAuthentication = authenticationProviderMock.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-    Assert.assertEquals(user.getUsername(), administratorAuthentication.getPrincipal());
-    Assert.assertEquals(user.getPassword(), administratorAuthentication.getCredentials().toString());
-    for (GrantedAuthority grantedAuthority : administratorAuthentication.getAuthorities()) {
-      Assert.assertTrue(user.getAuthorities().contains(grantedAuthority));
-    }
-    for (GrantedAuthority grantedAuthority : user.getAuthorities()) {
-      Assert.assertTrue(administratorAuthentication.getAuthorities().contains(grantedAuthority));
-    }
-  }
+  @Named("authenticationProvider")
+  private CrowdAuthenticationProviderMock crowdAuthenticationProviderMock;
 
   @Test
   public void testAuthenticateAdministrator() throws Exception {
-    testAuthenticate(administratorMock);
+    crowdAuthenticationProviderMock.authenticate(new UsernamePasswordAuthenticationToken("admin", "admin"));
   }
 
   @Test
   public void testAuthenticateUser() throws Exception {
-    testAuthenticate(userMock);
+    crowdAuthenticationProviderMock.authenticate(new UsernamePasswordAuthenticationToken("user", "user"));
   }
 
   @Test(expected = BadCredentialsException.class)
   public void testAuthenticateUnknownUser() throws Exception {
-    authenticationProviderMock.authenticate(new UsernamePasswordAuthenticationToken("foo", "bar"));
+    crowdAuthenticationProviderMock.authenticate(new UsernamePasswordAuthenticationToken("foo", "bar"));
   }
 
 }

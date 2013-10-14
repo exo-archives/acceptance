@@ -16,8 +16,9 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.rest;
+package org.exoplatform.acceptance.frontend.rest;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Deployment;
 import org.exoplatform.acceptance.backend.storage.ApplicationRepository;
@@ -58,6 +59,7 @@ public class RESTDeploymentController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
     return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
   }
@@ -70,6 +72,7 @@ public class RESTDeploymentController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Deployment getDeployment(@PathVariable(value = "id") String id) {
     return deploymentRepository.findOne(id);
   }
@@ -82,6 +85,7 @@ public class RESTDeploymentController {
    */
   @RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Deployment saveDeployment(@RequestBody Deployment deployment) {
     return deploymentRepository.save(deployment);
   }
@@ -94,6 +98,7 @@ public class RESTDeploymentController {
    */
   @RequestMapping(value = "/", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
+  @RolesAllowed("ROLE_ADMIN")
   public Deployment updateDeployment(@RequestBody Deployment deployment) {
     return deploymentRepository.save(deployment);
   }
@@ -104,6 +109,7 @@ public class RESTDeploymentController {
    * @param deployment the deployment to delete
    */
   @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+  @RolesAllowed("ROLE_ADMIN")
   public void deleteDeployment(@RequestBody Deployment deployment) {
     deploymentRepository.delete(deployment);
   }
@@ -118,6 +124,7 @@ public class RESTDeploymentController {
    */
   @RequestMapping(value = "{applicationName}", method = RequestMethod.GET)
   @ResponseBody
+  @RolesAllowed("ROLE_USER")
   public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
     return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
   }

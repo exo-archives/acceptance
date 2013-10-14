@@ -16,36 +16,18 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.security;
+package org.exoplatform.acceptance.frontend.security;
 
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 
-public interface CrowdUser extends UserDetails {
-  /**
-   * Returns the user's first name
-   */
-  String getFirstName();
+/**
+ * Our application roles
+ */
+public enum AppAuthority implements GrantedAuthority {
+  ROLE_USER, ROLE_ADMIN, ROLE_ANONYMOUS; //roles used in application
 
-  /**
-   * Returns the user's last name
-   */
-  String getLastName();
+  public String getAuthority() {
+    return name();
 
-  /**
-   * Returns the user's fullname
-   */
-  String getFullName();
-
-  /**
-   * Returns the user's email
-   */
-  String getEmail();
-
-  /**
-   * Is the user authenticated ?
-   *
-   * @return true if the user is authenticated
-   */
-  boolean isAuthenticated();
-
+  }
 }

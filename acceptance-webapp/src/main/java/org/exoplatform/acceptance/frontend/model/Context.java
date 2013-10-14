@@ -85,14 +85,6 @@ public class Context implements Serializable {
     return configuration.getVersion();
   }
 
-  public String getAdminRole() {
-    return configuration.getAdminRole();
-  }
-
-  public String getUserRole() {
-    return configuration.getUserRole();
-  }
-
   public Date getBuildDate() {
     return configuration.getBuildDate();
   }

@@ -38,7 +38,7 @@
   <!-- Load MVC for REST -->
   <mvc:annotation-driven />
 
-  <import resource="classpath:/org/exoplatform/acceptance/security/spring-security.xml" />
+  <import resource="classpath:/org/exoplatform/acceptance/frontend/security/spring-security.xml" />
   <import resource="classpath:/org/exoplatform/acceptance/backend/storage/spring-data.xml" />
 
 </beans>
