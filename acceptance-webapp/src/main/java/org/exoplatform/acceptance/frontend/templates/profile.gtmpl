@@ -2,7 +2,7 @@
 #{title value="Your profile"/}
 <ol class="breadcrumb">
   <li><a href="@{Home.index()}">Home</a></li>
-  <li class="active">Your profile</li>
+  <li class="active">${user.fullName}</li>
 </ol>
 <div class="row">
   <div class="col-md-9">
