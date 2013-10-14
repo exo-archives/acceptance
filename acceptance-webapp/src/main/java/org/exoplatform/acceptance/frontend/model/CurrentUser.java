@@ -221,9 +221,9 @@ public class CurrentUser {
     digest.update(getEmail().trim().toLowerCase().getBytes(Charset.defaultCharset()));
     String hash = Strings.padStart(new BigInteger(1, digest.digest()).toString(16), 32, '0');
     if (https) {
-      return "https://secure.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";
+      return "https://secure.gravatar.com/avatar/" + hash + "?s=" + size + "&d=mm";
     } else {
-      return "http://www.gravatar.com/avatar/" + hash + "?s=" + size + "&d=404";
+      return "http://www.gravatar.com/avatar/" + hash + "?s=" + size + "&d=mm";
     }
   }
 
