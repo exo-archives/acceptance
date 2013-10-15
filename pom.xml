@@ -81,6 +81,9 @@
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
+    <!-- Sonar settings -->
+    <sonar.java.target>${maven.compiler.target}</sonar.java.target>
+    <sonar.java.source>${maven.compiler.source}</sonar.java.source>
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
