@@ -22,11 +22,11 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
 
 import com.google.common.base.Strings;
 import javax.inject.Inject;
 import javax.inject.Named;
+import lombok.Delegate;
 import org.exoplatform.acceptance.frontend.security.AppAuthority;
 import org.exoplatform.acceptance.frontend.security.ICrowdUserDetails;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,91 +42,6 @@ public class CurrentUser {
   private UserDetailsService userDetailsService;
 
   private ICrowdUserDetails currentUser;
-
-  /**
-   * Returns the user's first name
-   */
-  public String getFirstName() {
-    return getCurrentUser().getFirstName();
-  }
-
-  /**
-   * Returns the user's last name
-   */
-  public String getLastName() {
-    return getCurrentUser().getLastName();
-  }
-
-  /**
-   * Returns the user's fullname
-   */
-  public String getFullName() {
-    return getCurrentUser().getFullName();
-  }
-
-  /**
-   * Returns the user's email
-   */
-  public String getEmail() {
-    return getCurrentUser().getEmail();
-  }
-
-  /**
-   * Returns the authorities granted to the user. Cannot return <code>null</code>.
-   *
-   * @return the authorities, sorted by natural key (never <code>null</code>)
-   */
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return getCurrentUser().getAuthorities();
-  }
-
-  /**
-   * Returns the password used to authenticate the user.
-   *
-   * @return the password
-   */
-  public String getPassword() {
-    return getCurrentUser().getPassword();
-  }
-
-  /**
-   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
-   *
-   * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
-   *         (ie expired)
-   */
-  public boolean isAccountNonExpired() {
-    return getCurrentUser().isAccountNonExpired();
-  }
-
-  /**
-   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
-   *
-   * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
-   */
-  public boolean isAccountNonLocked() {
-    return getCurrentUser().isAccountNonLocked();
-  }
-
-  /**
-   * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
-   * authentication.
-   *
-   * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
-   *         valid (ie expired)
-   */
-  public boolean isCredentialsNonExpired() {
-    return getCurrentUser().isCredentialsNonExpired();
-  }
-
-  /**
-   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
-   *
-   * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
-   */
-  public boolean isEnabled() {
-    return getCurrentUser().isEnabled();
-  }
 
   /**
    * Is the user authenticated ?
@@ -222,11 +137,16 @@ public class CurrentUser {
   /**
    * Retrieves the current crowd user.
    */
+  @Delegate(excludes = ExcludeICrowdUserDetailsDelegate.class)
   private ICrowdUserDetails getCurrentUser() throws UsernameNotFoundException {
     if (currentUser == null) {
       currentUser = (ICrowdUserDetails) userDetailsService.loadUserByUsername(getUsername());
     }
     return currentUser;
+  }
+
+  private interface ExcludeICrowdUserDetailsDelegate {
+    String getUsername();
   }
 
 }

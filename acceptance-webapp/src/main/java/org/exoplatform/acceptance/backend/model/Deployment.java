@@ -18,6 +18,7 @@
  */
 package org.exoplatform.acceptance.backend.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,6 +28,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "deployment")
 @TypeAlias("Deployment")
+@Data
 public class Deployment {
   @Id
   private String id;
@@ -37,35 +39,4 @@ public class Deployment {
 
   private Environment environment;
 
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Application getApplication() {
-    return application;
-  }
-
-  public void setApplication(Application application) {
-    this.application = application;
-  }
-
-  public Agent getAgent() {
-    return agent;
-  }
-
-  public void setAgent(Agent agent) {
-    this.agent = agent;
-  }
-
-  public Environment getEnvironment() {
-    return environment;
-  }
-
-  public void setEnvironment(Environment environment) {
-    this.environment = environment;
-  }
 }

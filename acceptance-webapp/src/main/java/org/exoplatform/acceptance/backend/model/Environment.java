@@ -18,6 +18,7 @@
  */
 package org.exoplatform.acceptance.backend.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -27,25 +28,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "environment")
 @TypeAlias("Environment")
+@Data
 public class Environment {
   @Id
   private String id;
 
   private String jvm;
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getJvm() {
-    return jvm;
-  }
-
-  public void setJvm(String jvm) {
-    this.jvm = jvm;
-  }
 }

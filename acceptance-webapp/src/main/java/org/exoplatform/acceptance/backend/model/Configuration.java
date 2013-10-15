@@ -23,6 +23,7 @@ import java.util.Date;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 @Named("configuration")
 @Singleton
+@Data
 public class Configuration {
 
   @Value("${project.version}")
@@ -55,37 +57,4 @@ public class Configuration {
 
   @Value("${project.organizationUrl}")
   private String organizationUrl;
-
-  public String getVersion() {
-    return version;
-  }
-
-  public URL getScmUrl() {
-    return scmUrl;
-  }
-
-  public String getScmRevision() {
-    return scmRevision;
-  }
-
-  public String getScmRevisionUrl() {
-    return scmRevisionUrl;
-  }
-
-  public Date getBuildDate() {
-    return buildDate;
-  }
-
-  public String getInceptionYear() {
-    return inceptionYear;
-  }
-
-  public String getOrganizationName() {
-    return organizationName;
-  }
-
-  public String getOrganizationUrl() {
-    return organizationUrl;
-  }
-
 }

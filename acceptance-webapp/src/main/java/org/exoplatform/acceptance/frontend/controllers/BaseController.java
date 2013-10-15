@@ -25,21 +25,17 @@ import juzu.Response;
 import juzu.request.RequestContext;
 import juzu.request.RequestLifeCycle;
 import juzu.template.Template;
+import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.frontend.model.Context;
 import org.exoplatform.acceptance.frontend.model.CurrentUser;
 import org.exoplatform.acceptance.frontend.model.Flash;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
  * Common controller stuffs
  */
+@Slf4j
 public abstract class BaseController implements RequestLifeCycle {
-  /**
-   * Logger
-   */
-  private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
   /**
    * Flash object to display messages
@@ -84,10 +80,10 @@ public abstract class BaseController implements RequestLifeCycle {
           .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/org/exoplatform/acceptance/frontend/assets/images/favicon.ico\"></link>")
           ;
     } catch (ParserConfigurationException e) {
-      LOGGER.error("Impossible to insert the favicon header in the page", e);
+      log.error("Impossible to insert the favicon header in the page", e);
       return content;
     } catch (SAXException e) {
-      LOGGER.error("Impossible to insert the favicon header in the page", e);
+      log.error("Impossible to insert the favicon header in the page", e);
       return content;
     }
   }

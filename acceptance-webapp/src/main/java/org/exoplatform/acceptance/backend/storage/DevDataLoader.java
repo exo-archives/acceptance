@@ -22,17 +22,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.backend.model.Application;
 import org.exoplatform.acceptance.backend.model.Deployment;
 import org.exoplatform.acceptance.backend.model.Project;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+@Slf4j
 public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent> {
-  private static final Logger LOGGER = LoggerFactory.getLogger(DevDataLoader.class);
 
   @Inject
   private ApplicationRepository applicationRepository;
@@ -78,14 +77,14 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
   private Application createApplication(String name) {
     Application application = new Application();
     application.setName(name);
-    LOGGER.debug("DevDataLoader - new Application : {}", application);
+    log.debug("DevDataLoader - new Application : {}", application);
     return applicationRepository.save(application);
   }
 
   private Deployment createDeployment(Application app) {
     Deployment deployment = new Deployment();
     deployment.setApplication(app);
-    LOGGER.debug("DevDataLoader - new Deployment : {}", deployment);
+    log.debug("DevDataLoader - new Deployment : {}", deployment);
     return deploymentRepository.save(deployment);
   }
 
@@ -97,7 +96,7 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     } catch (MalformedURLException e) {
     }
     project.setDescription("This is the description of " + name);
-    LOGGER.debug("DevDataLoader - new Project : {}", project);
+    log.debug("DevDataLoader - new Project : {}", project);
     return projectRepository.save(project);
   }
 }

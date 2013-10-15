@@ -34,13 +34,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RunWith(Arquillian.class)
 public class ApplicationIT {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
 
   @Drone
   private WebDriver driver;
