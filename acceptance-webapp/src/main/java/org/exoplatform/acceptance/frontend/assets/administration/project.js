@@ -77,7 +77,7 @@ function EditCtrl($scope, $location, Restangular, project) {
 
   $scope.isClean = function () {
     return angular.equals(original, $scope.project);
-  }
+  };
 
   $scope.destroy = function () {
     original.remove().then(function () {

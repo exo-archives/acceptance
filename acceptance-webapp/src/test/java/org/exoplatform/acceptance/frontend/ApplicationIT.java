@@ -43,10 +43,10 @@ public class ApplicationIT {
   private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
 
   @Drone
-  WebDriver driver;
+  private WebDriver driver;
 
   @ArquillianResource
-  URL deploymentURL;
+  private URL deploymentURL;
 
   @Deployment
   public static WebArchive deployment() {

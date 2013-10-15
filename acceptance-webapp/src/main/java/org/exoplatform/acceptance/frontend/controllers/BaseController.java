@@ -46,21 +46,21 @@ public abstract class BaseController implements RequestLifeCycle {
    */
   @Inject
   @Named("flash")
-  Flash flash;
+  protected Flash flash;
 
   /**
    * Current user
    */
   @Inject
   @Named("user")
-  CurrentUser user;
+  protected CurrentUser user;
 
   /**
    * Current execution context
    */
   @Inject
   @Named("context")
-  Context context;
+  protected Context context;
 
   protected void render(Template template) {
     this.render(template.with());

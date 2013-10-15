@@ -37,11 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "application", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RESTApplicationController {
-
-  public static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
-
-  public static final int MAX_STORAGE_PAGE_SIZE = 500;
+public class ApplicationController extends RestController {
 
   @Inject
   private ApplicationRepository applicationRepository;

@@ -35,7 +35,7 @@ import org.springframework.data.mongodb.core.MongoExceptionTranslator;
  */
 public class EmbeddedMongoSpringFactoryBean extends EmbeddedMongoFactoryBean implements PersistenceExceptionTranslator {
 
-  private PersistenceExceptionTranslator exceptionTranslator = new MongoExceptionTranslator();
+  private final PersistenceExceptionTranslator exceptionTranslator = new MongoExceptionTranslator();
 
   /*
    * (non-Javadoc)

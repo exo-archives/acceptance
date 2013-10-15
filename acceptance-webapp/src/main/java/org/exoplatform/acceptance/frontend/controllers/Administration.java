@@ -31,20 +31,32 @@ import juzu.plugin.asset.WithAssets;
  */
 public class Administration extends BaseController {
 
+  /**
+   * Administration home page
+   */
   @Inject
   @Path("administration/index.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.administration.index index;
+  protected org.exoplatform.acceptance.frontend.templates.administration.index index;
 
+  /**
+   * Projects administration page
+   */
   @Inject
   @Path("administration/project.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.administration.project project;
+  protected org.exoplatform.acceptance.frontend.templates.administration.project project;
 
+  /**
+   * Administration home route
+   */
   @View
   @Route("/admin")
   public Response.Content index() {
     return makeResponse(index);
   }
 
+  /**
+   * Projects administration route
+   */
   @View
   @Route("/admin/project")
   @WithAssets({"projects-admin.js"})

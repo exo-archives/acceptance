@@ -45,7 +45,7 @@ public class CrowdUserDetailsMock implements ICrowdUserDetails {
 
   private boolean enabled = true;
 
-  private Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+  private Collection<GrantedAuthority> authorities = new ArrayList<>();
 
   public CrowdUserDetailsMock() {
   }

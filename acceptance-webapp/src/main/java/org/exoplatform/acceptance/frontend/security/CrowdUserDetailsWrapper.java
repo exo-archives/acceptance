@@ -26,13 +26,13 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * This wrapper is used to redefine user's authorities from groups retrieved by crowd to application roles defined in {@link AppAuthority}
  *
- * @See AppAuthority
+ * @see AppAuthority
  */
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
-  private CrowdUserDetails crowdUserDetails;
+  private final CrowdUserDetails crowdUserDetails;
 
-  private CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
+  private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
   public CrowdUserDetailsWrapper(CrowdUserDetails crowdUserDetails, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdUserDetails = crowdUserDetails;

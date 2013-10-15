@@ -16,40 +16,14 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.frontend.model;
+package org.exoplatform.acceptance.frontend.rest;
 
-import javax.inject.Named;
+/**
+ * Abstract REST Controller
+ */
+public class RestController {
 
-@Named("flash")
-public class Flash {
+  protected static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
 
-  private String success = "";
-
-  private String error = "";
-
-  private String username = "";
-
-  public String getSuccess() {
-    return success;
-  }
-
-  public void setSuccess(String success) {
-    this.success = success;
-  }
-
-  public String getError() {
-    return error;
-  }
-
-  public void setError(String error) {
-    this.error = error;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
+  protected static final int MAX_STORAGE_PAGE_SIZE = 500;
 }

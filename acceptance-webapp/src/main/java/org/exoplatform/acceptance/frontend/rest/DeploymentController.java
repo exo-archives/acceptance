@@ -38,11 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "deployment", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RESTDeploymentController {
-
-  public static final int DEFAULT_DEPLOYMENT_PAGE_SIZE = 50;
-
-  public static final int MAX_DEPLOYMENT_PAGE_SIZE = 250;
+public class DeploymentController extends RestController {
 
   @Inject
   private DeploymentRepository deploymentRepository;
@@ -60,8 +56,8 @@ public class RESTDeploymentController {
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
   @RolesAllowed("ROLE_USER")
-  public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
-    return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
+  public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
   /**
@@ -125,7 +121,7 @@ public class RESTDeploymentController {
   @RequestMapping(value = "{applicationName}", method = RequestMethod.GET)
   @ResponseBody
   @RolesAllowed("ROLE_USER")
-  public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_DEPLOYMENT_PAGE_SIZE + "") int limit) {
-    return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_DEPLOYMENT_PAGE_SIZE ? limit : DEFAULT_DEPLOYMENT_PAGE_SIZE));
+  public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 }

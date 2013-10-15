@@ -57,12 +57,11 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
   /**
    * Mapping interface which can be injected into the authentication layer to convert the
    * authorities loaded from storage into those which will be used in the {@code Authentication} object.
-   *
-   * @author Luke Taylor
    */
   @Override
   public Collection<GrantedAuthority> mapAuthorities(Collection<? extends GrantedAuthority> authorities) {
-    Set roles = EnumSet.noneOf(AppAuthority.class); //empty EnumSet
+    //empty EnumSet
+    Set roles = EnumSet.noneOf(AppAuthority.class);
     LOGGER.debug("Authorities to check : {}", authorities);
     for (GrantedAuthority authority : authorities) {
       if (userRole.equals(authority.getAuthority())) {

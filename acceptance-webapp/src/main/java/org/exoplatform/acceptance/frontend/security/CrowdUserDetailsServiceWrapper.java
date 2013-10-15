@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 public class CrowdUserDetailsServiceWrapper implements UserDetailsService {
 
-  private CrowdUserDetailsServiceImpl crowdUserDetailsServiceImpl;
+  private final CrowdUserDetailsServiceImpl crowdUserDetailsServiceImpl;
 
-  private CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
+  private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
   public CrowdUserDetailsServiceWrapper(CrowdUserDetailsServiceImpl crowdUserDetailsServiceImpl, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdUserDetailsServiceImpl = crowdUserDetailsServiceImpl;

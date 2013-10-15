@@ -12,9 +12,9 @@ import org.springframework.security.core.AuthenticationException;
  * @see CrowdGrantedAuthoritiesMapper
  */
 public class CrowdAuthenticationProviderWrapper implements AuthenticationProvider {
-  private RemoteCrowdAuthenticationProvider crowdAuthenticationProvider;
+  private final RemoteCrowdAuthenticationProvider crowdAuthenticationProvider;
 
-  private CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
+  private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
   public CrowdAuthenticationProviderWrapper(RemoteCrowdAuthenticationProvider crowdAuthenticationProvider, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdAuthenticationProvider = crowdAuthenticationProvider;

@@ -41,13 +41,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 @RequestMapping(value = "project", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RESTProjectController {
+public class ProjectController extends RestController {
 
-  public static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
-
-  public static final int MAX_STORAGE_PAGE_SIZE = 500;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RESTProjectController.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
   @Inject
   private ProjectRepository projectRepository;

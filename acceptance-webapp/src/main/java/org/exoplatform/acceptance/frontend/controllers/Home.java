@@ -27,67 +27,107 @@ import juzu.Response;
 import juzu.Route;
 import juzu.View;
 import juzu.plugin.asset.WithAssets;
+import org.apache.commons.httpclient.HttpStatus;
 
 public class Home extends BaseController {
 
+  /**
+   * Application homepage
+   */
   @Inject
   @Path("index.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.index index;
+  protected org.exoplatform.acceptance.frontend.templates.index index;
 
+  /**
+   * Deployments list page
+   */
   @Inject
   @Path("deployments.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.deployments deployments;
+  protected org.exoplatform.acceptance.frontend.templates.deployments deployments;
 
+  /**
+   * Sources list page
+   */
   @Inject
   @Path("sources.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.sources sources;
+  protected org.exoplatform.acceptance.frontend.templates.sources sources;
 
+  /**
+   * User profile page
+   */
   @Inject
   @Path("profile.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.profile profile;
+  protected org.exoplatform.acceptance.frontend.templates.profile profile;
 
+  /**
+   * About the app page
+   */
   @Inject
   @Path("about.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.about about;
+  protected org.exoplatform.acceptance.frontend.templates.about about;
 
+  /**
+   * Signin page
+   */
   @Inject
   @Path("signin.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.signin signin;
+  protected org.exoplatform.acceptance.frontend.templates.signin signin;
 
+  /**
+   * Forbidden access page (403)
+   */
   @Inject
   @Path("error403.gtmpl")
-  org.exoplatform.acceptance.frontend.templates.error403 error403;
+  protected org.exoplatform.acceptance.frontend.templates.error403 error403;
 
+  /**
+   * Application homepage route
+   */
   @View
   @Route("/")
   public Response.Content index() {
     return makeResponse(index);
   }
 
+  /**
+   * User profile route
+   */
   @View
   @Route("/profile")
   public Response.Content profile() {
     return makeResponse(profile);
   }
 
+  /**
+   * About the app route
+   */
   @View
   @Route("/about")
   public Response.Content about() {
     return makeResponse(about);
   }
 
+  /**
+   * Deployments list route
+   */
   @View
   @Route("/deployments")
   public Response.Content deployments() {
     return makeResponse(deployments);
   }
 
+  /**
+   * Sources list page
+   */
   @View
   @Route("/sources")
   public Response.Content sources() {
     return makeResponse(sources);
   }
 
+  /**
+   * Signin route
+   */
   @View
   @Route("/signin")
   @WithAssets("signin.css")
@@ -98,24 +138,33 @@ public class Home extends BaseController {
     return makeResponse(signin.with().ok());
   }
 
+  /**
+   * Login page
+   * fake method for frontend template compilation (ex: @{Home.login()}
+   * this url is catch up by the spring security filter and the action method is never call
+   */
   @Action
   @Route("/login")
-  // fake method for frontend template compilation (ex: @{Home.login()}
-  // this url is catch up by the spring security filter and the action method is never call
   public void login() {
   }
 
+  /**
+   * Logout page
+   * fake method for frontend template compilation (ex: @{Home.logout()}
+   * this url is catch up by the spring security filter and the action method is never call
+   */
   @Action
   @Route("/logout")
-  // fake method for frontend template compilation (ex: @{Home.logout()}
-  // this url is catch up by the spring security filter and the action method is never call
   public void logout() {
   }
 
+  /**
+   * Forbidden access route
+   */
   @View
   @Route("/403")
   public Response.Content error403() {
-    return makeResponse(error403.with().status(403));
+    return makeResponse(error403.with().status(HttpStatus.SC_FORBIDDEN));
   }
 
 }

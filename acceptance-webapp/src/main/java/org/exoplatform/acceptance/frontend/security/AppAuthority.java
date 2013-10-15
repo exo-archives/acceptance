@@ -24,7 +24,8 @@ import org.springframework.security.core.GrantedAuthority;
  * Our application roles
  */
 public enum AppAuthority implements GrantedAuthority {
-  ROLE_USER, ROLE_ADMIN, ROLE_ANONYMOUS; //roles used in application
+  //roles used in application
+  ROLE_USER, ROLE_ADMIN, ROLE_ANONYMOUS;
 
   public String getAuthority() {
     return name();

@@ -29,8 +29,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.exoplatform.acceptance.frontend.security.AppAuthority;
 import org.exoplatform.acceptance.frontend.security.ICrowdUserDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,8 +37,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Named("user")
 public class CurrentUser {
-  private static final Logger LOGGER = LoggerFactory.getLogger(CurrentUser.class);
-
   @Inject
   @Named("userDetailsService")
   private UserDetailsService userDetailsService;
@@ -138,11 +134,7 @@ public class CurrentUser {
    * @return true if the user is authenticated
    */
   public boolean isAuthenticated() {
-    if (SecurityContextHolder.getContext().getAuthentication() != null) {
-      return SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-    } else {
-      return false;
-    }
+    return SecurityContextHolder.getContext().getAuthentication() != null && SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
   }
 
   /**

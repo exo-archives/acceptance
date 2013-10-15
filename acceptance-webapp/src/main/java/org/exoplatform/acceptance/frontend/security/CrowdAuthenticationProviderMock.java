@@ -31,7 +31,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
 
-  private CrowdUserDetailsServiceMock crowdUserDetailsServiceMock;
+  private final CrowdUserDetailsServiceMock crowdUserDetailsServiceMock;
 
   public CrowdAuthenticationProviderMock(CrowdUserDetailsServiceMock userDetailsService) {
     this.crowdUserDetailsServiceMock = userDetailsService;
@@ -63,7 +63,7 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
         throw new BadCredentialsException("Invalid username or password");
       }
     } catch (UsernameNotFoundException unnfe) {
-      throw new BadCredentialsException("Invalid username or password");
+      throw new BadCredentialsException("Invalid username or password",unnfe);
     }
   }
 
