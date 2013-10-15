@@ -58,11 +58,33 @@ public class ProjectRepositoryTest {
 
   @Test
   public void create() {
+    this.projectRepository.deleteAll();
     Project project = new Project();
     project.setName("my project");
-    Project saveProject = projectRepository.save(project);
-    assertNotNull("The project ID should not be null", saveProject.getId());
+    Project savedProject = projectRepository.save(project);
+    assertNotNull("The project ID should not be null", savedProject.getId());
     assertEquals("We should have exactly 1 project", 1, projectRepository.count());
   }
 
+  @Test
+  public void delete() {
+    this.projectRepository.deleteAll();
+    Project project = new Project();
+    project.setName("my project");
+    Project savedProject = projectRepository.save(project);
+    projectRepository.delete(savedProject);
+    assertEquals("We should have exactly 0 project", 0, projectRepository.count());
+  }
+
+  @Test
+  public void update() {
+    this.projectRepository.deleteAll();
+    Project project = new Project();
+    project.setName("my project");
+    Project savedProject = projectRepository.save(project);
+    project.setName("my project 2");
+    projectRepository.save(savedProject);
+    assertEquals("We should have exactly 1 project", 1, projectRepository.count());
+    assertEquals("my project 2", projectRepository.findOne(savedProject.getId()).getName());
+  }
 }

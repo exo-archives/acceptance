@@ -23,6 +23,7 @@ import static org.junit.Assert.assertNotNull;
 
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Application;
+import org.exoplatform.acceptance.backend.model.Deployment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,53 +40,59 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
-public class ApplicationRepositoryTest {
+public class DeploymentRepositoryTest {
 
   @Inject
-  ApplicationRepository applicationRepository;
+  DeploymentRepository deploymentRepository;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    this.applicationRepository.deleteAll();
+    this.deploymentRepository.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    this.applicationRepository.deleteAll();
+    this.deploymentRepository.deleteAll();
   }
 
   @Test
   public void create() {
-    this.applicationRepository.deleteAll();
+    this.deploymentRepository.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    assertNotNull("The application ID should not be null", savedApplication.getId());
-    assertEquals("We should have exactly 1 application", 1, applicationRepository.count());
+    Deployment deployment = new Deployment();
+    deployment.setApplication(application);
+    Deployment savedDeployment = deploymentRepository.save(deployment);
+    assertNotNull("The deployment ID should not be null", savedDeployment.getId());
+    assertEquals("We should have exactly 1 deployment", 1, deploymentRepository.count());
   }
 
   @Test
   public void delete() {
-    this.applicationRepository.deleteAll();
+    this.deploymentRepository.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    applicationRepository.delete(savedApplication);
-    assertEquals("We should have exactly 0 application", 0, applicationRepository.count());
+    Deployment deployment = new Deployment();
+    deployment.setApplication(application);
+    Deployment savedDeployment = deploymentRepository.save(deployment);
+    deploymentRepository.delete(savedDeployment);
+    assertEquals("We should have exactly 0 deployment", 0, deploymentRepository.count());
   }
 
   @Test
   public void update() {
-    this.applicationRepository.deleteAll();
+    this.deploymentRepository.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    application.setName("my application 2");
-    applicationRepository.save(savedApplication);
-    assertEquals("We should have exactly 1 application", 1, applicationRepository.count());
-    assertEquals("my application 2", applicationRepository.findOne(savedApplication.getId()).getName());
+    Deployment deployment = new Deployment();
+    deployment.setApplication(application);
+    Deployment savedDeployment = deploymentRepository.save(deployment);
+    deployment.getApplication().setName("my deployment 2");
+    deploymentRepository.save(savedDeployment);
+    assertEquals("We should have exactly 1 deployment", 1, deploymentRepository.count());
+    assertEquals("my deployment 2", deploymentRepository.findOne(savedDeployment.getId()).getApplication().getName());
   }
 
 }
