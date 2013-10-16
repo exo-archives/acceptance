@@ -125,7 +125,7 @@ public class CurrentUser {
    */
   public String getGravatarUrl(int size, boolean https) throws NoSuchAlgorithmException {
     MessageDigest digest = MessageDigest.getInstance("MD5");
-    digest.update(getEmail().trim().toLowerCase().getBytes(Charset.defaultCharset()));
+    digest.update(getCurrentUser().getEmail().trim().toLowerCase().getBytes(Charset.defaultCharset()));
     String hash = Strings.padStart(new BigInteger(1, digest.digest()).toString(16), 32, '0');
     if (https) {
       return "https://secure.gravatar.com/avatar/" + hash + "?s=" + size + "&d=mm";
