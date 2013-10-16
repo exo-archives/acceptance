@@ -71,7 +71,7 @@ public class CurrentUser {
   }
 
   /**
-   * Simple searches for an exactly matching {@link org.springframework.security.core.GrantedAuthority.getAuthority()}.
+   * Simple searches for an exactly matching {@link org.springframework.security.core.GrantedAuthority#getAuthority()}.
    * Will always return false if the SecurityContextHolder contains an Authentication with nullprincipal and/or GrantedAuthority[] objects.
    *
    * @param role the GrantedAuthorityString representation to check for
