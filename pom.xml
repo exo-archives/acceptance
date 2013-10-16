@@ -47,7 +47,12 @@
   </scm>
   <properties>
     <!-- **************************************** -->
-    <!-- Framework version                                  -->
+    <!-- Env settings                             -->
+    <!-- **************************************** -->
+    <jenkins.job.name>acceptance-master-ci</jenkins.job.name>
+    <jira.project.key>ACC</jira.project.key>
+    <!-- **************************************** -->
+    <!-- Dependencies version                     -->
     <!-- **************************************** -->
     <arquillian.version>1.0.3.Final</arquillian.version>
     <arquillian-drone.version>1.2.0.Alpha2</arquillian-drone.version>
@@ -75,15 +80,12 @@
     <spring.version>3.2.4.RELEASE</spring.version>
     <tomcat.version>7.0.42</tomcat.version>
     <xml-apis.version>1.4.01</xml-apis.version>
-    <!-- ************** -->
-    <!-- Build settings -->
-    <!-- ************** -->
+    <!-- **************************************** -->
+    <!-- Build settings                           -->
+    <!-- **************************************** -->
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
-    <!-- Sonar settings -->
-    <sonar.java.target>${maven.compiler.target}</sonar.java.target>
-    <sonar.java.source>${maven.compiler.source}</sonar.java.source>
     <!-- To configure animal-sniffer to check API compat -->
     <animal-sniffer.signature.artifactId>java17</animal-sniffer.signature.artifactId>
     <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
