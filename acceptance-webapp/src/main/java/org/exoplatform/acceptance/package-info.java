@@ -29,7 +29,8 @@
 @Bindings({
     @Binding(value = CurrentUser.class, scope = Scope.SESSION),
     @Binding(value = Flash.class, scope = Scope.FLASH),
-    @Binding(value = Context.class, scope = Scope.REQUEST)
+    @Binding(value = Context.class, scope = Scope.REQUEST),
+    @Binding(ProjectSettings.class)
 })
 
 // Declare assets
@@ -69,4 +70,5 @@ import juzu.template.Tags;
 import org.exoplatform.acceptance.controllers.Home;
 import org.exoplatform.acceptance.model.Context;
 import org.exoplatform.acceptance.model.Flash;
+import org.exoplatform.acceptance.model.ProjectSettings;
 import org.exoplatform.acceptance.security.CurrentUser;
