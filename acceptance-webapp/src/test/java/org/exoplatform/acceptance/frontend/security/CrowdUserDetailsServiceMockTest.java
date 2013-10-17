@@ -23,6 +23,8 @@ import javax.inject.Named;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,6 +38,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 public class CrowdUserDetailsServiceMockTest {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CrowdUserDetailsServiceMockTest.class);
 
   @Inject
   @Named("userDetailsService")

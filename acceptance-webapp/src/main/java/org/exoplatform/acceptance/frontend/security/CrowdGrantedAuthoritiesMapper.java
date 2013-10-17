@@ -24,7 +24,8 @@ import java.util.Set;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
@@ -34,8 +35,12 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
  */
 @Named("crowdGrantedAuthoritiesMapper")
 @Singleton
-@Slf4j
 public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
+
+  /**
+   * Logger
+   */
+  private static final Logger LOGGER = LoggerFactory.getLogger(CrowdGrantedAuthoritiesMapper.class);
 
   /**
    * The crowd group used for our application users role
@@ -57,7 +62,7 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
   public Collection<GrantedAuthority> mapAuthorities(Collection<? extends GrantedAuthority> authorities) {
     //empty EnumSet
     Set roles = EnumSet.noneOf(AppAuthority.class);
-    log.debug("Authorities to check : {}", authorities);
+    LOGGER.debug("Authorities to check : {}", authorities);
     for (GrantedAuthority authority : authorities) {
       if (userRole.equals(authority.getAuthority())) {
         roles.add(AppAuthority.ROLE_USER);
@@ -65,7 +70,7 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
         roles.add(AppAuthority.ROLE_ADMIN);
       }
     }
-    log.debug("Computed application roles : {}", roles);
+    LOGGER.debug("Computed application roles : {}", roles);
     return roles;
   }
 }

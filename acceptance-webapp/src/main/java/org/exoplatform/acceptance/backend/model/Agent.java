@@ -18,7 +18,6 @@
  */
 package org.exoplatform.acceptance.backend.model;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,8 +27,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "agent")
 @TypeAlias("Agent")
-@Data
 public class Agent {
   @Id
   private String id;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 }

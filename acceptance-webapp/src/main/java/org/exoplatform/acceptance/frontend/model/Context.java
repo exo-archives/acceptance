@@ -18,10 +18,12 @@
  */
 package org.exoplatform.acceptance.frontend.model;
 
+import java.net.URL;
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import juzu.request.RequestContext;
-import lombok.Delegate;
 import org.exoplatform.acceptance.backend.model.Configuration;
 
 /**
@@ -32,7 +34,6 @@ public class Context {
 
   @Inject
   @Named("configuration")
-  @Delegate
   private Configuration configuration;
 
   private RequestContext requestContext;
@@ -48,5 +49,37 @@ public class Context {
    */
   public boolean isSecured() {
     return requestContext.getHttpContext().getScheme().equalsIgnoreCase("https");
+  }
+
+  public String getVersion() {
+    return configuration.getVersion();
+  }
+
+  public Date getBuildDate() {
+    return configuration.getBuildDate();
+  }
+
+  public String getOrganizationUrl() {
+    return configuration.getOrganizationUrl();
+  }
+
+  public URL getScmUrl() {
+    return configuration.getScmUrl();
+  }
+
+  public String getScmRevision() {
+    return configuration.getScmRevision();
+  }
+
+  public String getOrganizationName() {
+    return configuration.getOrganizationName();
+  }
+
+  public String getScmRevisionUrl() {
+    return configuration.getScmRevisionUrl();
+  }
+
+  public String getInceptionYear() {
+    return configuration.getInceptionYear();
   }
 }

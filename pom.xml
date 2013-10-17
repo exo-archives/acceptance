@@ -64,12 +64,10 @@
     <jackson2.version>2.2.3</jackson2.version>
     <jansi.version>1.11</jansi.version>
     <javax.inject.version>1</javax.inject.version>
-    <javax.jsr250.version>1.0</javax.jsr250.version>
     <javax.servlet.version>3.0.1</javax.servlet.version>
     <junit.version>4.11</junit.version>
     <juzu.version>0.7.0-beta23</juzu.version>
     <logback.version>1.0.13</logback.version>
-    <lombok.version>1.12.2</lombok.version>
     <mockito.version>1.9.5</mockito.version>
     <mongodb.driver.version>2.11.2</mongodb.driver.version>
     <selenium.version>2.31.0</selenium.version>
@@ -94,6 +92,7 @@
     <scm.url>https://github.com/exoplatform/acceptance</scm.url>
     <scm.revision>${buildNumber}</scm.revision>
     <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
+    <javax.jsr250.version>1.0</javax.jsr250.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -309,11 +308,6 @@
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
         <version>${mongodb.driver.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Selenium -->

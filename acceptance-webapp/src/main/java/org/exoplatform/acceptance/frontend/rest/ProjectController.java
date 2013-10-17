@@ -20,9 +20,10 @@ package org.exoplatform.acceptance.frontend.rest;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import lombok.extern.slf4j.Slf4j;
 import org.exoplatform.acceptance.backend.model.Project;
 import org.exoplatform.acceptance.backend.storage.ProjectRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,8 +41,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @Controller
 @RequestMapping(value = "project", produces = MediaType.APPLICATION_JSON_VALUE)
-@Slf4j
 public class ProjectController extends RestController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
   @Inject
   private ProjectRepository projectRepository;
@@ -83,7 +85,7 @@ public class ProjectController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Project saveProject(@RequestBody Project project) {
-    log.debug("Creating project {}", project.getName());
+    LOGGER.debug("Creating project {}", project.getName());
     return projectRepository.save(project);
   }
 
@@ -98,7 +100,7 @@ public class ProjectController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Project updateProject(@PathVariable(value = "id") String id, @RequestBody Project project) {
-    log.debug("Updating project {} with ID {}", project.getName(), project.getId());
+    LOGGER.debug("Updating project {} with ID {}", project.getName(), project.getId());
     return projectRepository.save(project);
   }
 
@@ -111,7 +113,7 @@ public class ProjectController extends RestController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @RolesAllowed("ROLE_ADMIN")
   public void deleteProject(@PathVariable(value = "id") String id) {
-    log.debug("Deleting project with ID {}", id);
+    LOGGER.debug("Deleting project with ID {}", id);
     projectRepository.delete(id);
   }
 }
