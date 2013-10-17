@@ -1,23 +1,24 @@
 #{decorate path="main.gtmpl"/}
 #{title value="Insufficient privileges"/}
-<ol class="breadcrumb">
-  <li><a href="@{Home.index()}">Home</a></li>
-  <li class="active">Insufficient privileges</li>
-</ol>
-
-<div class="container">
-
-  <div class="jumbotron">
-    <h1>Error 403 &nbsp;
-      <small>Insufficient privileges ...</small>
-    </h1>
-
-    <p>
-      It seems that you have tried to access something for which you do not have rights.
-      <br/>
-      If you think this is not normal, thank you to contact your manager.
-    </p>
-
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a href="@{Home.index()}">Home</a></li>
+      <li class="active">Insufficient privileges</li>
+    </ol>
   </div>
-
-</div> <!-- /container -->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="jumbotron">
+      <h1>Error 403 &nbsp;
+        <small>Insufficient privileges ...</small>
+      </h1>
+      <p>
+        It seems that you have tried to access something for which you do not have rights.
+        <br/>
+        If you think this is not normal, thank you to contact your manager.
+      </p>
+    </div>
+  </div>
+</div>

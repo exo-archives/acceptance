@@ -1,9 +1,13 @@
-#{decorate path="administration/main.gtmpl"/}
+#{decorate path="main.gtmpl"/}
 #{title value="Administration"/}
-<ol class="breadcrumb">
-  <li><a href="@{Home.index()}">Home</a></li>
-  <li class="active">Administration</li>
-</ol>
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a href="@{Home.index()}">Home</a></li>
+      <li class="active">Administration</li>
+    </ol>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-2">
     #{adminMenu/}
@@ -16,6 +20,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 

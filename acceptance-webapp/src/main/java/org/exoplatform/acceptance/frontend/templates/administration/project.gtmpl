@@ -1,15 +1,18 @@
-#{decorate path="administration/main.gtmpl"/}
+#{decorate path="main.gtmpl"/}
 #{title value="Projects Administration"/}
 <div ng-app="project">
   <div ng-view></div>
   <!-- CACHE FILE: list.html -->
   <script type="text/ng-template" id="list.html">
-
-    <ol class="breadcrumb">
-      <li><a href="@{Home.index()}">Home</a></li>
-      <li><a href="@{Administration.index()}">Administration</a></li>
-      <li class="active">Projects</li>
-    </ol>
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="@{Home.index()}">Home</a></li>
+          <li><a href="@{Administration.index()}">Administration</a></li>
+          <li class="active">Projects</li>
+        </ol>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-2">
         #{adminMenu/}
@@ -41,12 +44,16 @@
 
   <!-- CACHE FILE: detail.html -->
   <script type="text/ng-template" id="detail.html">
-    <ol class="breadcrumb">
-      <li><a href="@{Home.index()}">Home</a></li>
-      <li><a href="@{Administration.index()}">Administration</a></li>
-      <li><a href="@{Administration.project()}">Projects</a></li>
-      <li class="active">{{project.name||"New project"}}</li>
-    </ol>
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="@{Home.index()}">Home</a></li>
+          <li><a href="@{Administration.index()}">Administration</a></li>
+          <li><a href="@{Administration.project()}">Projects</a></li>
+          <li class="active">{{project.name||"New project"}}</li>
+        </ol>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-2">
         #{adminMenu/}
@@ -54,31 +61,31 @@
       <div class="col-md-10">
         <form name="projectForm" class="form-horizontal" role="form">
           <div class="form-group" ng-class="{'has-error': projectForm.name.$invalid}">
-            <label for="projectName" class="col-lg-2 control-label">Name</label>
+            <label for="projectName" class="col-md-2 control-label">Name</label>
 
-            <div class="col-lg-10">
+            <div class="col-md-10">
               <input id="projectName" class="form-control" placeholder="Project Name" type="text" name="name" ng-model="project.name" required ng-maxlength="64">
               <span ng-show="projectForm.name.$error.required" class="help-block">Required</span>
               <span ng-show="projectForm.name.$error.maxlength" class="help-block">Too long (64 characters max)</span>
             </div>
           </div>
           <div class="form-group" ng-class="{'has-error': projectForm.site.$invalid}">
-            <label for="projectWebsite" class="col-lg-2 control-label">Website</label>
+            <label for="projectWebsite" class="col-md-2 control-label">Website</label>
 
-            <div class="col-lg-10">
+            <div class="col-md-10">
               <input id="projectWebsite" class="form-control" type="url" name="site" ng-model="project.site" required>
               <span ng-show="projectForm.site.$error.required" class="help-block">Required</span>
               <span ng-show="projectForm.site.$error.url" class="help-block">Not a URL</span>
             </div>
           </div>
           <div class="form-group">
-            <label for="projectDescription" class="col-lg-2 control-label">Description</label>
+            <label for="projectDescription" class="col-md-2 control-label">Description</label>
 
-            <div class="col-lg-10">
+            <div class="col-md-10">
               <textarea id="projectDescription" name="description" class="form-control" rows="3" ng-model="project.description"></textarea>
             </div>
           </div>
-          <div class="col-lg-10 col-lg-offset-2">
+          <div class="col-md-10 col-md-offset-2">
             <div class="pull-left">
               <a ng-click="destroy()" ng-show="project.id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
             </div>
@@ -92,6 +99,8 @@
     </div>
   </script>
 </div>
+
+
 
 
 
