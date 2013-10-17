@@ -82,6 +82,7 @@ public abstract class BaseController implements RequestLifeCycle {
     try {
       return content
           .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/org/exoplatform/acceptance/frontend/assets/images/favicon.ico\"></link>")
+          .withMetaTag("viewport","width=device-width, initial-scale=1.0")
           ;
     } catch (ParserConfigurationException e) {
       LOGGER.error("Impossible to insert the favicon header in the page", e);
