@@ -51,6 +51,8 @@
 
     <security:form-login login-page="/signin" login-processing-url="/login" authentication-failure-url="/signin?error=true" default-target-url="/" password-parameter="password" username-parameter="username" />
 
+    <security:remember-me key="acceptanceKey" user-service-ref="userDetailsService" />
+
     <security:logout invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/signin" logout-url="/logout" />
 
     <security:access-denied-handler error-page="/403" />
