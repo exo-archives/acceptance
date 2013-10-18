@@ -77,3 +77,33 @@ a.navbar-brand img {
 .nav, .pagination, .carousel a {
   cursor : pointer;
 }
+
+/* Special classes to horizontally align a table cell content
+-------------------------------------------------- */
+table th.col-center, table td.col-center {
+  text-align : center;
+}
+
+table th.col-right, table td.col-right {
+  text-align : right;
+}
+
+table th.col-left, table td.col-left {
+  text-align : left;
+}
+
+/* Special class to highlight a row
+-------------------------------------------------- */
+tr.highlight td {
+  background-color : #ffd700;
+  font-weight      : bold;
+}
+
+/* Fix for anchors due to fix navbar usage - see http://stackoverflow.com/questions/9047703/fixed-position-navbar-obscures-anchors */
+a.anchor {
+  display     : inline-block;
+  position    : relative;
+  margin-top  : -80px;
+  padding-top : 80px;
+  visibility  : hidden;
+}

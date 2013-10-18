@@ -26,6 +26,7 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
+import juzu.plugin.asset.WithAssets;
 import org.apache.commons.httpclient.HttpStatus;
 
 public class Home extends BaseController {
@@ -82,6 +83,7 @@ public class Home extends BaseController {
    */
   @View
   @Route("/sources")
+  @WithAssets({"sources.js"})
   public Response.Content sources() {
     return makeResponse(sources);
   }
