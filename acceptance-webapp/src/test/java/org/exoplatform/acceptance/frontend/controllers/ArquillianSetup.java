@@ -16,31 +16,20 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.frontend;
-
-import static org.junit.Assert.assertTrue;
+package org.exoplatform.acceptance.frontend.controllers;
 
 import java.io.File;
 import java.net.URL;
 
 import junit.framework.AssertionFailedError;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-@RunWith(Arquillian.class)
-public class ApplicationIT {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationIT.class);
+public class ArquillianSetup {
 
   @Drone
   private WebDriver driver;
@@ -48,7 +37,12 @@ public class ApplicationIT {
   @ArquillianResource
   private URL deploymentURL;
 
-  @Deployment
+  /**
+   * Creates a testing WAR of using ShrinkWrap
+   *
+   * @return WebArchive to be tested
+   */
+  @Deployment(testable = false)
   public static WebArchive deployment() {
     WebArchive war = ShrinkWrap.create(WebArchive.class);
     war.setWebXML(new File("src/main/webapp/WEB-INF/web.xml"));
@@ -58,9 +52,9 @@ public class ApplicationIT {
     return war;
   }
 
-  public URL getApplicationURL(String application) {
+  public String getPathURL(String path) {
     try {
-      return deploymentURL.toURI().resolve(application).toURL();
+      return deploymentURL.toURI().resolve(path).toURL().toString();
     } catch (Exception e) {
       AssertionFailedError afe = new AssertionFailedError();
       afe.initCause(e);
@@ -68,12 +62,11 @@ public class ApplicationIT {
     }
   }
 
-  @Test
-  @RunAsClient
-  public void testAboutTitle() throws Exception {
-    URL url = getApplicationURL("about");
-    driver.get(url.toString());
-    assertTrue(driver.getTitle().contains("About eXo Acceptance"));
+  public WebDriver getDriver() {
+    return driver;
   }
 
+  public URL getDeploymentURL() {
+    return deploymentURL;
+  }
 }

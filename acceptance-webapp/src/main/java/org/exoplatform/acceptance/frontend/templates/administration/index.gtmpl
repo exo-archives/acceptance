@@ -8,7 +8,7 @@
     </ol>
   </div>
 </div>
-<div class="row">
+<div class="row" id="adminIndexPage">
   <div class="col-md-2">
     #{adminMenu/}
   </div>

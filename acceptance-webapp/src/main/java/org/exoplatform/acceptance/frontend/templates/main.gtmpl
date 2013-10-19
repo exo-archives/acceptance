@@ -31,7 +31,7 @@
           <% } else { %>
           <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
           <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user?.fullName}</a></li>
-          <li><a href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
+          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
           <% } %>
         </ul>
       </div>

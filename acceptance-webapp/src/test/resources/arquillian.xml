@@ -20,13 +20,34 @@
 
 -->
 <arquillian>
-  <extension qualifier="webdriver">
-    <!-- Needed for html unit frontend driver -->
-    <property name="useJavaScript">false</property>
-  </extension>
   <container qualifier="tomcat" default="true">
     <configuration>
       <property name="bindHttpPort">${tomcat.http.port:9090}</property>
     </configuration>
   </container>
+
+  <extension qualifier="drone">
+    <!-- Default timeout in seconds to get instance of a browser. Set to 0 if you want to disable the timeout altogether -->
+    <property name="instantiationTimeoutInSeconds">60</property>
+  </extension>
+
+  <extension qualifier="webdriver">
+    <!-- Determines which browser instance is created for WebDriver testing. -->
+    <property name="browser">htmlUnit</property>
+    <!-- We have enabled JavaScript for htmlUnit driver by default. If you want to disable it, configure appropriate capability to false -->
+    <property name="javascriptEnabled">false</property>
+  </extension>
+
+  <extension qualifier="graphene">
+    <!-- timeout for Graphene.waitGui method - waits for a short time, typically waits for client-side operations -->
+    <property name="waitGuiInterval">1</property>
+    <!-- timeout for waitAjax - waits for longer time, typically ajax request with no computational load -->
+    <property name="waitAjaxInterval">2</property>
+    <!-- timeout for waitModel - waits for a long time, typically database requests or other computationally hard operations -->
+    <property name="waitModelInterval">5</property>
+    <!-- default locating strategy when there is empty @FindBy over element -->
+    <property name="defaultElementLocatingStrategy">id_or_name</property>
+    <!-- timeout for installing JavaScript to the page via page extension mechanism -->
+    <property name="javascriptInstallationLimit">5</property>
+  </extension>
 </arquillian>

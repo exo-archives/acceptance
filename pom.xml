@@ -54,23 +54,23 @@
     <!-- **************************************** -->
     <!-- Dependencies version                     -->
     <!-- **************************************** -->
-    <arquillian.version>1.0.3.Final</arquillian.version>
-    <arquillian-drone.version>1.2.0.Alpha2</arquillian-drone.version>
-    <arquillian-warp.version>1.0.0.Alpha4</arquillian-warp.version>
+    <arquillian.version>1.1.1.Final</arquillian.version>
+    <arquillian.drone.version>1.2.0.Final</arquillian.drone.version>
+    <arquillian.graphene2.version>2.0.0.CR1</arquillian.graphene2.version>
     <!-- don't use 2.6.4 version due to https://jira.atlassian.com/browse/CWD-3493 issue -->
     <crowd.version>2.6.5</crowd.version>
     <embedmongo-spring.version>1.1</embedmongo-spring.version>
     <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+    <htmlunit.version>2.13</htmlunit.version>
     <jackson2.version>2.2.3</jackson2.version>
     <jansi.version>1.11</jansi.version>
     <javax.inject.version>1</javax.inject.version>
+    <javax.jsr250.version>1.0</javax.jsr250.version>
     <javax.servlet.version>3.0.1</javax.servlet.version>
     <junit.version>4.11</junit.version>
     <juzu.version>0.7.0-beta24</juzu.version>
     <logback.version>1.0.13</logback.version>
-    <mockito.version>1.9.5</mockito.version>
     <mongodb.driver.version>2.11.2</mongodb.driver.version>
-    <selenium.version>2.31.0</selenium.version>
     <slf4j.version>1.7.5</slf4j.version>
     <spring.data.mongo.version>1.3.1.RELEASE</spring.data.mongo.version>
     <spring.data.version>1.6.1.RELEASE</spring.data.version>
@@ -92,7 +92,6 @@
     <scm.url>https://github.com/exoplatform/acceptance</scm.url>
     <scm.revision>${buildNumber}</scm.revision>
     <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
-    <javax.jsr250.version>1.0</javax.jsr250.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -150,14 +149,14 @@
         <artifactId>embedmongo-spring</artifactId>
         <version>${embedmongo-spring.version}</version>
       </dependency>
+      <!-- **************************************** -->
+      <!-- javax.* -->
+      <!-- **************************************** -->
       <dependency>
         <groupId>javax.annotation</groupId>
         <artifactId>jsr250-api</artifactId>
         <version>${javax.jsr250.version}</version>
       </dependency>
-      <!-- **************************************** -->
-      <!-- javax.* -->
-      <!-- **************************************** -->
       <dependency>
         <groupId>javax.inject</groupId>
         <artifactId>javax.inject</artifactId>
@@ -176,6 +175,19 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- HTML Unit (upgraded to solve javascript issues) -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit</artifactId>
+        <version>${htmlunit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit-core-js</artifactId>
+        <version>${htmlunit.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Additional Tomcat JAR to allow to fix JMX ports. Useful when the server is behind a firewall -->
@@ -213,6 +225,7 @@
       <!-- **************************************** -->
       <!-- Arquillian -->
       <!-- **************************************** -->
+      <!-- Arquillian Core dependencies -->
       <dependency>
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
@@ -220,30 +233,19 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
       <dependency>
         <groupId>org.jboss.arquillian.extension</groupId>
-        <artifactId>arquillian-drone-api</artifactId>
-        <version>${arquillian-drone.version}</version>
+        <artifactId>arquillian-drone-bom</artifactId>
+        <version>${arquillian.drone.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>org.jboss.arquillian.extension</groupId>
-        <artifactId>arquillian-warp-api</artifactId>
-        <version>${arquillian-warp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.arquillian.extension</groupId>
-        <artifactId>arquillian-warp-impl</artifactId>
-        <version>${arquillian-warp.version}</version>
-        <exclusions>
-          <exclusion>
-            <artifactId>slf4j-log4j12</artifactId>
-            <groupId>org.slf4j</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>log4j</artifactId>
-            <groupId>log4j</groupId>
-          </exclusion>
-        </exclusions>
+        <groupId>org.jboss.arquillian.graphene</groupId>
+        <artifactId>graphene-webdriver</artifactId>
+        <version>${arquillian.graphene2.version}</version>
+        <type>pom</type>
       </dependency>
       <!-- **************************************** -->
       <!-- Juzu Web Framework -->
@@ -294,28 +296,12 @@
         <version>${juzu.version}</version>
       </dependency>
       <!-- **************************************** -->
-      <!-- Mockito -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <!-- **************************************** -->
       <!-- Mongo -->
       <!-- **************************************** -->
       <dependency>
         <groupId>org.mongodb</groupId>
         <artifactId>mongo-java-driver</artifactId>
         <version>${mongodb.driver.version}</version>
-      </dependency>
-      <!-- **************************************** -->
-      <!-- Selenium -->
-      <!-- **************************************** -->
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-api</artifactId>
-        <version>${selenium.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- SLF4J -->
@@ -500,6 +486,9 @@
         <artifactId>spring-security-web</artifactId>
         <version>${spring.security.version}</version>
       </dependency>
+      <!-- **************************************** -->
+      <!-- XML APIs -->
+      <!-- **************************************** -->
       <dependency>
         <groupId>xml-apis</groupId>
         <artifactId>xml-apis</artifactId>
@@ -508,6 +497,20 @@
     </dependencies>
   </dependencyManagement>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <compilerArgs>
+              <!-- To display all recommended warnings -->
+              <arg>-Xlint</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <!-- Computes a custom timestamp for the build -->
       <plugin>
@@ -527,20 +530,6 @@
         </executions>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <compilerArgs>
-              <!-- To display all recommended warnings -->
-              <arg>-Xlint</arg>
-            </compilerArgs>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
   <profiles>
     <profile>
