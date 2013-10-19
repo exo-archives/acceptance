@@ -39,12 +39,14 @@
   <security:http pattern='/signin' security='none' />
 
   <security:http auto-config="true" authentication-manager-ref="authenticationManager" use-expressions="true">
-    <security:intercept-url pattern="/" access="hasRole('ROLE_USER')" />
-    <security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
-    <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-    <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
     <!-- everyone can access to it (even anonymous) -->
     <security:intercept-url pattern="/about" access="true" />
+    <!-- otherwise you need to be user -->
+    <security:intercept-url pattern="/" access="hasRole('ROLE_USER')" />
+    <security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
+    <!-- And only administrators can access to this -->
+    <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+    <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
     <!-- Leave this rule at the end to catch ALL urls not covered by explicit security rules -->
     <!-- and don't change the access ROLE which permit us to quickly detect new url because even admin can't access it -->
     <security:intercept-url pattern="/WEB-INF" access="hasRole('ROLE_NON_EXISTING')" />
