@@ -27,6 +27,10 @@ import org.springframework.security.core.GrantedAuthority;
  * This is a POJO to implement a CrowdUserDetails
  */
 public class CrowdUserDetailsMock implements ICrowdUserDetails {
+
+  // This class is serializable
+  private static final long serialVersionUID = 1L;
+
   private String username;
 
   private String password;

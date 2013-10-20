@@ -30,6 +30,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
+  // This class is serializable
+  private static final long serialVersionUID = 1L;
+
   private final CrowdUserDetails crowdUserDetails;
 
   private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
