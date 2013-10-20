@@ -34,7 +34,10 @@
   <security:http pattern='/assets/**/*.gif' security='none' />
   <security:http pattern='/assets/**/*.jpg' security='none' />
   <security:http pattern='/assets/**/*.ico' security='none' />
-  <security:http pattern='/favicon.ico' security='none' />
+  <security:http pattern='/assets/**/*.eot' security='none' />
+  <security:http pattern='/assets/**/*.svg' security='none' />
+  <security:http pattern='/assets/**/*.ttf' security='none' />
+  <security:http pattern='/assets/**/*.woff' security='none' />
   <!-- no security on the signin page or we can't even login -->
   <security:http pattern='/signin' security='none' />
 
