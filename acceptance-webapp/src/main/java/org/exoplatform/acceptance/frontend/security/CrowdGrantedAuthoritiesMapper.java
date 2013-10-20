@@ -59,6 +59,7 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
    * authorities loaded from storage into those which will be used in the {@code Authentication} object.
    */
   @Override
+  @SuppressWarnings({"unchecked", "rawtypes"})
   public Collection<GrantedAuthority> mapAuthorities(Collection<? extends GrantedAuthority> authorities) {
     //empty EnumSet
     Set roles = EnumSet.noneOf(AppAuthority.class);
