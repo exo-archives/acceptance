@@ -36,14 +36,14 @@ public class Administration extends BaseController {
    */
   @Inject
   @Path("administration/index.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.administration.index index;
+  private org.exoplatform.acceptance.frontend.templates.administration.index index;
 
   /**
    * Projects administration page
    */
   @Inject
   @Path("administration/project.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.administration.project project;
+  private org.exoplatform.acceptance.frontend.templates.administration.project project;
 
   /**
    * Administration home route

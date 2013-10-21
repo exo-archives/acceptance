@@ -36,49 +36,49 @@ public class Home extends BaseController {
    */
   @Inject
   @Path("index.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.index index;
+  private org.exoplatform.acceptance.frontend.templates.index index;
 
   /**
    * Deployments list page
    */
   @Inject
   @Path("deployments.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.deployments deployments;
+  private org.exoplatform.acceptance.frontend.templates.deployments deployments;
 
   /**
    * Sources list page
    */
   @Inject
   @Path("sources.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.sources sources;
+  private org.exoplatform.acceptance.frontend.templates.sources sources;
 
   /**
    * User profile page
    */
   @Inject
   @Path("profile.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.profile profile;
+  private org.exoplatform.acceptance.frontend.templates.profile profile;
 
   /**
    * About the app page
    */
   @Inject
   @Path("about.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.about about;
+  private org.exoplatform.acceptance.frontend.templates.about about;
 
   /**
    * Signin page
    */
   @Inject
   @Path("signin.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.signin signin;
+  private org.exoplatform.acceptance.frontend.templates.signin signin;
 
   /**
    * Forbidden access page (403)
    */
   @Inject
   @Path("error403.gtmpl")
-  protected org.exoplatform.acceptance.frontend.templates.error403 error403;
+  private org.exoplatform.acceptance.frontend.templates.error403 error403;
 
   /**
    * Application homepage route
