@@ -21,7 +21,7 @@ package org.exoplatform.acceptance.frontend.rest;
 /**
  * Abstract REST Controller
  */
-public class RestController {
+public abstract class RestController {
 
   protected static final int DEFAULT_STORAGE_PAGE_SIZE = 50;
 
