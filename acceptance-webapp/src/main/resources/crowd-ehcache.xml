@@ -19,7 +19,6 @@
 
 -->
 <ehcache updateCheck="false">
-
   <!-- Sets the path to the directory where cache .data files are created.
 
        If the path is a Java System Property it is replaced by
@@ -30,7 +29,6 @@
        user.dir - User's current working directory
        java.io.tmpdir - Default temp file path -->
   <diskStore path="java.io.tmpdir" />
-
   <!--Default Cache configuration. These will applied to caches programmatically created through
       the CacheManager.
 
@@ -58,7 +56,6 @@
       diskExpiryThreadIntervalSeconds- The number of seconds between runs of the disk expiry thread. The default value
                                        is 120 seconds.
       -->
-
   <defaultCache
       maxElementsInMemory="4096"
       eternal="false"
@@ -67,12 +64,10 @@
       timeToLiveSeconds="300"
       diskPersistent="false"
       diskExpiryThreadIntervalSeconds="120" />
-
   <!-- Database-stored tokens in Hibernate's second-level cache -->
   <cache name="com.atlassian.crowd.model.token.Token"
          maxElementsInMemory="2048"
       />
-
   <!-- These two caches back TokenDAOMemory and should be persisted -->
   <cache name="com.atlassian.crowd.model.token.Token.identifier-hash-cache"
          maxElementsInMemory="2048"
@@ -80,18 +75,15 @@
          overflowToDisk="true"
          diskPersistent="true"
       />
-
   <cache name="com.atlassian.crowd.model.token.Token.random-hash-cache"
          maxElementsInMemory="2048"
          eternal="true"
          overflowToDisk="true"
          diskPersistent="true"
       />
-
   <cache name="com.atlassian.crowd.model.property.Property"
          maxElementsInMemory="256"
       />
-
   <cache name="com.atlassian.crowd.model.token.ResetPasswordToken"
          maxElementsInMemory="1024"
          overflowToDisk="true"
@@ -99,6 +91,5 @@
          timeToIdleSeconds="86400"
          timeToLiveSeconds="86400"
       />
-
   <!-- See http://ehcache.sourceforge.net/documentation/#mozTocId258426 for how to configure caching for your objects -->
 </ehcache>

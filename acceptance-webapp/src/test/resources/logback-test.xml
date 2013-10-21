@@ -27,20 +27,17 @@
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
     <resetJUL>true</resetJUL>
   </contextListener>
-
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <withJansi>true</withJansi>
     <encoder>
-      <pattern>%date{ISO8601} | %highlight(%-5level) | %msg %green([%logger{40}){}%cyan(&lt;%thread&gt;){}%green(]){} %n%xEx</pattern>
+      <pattern>%date{ISO8601} | %highlight(%-5level) | %msg %green([%logger{40}){}%cyan(&lt;%thread&gt;){}%green(]){} %n%xEx
+      </pattern>
     </encoder>
   </appender>
-
   <!-- Acceptance -->
   <logger name="org.exoplatform.acceptance" level="DEBUG" />
-
   <!-- Spring -->
-  <logger name="org.springframework" level="INFO" />
-
+  <logger name="org.springframework" level="WARN" />
   <root level="INFO">
     <appender-ref ref="CONSOLE" />
   </root>

@@ -43,24 +43,54 @@
       <artifactId>crowd-integration-springsecurity</artifactId>
     </dependency>
     <!-- **************************************** -->
+    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Guava -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <classifier>cdi1.0</classifier>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- JSonPath -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Embedded MongoDB -->
     <!-- **************************************** -->
     <dependency>
       <groupId>cz.jirutka.spring</groupId>
       <artifactId>embedmongo-spring</artifactId>
     </dependency>
+    <!-- **************************************** -->
+    <!-- javax.* -->
+    <!-- **************************************** -->
     <!-- javax.annotation.security -->
     <dependency>
       <groupId>javax.annotation</groupId>
       <artifactId>jsr250-api</artifactId>
     </dependency>
-    <!-- **************************************** -->
-    <!-- javax.* -->
-    <!-- **************************************** -->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Juzu -->
+    <!-- **************************************** -->
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-core</artifactId>
@@ -94,6 +124,13 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Spring Security Framework -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
     </dependency>
     <!-- **************************************** -->
     <!-- Spring Data Framework -->
@@ -138,9 +175,6 @@
       <artifactId>logback-classic</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <!-- **************************************** -->
-    <!-- Jackson 2 (needed for Spring MVC JSON mapping) -->
-    <!-- **************************************** -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -185,14 +219,6 @@
       <artifactId>log4j-over-slf4j</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <!-- **************************************** -->
-    <!-- Spring Security Framework -->
-    <!-- **************************************** -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <scope>runtime</scope>
-    </dependency>
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
@@ -207,11 +233,27 @@
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->
+    <!-- JSonPath -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
     <!-- JUnit -->
     <!-- **************************************** -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Hamcrest -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
       <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
@@ -234,6 +276,14 @@
     <dependency>
       <groupId>org.juzu</groupId>
       <artifactId>juzu-depchain-arquillian-tomcat7</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Mockito -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <!-- **************************************** -->
