@@ -46,21 +46,45 @@ public abstract class BaseController implements RequestLifeCycle {
    */
   @Inject
   @Named("flash")
-  protected Flash flash;
+  private Flash flash;
 
   /**
    * Current user
    */
   @Inject
   @Named("user")
-  protected CurrentUser user;
+  private CurrentUser user;
 
   /**
    * Current execution context
    */
   @Inject
   @Named("context")
-  protected Context context;
+  private Context context;
+
+  public Flash getFlash() {
+    return flash;
+  }
+
+  public void setFlash(Flash flash) {
+    this.flash = flash;
+  }
+
+  public CurrentUser getUser() {
+    return user;
+  }
+
+  public void setUser(CurrentUser user) {
+    this.user = user;
+  }
+
+  public Context getContext() {
+    return context;
+  }
+
+  public void setContext(Context context) {
+    this.context = context;
+  }
 
   protected void render(Template template) {
     this.render(template.with());
@@ -82,7 +106,7 @@ public abstract class BaseController implements RequestLifeCycle {
     try {
       return content
           .withHeaderTag("<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/assets/org/exoplatform/acceptance/frontend/assets/images/favicon.ico\"></link>")
-          .withMetaTag("viewport","width=device-width, initial-scale=1.0")
+          .withMetaTag("viewport", "width=device-width, initial-scale=1.0")
           ;
     } catch (ParserConfigurationException e) {
       LOGGER.error("Impossible to insert the favicon header in the page", e);
