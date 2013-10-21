@@ -63,7 +63,7 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
         throw new BadCredentialsException("Invalid username or password");
       }
     } catch (UsernameNotFoundException unnfe) {
-      throw new BadCredentialsException("Invalid username or password",unnfe);
+      throw new BadCredentialsException("Invalid username or password", unnfe);
     }
   }
 
