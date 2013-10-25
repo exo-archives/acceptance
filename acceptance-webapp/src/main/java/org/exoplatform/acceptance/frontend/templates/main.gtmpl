@@ -27,11 +27,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if(user.isAnonymous()) { %>
-          <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+          <li><a href="@{ Home.about()}" title="About"><i class="fa fa-info-circle"></i> About</a></li>
           <% } else { %>
-          <li><a href="@{ Home.about()}" title="About"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-          <li><a href="@{ Home.profile()}" title="Profile"><span class="glyphicon glyphicon-user"></span> ${user?.fullName}</a></li>
-          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><span class="glyphicon glyphicon-off"></span></a></li>
+          <li><a href="@{ Home.about()}" title="About"><i class="fa fa-info-circle"></i> About</a></li>
+          <li><a href="@{ Home.profile()}" title="Profile"><i class="fa fa-user"></i> ${user?.fullName}</a></li>
+          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><i class="fa fa-power-off"></i></a></li>
           <% } %>
         </ul>
       </div>

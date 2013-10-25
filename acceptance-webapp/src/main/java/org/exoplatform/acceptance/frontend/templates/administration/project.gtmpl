@@ -18,7 +18,7 @@
         #{adminMenu/}
       </div>
       <div class="col-md-10">
-        <div class="pull-left"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;<input type="text" ng-model="search" class="search-query" placeholder="Search"></div>
+        <div class="pull-left"><i class="fa fa-search"></i>&nbsp;&nbsp;<input type="text" ng-model="search" class="search-query" placeholder="Search"></div>
         <div class="pull-right">{{projectsLength}} projects</div>
         <div class="table-responsive">
           <table class="table table-striped">
@@ -26,14 +26,14 @@
             <tr>
               <th>Project</th>
               <th>Description</th>
-              <th><a href="#/new"><i class="glyphicon glyphicon-plus-sign"></i></a></th>
+              <th><a href="#/new"><i class="fa fa-plus-circle"></i></a></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="project in projects | filter:search | orderBy:'name'">
               <td>{{project.name}}</td>
               <td>{{project.description}}</td>
-              <td><a href="#/edit/{{project.id}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+              <td><a href="#/edit/{{project.id}}"><i class="fa fa-pencil-square-o"></i></a></td>
             </tr>
             </tbody>
           </table>
@@ -87,7 +87,7 @@
           </div>
           <div class="col-md-10 col-md-offset-2">
             <div class="pull-left">
-              <a ng-click="destroy()" ng-show="project.id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+              <a ng-click="destroy()" ng-show="project.id" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</a>
             </div>
             <div class="pull-right">
               <button ng-click="save()" ng-disabled="isClean() || projectForm.$invalid" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Save</button>
