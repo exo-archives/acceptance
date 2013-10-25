@@ -17,8 +17,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="@{ Home.deployments()}">Deployments</a></li>
           <li><a href="@{ Home.sources()}">Sources</a></li>
+          <li><a href="@{ Home.buildjobs()}">Build jobs</a></li>
+          <li><a href="@{ Home.deployments()}">Deployments</a></li>
           <% if(user.isAdmin()) { %>
           <li><a href="@{ Administration.index()}">Administration</a></li>
           <% } %>

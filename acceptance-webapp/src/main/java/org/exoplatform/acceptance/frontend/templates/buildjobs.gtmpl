@@ -1,0 +1,14 @@
+#{decorate path="main.gtmpl"/}
+#{title value="Build jobs list"/}
+<div class="row">
+  <div class="col-md-12">
+    <ol class="breadcrumb">
+      <li><a href="@{Home.index()}">Home</a></li>
+      <li class="active">Build jobs</li>
+    </ol>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+  </div>
+</div>

@@ -38,18 +38,25 @@ public class Home extends BaseController {
   private org.exoplatform.acceptance.frontend.templates.index index;
 
   /**
-   * Deployments list page
-   */
-  @Inject
-  @Path("deployments.gtmpl")
-  private org.exoplatform.acceptance.frontend.templates.deployments deployments;
-
-  /**
    * Sources list page
    */
   @Inject
   @Path("sources.gtmpl")
   private org.exoplatform.acceptance.frontend.templates.sources sources;
+
+  /**
+   * Build jobs list page
+   */
+  @Inject
+  @Path("buildjobs.gtmpl")
+  private org.exoplatform.acceptance.frontend.templates.buildjobs buildjobs;
+
+  /**
+   * Deployments list page
+   */
+  @Inject
+  @Path("deployments.gtmpl")
+  private org.exoplatform.acceptance.frontend.templates.deployments deployments;
 
   /**
    * Forbidden access page (403)
@@ -71,21 +78,30 @@ public class Home extends BaseController {
   }
 
   /**
-   * Deployments list route
-   */
-  @View
-  @Route("/deployments")
-  public Response.Content deployments() {
-    return makeResponse(deployments);
-  }
-
-  /**
    * Sources list page
    */
   @View
   @Route("/sources")
   public Response.Content sources() {
     return makeResponse(sources);
+  }
+
+  /**
+   * Build jobs list page
+   */
+  @View
+  @Route("/buildjobs")
+  public Response.Content buildjobs() {
+    return makeResponse(buildjobs);
+  }
+
+  /**
+   * Deployments list route
+   */
+  @View
+  @Route("/deployments")
+  public Response.Content deployments() {
+    return makeResponse(deployments);
   }
 
   /**

@@ -45,6 +45,8 @@
         <dl>
           <dt>Your identifier</dt>
           <dd>${user.username}</dd>
+        </dl>
+        <dl>
           <dt>Your eMail</dt>
           <dd><a href="mailto:${user.email}">${user.email}</a></dd>
         </dl>
