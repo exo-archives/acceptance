@@ -20,9 +20,7 @@ package org.exoplatform.acceptance.frontend.controllers;
 
 import static org.junit.Assert.assertTrue;
 
-import org.exoplatform.acceptance.frontend.templates.AboutPage;
 import org.exoplatform.acceptance.frontend.templates.IndexPage;
-import org.exoplatform.acceptance.frontend.templates.SigninPage;
 import org.exoplatform.acceptance.frontend.templates.admin.AdminIndexPage;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -37,10 +35,11 @@ public class AnonymousPermissionsIT extends ArquillianSetup {
   @Test
   @InSequence(1)
   public void login() throws Exception {
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
-    signinPage.goTo();
-    signinPage.login("foo", "foo");
-    assertTrue(signinPage.validate());
+    IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
+    indexPage.goTo();
+    indexPage.login("foo", "foo");
+    assertTrue(indexPage.validate());
+    assertTrue(indexPage.displayLoginError());
   }
 
   /**
@@ -50,30 +49,18 @@ public class AnonymousPermissionsIT extends ArquillianSetup {
   @InSequence(2)
   public void index() throws Exception {
     IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
     indexPage.goTo();
-    assertTrue(signinPage.validate());
-  }
-
-  /**
-   * Validates that an anonymous user can display the about page.
-   */
-  @Test
-  @InSequence(3)
-  public void about() throws Exception {
-    AboutPage aboutPage = new AboutPage(getDriver(), getDeploymentURL());
-    aboutPage.goTo();
-    assertTrue(aboutPage.validate());
+    assertTrue(indexPage.validate());
   }
 
   /**
    * Validates that an anonymous user cannot display the administration home page and is redirected to the authentication page.
    */
   @Test
-  @InSequence(4)
+  @InSequence(3)
   public void admin() throws Exception {
     AdminIndexPage adminIndexPage = new AdminIndexPage(getDriver(), getDeploymentURL());
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
+    IndexPage signinPage = new IndexPage(getDriver(), getDeploymentURL());
     adminIndexPage.goTo();
     assertTrue(signinPage.validate());
   }

@@ -51,8 +51,8 @@ public class ApplicationController extends RestController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Iterable<Application> getApplications(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    // TODO : Filter content depending of the caller role/right
     return applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
@@ -64,8 +64,8 @@ public class ApplicationController extends RestController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Application getApplication(@PathVariable(value = "id") String id) {
+    // TODO : Filter content depending of the caller role/right
     return applicationRepository.findOne(id);
   }
 

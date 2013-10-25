@@ -20,9 +20,7 @@ package org.exoplatform.acceptance.frontend.controllers;
 
 import static org.junit.Assert.assertTrue;
 
-import org.exoplatform.acceptance.frontend.templates.AboutPage;
 import org.exoplatform.acceptance.frontend.templates.IndexPage;
-import org.exoplatform.acceptance.frontend.templates.SigninPage;
 import org.exoplatform.acceptance.frontend.templates.admin.AdminIndexPage;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -37,10 +35,9 @@ public class AdminPermissionsIT extends ArquillianSetup {
   @Test
   @InSequence(1)
   public void login() throws Exception {
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
     IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
-    signinPage.goTo();
-    signinPage.login("admin", "admin");
+    indexPage.goTo();
+    indexPage.login("admin", "admin");
     assertTrue(indexPage.validate());
   }
 
@@ -56,21 +53,10 @@ public class AdminPermissionsIT extends ArquillianSetup {
   }
 
   /**
-   * Validates that an administrator can display the about page.
-   */
-  @Test
-  @InSequence(3)
-  public void about() throws Exception {
-    AboutPage aboutPage = new AboutPage(getDriver(), getDeploymentURL());
-    aboutPage.goTo();
-    assertTrue(aboutPage.validate());
-  }
-
-  /**
    * Validates that an administrator can display the administration home page.
    */
   @Test
-  @InSequence(4)
+  @InSequence(3)
   public void admin() throws Exception {
     AdminIndexPage adminIndexPage = new AdminIndexPage(getDriver(), getDeploymentURL());
     adminIndexPage.goTo();
@@ -81,13 +67,12 @@ public class AdminPermissionsIT extends ArquillianSetup {
    * Validates that an administrator can log out.
    */
   @Test
-  @InSequence(5)
+  @InSequence(4)
   public void logout() throws Exception {
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
     IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
     indexPage.goTo();
     indexPage.logout();
-    assertTrue(signinPage.validate());
+    assertTrue(indexPage.validate());
   }
 
 }

@@ -20,10 +20,8 @@ package org.exoplatform.acceptance.frontend.controllers;
 
 import static org.junit.Assert.assertTrue;
 
-import org.exoplatform.acceptance.frontend.templates.AboutPage;
 import org.exoplatform.acceptance.frontend.templates.Error403Page;
 import org.exoplatform.acceptance.frontend.templates.IndexPage;
-import org.exoplatform.acceptance.frontend.templates.SigninPage;
 import org.exoplatform.acceptance.frontend.templates.admin.AdminIndexPage;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
@@ -38,10 +36,9 @@ public class UserPermissionsIT extends ArquillianSetup {
   @Test
   @InSequence(1)
   public void login() throws Exception {
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
     IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
-    signinPage.goTo();
-    signinPage.login("user", "user");
+    indexPage.goTo();
+    indexPage.login("user", "user");
     assertTrue(indexPage.validate());
   }
 
@@ -57,21 +54,10 @@ public class UserPermissionsIT extends ArquillianSetup {
   }
 
   /**
-   * Validates that a user can display the administration home page.
-   */
-  @Test
-  @InSequence(3)
-  public void about() throws Exception {
-    AboutPage aboutPage = new AboutPage(getDriver(), getDeploymentURL());
-    aboutPage.goTo();
-    assertTrue(aboutPage.validate());
-  }
-
-  /**
    * Validates that a user cannot display the administration home page.
    */
   @Test
-  @InSequence(4)
+  @InSequence(3)
   public void admin() throws Exception {
     AdminIndexPage adminIndexPage = new AdminIndexPage(getDriver(), getDeploymentURL());
     Error403Page error403Page = new Error403Page(getDriver(), getDeploymentURL());
@@ -83,13 +69,12 @@ public class UserPermissionsIT extends ArquillianSetup {
    * Validates that a user can log out.
    */
   @Test
-  @InSequence(5)
+  @InSequence(4)
   public void logout() throws Exception {
-    SigninPage signinPage = new SigninPage(getDriver(), getDeploymentURL());
     IndexPage indexPage = new IndexPage(getDriver(), getDeploymentURL());
     indexPage.goTo();
     indexPage.logout();
-    assertTrue(signinPage.validate());
+    assertTrue(indexPage.validate());
   }
 
 }

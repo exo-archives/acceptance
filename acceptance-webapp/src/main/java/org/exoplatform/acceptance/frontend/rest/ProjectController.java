@@ -57,8 +57,8 @@ public class ProjectController extends RestController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Iterable<Project> getProjects(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    // TODO : Filter content depending of the caller role/right
     return projectRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
@@ -70,8 +70,8 @@ public class ProjectController extends RestController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Project getProject(@PathVariable(value = "id") String id) {
+    // TODO : Filter content depending of the caller role/right
     return projectRepository.findOne(id);
   }
 

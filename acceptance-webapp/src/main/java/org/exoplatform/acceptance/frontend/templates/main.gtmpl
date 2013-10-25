@@ -17,21 +17,15 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <% if(user.isUser()) { %>
           <li><a href="@{ Home.deployments()}">Deployments</a></li>
           <li><a href="@{ Home.sources()}">Sources</a></li>
           <% if(user.isAdmin()) { %>
           <li><a href="@{ Administration.index()}">Administration</a></li>
           <% } %>
-          <% } %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% if(user.isAnonymous()) { %>
-          <li><a href="@{ Home.about()}" title="About"><i class="fa fa-info-circle"></i> About</a></li>
-          <% } else { %>
-          <li><a href="@{ Home.about()}" title="About"><i class="fa fa-info-circle"></i> About</a></li>
-          <li><a href="@{ Home.profile()}" title="Profile"><i class="fa fa-user"></i> ${user?.fullName}</a></li>
-          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><i class="fa fa-power-off"></i></a></li>
+          <% if(! user.isAnonymous()) { %>
+          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><i class="fa fa-power-off"></i> Logout</a></li>
           <% } %>
         </ul>
       </div>
@@ -64,5 +58,5 @@
   </div>
 </div>
 <div id="footer">
-  <p class="muted credit">eXo Acceptance <a href="@{Home.about()}">${context?.version} (rev. ${context?.scmRevision?.substring(0,6)})</a> - Powered by <a href="http://juzuweb.org/">juzu</a><br/>Copyright &copy; ${context?.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${context.organizationUrl}">${context.organizationName}</a>.</p>
+  <p class="muted credit">eXo Acceptance ${context?.version} (rev. ${context?.shortScmRevision}) - Powered by <a href="http://juzuweb.org/" target="_blank">juzu</a><br/>Copyright &copy; ${context?.inceptionYear} - <% out.print(java.text.MessageFormat.format("{0,date,yyyy}", new Date())) %>. All rights Reserved, <a href="${context.organizationUrl}" target="_blank">${context.organizationName}</a>.</p>
 </div>

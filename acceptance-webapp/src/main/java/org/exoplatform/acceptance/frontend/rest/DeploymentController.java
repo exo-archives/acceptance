@@ -55,8 +55,8 @@ public class DeploymentController extends RestController {
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    // TODO : Filter content depending of the caller role/right
     return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
@@ -68,8 +68,8 @@ public class DeploymentController extends RestController {
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Deployment getDeployment(@PathVariable(value = "id") String id) {
+    // TODO : Filter content depending of the caller role/right
     return deploymentRepository.findOne(id);
   }
 
@@ -120,8 +120,8 @@ public class DeploymentController extends RestController {
    */
   @RequestMapping(value = "{applicationName}", method = RequestMethod.GET)
   @ResponseBody
-  @RolesAllowed("ROLE_USER")
   public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
+    // TODO : Filter content depending of the caller role/right
     return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 }

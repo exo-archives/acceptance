@@ -26,7 +26,6 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import juzu.plugin.asset.WithAssets;
 import org.apache.commons.httpclient.HttpStatus;
 
 public class Home extends BaseController {
@@ -53,27 +52,6 @@ public class Home extends BaseController {
   private org.exoplatform.acceptance.frontend.templates.sources sources;
 
   /**
-   * User profile page
-   */
-  @Inject
-  @Path("profile.gtmpl")
-  private org.exoplatform.acceptance.frontend.templates.profile profile;
-
-  /**
-   * About the app page
-   */
-  @Inject
-  @Path("about.gtmpl")
-  private org.exoplatform.acceptance.frontend.templates.about about;
-
-  /**
-   * Signin page
-   */
-  @Inject
-  @Path("signin.gtmpl")
-  private org.exoplatform.acceptance.frontend.templates.signin signin;
-
-  /**
    * Forbidden access page (403)
    */
   @Inject
@@ -85,26 +63,11 @@ public class Home extends BaseController {
    */
   @View
   @Route("/")
-  public Response.Content index() {
+  public Response.Content index(String error) {
+    if (!Strings.isNullOrEmpty(error)) {
+      getFlash().setError("Erroneous username or password !");
+    }
     return makeResponse(index);
-  }
-
-  /**
-   * User profile route
-   */
-  @View
-  @Route("/profile")
-  public Response.Content profile() {
-    return makeResponse(profile);
-  }
-
-  /**
-   * About the app route
-   */
-  @View
-  @Route("/about")
-  public Response.Content about() {
-    return makeResponse(about);
   }
 
   /**
@@ -123,19 +86,6 @@ public class Home extends BaseController {
   @Route("/sources")
   public Response.Content sources() {
     return makeResponse(sources);
-  }
-
-  /**
-   * Signin route
-   */
-  @View
-  @Route("/signin")
-  @WithAssets("signin.css")
-  public Response.Content signin(String error) {
-    if (!Strings.isNullOrEmpty(error)) {
-      getFlash().setError("Erroneous username or password !");
-    }
-    return makeResponse(signin.with().ok());
   }
 
   /**

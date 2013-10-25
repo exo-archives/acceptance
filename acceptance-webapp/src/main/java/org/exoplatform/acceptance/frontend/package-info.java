@@ -43,8 +43,7 @@
             @Asset(id = "projects-admin.js", value = "administration/project.js", depends = {"restangular.js", "ui-bootstrap.js"}),
             @Asset(id = "bootstrap.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
             @Asset(id = "font-awesome.css", value = "font_awesome_4_0_0/css/font-awesome.min.css"),
-            @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootstrap.css","font-awesome.css"}),
-            @Asset(id = "signin.css", value = "signin.css")
+            @Asset(id = "acceptance.css", value = "acceptance.css", depends = {"bootstrap.css","font-awesome.css"})
         })
 
 // Always use these assets

@@ -28,6 +28,13 @@ public class IndexPage extends Page {
 
   static final By LOGOUT_LINK = By.id("logoutLink");
 
+  static final By USERNAME_FIELD = By.id("loginForm:username");
+
+  static final By PASSWORD_FIELD = By.id("loginForm:password");
+
+  static final By LOGIN_BUTTON = By.id("loginForm:login");
+
+
   public IndexPage(WebDriver driver, URL contextPath) {
     super(driver, contextPath);
   }
@@ -45,4 +52,15 @@ public class IndexPage extends Page {
   public void logout() throws Exception {
     getDriver().findElement(LOGOUT_LINK).click();
   }
+
+  public void login(String name, String password) throws Exception {
+    getDriver().findElement(USERNAME_FIELD).sendKeys(name);
+    getDriver().findElement(PASSWORD_FIELD).sendKeys(password);
+    getDriver().findElement(LOGIN_BUTTON).click();
+  }
+
+  public boolean displayLoginError() throws Exception {
+    return getDriver().findElement(By.xpath("//div[contains(.,'Erroneous username or password !')]")).isDisplayed();
+  }
+
 }

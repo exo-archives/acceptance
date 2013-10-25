@@ -19,7 +19,8 @@
 package org.exoplatform.acceptance.frontend.model;
 
 import java.net.URL;
-import java.util.Date;
+import java.text.DateFormat;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -55,8 +56,12 @@ public class Context {
     return configuration.getVersion();
   }
 
-  public Date getBuildDate() {
-    return configuration.getBuildDate();
+  public String getBuildDate() {
+    return configuration.getBuildDate() != null ? DateFormat.getDateInstance(DateFormat.LONG, Locale.US).format(configuration.getBuildDate()) : "";
+  }
+
+  public String getBuildTime() {
+    return configuration.getBuildDate() != null ? DateFormat.getTimeInstance(DateFormat.LONG, Locale.US).format(configuration.getBuildDate()) : "";
   }
 
   public String getOrganizationUrl() {
@@ -82,4 +87,9 @@ public class Context {
   public String getInceptionYear() {
     return configuration.getInceptionYear();
   }
+
+  public String getShortScmRevision() {
+    return configuration.getScmRevision() != null ? configuration.getScmRevision().substring(0, 6) : "";
+  }
+
 }
