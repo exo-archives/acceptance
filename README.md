@@ -34,6 +34,8 @@ The project is composed of 3 modules :
 
 ## BUILD (AND AUTOMATED TESTS)
 
+[![Build Status](https://ci.exoplatform.org/buildStatus/icon?job=acceptance-master-ci)](https://ci.exoplatform.org/job/acceptance-master-ci/)
+
 To build the project you requires Apache Maven 3.0.4 and Java 7, and then you launch
 
     mvn verify
