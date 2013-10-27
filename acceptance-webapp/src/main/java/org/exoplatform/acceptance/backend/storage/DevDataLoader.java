@@ -55,6 +55,8 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     if (context.getParent() == null) {
       // cleanup the collection if any Tenant
       applicationRepository.deleteAll();
+      deploymentRepository.deleteAll();
+      projectRepository.deleteAll();
       Application app1 = createApplication("Application #1");
       Application app2 = createApplication("Application #2");
       Application app3 = createApplication("Application #3");
