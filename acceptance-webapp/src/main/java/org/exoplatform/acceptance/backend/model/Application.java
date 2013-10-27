@@ -20,6 +20,7 @@ package org.exoplatform.acceptance.backend.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -32,6 +33,7 @@ public class Application {
   @Id
   private String id;
 
+  @Indexed(unique = true)
   private String name;
 
   public String getId() {
