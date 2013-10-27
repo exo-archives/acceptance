@@ -21,7 +21,7 @@ package org.exoplatform.acceptance.frontend.rest;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Project;
-import org.exoplatform.acceptance.backend.storage.ProjectRepository;
+import org.exoplatform.acceptance.backend.storage.ProjectMongoStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +46,7 @@ public class ProjectController extends RestController {
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
   @Inject
-  private ProjectRepository projectRepository;
+  private ProjectMongoStorage projectMongoStorage;
 
   /**
    * Get a paginated list of available projects
@@ -59,7 +59,7 @@ public class ProjectController extends RestController {
   @ResponseBody
   public Iterable<Project> getProjects(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     // TODO : Filter content depending of the caller role/right
-    return projectRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
+    return projectMongoStorage.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
   /**
@@ -72,7 +72,7 @@ public class ProjectController extends RestController {
   @ResponseBody
   public Project getProject(@PathVariable(value = "id") String id) {
     // TODO : Filter content depending of the caller role/right
-    return projectRepository.findOne(id);
+    return projectMongoStorage.findOne(id);
   }
 
   /**
@@ -86,7 +86,7 @@ public class ProjectController extends RestController {
   @RolesAllowed("ROLE_ADMIN")
   public Project saveProject(@RequestBody Project project) {
     LOGGER.debug("Creating project {}", project.getName());
-    return projectRepository.save(project);
+    return projectMongoStorage.save(project);
   }
 
   /**
@@ -101,7 +101,7 @@ public class ProjectController extends RestController {
   @RolesAllowed("ROLE_ADMIN")
   public Project updateProject(@PathVariable(value = "id") String id, @RequestBody Project project) {
     LOGGER.debug("Updating project {} with ID {}", project.getName(), project.getId());
-    return projectRepository.save(project);
+    return projectMongoStorage.save(project);
   }
 
   /**
@@ -114,6 +114,6 @@ public class ProjectController extends RestController {
   @RolesAllowed("ROLE_ADMIN")
   public void deleteProject(@PathVariable(value = "id") String id) {
     LOGGER.debug("Deleting project with ID {}", id);
-    projectRepository.delete(id);
+    projectMongoStorage.delete(id);
   }
 }

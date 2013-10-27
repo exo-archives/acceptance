@@ -29,6 +29,6 @@ import org.springframework.stereotype.Repository;
  * CRUD operations managed by Mongo for Deployment classes
  */
 @Repository
-public interface DeploymentRepository extends MongoRepository<Deployment, String> {
+public interface DeploymentMongoStorage extends MongoRepository<Deployment, String> {
   Page<Deployment> findByApplication(Application application, Pageable pageable);
 }

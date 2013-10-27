@@ -18,14 +18,14 @@
  */
 package org.exoplatform.acceptance.backend.storage;
 
-import org.exoplatform.acceptance.backend.model.Project;
+import org.exoplatform.acceptance.backend.model.Application;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CRUD operations managed by Mongo for Project classes
+ * CRUD operations managed by Mongo for Application classes
  */
 @Repository
-public interface ProjectRepository extends MongoRepository<Project, String> {
-  Project findByName(String name);
+public interface ApplicationMongoStorage extends MongoRepository<Application, String> {
+  Application findByName(String name);
 }

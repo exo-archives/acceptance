@@ -21,8 +21,8 @@ package org.exoplatform.acceptance.frontend.rest;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Deployment;
-import org.exoplatform.acceptance.backend.storage.ApplicationRepository;
-import org.exoplatform.acceptance.backend.storage.DeploymentRepository;
+import org.exoplatform.acceptance.backend.storage.ApplicationMongoStorage;
+import org.exoplatform.acceptance.backend.storage.DeploymentMongoStorage;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -41,10 +41,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DeploymentController extends RestController {
 
   @Inject
-  private DeploymentRepository deploymentRepository;
+  private DeploymentMongoStorage deploymentMongoStorage;
 
   @Inject
-  private ApplicationRepository applicationRepository;
+  private ApplicationMongoStorage applicationMongoStorage;
 
   /**
    * Get a paginated list of available deployments
@@ -57,7 +57,7 @@ public class DeploymentController extends RestController {
   @ResponseBody
   public Iterable<Deployment> getDeployments(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     // TODO : Filter content depending of the caller role/right
-    return deploymentRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
+    return deploymentMongoStorage.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
   /**
@@ -70,7 +70,7 @@ public class DeploymentController extends RestController {
   @ResponseBody
   public Deployment getDeployment(@PathVariable(value = "id") String id) {
     // TODO : Filter content depending of the caller role/right
-    return deploymentRepository.findOne(id);
+    return deploymentMongoStorage.findOne(id);
   }
 
   /**
@@ -83,7 +83,7 @@ public class DeploymentController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Deployment saveDeployment(@RequestBody Deployment deployment) {
-    return deploymentRepository.save(deployment);
+    return deploymentMongoStorage.save(deployment);
   }
 
   /**
@@ -96,7 +96,7 @@ public class DeploymentController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Deployment updateDeployment(@RequestBody Deployment deployment) {
-    return deploymentRepository.save(deployment);
+    return deploymentMongoStorage.save(deployment);
   }
 
   /**
@@ -107,7 +107,7 @@ public class DeploymentController extends RestController {
   @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
   @RolesAllowed("ROLE_ADMIN")
   public void deleteDeployment(@RequestBody Deployment deployment) {
-    deploymentRepository.delete(deployment);
+    deploymentMongoStorage.delete(deployment);
   }
 
   /**
@@ -122,6 +122,6 @@ public class DeploymentController extends RestController {
   @ResponseBody
   public Iterable<Deployment> getDeploymentsByApplicationName(@PathVariable(value = "applicationName") String applicationName, @RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     // TODO : Filter content depending of the caller role/right
-    return deploymentRepository.findByApplication(applicationRepository.findByName(applicationName), new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
+    return deploymentMongoStorage.findByApplication(applicationMongoStorage.findByName(applicationName), new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 }

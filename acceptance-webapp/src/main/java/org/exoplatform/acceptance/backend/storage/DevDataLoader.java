@@ -35,13 +35,13 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
   private static final Logger LOGGER = LoggerFactory.getLogger(DevDataLoader.class);
 
   @Inject
-  private ApplicationRepository applicationRepository;
+  private ApplicationMongoStorage applicationMongoStorage;
 
   @Inject
-  private DeploymentRepository deploymentRepository;
+  private DeploymentMongoStorage deploymentMongoStorage;
 
   @Inject
-  private ProjectRepository projectRepository;
+  private ProjectMongoStorage projectMongoStorage;
 
   /**
    * Handle an application event.
@@ -54,9 +54,9 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     // Load data in the root context
     if (context.getParent() == null) {
       // cleanup the collection if any Tenant
-      applicationRepository.deleteAll();
-      deploymentRepository.deleteAll();
-      projectRepository.deleteAll();
+      applicationMongoStorage.deleteAll();
+      deploymentMongoStorage.deleteAll();
+      projectMongoStorage.deleteAll();
       Application app1 = createApplication("Application #1");
       Application app2 = createApplication("Application #2");
       Application app3 = createApplication("Application #3");
@@ -81,14 +81,14 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     Application application = new Application();
     application.setName(name);
     LOGGER.debug("DevDataLoader - new Application : {}", application);
-    return applicationRepository.save(application);
+    return applicationMongoStorage.save(application);
   }
 
   private Deployment createDeployment(Application app) {
     Deployment deployment = new Deployment();
     deployment.setApplication(app);
     LOGGER.debug("DevDataLoader - new Deployment : {}", deployment);
-    return deploymentRepository.save(deployment);
+    return deploymentMongoStorage.save(deployment);
   }
 
   private Project createProject(String name) {
@@ -100,6 +100,6 @@ public class DevDataLoader implements ApplicationListener<ContextRefreshedEvent>
     }
     project.setDescription("This is the description of " + name);
     LOGGER.debug("DevDataLoader - new Project : {}", project);
-    return projectRepository.save(project);
+    return projectMongoStorage.save(project);
   }
 }

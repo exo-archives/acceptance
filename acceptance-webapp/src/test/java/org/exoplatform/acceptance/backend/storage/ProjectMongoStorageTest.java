@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import javax.inject.Inject;
-import org.exoplatform.acceptance.backend.model.Application;
+import org.exoplatform.acceptance.backend.model.Project;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,53 +39,52 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
-public class ApplicationRepositoryTest {
+public class ProjectMongoStorageTest {
 
   @Inject
-  ApplicationRepository applicationRepository;
+  ProjectMongoStorage projectMongoStorage;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    this.applicationRepository.deleteAll();
+    this.projectMongoStorage.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    this.applicationRepository.deleteAll();
+    this.projectMongoStorage.deleteAll();
   }
 
   @Test
   public void create() {
-    this.applicationRepository.deleteAll();
-    Application application = new Application();
-    application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    assertNotNull("The application ID should not be null", savedApplication.getId());
-    assertEquals("We should have exactly 1 application", 1, applicationRepository.count());
+    this.projectMongoStorage.deleteAll();
+    Project project = new Project();
+    project.setName("my project");
+    Project savedProject = projectMongoStorage.save(project);
+    assertNotNull("The project ID should not be null", savedProject.getId());
+    assertEquals("We should have exactly 1 project", 1, projectMongoStorage.count());
   }
 
   @Test
   public void delete() {
-    this.applicationRepository.deleteAll();
-    Application application = new Application();
-    application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    applicationRepository.delete(savedApplication);
-    assertEquals("We should have exactly 0 application", 0, applicationRepository.count());
+    this.projectMongoStorage.deleteAll();
+    Project project = new Project();
+    project.setName("my project");
+    Project savedProject = projectMongoStorage.save(project);
+    projectMongoStorage.delete(savedProject);
+    assertEquals("We should have exactly 0 project", 0, projectMongoStorage.count());
   }
 
   @Test
   public void update() {
-    this.applicationRepository.deleteAll();
-    Application application = new Application();
-    application.setName("my application");
-    Application savedApplication = applicationRepository.save(application);
-    application.setName("my application 2");
-    applicationRepository.save(savedApplication);
-    assertEquals("We should have exactly 1 application", 1, applicationRepository.count());
-    assertEquals("my application 2", applicationRepository.findOne(savedApplication.getId()).getName());
+    this.projectMongoStorage.deleteAll();
+    Project project = new Project();
+    project.setName("my project");
+    Project savedProject = projectMongoStorage.save(project);
+    project.setName("my project 2");
+    projectMongoStorage.save(savedProject);
+    assertEquals("We should have exactly 1 project", 1, projectMongoStorage.count());
+    assertEquals("my project 2", projectMongoStorage.findOne(savedProject.getId()).getName());
   }
-
 }

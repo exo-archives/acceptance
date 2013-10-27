@@ -21,7 +21,7 @@ package org.exoplatform.acceptance.frontend.rest;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Application;
-import org.exoplatform.acceptance.backend.storage.ApplicationRepository;
+import org.exoplatform.acceptance.backend.storage.ApplicationMongoStorage;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ApplicationController extends RestController {
 
   @Inject
-  private ApplicationRepository applicationRepository;
+  private ApplicationMongoStorage applicationMongoStorage;
 
   /**
    * Get a paginated list of available applications
@@ -53,7 +53,7 @@ public class ApplicationController extends RestController {
   @ResponseBody
   public Iterable<Application> getApplications(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(value = "limit", defaultValue = DEFAULT_STORAGE_PAGE_SIZE + "") int limit) {
     // TODO : Filter content depending of the caller role/right
-    return applicationRepository.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
+    return applicationMongoStorage.findAll(new PageRequest(offset, limit <= MAX_STORAGE_PAGE_SIZE ? limit : DEFAULT_STORAGE_PAGE_SIZE));
   }
 
   /**
@@ -66,7 +66,7 @@ public class ApplicationController extends RestController {
   @ResponseBody
   public Application getApplication(@PathVariable(value = "id") String id) {
     // TODO : Filter content depending of the caller role/right
-    return applicationRepository.findOne(id);
+    return applicationMongoStorage.findOne(id);
   }
 
   /**
@@ -79,7 +79,7 @@ public class ApplicationController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Application saveApplication(@RequestBody Application application) {
-    return applicationRepository.save(application);
+    return applicationMongoStorage.save(application);
   }
 
   /**
@@ -92,7 +92,7 @@ public class ApplicationController extends RestController {
   @ResponseBody
   @RolesAllowed("ROLE_ADMIN")
   public Application updateApplication(@RequestBody Application application) {
-    return applicationRepository.save(application);
+    return applicationMongoStorage.save(application);
   }
 
   /**
@@ -103,6 +103,6 @@ public class ApplicationController extends RestController {
   @RequestMapping(value = "/", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
   @RolesAllowed("ROLE_ADMIN")
   public void deleteApplication(@RequestBody Application application) {
-    applicationRepository.delete(application);
+    applicationMongoStorage.delete(application);
   }
 }

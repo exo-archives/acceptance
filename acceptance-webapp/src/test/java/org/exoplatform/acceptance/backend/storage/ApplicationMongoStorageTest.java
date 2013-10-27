@@ -23,7 +23,6 @@ import static org.junit.Assert.assertNotNull;
 
 import javax.inject.Inject;
 import org.exoplatform.acceptance.backend.model.Application;
-import org.exoplatform.acceptance.backend.model.Deployment;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,59 +39,53 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
-public class DeploymentRepositoryTest {
+public class ApplicationMongoStorageTest {
 
   @Inject
-  DeploymentRepository deploymentRepository;
+  ApplicationMongoStorage applicationMongoStorage;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    this.deploymentRepository.deleteAll();
+    this.applicationMongoStorage.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    this.deploymentRepository.deleteAll();
+    this.applicationMongoStorage.deleteAll();
   }
 
   @Test
   public void create() {
-    this.deploymentRepository.deleteAll();
+    this.applicationMongoStorage.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Deployment deployment = new Deployment();
-    deployment.setApplication(application);
-    Deployment savedDeployment = deploymentRepository.save(deployment);
-    assertNotNull("The deployment ID should not be null", savedDeployment.getId());
-    assertEquals("We should have exactly 1 deployment", 1, deploymentRepository.count());
+    Application savedApplication = applicationMongoStorage.save(application);
+    assertNotNull("The application ID should not be null", savedApplication.getId());
+    assertEquals("We should have exactly 1 application", 1, applicationMongoStorage.count());
   }
 
   @Test
   public void delete() {
-    this.deploymentRepository.deleteAll();
+    this.applicationMongoStorage.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Deployment deployment = new Deployment();
-    deployment.setApplication(application);
-    Deployment savedDeployment = deploymentRepository.save(deployment);
-    deploymentRepository.delete(savedDeployment);
-    assertEquals("We should have exactly 0 deployment", 0, deploymentRepository.count());
+    Application savedApplication = applicationMongoStorage.save(application);
+    applicationMongoStorage.delete(savedApplication);
+    assertEquals("We should have exactly 0 application", 0, applicationMongoStorage.count());
   }
 
   @Test
   public void update() {
-    this.deploymentRepository.deleteAll();
+    this.applicationMongoStorage.deleteAll();
     Application application = new Application();
     application.setName("my application");
-    Deployment deployment = new Deployment();
-    deployment.setApplication(application);
-    Deployment savedDeployment = deploymentRepository.save(deployment);
-    deployment.getApplication().setName("my deployment 2");
-    deploymentRepository.save(savedDeployment);
-    assertEquals("We should have exactly 1 deployment", 1, deploymentRepository.count());
-    assertEquals("my deployment 2", deploymentRepository.findOne(savedDeployment.getId()).getApplication().getName());
+    Application savedApplication = applicationMongoStorage.save(application);
+    application.setName("my application 2");
+    applicationMongoStorage.save(savedApplication);
+    assertEquals("We should have exactly 1 application", 1, applicationMongoStorage.count());
+    assertEquals("my application 2", applicationMongoStorage.findOne(savedApplication.getId()).getName());
   }
 
 }
