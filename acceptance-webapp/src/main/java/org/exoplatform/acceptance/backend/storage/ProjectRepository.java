@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
+ * CRUD operations managed by Mongo for Project classes
  */
 @Repository
 public interface ProjectRepository extends MongoRepository<Project, String> {

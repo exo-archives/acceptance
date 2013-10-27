@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
+ * CRUD operations managed by Mongo for Application classes
  */
 @Repository
 public interface ApplicationRepository extends MongoRepository<Application, String> {
