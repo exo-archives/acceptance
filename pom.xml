@@ -76,7 +76,7 @@
     <spring.data.version>1.6.1.RELEASE</spring.data.version>
     <spring.security.version>3.1.4.RELEASE</spring.security.version>
     <spring.version>3.2.4.RELEASE</spring.version>
-    <tomcat.version>7.0.42</tomcat.version>
+    <tomcat.version>7.0.47</tomcat.version>
     <xml-apis.version>1.4.01</xml-apis.version>
     <!-- **************************************** -->
     <!-- Build settings                           -->
