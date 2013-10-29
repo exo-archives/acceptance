@@ -252,7 +252,7 @@
       <!-- **************************************** -->
       <dependency>
         <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-arquillian</artifactId>
+        <artifactId>juzu-depchain-arquillian</artifactId>
         <version>${juzu.version}</version>
         <exclusions>
           <exclusion>
@@ -263,27 +263,8 @@
       </dependency>
       <dependency>
         <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-arquillian-tomcat7</artifactId>
+        <artifactId>juzu-depchain-arquillian-tomcat7</artifactId>
         <version>${juzu.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-core</artifactId>
-        <version>${juzu.version}</version>
-        <exclusions>
-          <exclusion>
-            <artifactId>weld-core</artifactId>
-            <groupId>org.jboss.weld</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>commons-logging</artifactId>
-            <groupId>commons-logging</groupId>
-          </exclusion>
-          <exclusion>
-            <artifactId>slf4j-simple</artifactId>
-            <groupId>org.slf4j</groupId>
-          </exclusion>
-        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.juzu</groupId>
