@@ -364,21 +364,6 @@
         </executions>
       </plugin>
       <plugin>
-        <!-- Configure Groovy Compile for Juzu -->
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-        <configuration>
-          <sources>
-            <fileset>
-              <directory>${project.build.outputDirectory}</directory>
-              <includes>
-                <include>**/*.groovy</include>
-              </includes>
-            </fileset>
-          </sources>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
@@ -406,4 +391,28 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>exo-release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <!-- Compile Groovy templates for releases -->
+            <groupId>org.codehaus.gmaven</groupId>
+            <artifactId>gmaven-plugin</artifactId>
+            <configuration>
+              <sources>
+                <fileset>
+                  <directory>${project.build.outputDirectory}</directory>
+                  <includes>
+                    <include>**/*.groovy</include>
+                  </includes>
+                </fileset>
+              </sources>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
