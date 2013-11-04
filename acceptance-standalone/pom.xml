@@ -108,6 +108,8 @@
                 <mongodb.username>${acceptance.dev.mongodb.username}</mongodb.username>
                 <mongodb.password>${acceptance.dev.mongodb.password}</mongodb.password>
                 <logback.configurationFile>${project.basedir}/src/main/tomcat/conf/logback.xml</logback.configurationFile>
+                <!-- Juzu execution mode : dev (for a better errors reporting) -->
+                <juzu.run_mode>dev</juzu.run_mode>
               </systemProperties>
             </container>
             <configuration>

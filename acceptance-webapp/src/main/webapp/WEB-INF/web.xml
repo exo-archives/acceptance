@@ -24,7 +24,7 @@
   <!-- Juzu configuration -->
   <context-param>
     <param-name>juzu.run_mode</param-name>
-    <param-value>prod</param-value>
+    <param-value>${juzu.run_mode:prod}</param-value>
   </context-param>
   <context-param>
     <param-name>juzu.inject</param-name>

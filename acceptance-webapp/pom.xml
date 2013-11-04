@@ -323,12 +323,14 @@
                 <path>/</path>
                 <!-- Use a separation classloader to avoid conflicts with SLF4J -->
                 <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-                <!-- Specific context for development mode -->
-                <contextFile>${project.build.directory}/tomcat-run-conf/tomcat-context.xml</contextFile>
                 <!-- System properties to test -->
                 <systemProperties>
                   <!-- Use the logs configuration for tests -->
                   <logback.configurationFile>${project.basedir}/src/test/resources/logback-test.xml</logback.configurationFile>
+                  <!-- Juzu execution mode : live -->
+                  <juzu.run_mode>live</juzu.run_mode>
+                  <!-- Spring profile : development -->
+                  <spring.profiles.active>dev</spring.profiles.active>
                 </systemProperties>
               </configuration>
             </execution>
@@ -359,32 +361,6 @@
                 <portName>tomcat.http.port</portName>
                 <portName>mongodb.embedded.port</portName>
               </portNames>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-resources-for-tomcat-run</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/tomcat-run-conf</outputDirectory>
-              <resources>
-                <resource>
-                  <filtering>true</filtering>
-                  <directory>${project.basedir}/src/test/resources</directory>
-                  <includes>
-                    <include>acceptance.properties</include>
-                    <include>tomcat-context.xml</include>
-                  </includes>
-                </resource>
-              </resources>
             </configuration>
           </execution>
         </executions>
