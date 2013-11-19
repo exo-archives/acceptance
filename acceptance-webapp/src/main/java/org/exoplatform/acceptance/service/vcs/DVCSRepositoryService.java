@@ -1,6 +1,9 @@
-package org.exoplatform.acceptance.service;
+package org.exoplatform.acceptance.service.vcs;
 
 import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
+import org.exoplatform.acceptance.service.CRUDService;
+import org.exoplatform.acceptance.service.credential.CredentialService;
 import org.exoplatform.acceptance.storage.DVCSRepositoryMongoStorage;
 
 import javax.inject.Inject;
@@ -16,12 +19,12 @@ public class DVCSRepositoryService extends AbstractMongoCRUDService<DVCSReposito
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DVCSRepositoryService.class);
   @Inject
-  DVCSRepositoryMongoStorage dvcsRepositoryMongoStorage;
+  private DVCSRepositoryMongoStorage dvcsRepositoryMongoStorage;
   @Inject
-  CredentialService credentialService;
+  private CredentialService credentialService;
 
   @Override
-  DVCSRepositoryMongoStorage getMongoStorage() {
+  protected DVCSRepositoryMongoStorage getMongoStorage() {
     return dvcsRepositoryMongoStorage;
   }
 

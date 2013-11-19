@@ -25,6 +25,8 @@ import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.credential.UsernamePasswordCredential;
 import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.service.credential.CredentialService;
+import org.exoplatform.acceptance.service.vcs.DVCSRepositoryService;
 
 import javax.inject.Inject;
 import javax.inject.Named;

@@ -20,7 +20,7 @@ package org.exoplatform.acceptance.lifecycle;
 
 import org.exoplatform.acceptance.annotation.Production;
 import org.exoplatform.acceptance.model.credential.Credential;
-import org.exoplatform.acceptance.service.CredentialService;
+import org.exoplatform.acceptance.service.credential.CredentialService;
 
 import javax.inject.Inject;
 import javax.inject.Named;

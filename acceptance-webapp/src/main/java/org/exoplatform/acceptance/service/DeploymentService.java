@@ -36,12 +36,13 @@ import org.springframework.data.domain.Pageable;
 public class DeploymentService extends AbstractMongoCRUDService<Deployment> implements CRUDService<Deployment> {
 
   @Inject
-  DeploymentMongoStorage deploymentMongoStorage;
+  private DeploymentMongoStorage deploymentMongoStorage;
 
-  ApplicationMongoStorage applicationMongoStorage;
+  @Inject
+  private ApplicationMongoStorage applicationMongoStorage;
 
   @Override
-  DeploymentMongoStorage getMongoStorage() {
+  protected DeploymentMongoStorage getMongoStorage() {
     return deploymentMongoStorage;
   }
 

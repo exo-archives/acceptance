@@ -16,9 +16,11 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.service;
+package org.exoplatform.acceptance.service.credential;
 
 import org.exoplatform.acceptance.model.credential.Credential;
+import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
+import org.exoplatform.acceptance.service.CRUDService;
 import org.exoplatform.acceptance.storage.CredentialMongoStorage;
 
 import java.util.List;
@@ -32,10 +34,10 @@ import javax.inject.Named;
 public class CredentialService extends AbstractMongoCRUDService<Credential> implements CRUDService<Credential> {
 
   @Inject
-  CredentialMongoStorage credentialMongoStorage;
+  private CredentialMongoStorage credentialMongoStorage;
 
   @Override
-  CredentialMongoStorage getMongoStorage() {
+  protected CredentialMongoStorage getMongoStorage() {
     return credentialMongoStorage;
   }
 

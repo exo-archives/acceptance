@@ -32,7 +32,7 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractMongoCRUDService.class);
 
-  abstract MongoRepository<T, String> getMongoStorage();
+  abstract protected MongoRepository<T, String> getMongoStorage();
 
   /**
    * Retrieves an entity by its id.

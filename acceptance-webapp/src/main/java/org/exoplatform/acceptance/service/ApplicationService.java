@@ -31,10 +31,10 @@ import javax.inject.Named;
 public class ApplicationService extends AbstractMongoCRUDService<Application> implements CRUDService<Application> {
 
   @Inject
-  ApplicationMongoStorage applicationMongoStorage;
+  private ApplicationMongoStorage applicationMongoStorage;
 
   @Override
-  ApplicationMongoStorage getMongoStorage() {
+  protected ApplicationMongoStorage getMongoStorage() {
     return applicationMongoStorage;
   }
 

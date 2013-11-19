@@ -19,6 +19,7 @@
 package org.exoplatform.acceptance.service;
 
 import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.service.vcs.GITService;
 import org.exoplatform.acceptance.storage.DVCSRepositoryMongoStorage;
 
 import java.io.File;

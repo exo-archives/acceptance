@@ -38,7 +38,7 @@ import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.credential.UsernamePasswordCredential;
 import org.exoplatform.acceptance.rest.JsonErrorHandler;
-import org.exoplatform.acceptance.service.CredentialService;
+import org.exoplatform.acceptance.service.credential.CredentialService;
 import org.exoplatform.acceptance.service.EntityNotFoundException;
 
 import com.fasterxml.jackson.annotation.JsonInclude;

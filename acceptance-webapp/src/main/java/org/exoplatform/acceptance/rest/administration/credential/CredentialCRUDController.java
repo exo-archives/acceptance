@@ -21,7 +21,7 @@ package org.exoplatform.acceptance.rest.administration.credential;
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.rest.administration.CRUDController;
 import org.exoplatform.acceptance.service.CRUDService;
-import org.exoplatform.acceptance.service.CredentialService;
+import org.exoplatform.acceptance.service.credential.CredentialService;
 
 import java.util.ArrayList;
 import java.util.List;
