@@ -20,15 +20,12 @@ package org.exoplatform.acceptance.service;
 
 import org.exoplatform.acceptance.model.Application;
 import org.exoplatform.acceptance.model.Deployment;
-import org.exoplatform.acceptance.model.Project;
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.credential.UsernamePasswordCredential;
 import org.exoplatform.acceptance.model.vcs.DVCSRepository;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.slf4j.Logger;
@@ -45,7 +42,7 @@ public class DevDataLoaderService {
   @Inject
   private DeploymentService deploymentService;
   @Inject
-  private ProjectService projectService;
+  private DVCSRepositoryService dvcsRepositoryService;
   @Inject
   private CredentialService credentialService;
 
@@ -53,7 +50,7 @@ public class DevDataLoaderService {
     // cleanup the collection if any Tenant
     applicationService.deleteAll();
     deploymentService.deleteAll();
-    projectService.deleteAll();
+    dvcsRepositoryService.deleteAll();
     credentialService.deleteAll();
     Application app1 = createApplication("Application #1");
     Application app2 = createApplication("Application #2");
@@ -66,15 +63,15 @@ public class DevDataLoaderService {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
     credentialService.updateOrCreate(new KeyPairCredential("A key pair", "a_private_key", "a_public_key"));
-    createProject("Platform-UI");
-    createProject("Commons");
-    createProject("Content");
-    createProject("Calendar");
-    createProject("Social");
-    createProject("Wiki");
-    createProject("Forum");
-    createProject("Integration");
-    createProject("Platform");
+    createDVCSRepository("Platform-UI");
+    createDVCSRepository("Commons");
+    createDVCSRepository("Content");
+    createDVCSRepository("Calendar");
+    createDVCSRepository("Social");
+    createDVCSRepository("Wiki");
+    createDVCSRepository("Forum");
+    createDVCSRepository("Integration");
+    createDVCSRepository("Platform");
   }
 
   private Application createApplication(String name) {
@@ -90,19 +87,12 @@ public class DevDataLoaderService {
     return deploymentService.updateOrCreate(deployment);
   }
 
-  private Project createProject(String name) throws AcceptanceException {
-    Project project = new Project(name);
-    try {
-      project.setSite(new URL("http://www.exoplatform.org"));
-    } catch (MalformedURLException e) {
-    }
-    project.setDescription("This is the description of " + name);
+  private DVCSRepository createDVCSRepository(String name) throws AcceptanceException {
     DVCSRepository gitRepository = new DVCSRepository(name.toLowerCase());
-    gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git", Credential.NONE);
+    gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git",
+                                      Credential.NONE.getId());
     gitRepository.addRemoteRepository("blessed", "https://github.com/exoplatform/" + name.toLowerCase() + ".git",
-                                      Credential.NONE);
-    project.addSourceRepository(gitRepository);
-    LOGGER.debug("DevModeInitializer - new Project : {}", project);
-    return projectService.cascadingUpdateOrCreate(project);
+                                      Credential.NONE.getId());
+    return dvcsRepositoryService.updateOrCreate(gitRepository);
   }
 }

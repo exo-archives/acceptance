@@ -18,41 +18,32 @@
  */
 package org.exoplatform.acceptance.model.vcs;
 
+import org.exoplatform.acceptance.model.StorableObject;
+
 import java.io.File;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  *
  */
 @Document(collection = "dvcsfilesets")
-public class DVCSFileSet {
-  @Id
-  private String id;
-
+public class DVCSFileSet extends StorableObject {
   /**
    * Local base directory where the clone is created
    */
+  @NotNull
   private File baseDir;
+  /**
+   * Identifier of the DVCSRepositoryObject from which this local copy was created
+   */
+  @NotNull
+  private String repositoryId;
 
-  @DBRef
-  private DVCSRepository repository;
-
-  public DVCSFileSet() {
-  }
-
-  public DVCSFileSet(DVCSRepository repository, File baseDir) {
-    this.repository = repository;
+  public DVCSFileSet(@NotNull String name, @NotNull File baseDir, @NotNull String repositoryId) {
+    super(name);
     this.baseDir = baseDir;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
+    this.repositoryId = repositoryId;
   }
 
   public File getBaseDir() {
@@ -63,11 +54,7 @@ public class DVCSFileSet {
     this.baseDir = baseDir;
   }
 
-  public DVCSRepository getRepository() {
-    return repository;
-  }
-
-  public void setRepository(DVCSRepository repository) {
-    this.repository = repository;
+  public String getRepositoryId() {
+    return repositoryId;
   }
 }

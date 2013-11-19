@@ -53,25 +53,6 @@ public interface CRUDService<T> {
   <S extends T> S updateOrCreate(S entity);
 
   /**
-   * Saves a given entity (creates it if it doesn't exist) and all its related entities. Use the returned instance for further
-   * operations as the save operation might have changed the entity instance completely.
-   *
-   * @param entity the entity to update
-   * @return the saved entity
-   */
-  <S extends T> S cascadingUpdateOrCreate(S entity);
-
-  /**
-   * Updates an existing entity with all its related entities. Use the returned instance for further operations as the save
-   * operation might have changed the entity instance completely.
-   *
-   * @param entity the entity to update
-   * @return the saved entity
-   * @throws EntityNotFoundException in case there is no entity with the given {@code id}
-   */
-  <S extends T> S cascadingUpdate(S entity) throws EntityNotFoundException;
-
-  /**
    * Returns whether an entity with the given id exists.
    *
    * @param id must not be {@literal null}.

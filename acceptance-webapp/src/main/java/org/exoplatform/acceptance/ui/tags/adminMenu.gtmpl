@@ -6,7 +6,5 @@
   <div class="list-group">
     <a class="list-group-item ${'credential'.equals(parameters.selected)?'selected':''}"
        href="@{Administration.credential()}">Credentials</a>
-    <a class="list-group-item ${'project'.equals(parameters.selected)?'selected':''}"
-       href="@{Administration.project()}">Projects</a>
   </div>
 </div>

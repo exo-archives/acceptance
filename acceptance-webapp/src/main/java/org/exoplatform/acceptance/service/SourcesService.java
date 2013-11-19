@@ -32,10 +32,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Singleton
 public class SourcesService {
   private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SourcesService.class);
-
   @Inject
   private GITService gitService;
-
   @Inject
   private DVCSRepositoryMongoStorage dvcsRepositoryMongoStorage;
 
@@ -47,7 +45,9 @@ public class SourcesService {
     for (DVCSRepository dvcsRepository : dvcsRepositoryMongoStorage.findAll()) {
       LOGGER.debug("Processing sources repository {}", dvcsRepository.getName());
       try {
-        gitService.initLocalFileSet(dvcsRepository, new File(System.getProperty("java.io.tmpdir"), dvcsRepository.getName()));
+        gitService.initLocalFileSet(dvcsRepository.getName() + "-statistics",
+                                    new File(System.getProperty("java.io.tmpdir"), dvcsRepository.getName()),
+                                    dvcsRepository);
       } catch (AcceptanceException e) {
         LOGGER.error("Error while extracting statistics from repository {}", dvcsRepository.getName());
       }

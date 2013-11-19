@@ -59,9 +59,6 @@
         @Asset(
             id = "acceptance.js", value = "acceptance.js"),
         @Asset(
-            id = "project-admin.js", value = "administration/project.js",
-            depends = {"acceptance.js", "restangular.js", "ui-bootstrap.js"}),
-        @Asset(
             id = "credential-admin.js", value = "administration/credential/index.js",
             depends = {"restangular.js", "ui-bootstrap.js"}),
         @Asset(

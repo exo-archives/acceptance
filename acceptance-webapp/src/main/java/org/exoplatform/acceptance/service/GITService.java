@@ -24,6 +24,7 @@ import org.exoplatform.acceptance.model.vcs.DVCSRepository;
 import groovy.lang.Singleton;
 import java.io.File;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,8 +40,10 @@ public class GITService {
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(GITService.class);
 
-  public DVCSFileSet initLocalFileSet(DVCSRepository repository, File basedir) throws AcceptanceException {
-    return new DVCSFileSet(repository, basedir);
+  public DVCSFileSet initLocalFileSet(@NotNull String name,
+                                      @NotNull File basedir,
+                                      @NotNull DVCSRepository repository) throws AcceptanceException {
+    return new DVCSFileSet(name, basedir, repository.getId());
   }
 
 

@@ -22,7 +22,6 @@ import org.exoplatform.acceptance.model.credential.Credential;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * A Version Control System repository
@@ -35,21 +34,20 @@ public class VCSCoordinates {
   private static final Logger LOGGER = LoggerFactory.getLogger(VCSCoordinates.class);
   private String name;
   private String url;
-  @DBRef
-  private Credential credential;
+  private String credentialId;
 
   public VCSCoordinates() {
   }
 
   public VCSCoordinates(String name, String url) {
-    this(name, url, Credential.NONE);
+    this(name, url, Credential.NONE.getId());
   }
 
-  public VCSCoordinates(String name, String url, Credential credential) {
+  public VCSCoordinates(String name, String url, String credentialId) {
     this.name = name;
     this.url = url;
-    this.credential = credential;
-    LOGGER.debug("New VCSCoordinates : {}, {}", url, credential);
+    this.credentialId = credentialId;
+    LOGGER.debug("New VCSCoordinates : {}, {}", url, credentialId);
   }
 
   public String getName() {
@@ -62,9 +60,6 @@ public class VCSCoordinates {
 
   /**
    * Returns the SCM URL used to access to this remote repository.
-   * The URL format is : scm:<scm_provider><delimiter><provider_specific_part>
-   *
-   * @see <a href="http://maven.apache.org/scm/scm-url-format.html">http://maven.apache.org/scm/scm-url-format.html</a>
    */
   public String getUrl() {
     return url;
@@ -79,12 +74,12 @@ public class VCSCoordinates {
    *
    * @return the credential to use to authenticate to the repository
    */
-  public Credential getCredential() {
-    return credential;
+  public String getCredentialId() {
+    return credentialId;
   }
 
-  public void setCredential(Credential credential) {
-    this.credential = credential;
+  public void setCredentialId(String credentialId) {
+    this.credentialId = credentialId;
   }
 
   @Override
@@ -94,7 +89,7 @@ public class VCSCoordinates {
 
     VCSCoordinates that = (VCSCoordinates) o;
 
-    if (!credential.equals(that.credential)) return false;
+    if (!credentialId.equals(that.credentialId)) return false;
     if (!name.equals(that.name)) return false;
     if (!url.equals(that.url)) return false;
 
@@ -105,7 +100,7 @@ public class VCSCoordinates {
   public int hashCode() {
     int result = name.hashCode();
     result = 31 * result + url.hashCode();
-    result = 31 * result + credential.hashCode();
+    result = 31 * result + credentialId.hashCode();
     return result;
   }
 }

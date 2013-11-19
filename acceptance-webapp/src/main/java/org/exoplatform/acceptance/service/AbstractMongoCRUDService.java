@@ -81,33 +81,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
-   * Updates an existing entity with all its related entities. Use the returned instance for further operations as the save
-   * operation might have changed the entity instance completely.
-   * This default implementation only saves the given entity.
-   *
-   * @param entity the entity to update
-   * @return the saved entity
-   * @throws EntityNotFoundException in case there is no entity with the given {@code id}
-   */
-  @Override
-  public <S extends T> S cascadingUpdate(S entity) throws EntityNotFoundException {
-    return update(entity);
-  }
-
-  /**
-   * Saves a given entity (creates it if it doesn't exist) and all its related entities. Use the returned instance for further
-   * operations as the save operation might have changed the entity instance completely.
-   * This default implementation only creates or saves the given entity.
-   *
-   * @param entity the entity to update
-   * @return the saved entity
-   */
-  @Override
-  public <S extends T> S cascadingUpdateOrCreate(S entity) {
-    return updateOrCreate(entity);
-  }
-
-  /**
    * Returns whether an entity with the given id exists.
    *
    * @param id must not be {@literal null}.

@@ -38,12 +38,6 @@ public class Administration extends BaseController {
   @Path("administration/index.gtmpl")
   private org.exoplatform.acceptance.ui.templates.administration.index index;
   /**
-   * Projects administration page
-   */
-  @Inject
-  @Path("administration/project.gtmpl")
-  private org.exoplatform.acceptance.ui.templates.administration.project project;
-  /**
    * Credentials administration page
    */
   @Inject
@@ -57,16 +51,6 @@ public class Administration extends BaseController {
   @Route("/admin")
   public Response.Content index() {
     return makeResponse(index);
-  }
-
-  /**
-   * Projects administration route
-   */
-  @View
-  @Route("/admin/project")
-  @WithAssets({"project-admin.js"})
-  public Response.Content project() {
-    return makeResponse(project);
   }
 
   /**

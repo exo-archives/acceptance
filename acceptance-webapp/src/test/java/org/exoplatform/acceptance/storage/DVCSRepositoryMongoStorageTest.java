@@ -64,7 +64,6 @@ public class DVCSRepositoryMongoStorageTest {
 
   @Test
   public void create() throws AcceptanceException {
-    credentialMongoStorage.deleteAll();
     DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
     assertNotNull("The dvcsRepository ID should not be null", savedDVCSRepository.getId());
     assertEquals("We should have exactly 1 dvcsRepository", 1, dvcsRepositoryMongoStorage.count());
@@ -72,7 +71,6 @@ public class DVCSRepositoryMongoStorageTest {
 
   @Test
   public void delete() throws AcceptanceException {
-    credentialMongoStorage.deleteAll();
     DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
     dvcsRepositoryMongoStorage.delete(savedDVCSRepository);
     assertEquals("We should have exactly 0 dvcsRepository", 0, dvcsRepositoryMongoStorage.count());
@@ -80,11 +78,10 @@ public class DVCSRepositoryMongoStorageTest {
 
   @Test
   public void update() throws AcceptanceException {
-    credentialMongoStorage.deleteAll();
     DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
     savedDVCSRepository.setName("my dvcsRepository 2");
     savedDVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git",
-                                            credentialMongoStorage.findByName("abcdef"));
+                                            credentialMongoStorage.findByName("token").getId());
     dvcsRepositoryMongoStorage.save(savedDVCSRepository);
     assertEquals("We should have exactly 1 dvcsRepository", 1, dvcsRepositoryMongoStorage.count());
     assertEquals("my dvcsRepository 2", dvcsRepositoryMongoStorage.findOne(savedDVCSRepository.getId()).getName());
@@ -95,7 +92,7 @@ public class DVCSRepositoryMongoStorageTest {
   private DVCSRepository createAndSaveDvcsRepository() throws AcceptanceException {
     Credential credential = credentialMongoStorage.save(new TokenCredential("token", "abcdef"));
     DVCSRepository dvcsRepository = new DVCSRepository("acceptance");
-    dvcsRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", credential);
+    dvcsRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", credential.getId());
     return dvcsRepositoryMongoStorage.save(dvcsRepository);
   }
 

@@ -19,7 +19,6 @@
 package org.exoplatform.acceptance.model.vcs;
 
 import org.exoplatform.acceptance.model.StorableObject;
-import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.service.AcceptanceException;
 
 import java.util.ArrayList;
@@ -40,10 +39,11 @@ public class DVCSRepository extends StorableObject {
    * Logger
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(DVCSRepository.class);
-  private ArrayList<VCSCoordinates> remoteRepositories = new ArrayList<>();
+  private ArrayList<VCSCoordinates> remoteRepositories;
 
   public DVCSRepository(@NotNull String name) {
     super(name);
+    remoteRepositories = new ArrayList<>();
   }
 
   public void addRemoteRepository(String url) throws AcceptanceException {
@@ -54,8 +54,8 @@ public class DVCSRepository extends StorableObject {
     addRemoteRepository(new VCSCoordinates(name, url));
   }
 
-  public void addRemoteRepository(String name, String url, Credential credential) throws AcceptanceException {
-    addRemoteRepository(new VCSCoordinates(name, url, credential));
+  public void addRemoteRepository(String name, String url, String credentialId) throws AcceptanceException {
+    addRemoteRepository(new VCSCoordinates(name, url, credentialId));
   }
 
   public void addRemoteRepository(VCSCoordinates VCSCoordinates) throws AcceptanceException {
