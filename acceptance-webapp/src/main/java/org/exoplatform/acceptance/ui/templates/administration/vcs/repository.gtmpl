@@ -29,14 +29,20 @@
           <tr>
             <th>Repository</th>
             <th>Type</th>
-            <th><a href="#/new" title="Add a new repository"><i class="fa fa-plus-circle"></i></a></th>
+            <th>
+              <a href="#/new"
+                 tooltip="Add a new repository" tooltip-placement="right"><i class="fa fa-plus-circle"></i></a>
+            </th>
           </tr>
           </thead>
           <tbody>
           <tr ng-repeat="repository in repositories | filter:search | orderBy:'name'">
             <td>{{repository.name}}</td>
             <td>{{repository.type}}</td>
-            <td><a href="#/edit/{{repository.id}}"><i class="fa fa-pencil-square-o"></i></a></td>
+            <td>
+              <a href="#/edit/{{repository.id}}"
+                 tooltip="Edit the repository" tooltip-placement="right"><i class="fa fa-pencil-square-o"></i></a>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -52,9 +58,7 @@
             <input type="text" ng-model="search" class="form-control" placeholder="Search">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
-          <div class="pull-right">Showing {{(repositories|filter:search).length}}/{{repositories.length}}
-            repositories
-          </div>
+          <div class="pull-right">Showing {{(repositories|filter:search).length}}/{{repositories.length}} repositories</div>
         </div>
       </div>
       <div class="panel panel-info">
@@ -121,7 +125,8 @@
         </fieldset>
         <fieldset>
           <legend>Remotes</legend>
-          <div ng-show="noRemote()" class="alert alert-danger"><strong>Error : </strong>You need to define at least one remote.</div>
+          <div ng-show="noRemote()" class="alert alert-danger"><strong>Error : </strong>You need to define at least one remote.
+          </div>
           <div class="panel panel-default" ng-repeat="remoteRepository in repository.remoteRepositories | orderBy:'name'">
             <div class="panel-body">
               <ng-form name="remoteForm">
