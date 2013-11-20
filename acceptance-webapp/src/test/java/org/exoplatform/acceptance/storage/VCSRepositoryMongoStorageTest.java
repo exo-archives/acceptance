@@ -21,8 +21,6 @@ package org.exoplatform.acceptance.storage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.exoplatform.acceptance.model.credential.Credential;
-import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AcceptanceException;
 
@@ -44,56 +42,50 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class VCSRepositoryMongoStorageTest {
 
   @Inject
-  private VCSRepositoryMongoStorage VCSRepositoryMongoStorage;
-  @Inject
-  private CredentialMongoStorage credentialMongoStorage;
+  private VCSRepositoryMongoStorage vcsRepositoryMongoStorage;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    VCSRepositoryMongoStorage.deleteAll();
-    credentialMongoStorage.deleteAll();
+    vcsRepositoryMongoStorage.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    VCSRepositoryMongoStorage.deleteAll();
-    credentialMongoStorage.deleteAll();
+    vcsRepositoryMongoStorage.deleteAll();
   }
 
   @Test
   public void create() throws AcceptanceException {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
     assertNotNull("The repository ID should not be null", savedVCSRepository.getId());
-    assertEquals("We should have exactly 1 repository", 1, VCSRepositoryMongoStorage.count());
+    assertEquals("We should have exactly 1 repository", 1, vcsRepositoryMongoStorage.count());
   }
 
   @Test
   public void delete() throws AcceptanceException {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
-    VCSRepositoryMongoStorage.delete(savedVCSRepository);
-    assertEquals("We should have exactly 0 repository", 0, VCSRepositoryMongoStorage.count());
+    vcsRepositoryMongoStorage.delete(savedVCSRepository);
+    assertEquals("We should have exactly 0 repository", 0, vcsRepositoryMongoStorage.count());
   }
 
   @Test
   public void update() throws AcceptanceException {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
     savedVCSRepository.setName("my repository 2");
-    savedVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git",
-                                            credentialMongoStorage.findByName("token").getId());
-    VCSRepositoryMongoStorage.save(savedVCSRepository);
-    assertEquals("We should have exactly 1 repository", 1, VCSRepositoryMongoStorage.count());
-    assertEquals("my repository 2", VCSRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getName());
+    savedVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git", "fooCredentialId");
+    vcsRepositoryMongoStorage.save(savedVCSRepository);
+    assertEquals("We should have exactly 1 repository", 1, vcsRepositoryMongoStorage.count());
+    assertEquals("my repository 2", vcsRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getName());
     assertEquals("repository should have 2 remotes", 2,
-                 VCSRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getRemoteRepositories().size());
+                 vcsRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getRemoteRepositories().size());
   }
 
   private VCSRepository createAndSaveVcsRepository() throws AcceptanceException {
-    Credential credential = credentialMongoStorage.save(new TokenCredential("token", "abcdef"));
     VCSRepository VCSRepository = new VCSRepository("acceptance");
-    VCSRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", credential.getId());
-    return VCSRepositoryMongoStorage.save(VCSRepository);
+    VCSRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", "fooCredentialId");
+    return vcsRepositoryMongoStorage.save(VCSRepository);
   }
 
 }
