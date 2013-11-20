@@ -18,9 +18,9 @@
  */
 package org.exoplatform.acceptance.service;
 
-import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.vcs.GITService;
-import org.exoplatform.acceptance.storage.DVCSRepositoryMongoStorage;
+import org.exoplatform.acceptance.storage.VCSRepositoryMongoStorage;
 
 import java.io.File;
 import javax.inject.Inject;
@@ -36,21 +36,21 @@ public class SourcesService {
   @Inject
   private GITService gitService;
   @Inject
-  private DVCSRepositoryMongoStorage dvcsRepositoryMongoStorage;
+  private VCSRepositoryMongoStorage VCSRepositoryMongoStorage;
 
   // Every night at 1 AM
 //  @Scheduled(cron = "* * 1 * * ?")
   @Scheduled(fixedRate = 60000)
   public void generateAndEmailReport() {
     LOGGER.debug("Starting to process source repositories");
-    for (DVCSRepository dvcsRepository : dvcsRepositoryMongoStorage.findAll()) {
-      LOGGER.debug("Processing sources repository {}", dvcsRepository.getName());
+    for (VCSRepository VCSRepository : VCSRepositoryMongoStorage.findAll()) {
+      LOGGER.debug("Processing sources repository {}", VCSRepository.getName());
       try {
-        gitService.initLocalFileSet(dvcsRepository.getName() + "-statistics",
-                                    new File(System.getProperty("java.io.tmpdir"), dvcsRepository.getName()),
-                                    dvcsRepository);
+        gitService.initLocalFileSet(VCSRepository.getName() + "-statistics",
+                                    new File(System.getProperty("java.io.tmpdir"), VCSRepository.getName()),
+                                    VCSRepository);
       } catch (AcceptanceException e) {
-        LOGGER.error("Error while extracting statistics from repository {}", dvcsRepository.getName());
+        LOGGER.error("Error while extracting statistics from repository {}", VCSRepository.getName());
       }
     }
     LOGGER.debug("Source repositories processed");

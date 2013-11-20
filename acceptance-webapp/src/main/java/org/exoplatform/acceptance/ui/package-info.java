@@ -62,6 +62,9 @@
             id = "credential-admin.js", value = "administration/credential/index.js",
             depends = {"restangular.js", "ui-bootstrap.js"}),
         @Asset(
+            id = "vcsRepository-admin.js", value = "administration/vcs/repository.js",
+            depends = {"restangular.js", "ui-bootstrap.js"}),
+        @Asset(
             id = "sources.js", value = "sources.js",
             depends = {"angular.js", "ui-bootstrap.js"}),
         @Asset(
@@ -71,6 +74,7 @@
         @Asset(
             id = "acceptance.css", value = "acceptance.css",
             depends = {"bootstrap.css", "font-awesome.css"})
+
     })
 
 // Always use these assets

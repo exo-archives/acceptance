@@ -18,8 +18,8 @@
  */
 package org.exoplatform.acceptance.service.vcs;
 
-import org.exoplatform.acceptance.model.vcs.DVCSFileSet;
-import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.model.vcs.VCSFileSet;
+import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AcceptanceException;
 
 import groovy.lang.Singleton;
@@ -41,10 +41,10 @@ public class GITService {
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(GITService.class);
 
-  public DVCSFileSet initLocalFileSet(@NotNull String name,
+  public VCSFileSet initLocalFileSet(@NotNull String name,
                                       @NotNull File basedir,
-                                      @NotNull DVCSRepository repository) throws AcceptanceException {
-    return new DVCSFileSet(name, basedir, repository.getId());
+                                      @NotNull VCSRepository repository) throws AcceptanceException {
+    return new VCSFileSet(name, basedir, repository.getId());
   }
 
 

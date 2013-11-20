@@ -21,6 +21,8 @@ package org.exoplatform.acceptance.model.vcs;
 import org.exoplatform.acceptance.model.StorableObject;
 import org.exoplatform.acceptance.service.AcceptanceException;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
@@ -29,21 +31,35 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * a Distributed Version Control System Repository
+ * a Version Control System Repository
  */
-@Document(collection = "dvcsrepositories")
-public class DVCSRepository extends StorableObject {
+@Document(collection = "vcsrepositories")
+public class VCSRepository extends StorableObject {
 
   public final static String DEFAULT_REMOTE = "origin";
   /**
    * Logger
    */
-  private static final Logger LOGGER = LoggerFactory.getLogger(DVCSRepository.class);
-  private ArrayList<VCSCoordinates> remoteRepositories;
+  private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepository.class);
+  /**
+   * The type of credential
+   */
+  @NotNull
+  private Type type = Type.GIT;
+  @NotNull
+  private ArrayList<VCSCoordinates> remoteRepositories = new ArrayList<>();
 
-  public DVCSRepository(@NotNull String name) {
+  @JsonCreator
+  public VCSRepository(@NotNull @JsonProperty("name") String name) {
     super(name);
-    remoteRepositories = new ArrayList<>();
+  }
+
+  public Type getType() {
+    return type;
+  }
+
+  public void setType(@NotNull Type type) {
+    this.type = type;
   }
 
   public void addRemoteRepository(String url) throws AcceptanceException {
@@ -72,6 +88,13 @@ public class DVCSRepository extends StorableObject {
     for (VCSCoordinates VCSCoordinates : VCSCoordinatesList) {
       addRemoteRepository(VCSCoordinates);
     }
+  }
+
+  /**
+   * VCS Repository types
+   */
+  public enum Type {
+    GIT
   }
 
 }

@@ -24,9 +24,9 @@ import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.credential.UsernamePasswordCredential;
-import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.credential.CredentialService;
-import org.exoplatform.acceptance.service.vcs.DVCSRepositoryService;
+import org.exoplatform.acceptance.service.vcs.VCSRepositoryService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -44,16 +44,11 @@ public class DevDataLoaderService {
   @Inject
   private DeploymentService deploymentService;
   @Inject
-  private DVCSRepositoryService dvcsRepositoryService;
+  private VCSRepositoryService VCSRepositoryService;
   @Inject
   private CredentialService credentialService;
 
   public void initializeData() throws AcceptanceException {
-    // cleanup the collection if any Tenant
-    applicationService.deleteAll();
-    deploymentService.deleteAll();
-    dvcsRepositoryService.deleteAll();
-    credentialService.deleteAll();
     Application app1 = createApplication("Application #1");
     Application app2 = createApplication("Application #2");
     Application app3 = createApplication("Application #3");
@@ -65,15 +60,15 @@ public class DevDataLoaderService {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
     credentialService.updateOrCreate(new KeyPairCredential("A key pair", "a_private_key", "a_public_key"));
-    createDVCSRepository("Platform-UI");
-    createDVCSRepository("Commons");
-    createDVCSRepository("Content");
-    createDVCSRepository("Calendar");
-    createDVCSRepository("Social");
-    createDVCSRepository("Wiki");
-    createDVCSRepository("Forum");
-    createDVCSRepository("Integration");
-    createDVCSRepository("Platform");
+    createVCSRepository("Platform-UI");
+    createVCSRepository("Commons");
+    createVCSRepository("Content");
+    createVCSRepository("Calendar");
+    createVCSRepository("Social");
+    createVCSRepository("Wiki");
+    createVCSRepository("Forum");
+    createVCSRepository("Integration");
+    createVCSRepository("Platform");
   }
 
   private Application createApplication(String name) {
@@ -89,12 +84,12 @@ public class DevDataLoaderService {
     return deploymentService.updateOrCreate(deployment);
   }
 
-  private DVCSRepository createDVCSRepository(String name) throws AcceptanceException {
-    DVCSRepository gitRepository = new DVCSRepository(name.toLowerCase());
+  private VCSRepository createVCSRepository(String name) throws AcceptanceException {
+    VCSRepository gitRepository = new VCSRepository(name.toLowerCase());
     gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git",
                                       Credential.NONE.getId());
     gitRepository.addRemoteRepository("blessed", "https://github.com/exoplatform/" + name.toLowerCase() + ".git",
                                       Credential.NONE.getId());
-    return dvcsRepositoryService.updateOrCreate(gitRepository);
+    return VCSRepositoryService.updateOrCreate(gitRepository);
   }
 }

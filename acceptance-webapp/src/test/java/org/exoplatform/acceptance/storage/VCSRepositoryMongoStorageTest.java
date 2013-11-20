@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
-import org.exoplatform.acceptance.model.vcs.DVCSRepository;
+import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AcceptanceException;
 
 import javax.inject.Inject;
@@ -41,59 +41,59 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/org/exoplatform/acceptance/storage/spring-test.xml"})
 @ActiveProfiles("test")
-public class DVCSRepositoryMongoStorageTest {
+public class VCSRepositoryMongoStorageTest {
 
   @Inject
-  private DVCSRepositoryMongoStorage dvcsRepositoryMongoStorage;
+  private VCSRepositoryMongoStorage VCSRepositoryMongoStorage;
   @Inject
   private CredentialMongoStorage credentialMongoStorage;
 
   @Before
   public void setUp() {
     // cleanup the collection if any Tenant
-    dvcsRepositoryMongoStorage.deleteAll();
+    VCSRepositoryMongoStorage.deleteAll();
     credentialMongoStorage.deleteAll();
   }
 
   @After
   public void tearDown() {
     // cleanup the collection
-    dvcsRepositoryMongoStorage.deleteAll();
+    VCSRepositoryMongoStorage.deleteAll();
     credentialMongoStorage.deleteAll();
   }
 
   @Test
   public void create() throws AcceptanceException {
-    DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
-    assertNotNull("The dvcsRepository ID should not be null", savedDVCSRepository.getId());
-    assertEquals("We should have exactly 1 dvcsRepository", 1, dvcsRepositoryMongoStorage.count());
+    VCSRepository savedVCSRepository = createAndSaveVcsRepository();
+    assertNotNull("The repository ID should not be null", savedVCSRepository.getId());
+    assertEquals("We should have exactly 1 repository", 1, VCSRepositoryMongoStorage.count());
   }
 
   @Test
   public void delete() throws AcceptanceException {
-    DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
-    dvcsRepositoryMongoStorage.delete(savedDVCSRepository);
-    assertEquals("We should have exactly 0 dvcsRepository", 0, dvcsRepositoryMongoStorage.count());
+    VCSRepository savedVCSRepository = createAndSaveVcsRepository();
+    VCSRepositoryMongoStorage.delete(savedVCSRepository);
+    assertEquals("We should have exactly 0 repository", 0, VCSRepositoryMongoStorage.count());
   }
 
   @Test
   public void update() throws AcceptanceException {
-    DVCSRepository savedDVCSRepository = createAndSaveDvcsRepository();
-    savedDVCSRepository.setName("my dvcsRepository 2");
-    savedDVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git",
+    VCSRepository savedVCSRepository = createAndSaveVcsRepository();
+    savedVCSRepository.setName("my repository 2");
+    savedVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git",
                                             credentialMongoStorage.findByName("token").getId());
-    dvcsRepositoryMongoStorage.save(savedDVCSRepository);
-    assertEquals("We should have exactly 1 dvcsRepository", 1, dvcsRepositoryMongoStorage.count());
-    assertEquals("my dvcsRepository 2", dvcsRepositoryMongoStorage.findOne(savedDVCSRepository.getId()).getName());
-    assertEquals("dvcsRepository should have 2 remotes", 2,
-                 dvcsRepositoryMongoStorage.findOne(savedDVCSRepository.getId()).getRemoteRepositories().size());
+    VCSRepositoryMongoStorage.save(savedVCSRepository);
+    assertEquals("We should have exactly 1 repository", 1, VCSRepositoryMongoStorage.count());
+    assertEquals("my repository 2", VCSRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getName());
+    assertEquals("repository should have 2 remotes", 2,
+                 VCSRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getRemoteRepositories().size());
   }
 
-  private DVCSRepository createAndSaveDvcsRepository() throws AcceptanceException {
+  private VCSRepository createAndSaveVcsRepository() throws AcceptanceException {
     Credential credential = credentialMongoStorage.save(new TokenCredential("token", "abcdef"));
-    DVCSRepository dvcsRepository = new DVCSRepository("acceptance");
-    dvcsRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", credential.getId());
-    return dvcsRepositoryMongoStorage.save(dvcsRepository);
+    VCSRepository VCSRepository = new VCSRepository("acceptance");
+    VCSRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", credential.getId());
+    return VCSRepositoryMongoStorage.save(VCSRepository);
   }
 
 }

@@ -27,20 +27,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  *
  */
-@Document(collection = "dvcsfilesets")
-public class DVCSFileSet extends StorableObject {
+@Document(collection = "vcsfilesets")
+public class VCSFileSet extends StorableObject {
   /**
    * Local base directory where the clone is created
    */
   @NotNull
   private File baseDir;
   /**
-   * Identifier of the DVCSRepositoryObject from which this local copy was created
+   * Identifier of the VCSRepositoryObject from which this local copy was created
    */
   @NotNull
   private String repositoryId;
 
-  public DVCSFileSet(@NotNull String name, @NotNull File baseDir, @NotNull String repositoryId) {
+  public VCSFileSet(@NotNull String name, @NotNull File baseDir, @NotNull String repositoryId) {
     super(name);
     this.baseDir = baseDir;
     this.repositoryId = repositoryId;

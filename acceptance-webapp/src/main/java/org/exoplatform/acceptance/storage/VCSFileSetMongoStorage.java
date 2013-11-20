@@ -18,14 +18,14 @@
  */
 package org.exoplatform.acceptance.storage;
 
-import org.exoplatform.acceptance.model.vcs.DVCSFileSet;
+import org.exoplatform.acceptance.model.vcs.VCSFileSet;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CRUD operations managed by Mongo for DVCSFileSet classes
+ * CRUD operations managed by Mongo for VCSFileSet classes
  */
 @Repository
-public interface DVCSFileSetMongoStorage extends MongoRepository<DVCSFileSet, String> {
+public interface VCSFileSetMongoStorage extends MongoRepository<VCSFileSet, String> {
 }

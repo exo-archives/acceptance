@@ -43,6 +43,12 @@ public class Administration extends BaseController {
   @Inject
   @Path("administration/credential/index.gtmpl")
   private org.exoplatform.acceptance.ui.templates.administration.credential.index credentialIndex;
+  /**
+   * DVCS Repositories administration page
+   */
+  @Inject
+  @Path("administration/vcs/repository.gtmpl")
+  private org.exoplatform.acceptance.ui.templates.administration.vcs.repository dvcsRepository;
 
   /**
    * Administration home route
@@ -61,5 +67,15 @@ public class Administration extends BaseController {
   @WithAssets({"credential-admin.js"})
   public Response.Content credential() {
     return makeResponse(credentialIndex);
+  }
+
+  /**
+   * DVCS repositories administration route
+   */
+  @View
+  @Route("/admin/vcs/repository")
+  @WithAssets({"vcsRepository-admin.js"})
+  public Response.Content vcsRepository() {
+    return makeResponse(dvcsRepository);
   }
 }

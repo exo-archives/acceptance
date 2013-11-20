@@ -6,5 +6,7 @@
   <div class="list-group">
     <a class="list-group-item ${'credential'.equals(parameters.selected)?'selected':''}"
        href="@{Administration.credential()}">Credentials</a>
+    <a class="list-group-item ${'vcsRepository'.equals(parameters.selected)?'selected':''}"
+       href="@{Administration.vcsRepository()}">VCS Repositories</a>
   </div>
 </div>
