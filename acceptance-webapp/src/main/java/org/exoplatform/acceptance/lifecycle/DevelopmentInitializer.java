@@ -19,7 +19,6 @@
 package org.exoplatform.acceptance.lifecycle;
 
 import org.exoplatform.acceptance.annotation.Development;
-import org.exoplatform.acceptance.service.AcceptanceException;
 import org.exoplatform.acceptance.service.DevDataLoaderService;
 
 import javax.inject.Inject;
@@ -37,7 +36,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @Development
 public class DevelopmentInitializer extends ProductionInitializer implements ApplicationListener<ContextRefreshedEvent> {
   private static final Logger LOGGER = LoggerFactory.getLogger(DevelopmentInitializer.class);
-
   @Inject
   private DevDataLoaderService devDataLoaderService;
 
@@ -52,11 +50,7 @@ public class DevelopmentInitializer extends ProductionInitializer implements App
     ApplicationContext context = (ApplicationContext) event.getSource();
     // Load data in the root context only
     if (context.getParent() == null) {
-      try {
-        devDataLoaderService.initializeData();
-      } catch (AcceptanceException e) {
-        LOGGER.error("Cannot initialize development data", e);
-      }
+      devDataLoaderService.initializeData();
     }
     LOGGER.info("Data are ready for development.");
   }

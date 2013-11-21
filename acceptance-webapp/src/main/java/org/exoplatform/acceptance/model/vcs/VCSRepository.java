@@ -19,15 +19,13 @@
 package org.exoplatform.acceptance.model.vcs;
 
 import org.exoplatform.acceptance.model.StorableObject;
-import org.exoplatform.acceptance.service.AcceptanceException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -36,11 +34,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "vcsrepositories")
 public class VCSRepository extends StorableObject {
 
-  public final static String DEFAULT_REMOTE = "origin";
-  /**
-   * Logger
-   */
-  private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepository.class);
   /**
    * The type of credential
    */
@@ -62,19 +55,15 @@ public class VCSRepository extends StorableObject {
     this.type = type;
   }
 
-  public void addRemoteRepository(String url) throws AcceptanceException {
-    addRemoteRepository(new VCSCoordinates(DEFAULT_REMOTE, url));
-  }
-
-  public void addRemoteRepository(String name, String url) throws AcceptanceException {
+  public void addRemoteRepository(String name, String url) {
     addRemoteRepository(new VCSCoordinates(name, url));
   }
 
-  public void addRemoteRepository(String name, String url, String credentialId) throws AcceptanceException {
+  public void addRemoteRepository(String name, String url, String credentialId) {
     addRemoteRepository(new VCSCoordinates(name, url, credentialId));
   }
 
-  public void addRemoteRepository(VCSCoordinates VCSCoordinates) throws AcceptanceException {
+  public void addRemoteRepository(VCSCoordinates VCSCoordinates) {
     assert VCSCoordinates.getName() != null;
     remoteRepositories.add(VCSCoordinates);
   }
@@ -83,11 +72,42 @@ public class VCSRepository extends StorableObject {
     return remoteRepositories;
   }
 
-  public void setRemoteRepositories(Collection<VCSCoordinates> VCSCoordinatesList) throws AcceptanceException {
+  public void setRemoteRepositories(Collection<VCSCoordinates> VCSCoordinatesList) {
     remoteRepositories.clear();
     for (VCSCoordinates VCSCoordinates : VCSCoordinatesList) {
       addRemoteRepository(VCSCoordinates);
     }
+  }
+
+  /**
+   * Returns a string representation of the object. In general, the
+   * {@code toString} method returns a string that
+   * "textually represents" this object. The result should
+   * be a concise but informative representation that is easy for a
+   * person to read.
+   * It is recommended that all subclasses override this method.
+   * <p/>
+   * The {@code toString} method for class {@code Object}
+   * returns a string consisting of the name of the class of which the
+   * object is an instance, the at-sign character `{@code @}', and
+   * the unsigned hexadecimal representation of the hash code of the
+   * object. In other words, this method returns a string equal to the
+   * value of:
+   * <blockquote>
+   * <pre>
+   * getClass().getName() + '@' + Integer.toHexString(hashCode())
+   * </pre></blockquote>
+   *
+   * @return a string representation of the object.
+   */
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+        .add("id", getId())
+        .add("type", getType())
+        .add("name", getName())
+        .add("remotes", getRemoteRepositories())
+        .toString();
   }
 
   /**

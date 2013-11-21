@@ -18,7 +18,6 @@
  */
 package org.exoplatform.acceptance.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,16 +27,19 @@ import org.springframework.data.mongodb.core.index.Indexed;
 /**
  *
  */
-@JsonIgnoreProperties({"_meta"})
 public class StorableObject {
 
   /**
-   * The name to humanly identify the credential
+   * A readable/self-explainable name to identify the object
    */
   @Indexed(unique = true)
   @NotNull
   @Size(min = 3, max = 64)
   protected String name;
+  /**
+   * A unique technical ID used to identify the object.
+   * (Can be null while the object is in memory and not yet stored)
+   */
   @Id
   private String id;
 

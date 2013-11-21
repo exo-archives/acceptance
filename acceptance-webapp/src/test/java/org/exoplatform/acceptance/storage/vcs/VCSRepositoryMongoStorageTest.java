@@ -22,7 +22,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.exoplatform.acceptance.model.vcs.VCSRepository;
-import org.exoplatform.acceptance.service.AcceptanceException;
 
 import javax.inject.Inject;
 import org.junit.After;
@@ -57,21 +56,21 @@ public class VCSRepositoryMongoStorageTest {
   }
 
   @Test
-  public void create() throws AcceptanceException {
+  public void create() {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
     assertNotNull("The repository ID should not be null", savedVCSRepository.getId());
     assertEquals("We should have exactly 1 repository", 1, vcsRepositoryMongoStorage.count());
   }
 
   @Test
-  public void delete() throws AcceptanceException {
+  public void delete() {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
     vcsRepositoryMongoStorage.delete(savedVCSRepository);
     assertEquals("We should have exactly 0 repository", 0, vcsRepositoryMongoStorage.count());
   }
 
   @Test
-  public void update() throws AcceptanceException {
+  public void update() {
     VCSRepository savedVCSRepository = createAndSaveVcsRepository();
     savedVCSRepository.setName("my repository 2");
     savedVCSRepository.addRemoteRepository("other", "git@github.com:other/acceptance.git", "fooCredentialId");
@@ -82,7 +81,7 @@ public class VCSRepositoryMongoStorageTest {
                  vcsRepositoryMongoStorage.findOne(savedVCSRepository.getId()).getRemoteRepositories().size());
   }
 
-  private VCSRepository createAndSaveVcsRepository() throws AcceptanceException {
+  private VCSRepository createAndSaveVcsRepository() {
     VCSRepository VCSRepository = new VCSRepository("acceptance");
     VCSRepository.addRemoteRepository("origin", "git@github.com:exoplatform/acceptance.git", "fooCredentialId");
     return vcsRepositoryMongoStorage.save(VCSRepository);

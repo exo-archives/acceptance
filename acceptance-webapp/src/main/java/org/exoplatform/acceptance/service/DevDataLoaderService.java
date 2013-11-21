@@ -18,8 +18,6 @@
  */
 package org.exoplatform.acceptance.service;
 
-import org.exoplatform.acceptance.model.Application;
-import org.exoplatform.acceptance.model.Deployment;
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
@@ -40,23 +38,11 @@ import org.slf4j.LoggerFactory;
 public class DevDataLoaderService {
   private static final Logger LOGGER = LoggerFactory.getLogger(DevDataLoaderService.class);
   @Inject
-  private ApplicationService applicationService;
-  @Inject
-  private DeploymentService deploymentService;
-  @Inject
   private VCSRepositoryService VCSRepositoryService;
   @Inject
   private CredentialService credentialService;
 
-  public void initializeData() throws AcceptanceException {
-    Application app1 = createApplication("Application #1");
-    Application app2 = createApplication("Application #2");
-    Application app3 = createApplication("Application #3");
-    createDeployment(app1, 1);
-    createDeployment(app1, 2);
-    createDeployment(app2, 1);
-    createDeployment(app2, 2);
-    createDeployment(app3, 1);
+  public void initializeData() {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
     credentialService.updateOrCreate(new KeyPairCredential("A key pair", "a_private_key", "a_public_key"));
@@ -71,20 +57,7 @@ public class DevDataLoaderService {
     createVCSRepository("Platform");
   }
 
-  private Application createApplication(String name) {
-    Application application = new Application(name);
-    LOGGER.debug("DevModeInitializer - new Application : {}", application);
-    return applicationService.updateOrCreate(application);
-  }
-
-  private Deployment createDeployment(Application app, int num) {
-    Deployment deployment = new Deployment("Deployment #" + num + " of " + app.getName());
-    deployment.setApplication(app);
-    LOGGER.debug("DevModeInitializer - new Deployment : {}", deployment);
-    return deploymentService.updateOrCreate(deployment);
-  }
-
-  private VCSRepository createVCSRepository(String name) throws AcceptanceException {
+  private VCSRepository createVCSRepository(String name) {
     VCSRepository gitRepository = new VCSRepository(name.toLowerCase());
     gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git",
                                       Credential.NONE.getId());
