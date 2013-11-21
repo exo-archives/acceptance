@@ -43,8 +43,16 @@ public class StorableObject {
   @Id
   private String id;
 
+  public StorableObject() {
+  }
+
   public StorableObject(@NotNull String name) {
     this.name = name;
+  }
+
+  public StorableObject(@NotNull String name, @NotNull String id) {
+    this.name = name;
+    this.id = id;
   }
 
   public String getId() {

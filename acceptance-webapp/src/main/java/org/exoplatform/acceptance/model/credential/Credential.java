@@ -53,6 +53,20 @@ public abstract class Credential extends StorableObject {
   @NotNull
   private Type type;
 
+  protected Credential(@NotNull Type type) {
+    this.type = type;
+  }
+
+  protected Credential(@NotNull String name, @NotNull Type type) {
+    super(name);
+    this.type = type;
+  }
+
+  protected Credential(@NotNull String name, @NotNull String id, @NotNull Type type) {
+    super(name, id);
+    this.type = type;
+  }
+
   public Credential(@NotNull Type type, @NotNull String name) {
     super(name);
     this.type = type;

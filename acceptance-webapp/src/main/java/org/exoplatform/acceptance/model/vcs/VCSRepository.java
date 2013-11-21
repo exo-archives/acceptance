@@ -42,9 +42,18 @@ public class VCSRepository extends StorableObject {
   @NotNull
   private ArrayList<VCSCoordinates> remoteRepositories = new ArrayList<>();
 
+
+  public VCSRepository() {
+    super();
+  }
+
   @JsonCreator
   public VCSRepository(@NotNull @JsonProperty("name") String name) {
     super(name);
+  }
+
+  public VCSRepository(@NotNull String name, @NotNull String id) {
+    super(name, id);
   }
 
   public Type getType() {
