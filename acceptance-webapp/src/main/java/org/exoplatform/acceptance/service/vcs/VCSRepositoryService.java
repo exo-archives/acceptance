@@ -4,6 +4,7 @@ import org.exoplatform.acceptance.model.vcs.VCSFileSet;
 import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
 import org.exoplatform.acceptance.service.CRUDService;
+import org.exoplatform.acceptance.service.ConfigurationService;
 import org.exoplatform.acceptance.service.credential.CredentialService;
 import org.exoplatform.acceptance.storage.vcs.VCSRepositoryMongoStorage;
 
@@ -23,6 +24,8 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
 
   private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepositoryService.class);
   @Inject
+  private ConfigurationService configurationService;
+  @Inject
   private VCSRepositoryMongoStorage vcsRepositoryMongoStorage;
   @Inject
   private CredentialService credentialService;
@@ -36,7 +39,7 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
     return vcsRepositoryMongoStorage.findByName(name);
   }
 
-  public VCSFileSet initLocalFileSet(
+  public VCSFileSet getFileSet(
       @NotNull File basedir,
       @NotNull VCSRepository repository) {
     return new VCSFileSet(basedir, repository);
@@ -48,11 +51,18 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
     LOGGER.debug("Starting to process source repositories");
     for (VCSRepository VCSRepository : vcsRepositoryMongoStorage.findAll()) {
       LOGGER.debug("Processing sources repository {}", VCSRepository.getName());
-      initLocalFileSet(
-          new File(System.getProperty("java.io.tmpdir"), VCSRepository.getName()),
-          VCSRepository);
+      VCSFileSet localFileSet = getFileSet(new File(getCheckoutDirectory(), VCSRepository.getName()), VCSRepository);
     }
     LOGGER.debug("Source repositories processed");
+  }
+
+  public File getCheckoutDirectory() {
+    File checkoutDirectory = new File(configurationService.getDataDir(), "checkout");
+    if (!checkoutDirectory.exists()) {
+      boolean result = checkoutDirectory.mkdirs();
+      LOGGER.info("Checkout directory {} creation [{}]", checkoutDirectory, result ? "OK" : "KO");
+    }
+    return checkoutDirectory;
   }
 
 }
