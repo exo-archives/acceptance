@@ -16,16 +16,17 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.storage;
+package org.exoplatform.acceptance.storage.vcs;
 
-import org.exoplatform.acceptance.model.vcs.VCSFileSet;
+import org.exoplatform.acceptance.model.vcs.VCSRepository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CRUD operations managed by Mongo for VCSFileSet classes
+ * CRUD operations managed by Mongo for VCSRepository classes
  */
 @Repository
-public interface VCSFileSetMongoStorage extends MongoRepository<VCSFileSet, String> {
+public interface VCSRepositoryMongoStorage extends MongoRepository<VCSRepository, String> {
+  VCSRepository findByName(String name);
 }

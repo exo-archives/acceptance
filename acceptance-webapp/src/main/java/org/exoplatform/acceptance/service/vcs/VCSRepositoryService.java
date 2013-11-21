@@ -4,7 +4,7 @@ import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
 import org.exoplatform.acceptance.service.CRUDService;
 import org.exoplatform.acceptance.service.credential.CredentialService;
-import org.exoplatform.acceptance.storage.VCSRepositoryMongoStorage;
+import org.exoplatform.acceptance.storage.vcs.VCSRepositoryMongoStorage;
 
 import javax.inject.Inject;
 import javax.inject.Named;

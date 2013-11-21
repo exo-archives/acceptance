@@ -16,17 +16,20 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.storage;
+package org.exoplatform.acceptance.storage.credential;
 
-import org.exoplatform.acceptance.model.vcs.VCSRepository;
+import org.exoplatform.acceptance.model.credential.Credential;
 
+import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CRUD operations managed by Mongo for VCSRepository classes
+ * CRUD operations managed by Mongo for Credential classes
  */
 @Repository
-public interface VCSRepositoryMongoStorage extends MongoRepository<VCSRepository, String> {
-  VCSRepository findByName(String name);
+public interface CredentialMongoStorage extends MongoRepository<Credential, String> {
+  Credential findByName(String name);
+
+  List<Credential> findByType(Credential.Type type);
 }

@@ -20,7 +20,7 @@ package org.exoplatform.acceptance.service;
 
 import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.vcs.GITService;
-import org.exoplatform.acceptance.storage.VCSRepositoryMongoStorage;
+import org.exoplatform.acceptance.storage.vcs.VCSRepositoryMongoStorage;
 
 import java.io.File;
 import javax.inject.Inject;

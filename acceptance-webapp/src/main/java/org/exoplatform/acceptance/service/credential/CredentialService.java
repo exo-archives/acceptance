@@ -21,7 +21,7 @@ package org.exoplatform.acceptance.service.credential;
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
 import org.exoplatform.acceptance.service.CRUDService;
-import org.exoplatform.acceptance.storage.CredentialMongoStorage;
+import org.exoplatform.acceptance.storage.credential.CredentialMongoStorage;
 
 import java.util.List;
 import javax.inject.Inject;
