@@ -29,7 +29,7 @@ import juzu.plugin.asset.WithAssets;
 /**
  * Administration tasks controller
  */
-public class Administration extends BaseController {
+public class AdminController extends BaseController {
 
   /**
    * Administration home page

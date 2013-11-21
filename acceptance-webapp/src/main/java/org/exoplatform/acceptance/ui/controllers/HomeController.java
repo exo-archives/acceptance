@@ -29,7 +29,7 @@ import juzu.View;
 import juzu.plugin.asset.WithAssets;
 import org.apache.commons.httpclient.HttpStatus;
 
-public class Home extends BaseController {
+public class HomeController extends BaseController {
 
   /**
    * Application homepage
@@ -108,7 +108,7 @@ public class Home extends BaseController {
 
   /**
    * Login page
-   * fake method for juzu template compilation (ex: @{Home.login()}
+   * fake method for juzu template compilation (ex: @{HomeController.login()}
    * this url is catch up by the spring security filter and the action method is never call
    */
   @Action
@@ -118,7 +118,7 @@ public class Home extends BaseController {
 
   /**
    * Logout page
-   * fake method for juzu template compilation (ex: @{Home.logout()}
+   * fake method for juzu template compilation (ex: @{HomeController.logout()}
    * this url is catch up by the spring security filter and the action method is never call
    */
   @Action

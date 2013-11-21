@@ -22,7 +22,7 @@
         <h3 class="panel-title">Authentication</h3>
       </div>
       <div class="panel-body">
-        <form class="form-signin" action="@{ Home.login()}" method="post">
+        <form class="form-signin" action="@{ HomeController.login()}" method="post">
           <div class="form-group">
             <label for="loginForm:username">Username</label>
             <input id="loginForm:username" type="text" class="form-control" placeholder="eXo Account" name="username"

@@ -24,7 +24,7 @@
 
 // Application
 @Application(
-    defaultController = Home.class,
+    defaultController = HomeController.class,
     name = "AcceptanceApplication")
 
 // This is a webapp
@@ -85,7 +85,7 @@
           @Tag(name = "adminMenu", path = "adminMenu.gtmpl")
       }) package org.exoplatform.acceptance.ui;
 
-import org.exoplatform.acceptance.ui.controllers.Home;
+import org.exoplatform.acceptance.ui.controllers.HomeController;
 import org.exoplatform.acceptance.ui.model.Context;
 import org.exoplatform.acceptance.ui.model.CurrentUser;
 import org.exoplatform.acceptance.ui.model.Flash;

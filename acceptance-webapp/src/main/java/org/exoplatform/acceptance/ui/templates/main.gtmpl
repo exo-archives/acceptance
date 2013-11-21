@@ -12,22 +12,22 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="@{ Home.index()}"><img class="navbar-brand"
+        <a class="navbar-brand" href="@{ HomeController.index()}"><img class="navbar-brand"
                                                              src="/assets/org/exoplatform/acceptance/ui/assets/images/exo-logo.png">&nbsp;Acceptance</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="@{ Home.sources()}">Sources</a></li>
-          <li><a href="@{ Home.buildjobs()}">Build jobs</a></li>
-          <li><a href="@{ Home.deployments()}">Deployments</a></li>
+          <li><a href="@{ HomeController.sources()}">Sources</a></li>
+          <li><a href="@{ HomeController.buildjobs()}">Build jobs</a></li>
+          <li><a href="@{ HomeController.deployments()}">Deployments</a></li>
           <% if(user.isAdmin()) { %>
-          <li><a href="@{ Administration.index()}">Administration</a></li>
+          <li><a href="@{ AdminController.index()}">Administration</a></li>
           <% } %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if(! user.isAnonymous()) { %>
-          <li><a id="logoutLink" href="@{ Home.logout()}" title="Logout"><i class="fa fa-power-off"></i> Logout</a></li>
+          <li><a id="logoutLink" href="@{ HomeController.logout()}" title="Logout"><i class="fa fa-power-off"></i> Logout</a></li>
           <% } %>
         </ul>
       </div>
