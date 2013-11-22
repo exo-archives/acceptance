@@ -18,18 +18,24 @@
  */
 package org.exoplatform.acceptance.service.vcs;
 
-import org.exoplatform.acceptance.model.vcs.VCSFileSet;
+import org.exoplatform.acceptance.model.vcs.VCSCoordinates;
+import org.exoplatform.acceptance.model.vcs.VCSRef;
 import org.exoplatform.acceptance.model.vcs.VCSRepository;
 import org.exoplatform.acceptance.service.AbstractMongoCRUDService;
 import org.exoplatform.acceptance.service.CRUDService;
 import org.exoplatform.acceptance.service.ConfigurationService;
-import org.exoplatform.acceptance.service.credential.CredentialService;
 import org.exoplatform.acceptance.storage.vcs.VCSRepositoryMongoStorage;
 
+import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
 import java.io.File;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.Ref;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -45,12 +51,30 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
 
   /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepositoryService.class);
+  /** Constant <code>REF_TO_VCSREF_FUNCTION</code> */
+  private static final Function<Ref, VCSRef> REF_TO_VCSREF_FUNCTION = new Function<Ref, VCSRef>() {
+    @Override
+    // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
+    //@Nullable
+    //public VCSRef apply(@Nullable Ref input) {
+    public VCSRef apply(Ref input) {
+      if (null == input) return null;
+      if (input.getName().startsWith(Constants.R_HEADS)) {
+        return new VCSRef(VCSRef.Type.BRANCH, input.getName().substring(Constants.R_HEADS.length()),
+                          input.getObjectId().getName());
+      }
+      if (input.getName().startsWith(Constants.R_TAGS)) {
+        return new VCSRef(VCSRef.Type.TAG, input.getName().substring(Constants.R_TAGS.length()), input.getObjectId().getName());
+      }
+      // Git notes and remotes refs aren't supported
+      return null;
+    }
+  };
+
   @Inject
   private ConfigurationService configurationService;
   @Inject
   private VCSRepositoryMongoStorage vcsRepositoryMongoStorage;
-  @Inject
-  private CredentialService credentialService;
 
   /** {@inheritDoc} */
   @Override
@@ -59,54 +83,81 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
   }
 
   /**
+   * Returns the directory where is stored the clone of the repository to extract data
+   *
+   * @param repository The repository object
+   * @return The directory
+   */
+  private File getCheckoutDir(VCSRepository repository) {
+    return getCheckoutDir(repository.getId());
+  }
+
+  /**
+   * Returns the directory where is stored the clone of the repository to extract data
+   *
+   * @param repositoryId The repository identifier
+   * @return The directory
+   */
+  private File getCheckoutDir(String repositoryId) {
+    return new File(configurationService.getVCSCheckoutDirectory(), repositoryId);
+  }
+
+  /**
    * <p>findByName.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
    */
   public VCSRepository findByName(String name) {
     return vcsRepositoryMongoStorage.findByName(name);
   }
 
-  /**
-   * <p>getFileSet.</p>
-   *
-   * @param basedir a {@link java.io.File} object.
-   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
-   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSFileSet} object.
-   */
-  public VCSFileSet getFileSet(
-      @NotNull File basedir,
-      @NotNull VCSRepository repository) {
-    return new VCSFileSet(basedir, repository);
-  }
-
   // Every minute
   /**
-   * <p>extractSourceStatistics.</p>
+   * <p>updateRepositories.</p>
    */
-  @Scheduled(fixedRate = 60000)
-  public void extractSourceStatistics() {
-    LOGGER.debug("Starting to process source repositories");
-    for (VCSRepository VCSRepository : vcsRepositoryMongoStorage.findAll()) {
-      LOGGER.debug("Processing sources repository {}", VCSRepository.getName());
-      VCSFileSet localFileSet = getFileSet(new File(getCheckoutDirectory(), VCSRepository.getName()), VCSRepository);
+  @Scheduled(fixedRate = 120000)
+  public void updateRepositories() {
+    for (VCSRepository repository : vcsRepositoryMongoStorage.findAll()) {
+      loadData(repository);
     }
-    LOGGER.debug("Source repositories processed");
+    LOGGER.info("VCS data updated.");
   }
 
   /**
-   * <p>getCheckoutDirectory.</p>
+   * <p>loadData.</p>
    *
-   * @return a {@link java.io.File} object.
+   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
    */
-  public File getCheckoutDirectory() {
-    File checkoutDirectory = new File(configurationService.getDataDir(), "checkout");
-    if (!checkoutDirectory.exists()) {
-      boolean result = checkoutDirectory.mkdirs();
-      LOGGER.info("Checkout directory {} creation [{}]", checkoutDirectory, result ? "OK" : "KO");
+  private void loadData(VCSRepository repository) {
+    switch (repository.getType()) {
+      case GIT:
+        for (VCSCoordinates remote : repository.getRemoteRepositories()) {
+          try {
+            remote.setReferences(loadReferencesFromRemote(remote));
+          } catch (GitAPIException e) {
+            LOGGER.warn("Error while listing branches and tags of repository {} from its remote {} : {}",
+                        repository.getName(), remote, e.getMessage());
+          }
+        }
+        break;
+      default:
+        LOGGER.error("Unknown VCS repository type {}", repository.getType());
+        return;
     }
-    return checkoutDirectory;
+    vcsRepositoryMongoStorage.save(repository);
   }
 
+  /**
+   * <p>loadReferencesFromRemote.</p>
+   *
+   * @param remote a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
+   * @throws org.eclipse.jgit.api.errors.GitAPIException if any.
+   */
+  private List<VCSRef> loadReferencesFromRemote(VCSCoordinates remote) throws GitAPIException {
+    return FluentIterable.from(Git.lsRemoteRepository()
+                                   .setHeads(true)
+                                   .setTags(true)
+                                   .setRemote(remote.getUrl())
+                                   .call()).transform(REF_TO_VCSREF_FUNCTION).toList();
+  }
 }

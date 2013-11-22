@@ -53,28 +53,34 @@ public class DevDataLoaderService {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
     credentialService.updateOrCreate(new KeyPairCredential("A key pair", "a_private_key", "a_public_key"));
-    createVCSRepository("Platform-UI");
-    createVCSRepository("Commons");
-    createVCSRepository("Content");
-    createVCSRepository("Calendar");
-    createVCSRepository("Social");
-    createVCSRepository("Wiki");
-    createVCSRepository("Forum");
-    createVCSRepository("Integration");
-    createVCSRepository("Platform");
+    createVCSRepository("maven-depmgt-pom",false);
+    createVCSRepository("platform-ui",true);
+    createVCSRepository("commons",true);
+    createVCSRepository("ecms",true);
+    createVCSRepository("calendar",true);
+    createVCSRepository("social",true);
+    createVCSRepository("wiki",true);
+    createVCSRepository("forum",true);
+    createVCSRepository("integration",true);
+    createVCSRepository("platform",true);
+    createVCSRepository("platform-public-distributions",false);
+    createVCSRepository("ide",true);
+    createVCSRepository("platform-private-distributions",false);
   }
 
   /**
    * <p>createVCSRepository.</p>
    *
-   * @param name a {@link java.lang.String} object.
-   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   * @param repoName a {@link java.lang.String} object.
+   * @param hasDevRepo a boolean.
    */
-  private VCSRepository createVCSRepository(String name) {
-    VCSRepository gitRepository = new VCSRepository(name.toLowerCase());
-    gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git",
-                                      Credential.NONE.getId());
-    gitRepository.addRemoteRepository("blessed", "https://github.com/exoplatform/" + name.toLowerCase() + ".git",
+  private VCSRepository createVCSRepository(String repoName, boolean hasDevRepo) {
+    VCSRepository gitRepository = new VCSRepository(repoName);
+    if (hasDevRepo) {
+      gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + repoName + ".git",
+                                        Credential.NONE.getId());
+    }
+    gitRepository.addRemoteRepository("blessed", "https://github.com/exoplatform/" + repoName + ".git",
                                       Credential.NONE.getId());
     return VCSRepositoryService.updateOrCreate(gitRepository);
   }

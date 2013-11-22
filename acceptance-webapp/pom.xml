@@ -99,6 +99,13 @@
       <artifactId>httpcore</artifactId>
     </dependency>
     <!-- **************************************** -->
+    <!-- JGit -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+    </dependency>
+    <!-- **************************************** -->
     <!-- Juzu -->
     <!-- **************************************** -->
     <dependency>
@@ -230,6 +237,14 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- JGit -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.java7</artifactId>
       <scope>runtime</scope>
     </dependency>
     <!-- **************************************** -->

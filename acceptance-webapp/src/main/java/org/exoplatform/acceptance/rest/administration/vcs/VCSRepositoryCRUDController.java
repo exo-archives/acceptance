@@ -47,22 +47,9 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
   private VCSRepositoryService vcsRepositoryService;
 
   /**
-   * <p>createListItemDTO.</p>
-   *
-   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
-   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
-   */
-  static private VCSRepository createListItemDTO(VCSRepository repository) {
-    VCSRepositoryListItemDTO dto = new VCSRepositoryListItemDTO(repository.getName());
-    dto.setId(repository.getId());
-    return dto;
-  }
-
-  /**
    * <p>createListItemDTOs.</p>
    *
    * @param repositories a {@link java.lang.Iterable} object.
-   * @return a {@link java.lang.Iterable} object.
    */
   static private Iterable<VCSRepository> createListItemDTOs(Iterable<VCSRepository> repositories) {
     List<VCSRepository> dtos = new ArrayList<>();
@@ -72,10 +59,36 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
     return dtos;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * <p>createListItemDTO.</p>
+   *
+   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
+  static private VCSRepository createListItemDTO(VCSRepository repository) {
+    VCSRepositoryListItemDTO dto = new VCSRepositoryListItemDTO(repository.getName());
+    dto.setId(repository.getId());
+    return dto;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected CRUDService<VCSRepository> getCRUDService() {
     return vcsRepositoryService;
+  }
+
+  /**
+   * {@inheritDoc}
+   * <p/>
+   * Get a (potentially paginated) list of objects
+   */
+  @Override
+  public Iterable<VCSRepository> getObjects(
+      @RequestParam(value = "offset", defaultValue = "0") int offset,
+      @RequestParam(value = "limit", defaultValue = "-1") int limit) {
+    // We filter list result to not expose a list of all our repositories
+    return createListItemDTOs(super.getObjects(offset, limit));
   }
 
   /**
@@ -87,20 +100,7 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
     this.vcsRepositoryService = vcsRepositoryService;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * Get a (potentially paginated) list of objects
-   */
-  @Override
-  public Iterable<VCSRepository> getObjects(
-      @RequestParam(value = "offset", defaultValue = "0") int offset,
-      @RequestParam(value = "limit", defaultValue = "-1") int limit) {
-    // We filter list result to not expose a list of all our repositories
-    return createListItemDTOs(super.getObjects(offset, limit));
-  }
-
-  @JsonIgnoreProperties({"remoteRepositories"})
+  @JsonIgnoreProperties({"remoteRepositories", "tags", "branches", "references"})
   public static class VCSRepositoryListItemDTO extends VCSRepository {
 
     private VCSRepositoryListItemDTO(@NotNull String name) {

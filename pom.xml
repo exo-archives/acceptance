@@ -73,6 +73,7 @@
     <javax.jsr250.version>1.0</javax.jsr250.version>
     <javax.servlet.version>3.0.1</javax.servlet.version>
     <javax.validation.version>1.1.0.Final</javax.validation.version>
+    <jgit.version>3.3.0.201403021825-r</jgit.version>
     <json-path.version>0.9.1</json-path.version>
     <junit.version>4.11</junit.version>
     <juzu.version>1.0.0-beta1-SNAPSHOT</juzu.version>
@@ -276,6 +277,19 @@
         <groupId>org.apache.tomcat</groupId>
         <artifactId>tomcat-catalina-jmx-remote</artifactId>
         <version>${tomcat.version}</version>
+      </dependency>
+      <!-- **************************************** -->
+      <!-- JGit -->
+      <!-- **************************************** -->
+      <dependency>
+        <groupId>org.eclipse.jgit</groupId>
+        <artifactId>org.eclipse.jgit</artifactId>
+        <version>${jgit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jgit</groupId>
+        <artifactId>org.eclipse.jgit.java7</artifactId>
+        <version>${jgit.version}</version>
       </dependency>
       <!-- **************************************** -->
       <!-- Build resource used to import license related files -->

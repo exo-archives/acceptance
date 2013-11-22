@@ -176,9 +176,13 @@
                   </div>
                 </div>
               </ng-form>
-              <a class="pull-left btn btn-danger btn-sm"
-                 ng-click="removeRemote($index)">
-                <i class="fa fa-trash-o"></i> Remove this remote</a>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="pull-left btn btn-danger btn-sm"
+                     ng-click="removeRemote($index)">
+                    <i class="fa fa-trash-o"></i> Remove this remote</a>
+                </div>
+              </div>
             </div>
           </div>
         </fieldset>
@@ -200,7 +204,6 @@
         </div>
 
         <div class="row">
-
           <div class="col-md-10 col-md-offset-2">
             <div class="pull-left">
               <a ng-click="destroy()" ng-show="repository.id" class="btn btn-danger btn-sm"><i

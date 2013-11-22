@@ -22,9 +22,11 @@ import org.exoplatform.acceptance.model.StorableObject;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import com.google.common.collect.FluentIterable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -38,21 +40,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "vcsrepositories")
 public class VCSRepository extends StorableObject {
 
+  @NotNull
+  @Size(min = 1)
+  private List<VCSCoordinates> remoteRepositories = new ArrayList<>();
+
   /**
-   * The type of credential
+   * The type of VCS
    */
   @NotNull
   private Type type = Type.GIT;
-  @NotNull
-  @Size(min = 1)
-  private ArrayList<VCSCoordinates> remoteRepositories = new ArrayList<>();
-
 
   /**
    * <p>Constructor for VCSRepository.</p>
    */
   public VCSRepository() {
-    super();
   }
 
   /**
@@ -76,24 +77,6 @@ public class VCSRepository extends StorableObject {
   }
 
   /**
-   * <p>Getter for the field <code>type</code>.</p>
-   *
-   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository.Type} object.
-   */
-  public Type getType() {
-    return type;
-  }
-
-  /**
-   * <p>Setter for the field <code>type</code>.</p>
-   *
-   * @param type a {@link org.exoplatform.acceptance.model.vcs.VCSRepository.Type} object.
-   */
-  public void setType(@NotNull Type type) {
-    this.type = type;
-  }
-
-  /**
    * <p>addRemoteRepository.</p>
    *
    * @param name a {@link java.lang.String} object.
@@ -101,6 +84,16 @@ public class VCSRepository extends StorableObject {
    */
   public void addRemoteRepository(String name, String url) {
     addRemoteRepository(new VCSCoordinates(name, url));
+  }
+
+  /**
+   * <p>addRemoteRepository.</p>
+   *
+   * @param VCSCoordinates a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
+   */
+  public void addRemoteRepository(VCSCoordinates VCSCoordinates) {
+    assert VCSCoordinates.getName() != null;
+    remoteRepositories.add(VCSCoordinates);
   }
 
   /**
@@ -115,34 +108,33 @@ public class VCSRepository extends StorableObject {
   }
 
   /**
-   * <p>addRemoteRepository.</p>
-   *
-   * @param VCSCoordinates a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
+   * <p>getTags.</p>
    */
-  public void addRemoteRepository(VCSCoordinates VCSCoordinates) {
-    assert VCSCoordinates.getName() != null;
-    remoteRepositories.add(VCSCoordinates);
+  public List<VCSRef> getTags() {
+    return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getReferences()).filter(VCSRef.IS_TAG).toList());
   }
 
   /**
-   * <p>Getter for the field <code>remoteRepositories</code>.</p>
-   *
-   * @return a {@link java.util.Collection} object.
+   * <p>getReferences.</p>
    */
-  public Collection<VCSCoordinates> getRemoteRepositories() {
-    return remoteRepositories;
+  public List<VCSRef> getReferences() {
+    return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getRemoteRepositories()).transformAndConcat(new Function<VCSCoordinates,
+        Iterable<VCSRef>>() {
+      // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
+      //@Nullable
+      @Override
+      //public Iterable<VCSRef> apply(@Nullable VCSCoordinates input) {
+      public Iterable<VCSRef> apply(VCSCoordinates input) {
+        return input.getReferences();
+      }
+    }).toList());
   }
 
   /**
-   * <p>Setter for the field <code>remoteRepositories</code>.</p>
-   *
-   * @param VCSCoordinatesList a {@link java.util.Collection} object.
+   * <p>getBranches.</p>
    */
-  public void setRemoteRepositories(Collection<VCSCoordinates> VCSCoordinatesList) {
-    remoteRepositories.clear();
-    for (VCSCoordinates VCSCoordinates : VCSCoordinatesList) {
-      addRemoteRepository(VCSCoordinates);
-    }
+  public List<VCSRef> getBranches() {
+    return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getReferences()).filter(VCSRef.IS_BRANCH).toList());
   }
 
   /**
@@ -177,10 +169,46 @@ public class VCSRepository extends StorableObject {
   }
 
   /**
+   * <p>Getter for the field <code>type</code>.</p>
+   */
+  public Type getType() {
+    return type;
+  }
+
+  /**
+   * <p>Setter for the field <code>type</code>.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.vcs.VCSRepository.Type} object.
+   */
+  public void setType(@NotNull Type type) {
+    this.type = type;
+  }
+
+  /**
+   * <p>Getter for the field <code>remoteRepositories</code>.</p>
+   */
+  public List<VCSCoordinates> getRemoteRepositories() {
+    return remoteRepositories;
+  }
+
+  /**
+   * <p>Setter for the field <code>remoteRepositories</code>.</p>
+   *
+   * @param VCSCoordinatesList a {@link java.util.List} object.
+   */
+  public void setRemoteRepositories(List<VCSCoordinates> VCSCoordinatesList) {
+    remoteRepositories.clear();
+    for (VCSCoordinates VCSCoordinates : VCSCoordinatesList) {
+      addRemoteRepository(VCSCoordinates);
+    }
+  }
+
+  /**
    * VCS Repository types
    */
   public enum Type {
-    GIT
+    GIT;
   }
+
 
 }

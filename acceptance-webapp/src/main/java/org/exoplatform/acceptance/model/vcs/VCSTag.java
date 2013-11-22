@@ -21,19 +21,19 @@ package org.exoplatform.acceptance.model.vcs;
 import javax.validation.constraints.NotNull;
 
 /**
- * A VCS Branch
+ * A VCS Tag
  *
  * @author Arnaud Héritier ( aheritier@exoplatform.com )
  * @since 2.0.0
  */
-public class VCSBranch extends VCSRef {
+public class VCSTag extends VCSRef {
   /**
-   * <p>Constructor for VCSBranch.</p>
+   * <p>Constructor for VCSTag.</p>
    *
    * @param name a {@link java.lang.String} object.
    * @param id a {@link java.lang.String} object.
    */
-  public VCSBranch(@NotNull String name, @NotNull String id) {
-    super(Type.BRANCH, name, id);
+  public VCSTag(@NotNull String name, @NotNull String id) {
+    super(Type.TAG, name, id);
   }
 }

@@ -62,8 +62,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>version</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getVersion() {
     return version;
@@ -71,8 +69,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmUrl</code>.</p>
-   *
-   * @return a {@link java.net.URL} object.
    */
   public URL getScmUrl() {
     return scmUrl;
@@ -80,8 +76,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmRevision</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getScmRevision() {
     return scmRevision;
@@ -89,8 +83,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmRevisionUrl</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getScmRevisionUrl() {
     return scmRevisionUrl;
@@ -98,8 +90,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>buildDate</code>.</p>
-   *
-   * @return a {@link java.util.Date} object.
    */
   public Date getBuildDate() {
     return buildDate;
@@ -107,8 +97,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>inceptionYear</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getInceptionYear() {
     return inceptionYear;
@@ -116,8 +104,6 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>organizationName</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getOrganizationName() {
     return organizationName;
@@ -125,17 +111,30 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>organizationUrl</code>.</p>
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getOrganizationUrl() {
     return organizationUrl;
   }
 
   /**
-   * <p>getDataDir.</p>
+   * Returns the directory where the application checks out VCS repositories.
    *
-   * @return a {@link java.io.File} object.
+   * @return The directory after having created it if necessary
+   */
+  public File getVCSCheckoutDirectory() {
+    File checkoutDirectory = new File(getDataDir(), "vcs/checkout");
+    if (!checkoutDirectory.exists()) {
+      if (checkoutDirectory.mkdirs()) {
+        LOGGER.info("VCS Checkout directory {} creation [OK]", checkoutDirectory);
+      } else {
+        LOGGER.error("VCS Checkout directory {} creation [KO]", checkoutDirectory);
+      }
+    }
+    return checkoutDirectory;
+  }
+
+  /**
+   * <p>getDataDir.</p>
    */
   public File getDataDir() {
     if (Strings.isNullOrEmpty(dataDirPath)) {
@@ -143,16 +142,17 @@ public class ConfigurationService {
     }
     File dataDir = new File(dataDirPath);
     if (!dataDir.exists()) {
-      boolean result = dataDir.mkdirs();
-      LOGGER.info("Data directory {} creation [{}]", dataDirPath, result ? "OK" : "KO");
+      if (dataDir.mkdirs()) {
+        LOGGER.info("Data directory {} creation [OK]");
+      } else {
+        LOGGER.error("Data directory {} creation [KO]");
+      }
     }
     return dataDir;
   }
 
   /**
    * <p>getTmpDir.</p>
-   *
-   * @return a {@link java.io.File} object.
    */
   public File getTmpDir() {
     if (Strings.isNullOrEmpty(tmpDirPath)) {
@@ -160,8 +160,11 @@ public class ConfigurationService {
     }
     File tmpDir = new File(tmpDirPath);
     if (!tmpDir.exists()) {
-      boolean result = tmpDir.mkdirs();
-      LOGGER.info("Temporary directory {} creation [{}]", tmpDirPath, result ? "OK" : "KO");
+      if (tmpDir.mkdirs()) {
+        LOGGER.info("Temporary directory {} creation [OK]");
+      } else {
+        LOGGER.error("Temporary directory {} creation [KO]");
+      }
     }
     return tmpDir;
   }

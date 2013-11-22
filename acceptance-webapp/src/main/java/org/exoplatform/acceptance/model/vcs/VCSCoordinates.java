@@ -21,6 +21,10 @@ package org.exoplatform.acceptance.model.vcs;
 import org.exoplatform.acceptance.model.credential.Credential;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.FluentIterable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.constraints.NotNull;
 
 /**
  * A Version Control System repository
@@ -30,9 +34,17 @@ import com.google.common.base.Objects;
  */
 public class VCSCoordinates {
 
+  @NotNull
   private String name;
+  @NotNull
   private String url;
+  @NotNull
   private String credentialId;
+  /**
+   * The list of references (tags and branches) for this repository
+   */
+  private List<VCSRef> references = new ArrayList<>();
+
 
   /**
    * <p>Constructor for VCSCoordinates.</p>
@@ -46,7 +58,7 @@ public class VCSCoordinates {
    * @param name a {@link java.lang.String} object.
    * @param url a {@link java.lang.String} object.
    */
-  public VCSCoordinates(String name, String url) {
+  public VCSCoordinates(@NotNull String name, @NotNull String url) {
     this(name, url, Credential.NONE.getId());
   }
 
@@ -57,16 +69,43 @@ public class VCSCoordinates {
    * @param url a {@link java.lang.String} object.
    * @param credentialId a {@link java.lang.String} object.
    */
-  public VCSCoordinates(String name, String url, String credentialId) {
+  public VCSCoordinates(@NotNull String name, @NotNull String url, @NotNull String credentialId) {
     this.name = name;
     this.url = url;
     this.credentialId = credentialId;
   }
 
   /**
-   * <p>Getter for the field <code>name</code>.</p>
+   * {@inheritDoc}
    *
-   * @return a {@link java.lang.String} object.
+   * Returns a string representation of the object. In general, the
+   * {@code toString} method returns a string that
+   * "textually represents" this object. The result should
+   * be a concise but informative representation that is easy for a
+   * person to read.
+   * It is recommended that all subclasses override this method.
+   * <p/>
+   * The {@code toString} method for class {@code Object}
+   * returns a string consisting of the name of the class of which the
+   * object is an instance, the at-sign character `{@code @}', and
+   * the unsigned hexadecimal representation of the hash code of the
+   * object. In other words, this method returns a string equal to the
+   * value of:
+   * <blockquote>
+   * <pre>
+   * getClass().getName() + '@' + Integer.toHexString(hashCode())
+   * </pre></blockquote>
+   */
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+        .add("name", getName())
+        .add("url", getUrl())
+        .add("credentialId", getCredentialId()).toString();
+  }
+
+  /**
+   * <p>Getter for the field <code>name</code>.</p>
    */
   public String getName() {
     return name;
@@ -83,8 +122,6 @@ public class VCSCoordinates {
 
   /**
    * Returns the SCM URL used to access to this remote repository.
-   *
-   * @return a {@link java.lang.String} object.
    */
   public String getUrl() {
     return url;
@@ -118,55 +155,32 @@ public class VCSCoordinates {
   }
 
   /**
-   * {@inheritDoc}
-   *
-   * Returns a string representation of the object. In general, the
-   * {@code toString} method returns a string that
-   * "textually represents" this object. The result should
-   * be a concise but informative representation that is easy for a
-   * person to read.
-   * It is recommended that all subclasses override this method.
-   * <p/>
-   * The {@code toString} method for class {@code Object}
-   * returns a string consisting of the name of the class of which the
-   * object is an instance, the at-sign character `{@code @}', and
-   * the unsigned hexadecimal representation of the hash code of the
-   * object. In other words, this method returns a string equal to the
-   * value of:
-   * <blockquote>
-   * <pre>
-   * getClass().getName() + '@' + Integer.toHexString(hashCode())
-   * </pre></blockquote>
+   * <p>Getter for the field <code>references</code>.</p>
    */
-  @Override
-  public String toString() {
-    return Objects.toStringHelper(this)
-        .add("name", getName())
-        .add("url", getUrl())
-        .add("credential", getCredentialId()).toString();
+  public List<VCSRef> getReferences() {
+    return references;
   }
 
-  /** {@inheritDoc} */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof VCSCoordinates)) return false;
-
-    VCSCoordinates that = (VCSCoordinates) o;
-
-    if (!credentialId.equals(that.credentialId)) return false;
-    if (!name.equals(that.name)) return false;
-    if (!url.equals(that.url)) return false;
-
-    return true;
+  /**
+   * <p>Setter for the field <code>references</code>.</p>
+   *
+   * @param references a {@link java.util.List} object.
+   */
+  public void setReferences(List<VCSRef> references) {
+    this.references = VCSRef.SORT_BY_NAME.sortedCopy(references);
   }
 
-  /** {@inheritDoc} */
-  @Override
-  public int hashCode() {
-    int result = name.hashCode();
-    result = 31 * result + url.hashCode();
-    result = 31 * result + credentialId.hashCode();
-    return result;
+  /**
+   * <p>getTags.</p>
+   */
+  public List<VCSRef> getTags() {
+    return FluentIterable.from(getReferences()).filter(VCSRef.IS_TAG).toList();
+  }
+
+  /**
+   * <p>getBranches.</p>
+   */
+  public List<VCSRef> getBranches() {
+    return FluentIterable.from(getReferences()).filter(VCSRef.IS_BRANCH).toList();
   }
 }
