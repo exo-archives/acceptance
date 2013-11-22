@@ -26,6 +26,7 @@ import com.google.common.base.Objects;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -40,6 +41,7 @@ public class VCSRepository extends StorableObject {
   @NotNull
   private Type type = Type.GIT;
   @NotNull
+  @Size(min = 1)
   private ArrayList<VCSCoordinates> remoteRepositories = new ArrayList<>();
 
 

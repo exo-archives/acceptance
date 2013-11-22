@@ -173,6 +173,7 @@ public class VCSRepositoryCRUDControllerTest {
   @Test
   public void add_NameIsTooLong_ShouldReturnValidationErrorForName() throws Exception {
     VCSRepository invalidObject = new VCSRepository(Strings.padEnd("a", 65, 'a'));
+    invalidObject.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
     mockMvc.perform(post("/admin/vcs/repository")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -186,8 +187,24 @@ public class VCSRepositoryCRUDControllerTest {
   }
 
   @Test
+  public void add_NoRemote_ShouldReturnValidationErrorForRemotes() throws Exception {
+    VCSRepository invalidObject = new VCSRepository(Strings.padEnd("a", 10, 'a'));
+
+    mockMvc.perform(post("/admin/vcs/repository")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(convertObjectToJsonBytes(invalidObject)))
+        .andExpect(status().isBadRequest())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.fieldErrors", hasSize(1)))
+        .andExpect(jsonPath("$.fieldErrors[*].field", containsInAnyOrder("remoteRepositories")))
+        .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder("size must be between 1 and " + Integer.MAX_VALUE)));
+    verifyZeroInteractions(vcsRepositoryServiceMock);
+  }
+
+  @Test
   public void add_NameAlreadyExists_ShouldReturnValidationError() throws Exception {
     VCSRepository objectToCreate = new VCSRepository(Strings.padEnd("a", 10, 'a'));
+    objectToCreate.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
     String exMsg = "{ \"serverUsed\" : \"localhost/127.0.0.1:27017\" , \"err\" : \"E11000 duplicate key error index: acceptance" +
         ".credentials.$name  dup key: { : \\\"" + objectToCreate.getName() + "\\\" }\" , \"code\" : 11000 , \"n\" : 0 , \"connectionId\" : 5 , \"ok\" : 1.0}";
     String errorMsg = "E11000 duplicate key error index: acceptance.credentials.$name  dup key: { : \"" + objectToCreate.getName() + "\" }";
@@ -214,7 +231,9 @@ public class VCSRepositoryCRUDControllerTest {
   @Test
   public void add_NewVCSRepositoryEntry_ShouldAddVCSRepositoryEntryAndReturnAddedEntry() throws Exception {
     VCSRepository objectToCreate = new VCSRepository(Strings.padEnd("a", 10, 'a'));
+    objectToCreate.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
     VCSRepository objectCreated = new VCSRepository(Strings.padEnd("a", 10, 'a'), "1");
+    objectCreated.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
     when(vcsRepositoryServiceMock.updateOrCreate(any(VCSRepository.class))).thenReturn(objectCreated);
 
@@ -251,11 +270,12 @@ public class VCSRepositoryCRUDControllerTest {
 
   @Test
   public void update_EmptyVCSRepositoryEntry_ShouldReturnValidationErrorForName() throws Exception {
-    VCSRepository invalidVCSRepository = new VCSRepository("", "1");
+    VCSRepository invalidObject = new VCSRepository("", "1");
+    invalidObject.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
-    mockMvc.perform(put("/admin/vcs/repository/{id}", invalidVCSRepository.getId())
+    mockMvc.perform(put("/admin/vcs/repository/{id}", invalidObject.getId())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(convertObjectToJsonBytes(invalidVCSRepository))
+                        .content(convertObjectToJsonBytes(invalidObject))
     )
         .andExpect(status().isBadRequest())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -269,6 +289,7 @@ public class VCSRepositoryCRUDControllerTest {
   @Test
   public void update_NameIsTooLong_ShouldReturnValidationErrorsForName() throws Exception {
     VCSRepository invalidObject = new VCSRepository(Strings.padEnd("a", 65, 'a'), "foo");
+    invalidObject.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
     mockMvc.perform(put("/admin/vcs/repository/{id}", invalidObject.getId())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -286,8 +307,28 @@ public class VCSRepositoryCRUDControllerTest {
   }
 
   @Test
+  public void update_NoRemote_ShouldReturnValidationErrorsForRemotes() throws Exception {
+    VCSRepository invalidObject = new VCSRepository(Strings.padEnd("a", 10, 'a'), "foo");
+
+    mockMvc.perform(put("/admin/vcs/repository/{id}", invalidObject.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(convertObjectToJsonBytes(invalidObject))
+    )
+        .andExpect(status().isBadRequest())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$.fieldErrors", hasSize(1)))
+        .andExpect(jsonPath("$.fieldErrors[*].field", containsInAnyOrder("remoteRepositories")))
+        .andExpect(jsonPath("$.fieldErrors[*].message", containsInAnyOrder(
+            "size must be between 1 and " + Integer.MAX_VALUE
+        )));
+
+    verifyZeroInteractions(vcsRepositoryServiceMock);
+  }
+
+  @Test
   public void update_VCSRepositoryEntryNotFound_ShouldReturnHttpStatusCode404() throws Exception {
     VCSRepository absentObject = new VCSRepository(Strings.padEnd("a", 10, 'a'), "unavailable");
+    absentObject.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
     when(vcsRepositoryServiceMock.update(any(VCSRepository.class))).thenThrow(new EntityNotFoundException(""));
 
@@ -310,7 +351,9 @@ public class VCSRepositoryCRUDControllerTest {
   @Test
   public void update_VCSRepositoryEntryFound_ShouldUpdateVCSRepositoryEntryAndReturnIt() throws Exception {
     VCSRepository objectSent = new VCSRepository(Strings.padEnd("a", 10, 'a'), "foo");
+    objectSent.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
     VCSRepository objectReceived = new VCSRepository(Strings.padEnd("c", 10, 'c'), "foo");
+    objectReceived.addRemoteRepository("acceptance", "git@github.com:exoplatform/acceptance.git");
 
     when(vcsRepositoryServiceMock.update(any(VCSRepository.class))).thenReturn(objectReceived);
 
