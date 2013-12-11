@@ -23,7 +23,7 @@
        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.2.xsd">
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
   <!-- Boostrap JSR-303 Bean Validation -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
   <bean id="mongoBeanValidator" class="org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener">
