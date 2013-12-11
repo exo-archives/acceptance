@@ -63,7 +63,7 @@
     <guava.version>15.0</guava.version>
     <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
     <htmlunit.version>2.13</htmlunit.version>
-    <jackson2.version>2.2.3</jackson2.version>
+    <jackson2.version>2.3.0</jackson2.version>
     <jansi.version>1.11</jansi.version>
     <javax.inject.version>1</javax.inject.version>
     <javax.jsr250.version>1.0</javax.jsr250.version>
