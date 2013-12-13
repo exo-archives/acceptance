@@ -64,7 +64,7 @@ public class AdminController extends BaseController {
    */
   @View
   @Route("/admin/credential")
-  @WithAssets({"credential-admin.js"})
+  @WithAssets({"administration/credential/index.js"})
   public Response.Content credential() {
     return makeResponse(credentialIndex);
   }
@@ -74,7 +74,7 @@ public class AdminController extends BaseController {
    */
   @View
   @Route("/admin/vcs/repository")
-  @WithAssets({"vcsRepository-admin.js"})
+  @WithAssets({"administration/vcs/repository.js"})
   public Response.Content vcsRepository() {
     return makeResponse(dvcsRepository);
   }

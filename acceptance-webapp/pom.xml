@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (C) 2011-2013 eXo Platform SAS.
+    Copyright (C) 2011-2014 eXo Platform SAS.
 
     This is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as
@@ -99,6 +99,10 @@
       <groupId>org.juzu</groupId>
       <artifactId>juzu-plugins-servlet</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.juzu</groupId>
+      <artifactId>juzu-plugins-webjars</artifactId>
+    </dependency>
     <!-- **************************************** -->
     <!-- SLF4J -->
     <!-- **************************************** -->
@@ -156,6 +160,39 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- **************************************** -->
+    <!-- Web Jars -->
+    <!-- **************************************** -->
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>angular-ui-bootstrap</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>angularjs</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>font-awesome</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>restangular</artifactId>
       <scope>provided</scope>
     </dependency>
     <!-- **************************************** -->
@@ -386,10 +423,43 @@
             </execution>
           </executions>
           <dependencies>
+            <!-- **************************************** -->
+            <!-- Web Jars -->
+            <!-- **************************************** -->
             <dependency>
               <groupId>ch.qos.logback</groupId>
               <artifactId>logback-classic</artifactId>
               <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>angular-ui-bootstrap</artifactId>
+              <version>${webjars.angular-ui-bootstrap.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>angularjs</artifactId>
+              <version>${webjars.angularjs.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>bootstrap</artifactId>
+              <version>${webjars.bootstrap.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>font-awesome</artifactId>
+              <version>${webjars.font-awesome.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>jquery</artifactId>
+              <version>${webjars.jquery.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.webjars</groupId>
+              <artifactId>restangular</artifactId>
+              <version>${webjars.restangular.version}</version>
             </dependency>
           </dependencies>
         </plugin>

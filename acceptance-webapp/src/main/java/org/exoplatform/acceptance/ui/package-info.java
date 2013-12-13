@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2013 eXo Platform SAS.
+ * Copyright (C) 2011-2014 eXo Platform SAS.
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
@@ -23,6 +23,7 @@
  */
 
 // Application
+
 @Application(
     defaultController = HomeController.class,
     name = "AcceptanceApplication")
@@ -31,54 +32,81 @@
 @Servlet("/")
 
 // Injection Bindings
-@Bindings({
-              @Binding(value = CurrentUser.class, scope = Scope.SESSION),
-              @Binding(value = Flash.class, scope = Scope.FLASH),
-              @Binding(value = Context.class, scope = Scope.REQUEST)
-          })
+@Bindings(
+    {
+        @Binding(value = CurrentUser.class, scope = Scope.SESSION),
+        @Binding(value = Flash.class, scope = Scope.FLASH),
+        @Binding(value = Context.class, scope = Scope.REQUEST)
+    })
+
+
+@WebJars(
+    {
+        @WebJar(value = "angular-ui-bootstrap", version = "0.6.0"),
+        @WebJar(value = "angularjs", version = "1.1.5"),
+        @WebJar(value = "bootstrap"),
+        @WebJar(value = "font-awesome"),
+        @WebJar(value = "jquery", version = "1.10.2"),
+        @WebJar(value = "lodash"),
+        @WebJar(value = "restangular")
+    })
 
 // Declare assets
 @Assets(
     {
+        @Asset("bootstrap/3.0.3/css/bootstrap.min.css"),
+        @Asset("font-awesome/4.0.0/css/font-awesome.min.css"),
+        @Asset("jquery/1.10.2/jquery.js"),
+        @Asset("angularjs/1.1.5/angular.min.js"),
+        @Asset("lodash/1.2.0/lodash.min.js"),
         @Asset(
-            id = "jquery.js",
-            value = "jquery_1_10_2/jquery.min.js"),
+            value = "bootstrap/3.0.3/js/bootstrap.min.js",
+            depends = {"jquery/1.10.2/jquery.js"
+            }),
         @Asset(
-            id = "bootstrap.js", value = "bootswatch_spacelab_3_0_0/js/bootstrap.min.js",
-            depends = "jquery.js"),
+            value = "restangular/1.1.3/restangular.min.js",
+            depends = {
+                "angularjs/1.1.5/angular.min.js",
+                "lodash/1.2.0/lodash.min.js"
+            }),
         @Asset(
-            id = "angular.js", value = "angular_1_1_5/angular.min.js"),
+            value = "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js",
+            depends = {
+                "angularjs/1.1.5/angular.min.js",
+                "bootstrap/3.0.3/js/bootstrap.min.js"
+            }),
         @Asset(
-            id = "underscore.js", value = "underscore_1_5_2/underscore.min.js"),
+            value = "acceptance.js",
+            depends = {
+                "bootstrap/3.0.3/js/bootstrap.min.js"
+            }),
         @Asset(
-            id = "restangular.js", value = "restangular_1_1_6/restangular.min.js",
-            depends = {"angular.js", "underscore.js"}),
+            value = "sources.js",
+            depends = {
+                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+            }),
         @Asset(
-            id = "ui-bootstrap.js", value = "ui_bootstrap_0_6_0/ui-bootstrap-tpls.min.js",
-            depends = {"angular.js", "bootstrap.js"}),
+            value = "acceptance.css",
+            depends = {
+                "bootstrap/3.0.3/css/bootstrap.min.css",
+                "font-awesome/4.0.0/css/font-awesome.min.css"
+            }),
         @Asset(
-            id = "acceptance.js", value = "acceptance.js"),
+            value = "administration/credential/index.js",
+            depends = {
+                "restangular/1.1.3/restangular.min.js",
+                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+            }),
         @Asset(
-            id = "credential-admin.js", value = "administration/credential/index.js",
-            depends = {"restangular.js", "ui-bootstrap.js"}),
-        @Asset(
-            id = "vcsRepository-admin.js", value = "administration/vcs/repository.js",
-            depends = {"restangular.js", "ui-bootstrap.js"}),
-        @Asset(
-            id = "sources.js", value = "sources.js",
-            depends = {"angular.js", "ui-bootstrap.js"}),
-        @Asset(
-            id = "bootstrap.css", value = "bootswatch_spacelab_3_0_0/css/bootstrap.min.css"),
-        @Asset(
-            id = "font-awesome.css", value = "font_awesome_4_0_0/css/font-awesome.min.css"),
-        @Asset(
-            id = "acceptance.css", value = "acceptance.css",
-            depends = {"bootstrap.css", "font-awesome.css"})
-
+            value = "administration/vcs/repository.js",
+            depends = {
+                "restangular/1.1.3/restangular.min.js",
+                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+            })
     })
 
 // Always use these assets
-@WithAssets({"bootstrap.js", "acceptance.js", "acceptance.css"})
+@WithAssets({"acceptance.js", "acceptance.css"})
 
 // Custom tags
 @Tags({
@@ -98,5 +126,7 @@ import juzu.plugin.asset.WithAssets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;
+import juzu.plugin.webjars.WebJar;
+import juzu.plugin.webjars.WebJars;
 import juzu.template.Tag;
 import juzu.template.Tags;
