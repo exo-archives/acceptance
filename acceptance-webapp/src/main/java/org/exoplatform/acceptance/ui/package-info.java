@@ -42,7 +42,7 @@
 
 @WebJars(
     {
-        @WebJar(value = "angular-ui-bootstrap", version = "0.6.0"),
+        @WebJar(value = "angular-ui-bootstrap"),
         @WebJar(value = "angularjs", version = "1.1.5"),
         @WebJar(value = "bootstrap"),
         @WebJar(value = "font-awesome"),
@@ -70,7 +70,7 @@
                 "lodash/1.2.0/lodash.min.js"
             }),
         @Asset(
-            value = "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js",
+            value = "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js",
             depends = {
                 "angularjs/1.1.5/angular.min.js",
                 "bootstrap/3.0.3/js/bootstrap.min.js"
@@ -83,7 +83,7 @@
         @Asset(
             value = "sources.js",
             depends = {
-                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
             }),
         @Asset(
             value = "acceptance.css",
@@ -95,13 +95,13 @@
             value = "administration/credential/index.js",
             depends = {
                 "restangular/1.1.3/restangular.min.js",
-                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
             }),
         @Asset(
             value = "administration/vcs/repository.js",
             depends = {
                 "restangular/1.1.3/restangular.min.js",
-                "angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"
+                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
             })
     })
 
