@@ -55,7 +55,7 @@
 @Assets(
     {
         @Asset(id = "bootstrap.css", value = "bootstrap/3.0.3/css/bootstrap.min.css"),
-        @Asset(id = "font-awesome.css", value = "font-awesome/4.0.0/css/font-awesome.min.css"),
+        @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/1.10.2/jquery.js"),
         @Asset(id = "angular.js", value = "angularjs/1.1.5/angular.min.js"),
         @Asset(id = "lodash.js", value = "lodash/1.2.0/lodash.min.js"),
