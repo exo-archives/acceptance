@@ -308,14 +308,14 @@
         <version>${arquillian.graphene2.version}</version>
         <type>pom</type>
       </dependency>
+      <!-- **************************************** -->
+      <!-- Juzu Web Framework -->
+      <!-- **************************************** -->
       <dependency>
         <groupId>org.juzu</groupId>
         <artifactId>juzu-core</artifactId>
         <version>${juzu.version}</version>
       </dependency>
-      <!-- **************************************** -->
-      <!-- Juzu Web Framework -->
-      <!-- **************************************** -->
       <dependency>
         <groupId>org.juzu</groupId>
         <artifactId>juzu-depchain-arquillian</artifactId>
