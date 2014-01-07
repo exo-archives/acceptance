@@ -54,55 +54,20 @@
 // Declare assets
 @Assets(
     {
-        @Asset("bootstrap/3.0.3/css/bootstrap.min.css"),
-        @Asset("font-awesome/4.0.0/css/font-awesome.min.css"),
-        @Asset("jquery/1.10.2/jquery.js"),
-        @Asset("angularjs/1.1.5/angular.min.js"),
-        @Asset("lodash/1.2.0/lodash.min.js"),
-        @Asset(
-            value = "bootstrap/3.0.3/js/bootstrap.min.js",
-            depends = {"jquery/1.10.2/jquery.js"
-            }),
-        @Asset(
-            value = "restangular/1.1.3/restangular.min.js",
-            depends = {
-                "angularjs/1.1.5/angular.min.js",
-                "lodash/1.2.0/lodash.min.js"
-            }),
-        @Asset(
-            value = "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js",
-            depends = {
-                "angularjs/1.1.5/angular.min.js",
-                "bootstrap/3.0.3/js/bootstrap.min.js"
-            }),
-        @Asset(
-            value = "acceptance.js",
-            depends = {
-                "bootstrap/3.0.3/js/bootstrap.min.js"
-            }),
-        @Asset(
-            value = "sources.js",
-            depends = {
-                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
-            }),
-        @Asset(
-            value = "acceptance.css",
-            depends = {
-                "bootstrap/3.0.3/css/bootstrap.min.css",
-                "font-awesome/4.0.0/css/font-awesome.min.css"
-            }),
-        @Asset(
-            value = "administration/credential/index.js",
-            depends = {
-                "restangular/1.1.3/restangular.min.js",
-                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
-            }),
-        @Asset(
-            value = "administration/vcs/repository.js",
-            depends = {
-                "restangular/1.1.3/restangular.min.js",
-                "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js"
-            })
+        @Asset(id = "bootstrap.css", value = "bootstrap/3.0.3/css/bootstrap.min.css"),
+        @Asset(id = "font-awesome.css", value = "font-awesome/4.0.0/css/font-awesome.min.css"),
+        @Asset(id = "jquery.js", value = "jquery/1.10.2/jquery.js"),
+        @Asset(id = "angular.js", value = "angularjs/1.1.5/angular.min.js"),
+        @Asset(id = "lodash.js", value = "lodash/1.2.0/lodash.min.js"),
+        @Asset(id = "bootstrap.js", value = "bootstrap/3.0.3/js/bootstrap.min.js", depends = {"jquery.js"}),
+        @Asset(id = "restangular.js", value = "restangular/1.1.3/restangular.min.js", depends = {"angular.js", "lodash.js"}),
+        @Asset(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js",
+               depends = {"angular.js", "bootstrap.js"}),
+        @Asset(value = "acceptance.js", depends = {"bootstrap.js"}),
+        @Asset(value = "sources.js", depends = {"ui-bootstrap.js"}),
+        @Asset(value = "acceptance.css", depends = {"bootstrap.css", "font-awesome.css"}),
+        @Asset(value = "administration/credential/index.js", depends = {"restangular.js", "ui-bootstrap.js"}),
+        @Asset(value = "administration/vcs/repository.js", depends = {"restangular.js", "ui-bootstrap.js"})
     })
 
 // Always use these assets
