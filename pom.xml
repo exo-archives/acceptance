@@ -74,7 +74,7 @@
     <javax.validation.version>1.1.0.Final</javax.validation.version>
     <json-path.version>0.9.1</json-path.version>
     <junit.version>4.11</junit.version>
-    <juzu.version>0.8.0-beta7</juzu.version>
+    <juzu.version>0.8.0-beta8-SNAPSHOT</juzu.version>
     <logback.version>1.1.1</logback.version>
     <mockito-core.version>1.9.5</mockito-core.version>
     <mongodb.driver.version>2.11.4</mongodb.driver.version>
@@ -331,6 +331,11 @@
       <dependency>
         <groupId>org.juzu</groupId>
         <artifactId>juzu-depchain-arquillian-tomcat7</artifactId>
+        <version>${juzu.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.juzu</groupId>
+        <artifactId>juzu-plugins-less4j</artifactId>
         <version>${juzu.version}</version>
       </dependency>
       <dependency>

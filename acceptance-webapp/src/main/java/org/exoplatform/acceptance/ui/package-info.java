@@ -51,12 +51,13 @@
         @WebJar(value = "restangular")
     })
 
+@Less(@Asset(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/less/bootstrap.less"))
+
 // Declare assets
 @Assets(
     {
         @Asset(id = "pace.js", value = "external/pace/0_4_17/pace.min.js"),
         @Asset(id = "pace.css", value = "external/pace/0_4_17/pace.css"),
-        @Asset(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/css/bootstrap.min.css"),
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/2.1.0/jquery.min.js"),
         @Asset(id = "angular.js", value = "angularjs/1.2.13/angular.min.js"),
@@ -100,6 +101,7 @@ import juzu.plugin.asset.Assets;
 import juzu.plugin.asset.WithAssets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
+import juzu.plugin.less4j.Less;
 import juzu.plugin.servlet.Servlet;
 import juzu.plugin.webjars.WebJar;
 import juzu.plugin.webjars.WebJars;
