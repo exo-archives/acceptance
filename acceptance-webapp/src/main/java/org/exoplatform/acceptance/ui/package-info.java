@@ -58,7 +58,7 @@
         @Asset(id = "pace.css", value = "external/pace/0_4_16/pace.css"),
         @Asset(id = "bootstrap.css", value = "bootstrap/3.0.3/css/bootstrap.min.css"),
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
-        @Asset(id = "jquery.js", value = "jquery/2.0.3/jquery.js"),
+        @Asset(id = "jquery.js", value = "jquery/2.0.3/jquery.min.js"),
         @Asset(id = "angular.js", value = "angularjs/1.1.5/angular.min.js"),
         @Asset(id = "lodash.js", value = "lodash/1.2.0/lodash.min.js"),
         @Asset(id = "bootstrap.js", value = "bootstrap/3.0.3/js/bootstrap.min.js", depends = {"jquery.js"}),
