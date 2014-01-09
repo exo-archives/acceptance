@@ -54,6 +54,8 @@
 // Declare assets
 @Assets(
     {
+        @Asset(id = "pace.js", value = "external/pace/0_4_16/pace.min.js"),
+        @Asset(id = "pace.css", value = "external/pace/0_4_16/pace.css"),
         @Asset(id = "bootstrap.css", value = "bootstrap/3.0.3/css/bootstrap.min.css"),
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/1.10.2/jquery.js"),
@@ -71,7 +73,7 @@
     })
 
 // Always use these assets
-@WithAssets({"acceptance.js", "acceptance.css"})
+@WithAssets({"acceptance.js", "acceptance.css", "pace.js", "pace.css"})
 
 // Custom tags
 @Tags({
