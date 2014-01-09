@@ -16,7 +16,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-var app = angular.module('repository', ['restangular', 'ui.bootstrap']).
+var app = angular.module('repository', ['ngRoute', 'restangular', 'ui.bootstrap']).
     config(function ($routeProvider, RestangularProvider) {
              $routeProvider.
                  when('/', {
