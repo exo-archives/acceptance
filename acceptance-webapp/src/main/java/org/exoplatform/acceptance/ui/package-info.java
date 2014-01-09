@@ -47,7 +47,7 @@
         @WebJar(value = "bootstrap"),
         @WebJar(value = "font-awesome"),
         @WebJar(value = "jquery", version = "2.0.3"),
-        @WebJar(value = "lodash"),
+        @WebJar(value = "lodash", version="2.4.1"),
         @WebJar(value = "restangular")
     })
 
@@ -60,9 +60,9 @@
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/2.0.3/jquery.min.js"),
         @Asset(id = "angular.js", value = "angularjs/1.1.5/angular.min.js"),
-        @Asset(id = "lodash.js", value = "lodash/1.2.0/lodash.min.js"),
+        @Asset(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js"),
         @Asset(id = "bootstrap.js", value = "bootstrap/3.0.3/js/bootstrap.min.js", depends = {"jquery.js"}),
-        @Asset(id = "restangular.js", value = "restangular/1.1.3/restangular.min.js", depends = {"angular.js", "lodash.js"}),
+        @Asset(id = "restangular.js", value = "restangular/1.2.2/restangular.min.js", depends = {"angular.js", "lodash.js"}),
         @Asset(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js",
                depends = {"angular.js", "bootstrap.js"}),
         @Asset(value = "acceptance.js", depends = {"bootstrap.js"}),
