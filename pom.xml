@@ -85,7 +85,7 @@
     <tomcat.version>7.0.50</tomcat.version>
     <webjars.angularjs.version>1.2.9</webjars.angularjs.version>
     <webjars.angular-ui-bootstrap.version>0.9.0</webjars.angular-ui-bootstrap.version>
-    <webjars.bootstrap.version>3.0.3</webjars.bootstrap.version>
+    <webjars.bootswatch.version>3.0.3+1-1</webjars.bootswatch.version>
     <webjars.font-awesome.version>4.0.3</webjars.font-awesome.version>
     <webjars.jquery.version>2.0.3-1</webjars.jquery.version>
     <webjars.restangular.version>1.2.2</webjars.restangular.version>
@@ -556,8 +556,8 @@
       </dependency>
       <dependency>
         <groupId>org.webjars</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>${webjars.bootstrap.version}</version>
+        <artifactId>bootswatch-spacelab</artifactId>
+        <version>${webjars.bootswatch.version}</version>
       </dependency>
       <dependency>
         <groupId>org.webjars</groupId>

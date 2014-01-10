@@ -176,7 +176,7 @@
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
+      <artifactId>bootswatch-spacelab</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -442,8 +442,8 @@
             </dependency>
             <dependency>
               <groupId>org.webjars</groupId>
-              <artifactId>bootstrap</artifactId>
-              <version>${webjars.bootstrap.version}</version>
+              <artifactId>bootswatch-spacelab</artifactId>
+              <version>${webjars.bootswatch.version}</version>
             </dependency>
             <dependency>
               <groupId>org.webjars</groupId>
