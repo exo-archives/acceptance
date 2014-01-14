@@ -81,7 +81,7 @@
     <spring.data.version>1.6.3.RELEASE</spring.data.version>
     <spring.security.version>3.2.0.RELEASE</spring.security.version>
     <spring.version>3.2.6.RELEASE</spring.version>
-    <tomcat.version>7.0.47</tomcat.version>
+    <tomcat.version>7.0.50</tomcat.version>
     <webjars.angularjs.version>1.2.7</webjars.angularjs.version>
     <webjars.angular-ui-bootstrap.version>0.9.0</webjars.angular-ui-bootstrap.version>
     <webjars.bootstrap.version>3.0.3</webjars.bootstrap.version>
