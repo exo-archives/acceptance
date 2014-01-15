@@ -103,3 +103,7 @@ Then from the directory ```acceptance-standalone``` you can start the front-end 
     mvn cargo:run
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/exoplatform/acceptance/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
