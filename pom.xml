@@ -59,6 +59,7 @@
     <arquillian.graphene2.version>2.0.0.Final</arquillian.graphene2.version>
     <!-- don't use 2.6.4 version due to https://jira.atlassian.com/browse/CWD-3493 issue -->
     <crowd.version>2.7.1</crowd.version>
+    <!-- 1.2 is breaking ITs -->
     <embedmongo-spring.version>1.1</embedmongo-spring.version>
     <guava.version>15.0</guava.version>
     <hamcrest.version>1.3</hamcrest.version>
