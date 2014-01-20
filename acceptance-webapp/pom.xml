@@ -56,7 +56,6 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <classifier>cdi1.0</classifier>
     </dependency>
     <!-- **************************************** -->
     <!-- JSonPath -->
