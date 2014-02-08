@@ -64,7 +64,7 @@
         @Asset(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js"),
         @Asset(id = "bootstrap.js", value = "bootswatch-spacelab/3.1.0/js/bootstrap.min.js",
                depends = {"jquery.js"}),
-        @Asset(id = "restangular.js", value = "restangular/1.2.2/restangular.min.js",
+        @Asset(id = "restangular.js", value = "restangular/1.3.1/restangular.min.js",
                depends = {"angular.js", "angular-route.js", "lodash.js"}),
         @Asset(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js",
                depends = {"angular.js", "bootstrap.js"}),
