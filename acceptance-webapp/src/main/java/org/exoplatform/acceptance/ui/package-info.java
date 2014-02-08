@@ -54,8 +54,8 @@
 // Declare assets
 @Assets(
     {
-        @Asset(id = "pace.js", value = "external/pace/0_4_16/pace.min.js"),
-        @Asset(id = "pace.css", value = "external/pace/0_4_16/pace.css"),
+        @Asset(id = "pace.js", value = "external/pace/0_4_17/pace.min.js"),
+        @Asset(id = "pace.css", value = "external/pace/0_4_17/pace.css"),
         @Asset(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.0/css/bootstrap.min.css"),
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/2.1.0/jquery.min.js"),
