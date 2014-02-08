@@ -46,7 +46,7 @@
         @WebJar(value = "angularjs"),
         @WebJar(value = "bootswatch-spacelab"),
         @WebJar(value = "font-awesome"),
-        @WebJar(value = "jquery"),
+        @WebJar(value = "jquery", version = "2.1.0"),
         @WebJar(value = "lodash", version = "2.4.1"),
         @WebJar(value = "restangular")
     })
