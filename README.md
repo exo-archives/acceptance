@@ -56,6 +56,8 @@ From the directory ```acceptance-webapp``` you can start the front-end with a de
 
     mvn tomcat7:run
 
+Note : It doesn't work with Apache Maven >= 3.1.0
+
 ### Production mode
 
 You may also want to test the application in its ```production``` mode, in that case you'll need some addition pre-requisites :
