@@ -12,8 +12,8 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="@{ HomeController.index()}"><img class="navbar-brand"
-                                                             src="/assets/org/exoplatform/acceptance/ui/assets/images/exo-logo.png">&nbsp;Acceptance</a>
+        <a class="navbar-brand" href="@{ HomeController.index()}">
+          <img src="/assets/org/exoplatform/acceptance/ui/assets/images/exo-logo.png">&nbsp;Acceptance</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
