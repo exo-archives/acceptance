@@ -43,7 +43,7 @@
 @WebJars(
     {
         @WebJar(value = "angular-ui-bootstrap"),
-        @WebJar(value = "angularjs"),
+        @WebJar(value = "angularjs", version = "1.2.12"),
         @WebJar(value = "bootswatch-spacelab"),
         @WebJar(value = "font-awesome"),
         @WebJar(value = "jquery", version = "2.1.0"),
