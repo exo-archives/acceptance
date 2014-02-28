@@ -43,7 +43,7 @@
 @WebJars(
     {
         @WebJar(value = "angular-ui-bootstrap"),
-        @WebJar(value = "angularjs", version = "1.2.12"),
+        @WebJar(value = "angularjs"),
         @WebJar(value = "bootswatch-spacelab"),
         @WebJar(value = "font-awesome"),
         @WebJar(value = "jquery", version = "2.1.0"),
@@ -59,8 +59,8 @@
         @Asset(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/css/bootstrap.min.css"),
         @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
         @Asset(id = "jquery.js", value = "jquery/2.1.0/jquery.min.js"),
-        @Asset(id = "angular.js", value = "angularjs/1.2.12/angular.min.js"),
-        @Asset(id = "angular-route.js", value = "angularjs/1.2.12/angular-route.min.js"),
+        @Asset(id = "angular.js", value = "angularjs/1.2.13/angular.min.js"),
+        @Asset(id = "angular-route.js", value = "angularjs/1.2.13/angular-route.min.js"),
         @Asset(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js"),
         @Asset(id = "bootstrap.js", value = "bootswatch-spacelab/3.1.1/js/bootstrap.min.js",
                depends = {"jquery.js"}),
