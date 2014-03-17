@@ -19,6 +19,8 @@
 package org.exoplatform.acceptance.ui.controllers;
 
 
+import static org.apache.http.HttpStatus.*;
+
 import com.google.common.base.Strings;
 import javax.inject.Inject;
 import juzu.Action;
@@ -27,7 +29,7 @@ import juzu.Response;
 import juzu.Route;
 import juzu.View;
 import juzu.plugin.asset.WithAssets;
-import org.apache.commons.httpclient.HttpStatus;
+import org.apache.http.HttpStatus;
 
 public class HomeController extends BaseController {
 
@@ -132,7 +134,7 @@ public class HomeController extends BaseController {
   @View
   @Route("/403")
   public Response.Content error403() {
-    return makeResponse(error403.with().status(HttpStatus.SC_FORBIDDEN));
+    return makeResponse(error403.with().status(SC_FORBIDDEN));
   }
 
 }
