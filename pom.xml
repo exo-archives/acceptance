@@ -106,6 +106,23 @@
     <scm.url>https://github.com/exoplatform/acceptance</scm.url>
     <scm.revision>${buildNumber}</scm.revision>
     <scm.revision.url>${scm.url}/commit/${buildNumber}</scm.revision.url>
+    <!-- *************** -->
+    <!-- Plugin upgrades -->
+    <!-- *************** -->
+    <version.cargo.plugin>1.4.7</version.cargo.plugin>
+    <version.gpg.plugin>1.5</version.gpg.plugin>
+    <version.license.plugin>1.6</version.license.plugin>
+    <version.mycila-license.plugin>2.6</version.mycila-license.plugin>
+    <version.release.plugin>2.5</version.release.plugin>
+    <version.sortpom.plugin>2.3.0</version.sortpom.plugin>
+    <version.surefire.plugin>2.17</version.surefire.plugin>
+    <!-- *************** -->
+    <!-- Others versions -->
+    <!-- *************** -->
+    <version.animal-sniffer.enforcer-rule>1.10</version.animal-sniffer.enforcer-rule>
+    <version.wagon>2.6</version.wagon>
+    <version.plexus-utils>3.0.17</version.plexus-utils>
+    <jacoco.version>0.6.5.201403032054</jacoco.version>
   </properties>
   <dependencyManagement>
     <dependencies>
