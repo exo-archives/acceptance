@@ -122,7 +122,7 @@
     <version.animal-sniffer.enforcer-rule>1.10</version.animal-sniffer.enforcer-rule>
     <version.wagon>2.6</version.wagon>
     <version.plexus-utils>3.0.17</version.plexus-utils>
-    <jacoco.version>0.6.5.201403032054</jacoco.version>
+    <jacoco.version>0.7.0.201403182114</jacoco.version>
   </properties>
   <dependencyManagement>
     <dependencies>
