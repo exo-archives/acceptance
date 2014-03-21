@@ -19,7 +19,7 @@
 package org.exoplatform.acceptance.ui.controllers;
 
 
-import static org.apache.http.HttpStatus.*;
+import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 
 import com.google.common.base.Strings;
 import javax.inject.Inject;
@@ -28,8 +28,7 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import juzu.plugin.asset.WithAssets;
-import org.apache.http.HttpStatus;
+import juzu.plugin.asset.Assets;
 
 public class HomeController extends BaseController {
 
@@ -85,7 +84,7 @@ public class HomeController extends BaseController {
    */
   @View
   @Route("/sources")
-  @WithAssets({"sources.js"})
+  @Assets({"sources.js"})
   public Response.Content sources() {
     return makeResponse(sources);
   }

@@ -52,36 +52,38 @@
     })
 
 // Declare assets
-@Assets(
+@Stylesheets(
     {
-        @Asset(id = "pace.js", value = "external/pace/0_4_17/pace.min.js"),
-        @Asset(id = "pace.css", value = "external/pace/0_4_17/pace.css"),
-        @Asset(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/css/bootstrap.min.css"),
-        @Asset(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
-        @Asset(id = "jquery.js", value = "jquery/2.1.0/jquery.min.js"),
-        @Asset(id = "angular.js", value = "angularjs/1.2.14/angular.min.js"),
-        @Asset(id = "angular-route.js", value = "angularjs/1.2.14/angular-route.min.js"),
-        @Asset(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js"),
-        @Asset(id = "bootstrap.js", value = "bootswatch-spacelab/3.1.1/js/bootstrap.min.js",
-               depends = {"jquery.js"}),
-        @Asset(id = "restangular.js", value = "restangular/1.3.1/restangular.min.js",
-               depends = {"angular.js", "angular-route.js", "lodash.js"}),
-        @Asset(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js",
-               depends = {"angular.js", "bootstrap.js"}),
-        @Asset(value = "acceptance.js",
-               depends = {"bootstrap.js"}),
-        @Asset(value = "sources.js",
-               depends = {"ui-bootstrap.js"}),
-        @Asset(value = "acceptance.css",
-               depends = {"bootstrap.css", "font-awesome.css"}),
-        @Asset(value = "administration/credential/index.js",
-               depends = {"restangular.js", "ui-bootstrap.js"}),
-        @Asset(value = "administration/vcs/repository.js",
-               depends = {"restangular.js", "ui-bootstrap.js"})
+        @Stylesheet(id = "pace.css", value = "external/pace/0_4_17/pace.css"),
+        @Stylesheet(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/css/bootstrap.min.css"),
+        @Stylesheet(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.min.css"),
+        @Stylesheet(value = "acceptance.css", depends = {"bootstrap.css", "font-awesome.css"}),
+    })
+@Scripts(
+    {
+        @Script(id = "pace.js", value = "external/pace/0_4_17/pace.min.js"),
+        @Script(id = "jquery.js", value = "jquery/2.1.0/jquery.min.js"),
+        @Script(id = "angular.js", value = "angularjs/1.2.14/angular.min.js"),
+        @Script(id = "angular-route.js", value = "angularjs/1.2.14/angular-route.min.js"),
+        @Script(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js"),
+        @Script(id = "bootstrap.js", value = "bootswatch-spacelab/3.1.1/js/bootstrap.min.js",
+                depends = {"jquery.js"}),
+        @Script(id = "restangular.js", value = "restangular/1.3.1/restangular.min.js",
+                depends = {"angular.js", "angular-route.js", "lodash.js"}),
+        @Script(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js",
+                depends = {"angular.js", "bootstrap.js"}),
+        @Script(value = "acceptance.js",
+                depends = {"bootstrap.js"}),
+        @Script(value = "sources.js",
+                depends = {"ui-bootstrap.js"}),
+        @Script(value = "administration/credential/index.js",
+                depends = {"restangular.js", "ui-bootstrap.js"}),
+        @Script(value = "administration/vcs/repository.js",
+                depends = {"restangular.js", "ui-bootstrap.js"})
     })
 
 // Always use these assets
-@WithAssets({"acceptance.js", "acceptance.css", "pace.js", "pace.css"})
+@Assets({"acceptance.js", "acceptance.css", "pace.js", "pace.css"})
 
 // Custom tags
 @Tags({
@@ -95,9 +97,11 @@ import org.exoplatform.acceptance.ui.model.Flash;
 
 import juzu.Application;
 import juzu.Scope;
-import juzu.plugin.asset.Asset;
 import juzu.plugin.asset.Assets;
-import juzu.plugin.asset.WithAssets;
+import juzu.plugin.asset.Script;
+import juzu.plugin.asset.Scripts;
+import juzu.plugin.asset.Stylesheet;
+import juzu.plugin.asset.Stylesheets;
 import juzu.plugin.binding.Binding;
 import juzu.plugin.binding.Bindings;
 import juzu.plugin.servlet.Servlet;

@@ -24,7 +24,7 @@ import juzu.Path;
 import juzu.Response;
 import juzu.Route;
 import juzu.View;
-import juzu.plugin.asset.WithAssets;
+import juzu.plugin.asset.Assets;
 
 /**
  * Administration tasks controller
@@ -64,7 +64,7 @@ public class AdminController extends BaseController {
    */
   @View
   @Route("/admin/credential")
-  @WithAssets({"administration/credential/index.js"})
+  @Assets({"administration/credential/index.js"})
   public Response.Content credential() {
     return makeResponse(credentialIndex);
   }
@@ -74,7 +74,7 @@ public class AdminController extends BaseController {
    */
   @View
   @Route("/admin/vcs/repository")
-  @WithAssets({"administration/vcs/repository.js"})
+  @Assets({"administration/vcs/repository.js"})
   public Response.Content vcsRepository() {
     return makeResponse(dvcsRepository);
   }
