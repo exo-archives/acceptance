@@ -36,9 +36,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Abstract REST Controller
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public abstract class CRUDController<T extends StorableObject, ID extends Serializable> {
 
+  /**
+   * <p>getCRUDService.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.service.CRUDService} object.
+   */
   abstract protected CRUDService<T> getCRUDService();
 
   /**
@@ -65,6 +73,7 @@ public abstract class CRUDController<T extends StorableObject, ID extends Serial
    *
    * @param id the id of the object
    * @return the object
+   * @param response a {@link javax.servlet.http.HttpServletResponse} object.
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
@@ -91,6 +100,7 @@ public abstract class CRUDController<T extends StorableObject, ID extends Serial
    * @param id     the id of the object to update
    * @param object the object to update
    * @return the updated object
+   * @param response a {@link javax.servlet.http.HttpServletResponse} object.
    */
   @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody

@@ -28,6 +28,9 @@ import juzu.plugin.asset.Assets;
 
 /**
  * Administration tasks controller
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class AdminController extends BaseController {
 
@@ -52,6 +55,8 @@ public class AdminController extends BaseController {
 
   /**
    * Administration home route
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/admin")
@@ -61,6 +66,8 @@ public class AdminController extends BaseController {
 
   /**
    * Credentials administration route
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/admin/credential")
@@ -71,6 +78,8 @@ public class AdminController extends BaseController {
 
   /**
    * DVCS repositories administration route
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/admin/vcs/repository")

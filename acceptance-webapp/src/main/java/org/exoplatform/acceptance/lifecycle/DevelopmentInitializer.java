@@ -31,18 +31,22 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
  * Bootstrap service is used to initialize the application in a development environment
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named
 @Development
 public class DevelopmentInitializer extends ProductionInitializer implements ApplicationListener<ContextRefreshedEvent> {
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(DevelopmentInitializer.class);
   @Inject
   private DevDataLoaderService devDataLoaderService;
 
   /**
-   * Handle an application event.
+   * {@inheritDoc}
    *
-   * @param event the event to respond to
+   * Handle an application event.
    */
   @Override
   public void onApplicationEvent(ContextRefreshedEvent event) {

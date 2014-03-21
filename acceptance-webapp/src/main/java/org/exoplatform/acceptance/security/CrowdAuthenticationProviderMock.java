@@ -27,26 +27,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * A basic implementation of {@link AuthenticationProvider} which is using our {@link CrowdAuthenticationProviderMock} to manage users.
+ * A basic implementation of {@link org.springframework.security.authentication.AuthenticationProvider} which is using our {@link org.exoplatform.acceptance.security.CrowdAuthenticationProviderMock} to manage users.
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
 
   private final CrowdUserDetailsServiceMock crowdUserDetailsServiceMock;
 
+  /**
+   * <p>Constructor for CrowdAuthenticationProviderMock.</p>
+   *
+   * @param userDetailsService a {@link org.exoplatform.acceptance.security.CrowdUserDetailsServiceMock} object.
+   */
   public CrowdAuthenticationProviderMock(CrowdUserDetailsServiceMock userDetailsService) {
     this.crowdUserDetailsServiceMock = userDetailsService;
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Performs authentication with the same contract as {@link
    * org.springframework.security.authentication.AuthenticationManager#authenticate(Authentication)}.
-   *
-   * @param authentication the authentication request object.
-   * @return a fully authenticated object including credentials. May return <code>null</code> if the
-   * <code>AuthenticationProvider</code> is unable to support authentication of the passed
-   * <code>Authentication</code> object. In such a case, the next <code>AuthenticationProvider</code> that
-   * supports the presented <code>Authentication</code> class will be tried.
-   * @throws AuthenticationException if authentication fails.
    */
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -68,6 +71,8 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns <code>true</code> if this <Code>AuthenticationProvider</code> supports the indicated
    * <Code>Authentication</code> object.
    * <p>
@@ -79,10 +84,6 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
    * </p>
    * <p>Selection of an <code>AuthenticationProvider</code> capable of performing authentication is
    * conducted at runtime the <code>ProviderManager</code>.</p>
-   *
-   * @param authentication
-   * @return <code>true</code> if the implementation can more closely evaluate the <code>Authentication</code> class
-   * presented
    */
   @Override
   public boolean supports(Class<?> authentication) {

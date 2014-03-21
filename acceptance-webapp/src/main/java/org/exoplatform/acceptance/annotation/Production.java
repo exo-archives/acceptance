@@ -26,6 +26,9 @@ import org.springframework.context.annotation.Profile;
 
 /**
  * Annotation to define a bean only if Spring "dev" profile is activated
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

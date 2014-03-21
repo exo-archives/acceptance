@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.constraints.NotNull;
 
 /**
+ * <p>UsernamePasswordCredential class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @JsonTypeName("PASSWORD")
 public class UsernamePasswordCredential extends Credential {
@@ -33,6 +36,13 @@ public class UsernamePasswordCredential extends Credential {
   @NotNull
   private String password;
 
+  /**
+   * <p>Constructor for UsernamePasswordCredential.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param username a {@link java.lang.String} object.
+   * @param password a {@link java.lang.String} object.
+   */
   @JsonCreator
   public UsernamePasswordCredential(
       @NotNull @JsonProperty("name") String name,
@@ -43,18 +53,38 @@ public class UsernamePasswordCredential extends Credential {
     this.password = password;
   }
 
+  /**
+   * <p>Getter for the field <code>username</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getUsername() {
     return username;
   }
 
+  /**
+   * <p>Setter for the field <code>username</code>.</p>
+   *
+   * @param username a {@link java.lang.String} object.
+   */
   public void setUsername(String username) {
     this.username = username;
   }
 
+  /**
+   * <p>Getter for the field <code>password</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getPassword() {
     return password;
   }
 
+  /**
+   * <p>Setter for the field <code>password</code>.</p>
+   *
+   * @param password a {@link java.lang.String} object.
+   */
   public void setPassword(String password) {
     this.password = password;
   }

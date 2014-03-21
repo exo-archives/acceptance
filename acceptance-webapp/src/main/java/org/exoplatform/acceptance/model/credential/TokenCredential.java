@@ -24,13 +24,22 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.constraints.NotNull;
 
 /**
+ * <p>TokenCredential class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @JsonTypeName("TOKEN")
 public class TokenCredential extends Credential {
   @NotNull
   private String token;
 
+  /**
+   * <p>Constructor for TokenCredential.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param token a {@link java.lang.String} object.
+   */
   @JsonCreator
   public TokenCredential(
       @NotNull @JsonProperty("name") String name,
@@ -39,10 +48,20 @@ public class TokenCredential extends Credential {
     this.token = token;
   }
 
+  /**
+   * <p>Getter for the field <code>token</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getToken() {
     return token;
   }
 
+  /**
+   * <p>Setter for the field <code>token</code>.</p>
+   *
+   * @param token a {@link java.lang.String} object.
+   */
   public void setToken(String token) {
     this.token = token;
   }

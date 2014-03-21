@@ -22,11 +22,19 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  * Our application roles
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public enum AppAuthority implements GrantedAuthority {
   //roles used in application
   ROLE_USER, ROLE_ADMIN, ROLE_ANONYMOUS;
 
+  /**
+   * <p>getAuthority.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getAuthority() {
     return name();
 

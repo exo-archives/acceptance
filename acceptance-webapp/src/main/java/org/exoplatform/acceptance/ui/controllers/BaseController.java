@@ -35,6 +35,9 @@ import org.xml.sax.SAXException;
 
 /**
  * Common controller stuffs
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public abstract class BaseController implements RequestLifeCycle {
   /**
@@ -63,46 +66,104 @@ public abstract class BaseController implements RequestLifeCycle {
   @Named("context")
   private Context context;
 
+  /**
+   * <p>Getter for the field <code>flash</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.ui.model.Flash} object.
+   */
   public Flash getFlash() {
     return flash;
   }
 
+  /**
+   * <p>Setter for the field <code>flash</code>.</p>
+   *
+   * @param flash a {@link org.exoplatform.acceptance.ui.model.Flash} object.
+   */
   public void setFlash(Flash flash) {
     this.flash = flash;
   }
 
+  /**
+   * <p>Getter for the field <code>user</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.ui.model.CurrentUser} object.
+   */
   public CurrentUser getUser() {
     return user;
   }
 
+  /**
+   * <p>Setter for the field <code>user</code>.</p>
+   *
+   * @param user a {@link org.exoplatform.acceptance.ui.model.CurrentUser} object.
+   */
   public void setUser(CurrentUser user) {
     this.user = user;
   }
 
+  /**
+   * <p>Getter for the field <code>context</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.ui.model.Context} object.
+   */
   public Context getContext() {
     return context;
   }
 
+  /**
+   * <p>Setter for the field <code>context</code>.</p>
+   *
+   * @param context a {@link org.exoplatform.acceptance.ui.model.Context} object.
+   */
   public void setContext(Context context) {
     this.context = context;
   }
 
+  /**
+   * <p>render.</p>
+   *
+   * @param template a {@link juzu.template.Template} object.
+   */
   protected void render(Template template) {
     this.render(template.with());
   }
 
+  /**
+   * <p>render.</p>
+   *
+   * @param builder a {@link juzu.template.Template.Builder} object.
+   */
   protected void render(Template.Builder builder) {
     builder.ok();
   }
 
+  /**
+   * <p>makeResponse.</p>
+   *
+   * @param template a {@link juzu.template.Template} object.
+   * @return a {@link juzu.Response.Content} object.
+   */
   protected Response.Content makeResponse(Template template) {
     return this.makeResponse(template.with());
   }
 
+  /**
+   * <p>makeResponse.</p>
+   *
+   * @param builder a {@link juzu.template.Template.Builder} object.
+   * @return a {@link juzu.Response.Content} object.
+   */
   protected Response.Content makeResponse(Template.Builder builder) {
     return this.makeResponse(builder.ok());
   }
 
+  /**
+   * <p>makeResponse.</p>
+   *
+   * @param content a {@link juzu.Response.Content} object.
+   * @return a {@link juzu.Response.Content} object.
+   */
   protected Response.Content makeResponse(Response.Content content) {
     try {
       return content
@@ -120,13 +181,13 @@ public abstract class BaseController implements RequestLifeCycle {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * <p>Signals to the controller that a request begins. During the invocation of this method, if a {@link juzu.Response}
    * is set on the request context, the request will be considered as terminated.</p>
    * <p/>
    * <p>When this method throws a runtime exception, a {@link juzu.Response.Error} response will be set on the request
    * context, thus terminating the request.</p>
-   *
-   * @param requestContext the request context
    */
   @Override
   public void beginRequest(RequestContext requestContext) {
@@ -135,14 +196,14 @@ public abstract class BaseController implements RequestLifeCycle {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * <p>Signals to the controller that a request ends. During the invocation of this method, the response set during
    * the dispatch of the request is available via the {@link juzu.request.RequestContext#getResponse()} method, this
    * method is free to override it and provide a new response instead.</p>
    * <p/>
    * <p>When this method throws a runtime exception, a {@link juzu.Response.Error} response will be set on the request
    * requestContext, thus terminating the request.</p>
-   *
-   * @param requestContext the request requestContext
    */
   @Override
   public void endRequest(RequestContext requestContext) {

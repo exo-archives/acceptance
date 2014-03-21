@@ -24,38 +24,83 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Errors details returned by REST Services when something goes wrong
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class JsonErrorResponse {
   private List<FieldError> fieldErrors = new ArrayList<>();
   private List<GlobalError> globalErrors = new ArrayList<>();
 
+  /**
+   * <p>Constructor for JsonErrorResponse.</p>
+   */
   public JsonErrorResponse() {
   }
 
+  /**
+   * <p>Constructor for JsonErrorResponse.</p>
+   *
+   * @param t a {@link java.lang.Throwable} object.
+   */
   public JsonErrorResponse(@NotNull Throwable t) {
     addGlobalError(t, t.getMessage());
   }
 
+  /**
+   * <p>Constructor for JsonErrorResponse.</p>
+   *
+   * @param objectName a {@link java.lang.String} object.
+   * @param message a {@link java.lang.String} object.
+   */
   public JsonErrorResponse(@NotNull String objectName, @NotNull String message) {
     addGlobalError(objectName, message);
   }
 
+  /**
+   * <p>Getter for the field <code>fieldErrors</code>.</p>
+   *
+   * @return a {@link java.util.List} object.
+   */
   public List<FieldError> getFieldErrors() {
     return fieldErrors;
   }
 
+  /**
+   * <p>Getter for the field <code>globalErrors</code>.</p>
+   *
+   * @return a {@link java.util.List} object.
+   */
   public List<GlobalError> getGlobalErrors() {
     return globalErrors;
   }
 
+  /**
+   * <p>addFieldError.</p>
+   *
+   * @param field a {@link java.lang.String} object.
+   * @param message a {@link java.lang.String} object.
+   */
   public void addFieldError(@NotNull String field, @NotNull String message) {
     fieldErrors.add(new FieldError(field, message));
   }
 
+  /**
+   * <p>addGlobalError.</p>
+   *
+   * @param objectName a {@link java.lang.String} object.
+   * @param message a {@link java.lang.String} object.
+   */
   public void addGlobalError(@NotNull String objectName, @NotNull String message) {
     globalErrors.add(new GlobalError(objectName, message));
   }
 
+  /**
+   * <p>addGlobalError.</p>
+   *
+   * @param origin a {@link java.lang.Object} object.
+   * @param message a {@link java.lang.String} object.
+   */
   public void addGlobalError(@NotNull Object origin, @NotNull String message) {
     globalErrors.add(new GlobalError(origin.getClass().getName(), message));
   }

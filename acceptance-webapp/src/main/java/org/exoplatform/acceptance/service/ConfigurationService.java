@@ -30,10 +30,14 @@ import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Acceptance configuration
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named
 @Singleton
 public class ConfigurationService {
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigurationService.class);
   @Value("${project.version}")
   private String version;
@@ -56,38 +60,83 @@ public class ConfigurationService {
   @Value("${acceptance.tmp.dir}")
   private String tmpDirPath;
 
+  /**
+   * <p>Getter for the field <code>version</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getVersion() {
     return version;
   }
 
+  /**
+   * <p>Getter for the field <code>scmUrl</code>.</p>
+   *
+   * @return a {@link java.net.URL} object.
+   */
   public URL getScmUrl() {
     return scmUrl;
   }
 
+  /**
+   * <p>Getter for the field <code>scmRevision</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getScmRevision() {
     return scmRevision;
   }
 
+  /**
+   * <p>Getter for the field <code>scmRevisionUrl</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getScmRevisionUrl() {
     return scmRevisionUrl;
   }
 
+  /**
+   * <p>Getter for the field <code>buildDate</code>.</p>
+   *
+   * @return a {@link java.util.Date} object.
+   */
   public Date getBuildDate() {
     return buildDate;
   }
 
+  /**
+   * <p>Getter for the field <code>inceptionYear</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getInceptionYear() {
     return inceptionYear;
   }
 
+  /**
+   * <p>Getter for the field <code>organizationName</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getOrganizationName() {
     return organizationName;
   }
 
+  /**
+   * <p>Getter for the field <code>organizationUrl</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getOrganizationUrl() {
     return organizationUrl;
   }
 
+  /**
+   * <p>getDataDir.</p>
+   *
+   * @return a {@link java.io.File} object.
+   */
   public File getDataDir() {
     if (Strings.isNullOrEmpty(dataDirPath)) {
       this.dataDirPath = System.getProperty("user.home") + "/.acceptance";
@@ -100,6 +149,11 @@ public class ConfigurationService {
     return dataDir;
   }
 
+  /**
+   * <p>getTmpDir.</p>
+   *
+   * @return a {@link java.io.File} object.
+   */
   public File getTmpDir() {
     if (Strings.isNullOrEmpty(tmpDirPath)) {
       tmpDirPath = System.getProperty("java.io.tmpdir") + "/acceptance";

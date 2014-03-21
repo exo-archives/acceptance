@@ -23,25 +23,36 @@ import org.springframework.security.core.userdetails.UserDetails;
 /**
  * Interface to represent a User managed by Crowd.
  * CrowdUserDetails doesn't implement a dedicated interface to easily provide another implementation (without using a mock library)
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public interface ICrowdUserDetails extends UserDetails {
   /**
    * Returns the user's first name
+   *
+   * @return a {@link java.lang.String} object.
    */
   String getFirstName();
 
   /**
    * Returns the user's last name
+   *
+   * @return a {@link java.lang.String} object.
    */
   String getLastName();
 
   /**
    * Returns the user's fullname
+   *
+   * @return a {@link java.lang.String} object.
    */
   String getFullName();
 
   /**
    * Returns the user's email
+   *
+   * @return a {@link java.lang.String} object.
    */
   String getEmail();
 }

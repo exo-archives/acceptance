@@ -32,6 +32,9 @@ import org.springframework.data.mongodb.core.MongoExceptionTranslator;
  * MongoDB. EmbedMongo actually downloads original MongoDB binary for your
  * platform and executes it. EmbedMongo process is stopped automatically when
  * you close connection with {@link com.mongodb.Mongo}.</p>
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class EmbeddedMongoSpringFactoryBean extends EmbeddedMongoFactoryBean implements PersistenceExceptionTranslator {
 
@@ -41,6 +44,7 @@ public class EmbeddedMongoSpringFactoryBean extends EmbeddedMongoFactoryBean imp
    * (non-Javadoc)
    * @see org.springframework.dao.support.PersistenceExceptionTranslator#translateExceptionIfPossible(java.lang.RuntimeException)
    */
+  /** {@inheritDoc} */
   @Override
   public DataAccessException translateExceptionIfPossible(RuntimeException ex) {
     return exceptionTranslator.translateExceptionIfPossible(ex);

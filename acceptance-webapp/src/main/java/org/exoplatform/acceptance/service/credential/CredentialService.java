@@ -29,6 +29,9 @@ import javax.inject.Named;
 
 /**
  * Services to manage Credentials
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named
 public class CredentialService extends AbstractMongoCRUDService<Credential> implements CRUDService<Credential> {
@@ -36,15 +39,28 @@ public class CredentialService extends AbstractMongoCRUDService<Credential> impl
   @Inject
   private CredentialMongoStorage credentialMongoStorage;
 
+  /** {@inheritDoc} */
   @Override
   protected CredentialMongoStorage getMongoStorage() {
     return credentialMongoStorage;
   }
 
+  /**
+   * <p>findByName.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.credential.Credential} object.
+   */
   public Credential findByName(String name) {
     return getMongoStorage().findByName(name);
   }
 
+  /**
+   * <p>findByType.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   * @return a {@link java.util.List} object.
+   */
   public List<Credential> findByType(Credential.Type type) {
     return getMongoStorage().findByType(type);
   }

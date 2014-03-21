@@ -20,6 +20,12 @@ package org.exoplatform.acceptance.ui.model;
 
 import javax.inject.Named;
 
+/**
+ * <p>Flash class.</p>
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
+ */
 @Named("flash")
 public class Flash {
 
@@ -29,26 +35,56 @@ public class Flash {
 
   private String username = "";
 
+  /**
+   * <p>Getter for the field <code>success</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getSuccess() {
     return success;
   }
 
+  /**
+   * <p>Setter for the field <code>success</code>.</p>
+   *
+   * @param success a {@link java.lang.String} object.
+   */
   public void setSuccess(String success) {
     this.success = success;
   }
 
+  /**
+   * <p>Getter for the field <code>error</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getError() {
     return error;
   }
 
+  /**
+   * <p>Setter for the field <code>error</code>.</p>
+   *
+   * @param error a {@link java.lang.String} object.
+   */
   public void setError(String error) {
     this.error = error;
   }
 
+  /**
+   * <p>Getter for the field <code>username</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getUsername() {
     return username;
   }
 
+  /**
+   * <p>Setter for the field <code>username</code>.</p>
+   *
+   * @param username a {@link java.lang.String} object.
+   */
   public void setUsername(String username) {
     this.username = username;
   }

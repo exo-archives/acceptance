@@ -24,6 +24,9 @@ import com.google.common.base.Objects;
 
 /**
  * A Version Control System repository
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class VCSCoordinates {
 
@@ -31,34 +34,67 @@ public class VCSCoordinates {
   private String url;
   private String credentialId;
 
+  /**
+   * <p>Constructor for VCSCoordinates.</p>
+   */
   public VCSCoordinates() {
   }
 
+  /**
+   * <p>Constructor for VCSCoordinates.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param url a {@link java.lang.String} object.
+   */
   public VCSCoordinates(String name, String url) {
     this(name, url, Credential.NONE.getId());
   }
 
+  /**
+   * <p>Constructor for VCSCoordinates.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param url a {@link java.lang.String} object.
+   * @param credentialId a {@link java.lang.String} object.
+   */
   public VCSCoordinates(String name, String url, String credentialId) {
     this.name = name;
     this.url = url;
     this.credentialId = credentialId;
   }
 
+  /**
+   * <p>Getter for the field <code>name</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * <p>Setter for the field <code>name</code>.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   */
   public void setName(String name) {
     this.name = name;
   }
 
   /**
    * Returns the SCM URL used to access to this remote repository.
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getUrl() {
     return url;
   }
 
+  /**
+   * <p>Setter for the field <code>url</code>.</p>
+   *
+   * @param url a {@link java.lang.String} object.
+   */
   public void setUrl(String url) {
     this.url = url;
   }
@@ -72,11 +108,18 @@ public class VCSCoordinates {
     return credentialId;
   }
 
+  /**
+   * <p>Setter for the field <code>credentialId</code>.</p>
+   *
+   * @param credentialId a {@link java.lang.String} object.
+   */
   public void setCredentialId(String credentialId) {
     this.credentialId = credentialId;
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should
@@ -94,8 +137,6 @@ public class VCSCoordinates {
    * <pre>
    * getClass().getName() + '@' + Integer.toHexString(hashCode())
    * </pre></blockquote>
-   *
-   * @return a string representation of the object.
    */
   @Override
   public String toString() {
@@ -105,6 +146,7 @@ public class VCSCoordinates {
         .add("credential", getCredentialId()).toString();
   }
 
+  /** {@inheritDoc} */
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -119,6 +161,7 @@ public class VCSCoordinates {
     return true;
   }
 
+  /** {@inheritDoc} */
   @Override
   public int hashCode() {
     int result = name.hashCode();

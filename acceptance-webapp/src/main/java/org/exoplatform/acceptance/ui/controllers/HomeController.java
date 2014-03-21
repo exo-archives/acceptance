@@ -30,6 +30,12 @@ import juzu.Route;
 import juzu.View;
 import juzu.plugin.asset.Assets;
 
+/**
+ * <p>HomeController class.</p>
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
+ */
 public class HomeController extends BaseController {
 
   /**
@@ -69,6 +75,9 @@ public class HomeController extends BaseController {
 
   /**
    * Application homepage route
+   *
+   * @param error a {@link java.lang.String} object.
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/")
@@ -81,6 +90,8 @@ public class HomeController extends BaseController {
 
   /**
    * Sources list page
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/sources")
@@ -91,6 +102,8 @@ public class HomeController extends BaseController {
 
   /**
    * Build jobs list page
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/buildjobs")
@@ -100,6 +113,8 @@ public class HomeController extends BaseController {
 
   /**
    * Deployments list route
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/deployments")
@@ -129,6 +144,8 @@ public class HomeController extends BaseController {
 
   /**
    * Forbidden access route
+   *
+   * @return a {@link juzu.Response.Content} object.
    */
   @View
   @Route("/403")

@@ -24,10 +24,14 @@ import org.springframework.security.core.GrantedAuthority;
 
 /**
  * This is a POJO to implement a CrowdUserDetails
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class CrowdUserDetailsMock implements ICrowdUserDetails {
 
   // This class is serializable
+  /** Constant <code>serialVersionUID=1L</code> */
   private static final long serialVersionUID = 1L;
 
   private String username;
@@ -50,89 +54,197 @@ public class CrowdUserDetailsMock implements ICrowdUserDetails {
 
   private Collection<GrantedAuthority> authorities = new ArrayList<>();
 
+  /**
+   * <p>Constructor for CrowdUserDetailsMock.</p>
+   */
   public CrowdUserDetailsMock() {
   }
 
+  /**
+   * <p>Getter for the field <code>username</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getUsername() {
     return username;
   }
 
+  /**
+   * <p>Setter for the field <code>username</code>.</p>
+   *
+   * @param username a {@link java.lang.String} object.
+   */
   public void setUsername(String username) {
     this.username = username;
   }
 
+  /**
+   * <p>Getter for the field <code>password</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getPassword() {
     return password;
   }
 
+  /**
+   * <p>Setter for the field <code>password</code>.</p>
+   *
+   * @param password a {@link java.lang.String} object.
+   */
   public void setPassword(String password) {
     this.password = password;
   }
 
+  /**
+   * <p>Getter for the field <code>firstName</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getFirstName() {
     return firstName;
   }
 
+  /**
+   * <p>Setter for the field <code>firstName</code>.</p>
+   *
+   * @param firstName a {@link java.lang.String} object.
+   */
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
+  /**
+   * <p>Getter for the field <code>lastName</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getLastName() {
     return lastName;
   }
 
+  /**
+   * <p>Setter for the field <code>lastName</code>.</p>
+   *
+   * @param lastName a {@link java.lang.String} object.
+   */
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
+  /**
+   * <p>Getter for the field <code>email</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getEmail() {
     return email;
   }
 
+  /**
+   * <p>Setter for the field <code>email</code>.</p>
+   *
+   * @param email a {@link java.lang.String} object.
+   */
   public void setEmail(String email) {
     this.email = email;
   }
 
+  /**
+   * <p>isAccountNonExpired.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isAccountNonExpired() {
     return accountNonExpired;
   }
 
+  /**
+   * <p>Setter for the field <code>accountNonExpired</code>.</p>
+   *
+   * @param accountNonExpired a boolean.
+   */
   public void setAccountNonExpired(boolean accountNonExpired) {
     this.accountNonExpired = accountNonExpired;
   }
 
+  /**
+   * <p>isAccountNonLocked.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isAccountNonLocked() {
     return accountNonLocked;
   }
 
+  /**
+   * <p>Setter for the field <code>accountNonLocked</code>.</p>
+   *
+   * @param accountNonLocked a boolean.
+   */
   public void setAccountNonLocked(boolean accountNonLocked) {
     this.accountNonLocked = accountNonLocked;
   }
 
+  /**
+   * <p>isCredentialsNonExpired.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isCredentialsNonExpired() {
     return credentialsNonExpired;
   }
 
+  /**
+   * <p>Setter for the field <code>credentialsNonExpired</code>.</p>
+   *
+   * @param credentialsNonExpired a boolean.
+   */
   public void setCredentialsNonExpired(boolean credentialsNonExpired) {
     this.credentialsNonExpired = credentialsNonExpired;
   }
 
+  /**
+   * <p>isEnabled.</p>
+   *
+   * @return a boolean.
+   */
   public boolean isEnabled() {
     return enabled;
   }
 
+  /**
+   * <p>Setter for the field <code>enabled</code>.</p>
+   *
+   * @param enabled a boolean.
+   */
   public void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
 
+  /**
+   * <p>Getter for the field <code>authorities</code>.</p>
+   *
+   * @return a {@link java.util.Collection} object.
+   */
   public Collection<GrantedAuthority> getAuthorities() {
     return authorities;
   }
 
+  /**
+   * <p>Setter for the field <code>authorities</code>.</p>
+   *
+   * @param authorities a {@link java.util.Collection} object.
+   */
   public void setAuthorities(Collection<GrantedAuthority> authorities) {
     this.authorities = authorities;
   }
 
+  /**
+   * <p>getFullName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getFullName() {
     return getFirstName() + " " + getLastName();
   }

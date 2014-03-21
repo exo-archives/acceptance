@@ -34,6 +34,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller to manage REST services for credentials
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Controller
 @RequestMapping(value = "admin/credential", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,12 +45,24 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
   @Inject
   private CredentialService credentialService;
 
+  /**
+   * <p>createListItemDTO.</p>
+   *
+   * @param credential a {@link org.exoplatform.acceptance.model.credential.Credential} object.
+   * @return a {@link org.exoplatform.acceptance.model.credential.Credential} object.
+   */
   static private Credential createListItemDTO(Credential credential) {
     CredentialListItemDTO dto = new CredentialListItemDTO(credential.getType(), credential.getName());
     dto.setId(credential.getId());
     return dto;
   }
 
+  /**
+   * <p>createListItemDTOs.</p>
+   *
+   * @param credentials a {@link java.lang.Iterable} object.
+   * @return a {@link java.lang.Iterable} object.
+   */
   static private Iterable<Credential> createListItemDTOs(Iterable<Credential> credentials) {
     List<Credential> dtos = new ArrayList<>();
     for (Credential credential : credentials) {
@@ -56,21 +71,25 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
     return dtos;
   }
 
+  /** {@inheritDoc} */
   @Override
   protected CRUDService<Credential> getCRUDService() {
     return credentialService;
   }
 
+  /**
+   * <p>Setter for the field <code>credentialService</code>.</p>
+   *
+   * @param credentialService a {@link org.exoplatform.acceptance.service.credential.CredentialService} object.
+   */
   void setCredentialService(CredentialService credentialService) {
     this.credentialService = credentialService;
   }
 
   /**
-   * Get a (potentially paginated) list of objects
+   * {@inheritDoc}
    *
-   * @param offset the page number to get (0 by default is the first page)
-   * @param limit  the maximum number of entries in the page of results ( > 0 to activate pagination, -1 thus everything by default )
-   * @return a list of objects
+   * Get a (potentially paginated) list of objects
    */
   @Override
   public Iterable<Credential> getObjects(@RequestParam(value = "offset", defaultValue = "0") int offset, @RequestParam(

@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import javax.validation.constraints.NotNull;
 
 /**
+ * <p>KeyPairCredential class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @JsonTypeName("KEY_PAIR")
 public class KeyPairCredential extends Credential {
@@ -33,6 +36,13 @@ public class KeyPairCredential extends Credential {
   @NotNull
   private String publicKey;
 
+  /**
+   * <p>Constructor for KeyPairCredential.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param privateKey a {@link java.lang.String} object.
+   * @param publicKey a {@link java.lang.String} object.
+   */
   @JsonCreator
   public KeyPairCredential(
       @NotNull @JsonProperty("name") String name,
@@ -43,18 +53,38 @@ public class KeyPairCredential extends Credential {
     this.publicKey = publicKey;
   }
 
+  /**
+   * <p>Getter for the field <code>privateKey</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getPrivateKey() {
     return privateKey;
   }
 
+  /**
+   * <p>Setter for the field <code>privateKey</code>.</p>
+   *
+   * @param privateKey a {@link java.lang.String} object.
+   */
   public void setPrivateKey(String privateKey) {
     this.privateKey = privateKey;
   }
 
+  /**
+   * <p>Getter for the field <code>publicKey</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getPublicKey() {
     return publicKey;
   }
 
+  /**
+   * <p>Setter for the field <code>publicKey</code>.</p>
+   *
+   * @param publicKey a {@link java.lang.String} object.
+   */
   public void setPublicKey(String publicKey) {
     this.publicKey = publicKey;
   }

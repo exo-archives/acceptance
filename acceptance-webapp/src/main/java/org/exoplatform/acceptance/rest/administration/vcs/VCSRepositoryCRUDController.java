@@ -35,6 +35,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Controller to manage REST services for repositories
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Controller
 @RequestMapping(value = "admin/vcs/repository", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,12 +46,24 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
   @Inject
   private VCSRepositoryService vcsRepositoryService;
 
+  /**
+   * <p>createListItemDTO.</p>
+   *
+   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   static private VCSRepository createListItemDTO(VCSRepository repository) {
     VCSRepositoryListItemDTO dto = new VCSRepositoryListItemDTO(repository.getName());
     dto.setId(repository.getId());
     return dto;
   }
 
+  /**
+   * <p>createListItemDTOs.</p>
+   *
+   * @param repositories a {@link java.lang.Iterable} object.
+   * @return a {@link java.lang.Iterable} object.
+   */
   static private Iterable<VCSRepository> createListItemDTOs(Iterable<VCSRepository> repositories) {
     List<VCSRepository> dtos = new ArrayList<>();
     for (VCSRepository repository : repositories) {
@@ -57,21 +72,25 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
     return dtos;
   }
 
+  /** {@inheritDoc} */
   @Override
   protected CRUDService<VCSRepository> getCRUDService() {
     return vcsRepositoryService;
   }
 
+  /**
+   * <p>setVCSRepositoryService.</p>
+   *
+   * @param vcsRepositoryService a {@link org.exoplatform.acceptance.service.vcs.VCSRepositoryService} object.
+   */
   void setVCSRepositoryService(VCSRepositoryService vcsRepositoryService) {
     this.vcsRepositoryService = vcsRepositoryService;
   }
 
   /**
-   * Get a (potentially paginated) list of objects
+   * {@inheritDoc}
    *
-   * @param offset the page number to get (0 by default is the first page)
-   * @param limit  the maximum number of entries in the page of results ( > 0 to activate pagination, -1 thus everything by default )
-   * @return a list of objects
+   * Get a (potentially paginated) list of objects
    */
   @Override
   public Iterable<VCSRepository> getObjects(

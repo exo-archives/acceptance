@@ -21,11 +21,17 @@ package org.exoplatform.acceptance.model.credential;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
+ * <p>NoCredential class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @JsonTypeName("NONE")
 public class NoCredential extends Credential {
 
+  /**
+   * <p>Constructor for NoCredential.</p>
+   */
   protected NoCredential() {
     super(Type.NONE, "None");
   }

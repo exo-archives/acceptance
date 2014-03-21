@@ -30,7 +30,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 
 /**
- * Crowd Authorities mapper. Maps Crowd groups to {@link AppAuthority} roles
+ * Crowd Authorities mapper. Maps Crowd groups to {@link org.exoplatform.acceptance.security.AppAuthority} roles
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named("crowdGrantedAuthoritiesMapper")
 @Singleton
@@ -54,6 +57,8 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
   private String adminRole;
 
   /**
+   * {@inheritDoc}
+   *
    * Mapping interface which can be injected into the authentication layer to convert the
    * authorities loaded from storage into those which will be used in the {@code Authentication} object.
    */

@@ -25,8 +25,17 @@ import org.springframework.stereotype.Repository;
 
 /**
  * CRUD operations managed by Mongo for VCSRepository classes
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Repository
 public interface VCSRepositoryMongoStorage extends MongoRepository<VCSRepository, String> {
+  /**
+   * <p>findByName.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   VCSRepository findByName(String name);
 }

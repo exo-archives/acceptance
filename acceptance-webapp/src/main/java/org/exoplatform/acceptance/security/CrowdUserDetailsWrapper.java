@@ -23,33 +23,43 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * This wrapper is used to redefine user's authorities from groups retrieved by crowd to application roles defined in {@link AppAuthority}
+ * This wrapper is used to redefine user's authorities from groups retrieved by crowd to application roles defined in {@link org.exoplatform.acceptance.security.AppAuthority}
  *
  * @see AppAuthority
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   // This class is serializable
+  /** Constant <code>serialVersionUID=1L</code> */
   private static final long serialVersionUID = 1L;
 
   private final CrowdUserDetails crowdUserDetails;
 
   private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
+  /**
+   * <p>Constructor for CrowdUserDetailsWrapper.</p>
+   *
+   * @param crowdUserDetails a {@link com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails} object.
+   * @param grantedAuthoritiesMapper a {@link org.exoplatform.acceptance.security.CrowdGrantedAuthoritiesMapper} object.
+   */
   public CrowdUserDetailsWrapper(CrowdUserDetails crowdUserDetails, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdUserDetails = crowdUserDetails;
     this.grantedAuthoritiesMapper = grantedAuthoritiesMapper;
   }
 
+  /** {@inheritDoc} */
   @Override
   public Collection<GrantedAuthority> getAuthorities() {
     return grantedAuthoritiesMapper.mapAuthorities(crowdUserDetails.getAuthorities());
   }
 
   /**
-   * Returns the password used to authenticate the user.
+   * {@inheritDoc}
    *
-   * @return the password
+   * Returns the password used to authenticate the user.
    */
   @Override
   public String getPassword() {
@@ -57,9 +67,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
-   * Returns the username used to authenticate the user. Cannot return <code>null</code>.
+   * {@inheritDoc}
    *
-   * @return the username (never <code>null</code>)
+   * Returns the username used to authenticate the user. Cannot return <code>null</code>.
    */
   @Override
   public String getUsername() {
@@ -67,10 +77,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
-   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
+   * {@inheritDoc}
    *
-   * @return <code>true</code> if the user's account is valid (ie non-expired), <code>false</code> if no longer valid
-   * (ie expired)
+   * Indicates whether the user's account has expired. An expired account cannot be authenticated.
    */
   @Override
   public boolean isAccountNonExpired() {
@@ -78,9 +87,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
-   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
+   * {@inheritDoc}
    *
-   * @return <code>true</code> if the user is not locked, <code>false</code> otherwise
+   * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
    */
   @Override
   public boolean isAccountNonLocked() {
@@ -88,11 +97,10 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
    * authentication.
-   *
-   * @return <code>true</code> if the user's credentials are valid (ie non-expired), <code>false</code> if no longer
-   * valid (ie expired)
    */
   @Override
   public boolean isCredentialsNonExpired() {
@@ -100,9 +108,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
-   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
+   * {@inheritDoc}
    *
-   * @return <code>true</code> if the user is enabled, <code>false</code> otherwise
+   * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
    */
   @Override
   public boolean isEnabled() {
@@ -110,6 +118,8 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns the user's first name
    */
   @Override
@@ -118,6 +128,8 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns the user's last name
    */
   @Override
@@ -126,6 +138,8 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns the user's fullname
    */
   @Override
@@ -134,6 +148,8 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns the user's email
    */
   @Override

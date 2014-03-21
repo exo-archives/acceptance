@@ -23,7 +23,10 @@ import java.io.File;
 import javax.validation.constraints.NotNull;
 
 /**
+ * <p>VCSFileSet class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class VCSFileSet {
   /**
@@ -37,24 +40,47 @@ public class VCSFileSet {
   @NotNull
   private VCSRepository repository;
 
+  /**
+   * <p>Constructor for VCSFileSet.</p>
+   *
+   * @param baseDir a {@link java.io.File} object.
+   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   public VCSFileSet(@NotNull File baseDir, @NotNull VCSRepository repository) {
     this.baseDir = baseDir;
     this.repository = repository;
   }
 
+  /**
+   * <p>Getter for the field <code>baseDir</code>.</p>
+   *
+   * @return a {@link java.io.File} object.
+   */
   public File getBaseDir() {
     return baseDir;
   }
 
+  /**
+   * <p>Setter for the field <code>baseDir</code>.</p>
+   *
+   * @param baseDir a {@link java.io.File} object.
+   */
   public void setBaseDir(File baseDir) {
     this.baseDir = baseDir;
   }
 
+  /**
+   * <p>Getter for the field <code>repository</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   public VCSRepository getRepository() {
     return repository;
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should
@@ -72,8 +98,6 @@ public class VCSFileSet {
    * <pre>
    * getClass().getName() + '@' + Integer.toHexString(hashCode())
    * </pre></blockquote>
-   *
-   * @return a string representation of the object.
    */
   @Override
   public String toString() {

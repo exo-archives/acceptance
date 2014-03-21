@@ -36,6 +36,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+/**
+ * <p>CurrentUser class.</p>
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
+ */
 @Named("user")
 public class CurrentUser {
   @Inject
@@ -46,6 +52,8 @@ public class CurrentUser {
 
   /**
    * Returns the user's first name
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getFirstName() {
     return getCurrentUser().getFirstName();
@@ -53,6 +61,8 @@ public class CurrentUser {
 
   /**
    * Returns the user's last name
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getLastName() {
     return getCurrentUser().getLastName();
@@ -60,6 +70,8 @@ public class CurrentUser {
 
   /**
    * Returns the user's fullname
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getFullName() {
     return getCurrentUser().getFullName();
@@ -67,6 +79,8 @@ public class CurrentUser {
 
   /**
    * Returns the user's email
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getEmail() {
     return getCurrentUser().getEmail();
@@ -207,7 +221,7 @@ public class CurrentUser {
    * @param size  The size (width) of the image to generate
    * @param https If the URL must be in HTTPs or no
    * @return The URL of the gravatar
-   * @throws NoSuchAlgorithmException If MD5 Algorithm isn't available
+   * @throws java.security.NoSuchAlgorithmException If MD5 Algorithm isn't available
    */
   public String getGravatarUrl(int size, boolean https) throws NoSuchAlgorithmException {
     MessageDigest digest = MessageDigest.getInstance("MD5");
@@ -222,6 +236,9 @@ public class CurrentUser {
 
   /**
    * Retrieves the current crowd user.
+   *
+   * @throws org.springframework.security.core.userdetails.UsernameNotFoundException if any.
+   * @return a {@link org.exoplatform.acceptance.security.ICrowdUserDetails} object.
    */
   private ICrowdUserDetails getCurrentUser() throws UsernameNotFoundException {
     if (currentUser == null) {
@@ -231,6 +248,8 @@ public class CurrentUser {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should
@@ -248,8 +267,6 @@ public class CurrentUser {
    * <pre>
    * getClass().getName() + '@' + Integer.toHexString(hashCode())
    * </pre></blockquote>
-   *
-   * @return a string representation of the object.
    */
   @Override
   public String toString() {

@@ -27,20 +27,26 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * Set of services to manage entities stored in a Mongo repository
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public abstract class AbstractMongoCRUDService<T extends StorableObject> implements CRUDService<T> {
 
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(AbstractMongoCRUDService.class);
 
+  /**
+   * <p>getMongoStorage.</p>
+   *
+   * @return a {@link org.springframework.data.mongodb.repository.MongoRepository} object.
+   */
   abstract protected MongoRepository<T, String> getMongoStorage();
 
   /**
-   * Retrieves an entity by its id.
+   * {@inheritDoc}
    *
-   * @param id must not be {@literal null}.
-   * @return the entity with the given id
-   * @throws IllegalArgumentException if {@code id} is {@literal null}
-   * @throws EntityNotFoundException  in case there is no entity with the given {@code id}
+   * Retrieves an entity by its id.
    */
   public T findOne(String id) throws EntityNotFoundException {
     if (!exists(id)) {
@@ -50,12 +56,10 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Updates a given entity. Use the returned instance for further operations as the save operation might have changed the
    * entity instance completely.
-   *
-   * @param entity
-   * @return the saved entity
-   * @throws EntityNotFoundException in case there is no entity with the given {@code id}
    */
   @Override
   public <S extends T> S update(S entity) throws EntityNotFoundException {
@@ -67,12 +71,10 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Updates an existing entity. Use the returned instance for further operations as the save operation might have changed the
    * entity instance completely.
-   *
-   * @param entity the entity to update
-   * @return the saved entity
-   * @throws EntityNotFoundException in case there is no entity with the given {@code id}
    */
   @Override
   public <S extends T> S updateOrCreate(S entity) {
@@ -81,11 +83,9 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
-   * Returns whether an entity with the given id exists.
+   * {@inheritDoc}
    *
-   * @param id must not be {@literal null}.
-   * @return true if an entity with the given id exists, {@literal false} otherwise
-   * @throws IllegalArgumentException if {@code id} is {@literal null}
+   * Returns whether an entity with the given id exists.
    */
   @Override
   public boolean exists(String id) {
@@ -93,9 +93,9 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
-   * Returns all instances of the type.
+   * {@inheritDoc}
    *
-   * @return all entities
+   * Returns all instances of the type.
    */
   @Override
   public Iterable<T> findAll() {
@@ -103,12 +103,10 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns all instances of the given page. Pages are zero indexed, thus providing 0 for {@code page} will return the first
    * page.
-   *
-   * @param page
-   * @param size
-   * @return entities for the given page
    */
   @Override
   public Iterable<T> findAll(int page, int size) {
@@ -116,9 +114,9 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
-   * Returns the number of entities available.
+   * {@inheritDoc}
    *
-   * @return the number of entities
+   * Returns the number of entities available.
    */
   @Override
   public long count() {
@@ -126,10 +124,9 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
-   * Deletes the entity with the given id.
+   * {@inheritDoc}
    *
-   * @param id must not be {@literal null}.
-   * @throws IllegalArgumentException in case the given {@code id} is {@literal null}
+   * Deletes the entity with the given id.
    */
   @Override
   public void delete(String id) throws EntityNotFoundException {
@@ -141,6 +138,8 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Deletes all entities managed by the repository.
    */
   @Override

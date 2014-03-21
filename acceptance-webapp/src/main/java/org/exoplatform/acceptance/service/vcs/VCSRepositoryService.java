@@ -36,10 +36,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * Services to manage VCS Repositories
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named
 public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository> implements CRUDService<VCSRepository> {
 
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepositoryService.class);
   @Inject
   private ConfigurationService configurationService;
@@ -48,15 +52,29 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
   @Inject
   private CredentialService credentialService;
 
+  /** {@inheritDoc} */
   @Override
   protected VCSRepositoryMongoStorage getMongoStorage() {
     return vcsRepositoryMongoStorage;
   }
 
+  /**
+   * <p>findByName.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   public VCSRepository findByName(String name) {
     return vcsRepositoryMongoStorage.findByName(name);
   }
 
+  /**
+   * <p>getFileSet.</p>
+   *
+   * @param basedir a {@link java.io.File} object.
+   * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSFileSet} object.
+   */
   public VCSFileSet getFileSet(
       @NotNull File basedir,
       @NotNull VCSRepository repository) {
@@ -64,6 +82,9 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
   }
 
   // Every minute
+  /**
+   * <p>extractSourceStatistics.</p>
+   */
   @Scheduled(fixedRate = 60000)
   public void extractSourceStatistics() {
     LOGGER.debug("Starting to process source repositories");
@@ -74,6 +95,11 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
     LOGGER.debug("Source repositories processed");
   }
 
+  /**
+   * <p>getCheckoutDirectory.</p>
+   *
+   * @return a {@link java.io.File} object.
+   */
   public File getCheckoutDirectory() {
     File checkoutDirectory = new File(configurationService.getDataDir(), "checkout");
     if (!checkoutDirectory.exists()) {

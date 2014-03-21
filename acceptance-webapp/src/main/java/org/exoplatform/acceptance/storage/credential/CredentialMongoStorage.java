@@ -26,10 +26,25 @@ import org.springframework.stereotype.Repository;
 
 /**
  * CRUD operations managed by Mongo for Credential classes
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Repository
 public interface CredentialMongoStorage extends MongoRepository<Credential, String> {
+  /**
+   * <p>findByName.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.credential.Credential} object.
+   */
   Credential findByName(String name);
 
+  /**
+   * <p>findByType.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   * @return a {@link java.util.List} object.
+   */
   List<Credential> findByType(Credential.Type type);
 }

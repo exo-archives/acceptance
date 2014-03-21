@@ -41,16 +41,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Errors handler for REST services to convert an exception in a standardized JSON message and the related HTTP status code.
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @ControllerAdvice
 public class JsonErrorHandler {
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(JsonErrorHandler.class);
 
   /**
    * Catch HttpMessageNotReadableException to log it (helps to diagnose errors and attacks on REST services).
    *
    * @param ex The exception trapped
-   * @return A standardized {@link JsonErrorResponse}
+   * @return A standardized {@link org.exoplatform.acceptance.rest.JsonErrorResponse}
+   * @throws java.io.IOException if any.
    */
   @ExceptionHandler(HttpMessageNotReadableException.class)
   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,7 +70,8 @@ public class JsonErrorHandler {
    * Catch DuplicateKeyException when an entity creation or update doesn't a constraint of uniqueness in the mongo repository.
    *
    * @param ex The exception trapped
-   * @return A standardized {@link JsonErrorResponse}
+   * @return A standardized {@link org.exoplatform.acceptance.rest.JsonErrorResponse}
+   * @throws java.io.IOException if any.
    */
   @ExceptionHandler(DuplicateKeyException.class)
   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -80,7 +86,8 @@ public class JsonErrorHandler {
    * Catch MethodArgumentNotValidException when a Bean Validation error occurs.
    *
    * @param ex The exception trapped
-   * @return A standardized {@link JsonErrorResponse}
+   * @return A standardized {@link org.exoplatform.acceptance.rest.JsonErrorResponse}
+   * @throws java.io.IOException if any.
    */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -104,7 +111,8 @@ public class JsonErrorHandler {
    * Catch EntityNotFoundException to return a 404 error.
    *
    * @param ex The exception trapped
-   * @return A standardized {@link JsonErrorResponse}
+   * @return A standardized {@link org.exoplatform.acceptance.rest.JsonErrorResponse}
+   * @throws java.io.IOException if any.
    */
   @ExceptionHandler(EntityNotFoundException.class)
   @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)

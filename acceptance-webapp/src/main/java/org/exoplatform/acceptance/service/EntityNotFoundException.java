@@ -19,10 +19,18 @@
 package org.exoplatform.acceptance.service;
 
 /**
+ * <p>EntityNotFoundException class.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class EntityNotFoundException extends RuntimeException {
 
+  /**
+   * <p>Constructor for EntityNotFoundException.</p>
+   *
+   * @param id a {@link java.lang.Object} object.
+   */
   public EntityNotFoundException(Object id) {
     super("Entity with identifier <" + id + "> not found");
   }

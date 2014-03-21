@@ -33,15 +33,22 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This service is used to load some hardcoded data from the model to use them in development mode or in tests
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named
 public class DevDataLoaderService {
+  /** Constant <code>LOGGER</code> */
   private static final Logger LOGGER = LoggerFactory.getLogger(DevDataLoaderService.class);
   @Inject
   private VCSRepositoryService VCSRepositoryService;
   @Inject
   private CredentialService credentialService;
 
+  /**
+   * <p>initializeData.</p>
+   */
   public void initializeData() {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
@@ -57,6 +64,12 @@ public class DevDataLoaderService {
     createVCSRepository("Platform");
   }
 
+  /**
+   * <p>createVCSRepository.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   */
   private VCSRepository createVCSRepository(String name) {
     VCSRepository gitRepository = new VCSRepository(name.toLowerCase());
     gitRepository.addRemoteRepository("development", "https://github.com/exodev/" + name.toLowerCase() + ".git",

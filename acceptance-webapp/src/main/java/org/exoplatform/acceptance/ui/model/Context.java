@@ -29,6 +29,9 @@ import juzu.request.RequestContext;
 
 /**
  * Current request context
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @Named("context")
 public class Context {
@@ -38,6 +41,11 @@ public class Context {
 
   private RequestContext requestContext;
 
+  /**
+   * <p>Setter for the field <code>requestContext</code>.</p>
+   *
+   * @param requestContext a {@link juzu.request.RequestContext} object.
+   */
   public void setRequestContext(RequestContext requestContext) {
     this.requestContext = requestContext;
   }
@@ -51,44 +59,94 @@ public class Context {
     return requestContext.getHttpContext().getScheme().equalsIgnoreCase("https");
   }
 
+  /**
+   * <p>getVersion.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getVersion() {
     return configurationService.getVersion();
   }
 
+  /**
+   * <p>getBuildDate.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getBuildDate() {
     return configurationService.getBuildDate() != null ? DateFormat.getDateInstance(DateFormat.LONG, Locale.US).format(
         configurationService.getBuildDate()) : "";
   }
 
+  /**
+   * <p>getBuildTime.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getBuildTime() {
     return configurationService.getBuildDate() != null ? DateFormat.getTimeInstance(DateFormat.LONG, Locale.US).format(
         configurationService.getBuildDate()) : "";
   }
 
+  /**
+   * <p>getOrganizationUrl.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getOrganizationUrl() {
     return configurationService.getOrganizationUrl();
   }
 
+  /**
+   * <p>getScmUrl.</p>
+   *
+   * @return a {@link java.net.URL} object.
+   */
   public URL getScmUrl() {
     return configurationService.getScmUrl();
   }
 
+  /**
+   * <p>getScmRevision.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getScmRevision() {
     return configurationService.getScmRevision();
   }
 
+  /**
+   * <p>getOrganizationName.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getOrganizationName() {
     return configurationService.getOrganizationName();
   }
 
+  /**
+   * <p>getScmRevisionUrl.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getScmRevisionUrl() {
     return configurationService.getScmRevisionUrl();
   }
 
+  /**
+   * <p>getInceptionYear.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getInceptionYear() {
     return configurationService.getInceptionYear();
   }
 
+  /**
+   * <p>getShortScmRevision.</p>
+   *
+   * @return a {@link java.lang.String} object.
+   */
   public String getShortScmRevision() {
     return configurationService.getScmRevision() != null ? configurationService.getScmRevision().substring(0, 6) : "";
   }

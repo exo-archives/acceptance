@@ -25,30 +25,33 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * This authentication provider is wrapping the one used by Crowd to replace Crowd groups by Application Roles from {@link AppAuthority}
+ * This authentication provider is wrapping the one used by Crowd to replace Crowd groups by Application Roles from {@link org.exoplatform.acceptance.security.AppAuthority}
  *
  * @see CrowdGrantedAuthoritiesMapper
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class CrowdAuthenticationProviderWrapper implements AuthenticationProvider {
   private final RemoteCrowdAuthenticationProvider crowdAuthenticationProvider;
 
   private final CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
+  /**
+   * <p>Constructor for CrowdAuthenticationProviderWrapper.</p>
+   *
+   * @param crowdAuthenticationProvider a {@link com.atlassian.crowd.integration.springsecurity.RemoteCrowdAuthenticationProvider} object.
+   * @param grantedAuthoritiesMapper a {@link org.exoplatform.acceptance.security.CrowdGrantedAuthoritiesMapper} object.
+   */
   public CrowdAuthenticationProviderWrapper(RemoteCrowdAuthenticationProvider crowdAuthenticationProvider, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdAuthenticationProvider = crowdAuthenticationProvider;
     this.grantedAuthoritiesMapper = grantedAuthoritiesMapper;
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Performs authentication with the same contract as {@link
    * org.springframework.security.authentication.AuthenticationManager#authenticate(Authentication)}.
-   *
-   * @param authentication the authentication request object.
-   * @return a fully authenticated object including credentials. May return <code>null</code> if the
-   * <code>AuthenticationProvider</code> is unable to support authentication of the passed
-   * <code>Authentication</code> object. In such a case, the next <code>AuthenticationProvider</code> that
-   * supports the presented <code>Authentication</code> class will be tried.
-   * @throws AuthenticationException if authentication fails.
    */
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -60,6 +63,8 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Returns <code>true</code> if this <Code>AuthenticationProvider</code> supports the indicated
    * <Code>Authentication</code> object.
    * <p>
@@ -71,10 +76,6 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
    * </p>
    * <p>Selection of an <code>AuthenticationProvider</code> capable of performing authentication is
    * conducted at runtime the <code>ProviderManager</code>.</p>
-   *
-   * @param authentication
-   * @return <code>true</code> if the implementation can more closely evaluate the <code>Authentication</code> class
-   * presented
    */
   @Override
   public boolean supports(Class<?> authentication) {

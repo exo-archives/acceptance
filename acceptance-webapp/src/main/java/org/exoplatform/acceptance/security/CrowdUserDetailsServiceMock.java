@@ -22,14 +22,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
- * This Spring {@link UserDetailsService} defines two accounts to use in the app for tests and dev.
+ * This Spring {@link org.springframework.security.core.userdetails.UserDetailsService} defines two accounts to use in the app for tests and dev.
  * An account with administrator role (admin/admin) and one with user role (user/user)
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public class CrowdUserDetailsServiceMock implements UserDetailsService {
   private final CrowdUserDetailsMock administrator = new CrowdUserDetailsMock();
 
   private final CrowdUserDetailsMock user = new CrowdUserDetailsMock();
 
+  /**
+   * <p>Constructor for CrowdUserDetailsServiceMock.</p>
+   */
   public CrowdUserDetailsServiceMock() {
     administrator.setUsername("admin");
     administrator.setPassword("admin");
@@ -47,14 +53,12 @@ public class CrowdUserDetailsServiceMock implements UserDetailsService {
   }
 
   /**
+   * {@inheritDoc}
+   *
    * Locates the user based on the username. In the actual implementation, the search may possibly be case
    * insensitive, or case insensitive depending on how the implementation instance is configured. In this case, the
    * <code>UserDetails</code> object that comes back may have a username that is of a different case than what was
    * actually requested..
-   *
-   * @param username the username identifying the user whose data is required.
-   * @return a fully populated user record (never <code>null</code>)
-   * @throws UsernameNotFoundException if the user could not be found or the user has no GrantedAuthority
    */
   @Override
   public ICrowdUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

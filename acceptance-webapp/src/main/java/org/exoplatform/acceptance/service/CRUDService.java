@@ -19,7 +19,10 @@
 package org.exoplatform.acceptance.service;
 
 /**
+ * <p>CRUDService interface.</p>
  *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 public interface CRUDService<T> {
 
@@ -28,8 +31,8 @@ public interface CRUDService<T> {
    *
    * @param id must not be {@literal null}.
    * @return the entity with the given id
-   * @throws IllegalArgumentException if {@code id} is {@literal null}
-   * @throws EntityNotFoundException  in case there is no entity with the given {@code id}
+   * @throws java.lang.IllegalArgumentException if {@code id} is {@literal null}
+   * @throws org.exoplatform.acceptance.service.EntityNotFoundException  in case there is no entity with the given {@code id}
    */
   T findOne(String id) throws EntityNotFoundException;
 
@@ -39,7 +42,7 @@ public interface CRUDService<T> {
    *
    * @param entity the entity to update
    * @return the saved entity
-   * @throws EntityNotFoundException in case there is no entity with the given {@code id}
+   * @throws org.exoplatform.acceptance.service.EntityNotFoundException in case there is no entity with the given {@code id}
    */
   <S extends T> S update(S entity) throws EntityNotFoundException;
 
@@ -57,7 +60,7 @@ public interface CRUDService<T> {
    *
    * @param id must not be {@literal null}.
    * @return true if an entity with the given id exists, {@literal false} otherwise
-   * @throws IllegalArgumentException if {@code id} is {@literal null}
+   * @throws java.lang.IllegalArgumentException if {@code id} is {@literal null}
    */
   boolean exists(String id);
 
@@ -72,8 +75,8 @@ public interface CRUDService<T> {
    * Returns all instances of the given page. Pages are zero indexed, thus providing 0 for {@code page} will return the first
    * page.
    *
-   * @param page
-   * @param size
+   * @param page a int.
+   * @param size a int.
    * @return entities for the given page
    */
   Iterable<T> findAll(int page, int size);
@@ -89,8 +92,8 @@ public interface CRUDService<T> {
    * Deletes the entity with the given id.
    *
    * @param id must not be {@literal null}.
-   * @throws IllegalArgumentException in case the given {@code id} is {@literal null}
-   * @throws EntityNotFoundException  in case there is no entity with the given {@code id}
+   * @throws java.lang.IllegalArgumentException in case the given {@code id} is {@literal null}
+   * @throws org.exoplatform.acceptance.service.EntityNotFoundException  in case there is no entity with the given {@code id}
    */
   void delete(String id) throws EntityNotFoundException;
 
