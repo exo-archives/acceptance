@@ -42,41 +42,41 @@
 
 @WebJars(
     {
-        @WebJar(value = "angular-ui-bootstrap", version = "0.10.0"),
-        @WebJar(value = "angularjs"),
-        @WebJar(value = "bootswatch-spacelab"),
-        @WebJar(value = "font-awesome"),
-        @WebJar(value = "jquery", version = "2.1.0"),
-        @WebJar(value = "lodash", version = "2.4.1"),
-        @WebJar(value = "restangular")
+        @WebJar(value = "angular-ui-bootstrap", version = "0.10.0", stripVersion = true),
+        @WebJar(value = "angularjs", stripVersion = true),
+        @WebJar(value = "bootswatch-spacelab", stripVersion = true),
+        @WebJar(value = "font-awesome", stripVersion = true),
+        @WebJar(value = "jquery", version = "2.1.0", stripVersion = true),
+        @WebJar(value = "lodash", version = "2.4.1", stripVersion = true),
+        @WebJar(value = "restangular", stripVersion = true)
     })
 
 // Declare assets
 @Stylesheets(
     {
         @Stylesheet(id = "pace.css", value = "external/pace/0_4_17/pace.css"),
-        @Stylesheet(id = "bootstrap.css", value = "bootswatch-spacelab/3.1.1/css/bootstrap.css",
-                    minified = "bootswatch-spacelab/3.1.1/css/bootstrap.min.css"),
-        @Stylesheet(id = "font-awesome.css", value = "font-awesome/4.0.3/css/font-awesome.css",
-                    minified = "font-awesome/4.0.3/css/font-awesome.min.css"),
+        @Stylesheet(id = "bootstrap.css", value = "bootswatch-spacelab/css/bootstrap.css",
+                    minified = "bootswatch-spacelab/css/bootstrap.min.css"),
+        @Stylesheet(id = "font-awesome.css", value = "font-awesome/css/font-awesome.css",
+                    minified = "font-awesome/css/font-awesome.min.css"),
         @Stylesheet(value = "acceptance.css", depends = {"bootstrap.css", "font-awesome.css"}),
     })
 @Scripts(
     {
         @Script(id = "pace.js", value = "external/pace/0_4_17/pace.min.js"),
-        @Script(id = "jquery.js", value = "jquery/2.1.0/jquery.js", minified = "jquery/2.1.0/jquery.min.js"),
-        @Script(id = "angular.js", value = "angularjs/1.2.14/angular.js", minified = "angularjs/1.2.14/angular.min.js"),
-        @Script(id = "angular-route.js", value = "angularjs/1.2.14/angular-route.js",
-                minified = "angularjs/1.2.14/angular-route.min.js"),
-        @Script(id = "lodash.js", value = "lodash/2.4.1/lodash.min.js", minified = "lodash/2.4.1/lodash.min.js"),
-        @Script(id = "bootstrap.js", value = "bootswatch-spacelab/3.1.1/js/bootstrap.js",
-                minified = "bootswatch-spacelab/3.1.1/js/bootstrap.min.js",
+        @Script(id = "jquery.js", value = "jquery/jquery.js", minified = "jquery/jquery.min.js"),
+        @Script(id = "angular.js", value = "angularjs/angular.js", minified = "angularjs/angular.min.js"),
+        @Script(id = "angular-route.js", value = "angularjs/angular-route.js",
+                minified = "angularjs/angular-route.min.js"),
+        @Script(id = "lodash.js", value = "lodash/lodash.min.js", minified = "lodash/lodash.min.js"),
+        @Script(id = "bootstrap.js", value = "bootswatch-spacelab/js/bootstrap.js",
+                minified = "bootswatch-spacelab/js/bootstrap.min.js",
                 depends = {"jquery.js"}),
-        @Script(id = "restangular.js", value = "restangular/1.3.1/restangular.js",
-                minified = "restangular/1.3.1/restangular.min.js",
+        @Script(id = "restangular.js", value = "restangular/restangular.js",
+                minified = "restangular/restangular.min.js",
                 depends = {"angular.js", "angular-route.js", "lodash.js"}),
-        @Script(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js",
-                minified = "angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js",
+        @Script(id = "ui-bootstrap.js", value = "angular-ui-bootstrap/ui-bootstrap-tpls.js",
+                minified = "angular-ui-bootstrap/ui-bootstrap-tpls.min.js",
                 depends = {"angular.js", "bootstrap.js"}),
         @Script(value = "acceptance.js",
                 depends = {"bootstrap.js"}),
