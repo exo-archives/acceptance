@@ -78,7 +78,7 @@
     <juzu.version>1.0.0-beta1-SNAPSHOT</juzu.version>
     <logback.version>1.1.2</logback.version>
     <mockito-core.version>1.9.5</mockito-core.version>
-    <mongodb.driver.version>2.11.4</mongodb.driver.version>
+    <mongodb.driver.version>2.12.0</mongodb.driver.version>
     <slf4j.version>1.7.7</slf4j.version>
     <spring.data.mongo.version>1.4.1.RELEASE</spring.data.mongo.version>
     <spring.data.version>1.7.1.RELEASE</spring.data.version>
