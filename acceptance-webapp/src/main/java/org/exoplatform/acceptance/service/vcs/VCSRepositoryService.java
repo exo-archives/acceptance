@@ -106,6 +106,7 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
    * <p>findByName.</p>
    *
    * @param name a {@link java.lang.String} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
    */
   public VCSRepository findByName(String name) {
     return vcsRepositoryMongoStorage.findByName(name);
@@ -152,6 +153,7 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
    *
    * @param remote a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
    * @throws org.eclipse.jgit.api.errors.GitAPIException if any.
+   * @return a {@link java.util.List} object.
    */
   private List<VCSRef> loadReferencesFromRemote(VCSCoordinates remote) throws GitAPIException {
     return FluentIterable.from(Git.lsRemoteRepository()

@@ -106,6 +106,8 @@ public class VCSCoordinates {
 
   /**
    * <p>Getter for the field <code>name</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getName() {
     return name;
@@ -122,6 +124,8 @@ public class VCSCoordinates {
 
   /**
    * Returns the SCM URL used to access to this remote repository.
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getUrl() {
     return url;
@@ -156,6 +160,8 @@ public class VCSCoordinates {
 
   /**
    * <p>Getter for the field <code>references</code>.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getReferences() {
     return references;
@@ -172,6 +178,8 @@ public class VCSCoordinates {
 
   /**
    * <p>getTags.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getTags() {
     return FluentIterable.from(getReferences()).filter(VCSRef.IS_TAG).toList();
@@ -179,6 +187,8 @@ public class VCSCoordinates {
 
   /**
    * <p>getBranches.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getBranches() {
     return FluentIterable.from(getReferences()).filter(VCSRef.IS_BRANCH).toList();

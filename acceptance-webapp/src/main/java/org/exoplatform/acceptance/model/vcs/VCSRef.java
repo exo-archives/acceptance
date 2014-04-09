@@ -81,6 +81,8 @@ public class VCSRef {
 
   /**
    * <p>Getter for the field <code>name</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getName() {
     return name;
@@ -97,6 +99,8 @@ public class VCSRef {
 
   /**
    * <p>Getter for the field <code>id</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getId() {
     return id;
@@ -113,6 +117,8 @@ public class VCSRef {
 
   /**
    * <p>Getter for the field <code>type</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRef.Type} object.
    */
   public Type getType() {
     return type;

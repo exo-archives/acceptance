@@ -109,6 +109,8 @@ public class VCSRepository extends StorableObject {
 
   /**
    * <p>getTags.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getTags() {
     return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getReferences()).filter(VCSRef.IS_TAG).toList());
@@ -116,6 +118,8 @@ public class VCSRepository extends StorableObject {
 
   /**
    * <p>getReferences.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getReferences() {
     return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getRemoteRepositories()).transformAndConcat(new Function<VCSCoordinates,
@@ -132,6 +136,8 @@ public class VCSRepository extends StorableObject {
 
   /**
    * <p>getBranches.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getBranches() {
     return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getReferences()).filter(VCSRef.IS_BRANCH).toList());
@@ -170,6 +176,8 @@ public class VCSRepository extends StorableObject {
 
   /**
    * <p>Getter for the field <code>type</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository.Type} object.
    */
   public Type getType() {
     return type;
@@ -186,6 +194,8 @@ public class VCSRepository extends StorableObject {
 
   /**
    * <p>Getter for the field <code>remoteRepositories</code>.</p>
+   *
+   * @return a {@link java.util.List} object.
    */
   public List<VCSCoordinates> getRemoteRepositories() {
     return remoteRepositories;

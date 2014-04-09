@@ -50,6 +50,7 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
    * <p>createListItemDTOs.</p>
    *
    * @param repositories a {@link java.lang.Iterable} object.
+   * @return a {@link java.lang.Iterable} object.
    */
   static private Iterable<VCSRepository> createListItemDTOs(Iterable<VCSRepository> repositories) {
     List<VCSRepository> dtos = new ArrayList<>();
@@ -63,6 +64,7 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
    * <p>createListItemDTO.</p>
    *
    * @param repository a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
    */
   static private VCSRepository createListItemDTO(VCSRepository repository) {
     VCSRepositoryListItemDTO dto = new VCSRepositoryListItemDTO(repository.getName());
@@ -70,9 +72,7 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
     return dto;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   protected CRUDService<VCSRepository> getCRUDService() {
     return vcsRepositoryService;

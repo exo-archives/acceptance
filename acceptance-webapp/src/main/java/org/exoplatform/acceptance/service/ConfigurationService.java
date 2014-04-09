@@ -62,6 +62,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>version</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getVersion() {
     return version;
@@ -69,6 +71,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmUrl</code>.</p>
+   *
+   * @return a {@link java.net.URL} object.
    */
   public URL getScmUrl() {
     return scmUrl;
@@ -76,6 +80,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmRevision</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getScmRevision() {
     return scmRevision;
@@ -83,6 +89,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>scmRevisionUrl</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getScmRevisionUrl() {
     return scmRevisionUrl;
@@ -90,6 +98,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>buildDate</code>.</p>
+   *
+   * @return a {@link java.util.Date} object.
    */
   public Date getBuildDate() {
     return buildDate;
@@ -97,6 +107,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>inceptionYear</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getInceptionYear() {
     return inceptionYear;
@@ -104,6 +116,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>organizationName</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getOrganizationName() {
     return organizationName;
@@ -111,6 +125,8 @@ public class ConfigurationService {
 
   /**
    * <p>Getter for the field <code>organizationUrl</code>.</p>
+   *
+   * @return a {@link java.lang.String} object.
    */
   public String getOrganizationUrl() {
     return organizationUrl;
@@ -135,6 +151,8 @@ public class ConfigurationService {
 
   /**
    * <p>getDataDir.</p>
+   *
+   * @return a {@link java.io.File} object.
    */
   public File getDataDir() {
     if (Strings.isNullOrEmpty(dataDirPath)) {
@@ -153,6 +171,8 @@ public class ConfigurationService {
 
   /**
    * <p>getTmpDir.</p>
+   *
+   * @return a {@link java.io.File} object.
    */
   public File getTmpDir() {
     if (Strings.isNullOrEmpty(tmpDirPath)) {

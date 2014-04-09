@@ -73,6 +73,7 @@ public class DevDataLoaderService {
    *
    * @param repoName a {@link java.lang.String} object.
    * @param hasDevRepo a boolean.
+   * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
    */
   private VCSRepository createVCSRepository(String repoName, boolean hasDevRepo) {
     VCSRepository gitRepository = new VCSRepository(repoName);
