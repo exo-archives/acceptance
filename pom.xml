@@ -72,7 +72,7 @@
     <javax.jsr250.version>1.0</javax.jsr250.version>
     <javax.servlet.version>3.0.1</javax.servlet.version>
     <javax.validation.version>1.1.0.Final</javax.validation.version>
-    <jgit.version>3.3.1.201403241930-r</jgit.version>
+    <jgit.version>3.3.2.201404171909-r</jgit.version>
     <json-path.version>0.9.1</json-path.version>
     <junit.version>4.11</junit.version>
     <juzu.version>1.0.0-beta1-SNAPSHOT</juzu.version>
