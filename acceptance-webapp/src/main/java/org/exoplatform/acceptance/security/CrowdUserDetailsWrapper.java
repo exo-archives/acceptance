@@ -31,9 +31,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
-  // This class is serializable
-  /** Constant <code>serialVersionUID=1L</code> */
-  private static final long serialVersionUID = 1L;
+
+  /** Constant <code>serialVersionUID=1141084636446878309L</code> */
+  private static final long serialVersionUID = 1141084636446878309L;
 
   private final CrowdUserDetails crowdUserDetails;
 

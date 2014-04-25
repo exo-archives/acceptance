@@ -30,10 +30,9 @@ import org.springframework.security.core.GrantedAuthority;
  */
 public class CrowdUserDetailsMock implements ICrowdUserDetails {
 
-  // This class is serializable
-  /** Constant <code>serialVersionUID=1L</code> */
-  private static final long serialVersionUID = 1L;
 
+  /** Constant <code>serialVersionUID=7557021962716626298L</code> */
+  private static final long serialVersionUID = 7557021962716626298L;
   private String username;
 
   private String password;
