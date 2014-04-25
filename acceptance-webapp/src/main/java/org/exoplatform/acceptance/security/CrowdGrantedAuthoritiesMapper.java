@@ -18,6 +18,7 @@
  */
 package org.exoplatform.acceptance.security;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
@@ -37,12 +38,16 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
  */
 @Named("crowdGrantedAuthoritiesMapper")
 @Singleton
-public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper {
+public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper, Serializable {
 
   /**
    * Logger
    */
   private static final Logger LOGGER = LoggerFactory.getLogger(CrowdGrantedAuthoritiesMapper.class);
+  /**
+   * Constant <code>serialVersionUID=-2878066382069619533L</code>
+   */
+  private static final long serialVersionUID = -2878066382069619533L;
 
   /**
    * The crowd group used for our application users role
