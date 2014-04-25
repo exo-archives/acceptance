@@ -47,7 +47,7 @@ public abstract class CRUDController<T extends StorableObject, I extends Seriali
    *
    * @return a {@link org.exoplatform.acceptance.service.CRUDService} object.
    */
-  abstract protected CRUDService<T> getCRUDService();
+  protected abstract CRUDService<T> getCRUDService();
 
   /**
    * Get a (potentially paginated) list of objects

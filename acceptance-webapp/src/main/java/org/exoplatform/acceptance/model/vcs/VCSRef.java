@@ -35,7 +35,7 @@ public class VCSRef {
   /**
    * Constant <code>IS_TAG</code>
    */
-  public final static Predicate<VCSRef> IS_TAG = new Predicate<VCSRef>() {
+  public static final Predicate<VCSRef> IS_TAG = new Predicate<VCSRef>() {
     @Override
     // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
     //public boolean apply(@Nullable VCSRef input) {
@@ -46,7 +46,7 @@ public class VCSRef {
   /**
    * Constant <code>IS_BRANCH</code>
    */
-  public final static Predicate<VCSRef> IS_BRANCH = new Predicate<VCSRef>() {
+  public static final Predicate<VCSRef> IS_BRANCH = new Predicate<VCSRef>() {
     @Override
     // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
     //public boolean apply(@Nullable VCSRef input) {
@@ -57,7 +57,7 @@ public class VCSRef {
   /**
    * Constant <code>SORT_BY_NAME</code>
    */
-  public final static Ordering<VCSRef> SORT_BY_NAME = Ordering.natural().nullsFirst().onResultOf(new Function<VCSRef, String>() {
+  public static final Ordering<VCSRef> SORT_BY_NAME = Ordering.natural().nullsFirst().onResultOf(new Function<VCSRef, String>() {
     public String apply(VCSRef ref) {
       return ref.getName();
     }

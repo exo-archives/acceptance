@@ -43,7 +43,7 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
    *
    * @return a {@link org.springframework.data.mongodb.repository.MongoRepository} object.
    */
-  abstract protected MongoRepository<T, String> getMongoStorage();
+  protected abstract MongoRepository<T, String> getMongoStorage();
 
   /**
    * {@inheritDoc}

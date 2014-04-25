@@ -51,7 +51,7 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
    * @param credential a {@link org.exoplatform.acceptance.model.credential.Credential} object.
    * @return a {@link org.exoplatform.acceptance.model.credential.Credential} object.
    */
-  static private Credential createListItemDTO(Credential credential) {
+  private static Credential createListItemDTO(Credential credential) {
     CredentialListItemDTO dto = new CredentialListItemDTO(credential.getType(), credential.getName());
     dto.setId(credential.getId());
     return dto;
@@ -63,7 +63,7 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
    * @param credentials a {@link java.lang.Iterable} object.
    * @return a {@link java.lang.Iterable} object.
    */
-  static private Iterable<Credential> createListItemDTOs(Iterable<Credential> credentials) {
+  private static Iterable<Credential> createListItemDTOs(Iterable<Credential> credentials) {
     List<Credential> dtos = new ArrayList<>();
     for (Credential credential : credentials) {
       dtos.add(createListItemDTO(credential));
