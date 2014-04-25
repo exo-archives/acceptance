@@ -101,7 +101,7 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
   }
 
   @JsonIgnoreProperties({"remoteRepositories", "tags", "branches", "references"})
-  public static class VCSRepositoryListItemDTO extends VCSRepository {
+  public final static class VCSRepositoryListItemDTO extends VCSRepository {
 
     private VCSRepositoryListItemDTO(@NotNull String name) {
       super(name);

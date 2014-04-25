@@ -98,7 +98,7 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
     return createListItemDTOs(super.getObjects(offset, limit));
   }
 
-  public static class CredentialListItemDTO extends Credential {
+  public final static class CredentialListItemDTO extends Credential {
 
     private CredentialListItemDTO(@NotNull Type type, @NotNull String name) {
       super(type, name);
