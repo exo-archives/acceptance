@@ -38,7 +38,7 @@ import javax.inject.Named;
 @Named
 public class DevDataLoaderService {
   @Inject
-  private VCSRepositoryService VCSRepositoryService;
+  private VCSRepositoryService vcsRepositoryService;
   @Inject
   private CredentialService credentialService;
 
@@ -79,6 +79,6 @@ public class DevDataLoaderService {
     }
     gitRepository.addRemoteRepository("blessed", "https://github.com/exoplatform/" + repoName + ".git",
                                       Credential.NONE.getId());
-    return VCSRepositoryService.updateOrCreate(gitRepository);
+    return vcsRepositoryService.updateOrCreate(gitRepository);
   }
 }
