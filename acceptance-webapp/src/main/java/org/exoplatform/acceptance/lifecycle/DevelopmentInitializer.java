@@ -19,7 +19,7 @@
 package org.exoplatform.acceptance.lifecycle;
 
 import org.exoplatform.acceptance.annotation.Development;
-import org.exoplatform.acceptance.service.DevDataLoaderService;
+import org.exoplatform.acceptance.service.utils.DevDataLoaderService;
 
 import javax.inject.Inject;
 import javax.inject.Named;

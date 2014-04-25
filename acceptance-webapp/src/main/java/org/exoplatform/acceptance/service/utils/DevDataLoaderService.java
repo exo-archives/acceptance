@@ -16,7 +16,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.exoplatform.acceptance.service;
+package org.exoplatform.acceptance.service.utils;
 
 import org.exoplatform.acceptance.model.credential.Credential;
 import org.exoplatform.acceptance.model.credential.KeyPairCredential;
@@ -28,8 +28,6 @@ import org.exoplatform.acceptance.service.vcs.VCSRepositoryService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This service is used to load some hardcoded data from the model to use them in development mode or in tests
@@ -39,8 +37,6 @@ import org.slf4j.LoggerFactory;
  */
 @Named
 public class DevDataLoaderService {
-  /** Constant <code>LOGGER</code> */
-  private static final Logger LOGGER = LoggerFactory.getLogger(DevDataLoaderService.class);
   @Inject
   private VCSRepositoryService VCSRepositoryService;
   @Inject
