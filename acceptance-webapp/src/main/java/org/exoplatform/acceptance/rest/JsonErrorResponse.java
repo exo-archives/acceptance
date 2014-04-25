@@ -44,7 +44,7 @@ public class JsonErrorResponse {
    * @param t a {@link java.lang.Throwable} object.
    */
   public JsonErrorResponse(@NotNull Throwable t) {
-    addGlobalError(t, t.getMessage());
+    globalErrors.add(new GlobalError(t.getClass().getName(), t.getMessage()));
   }
 
   /**
@@ -54,7 +54,7 @@ public class JsonErrorResponse {
    * @param message a {@link java.lang.String} object.
    */
   public JsonErrorResponse(@NotNull String objectName, @NotNull String message) {
-    addGlobalError(objectName, message);
+    globalErrors.add(new GlobalError(objectName, message));
   }
 
   /**
