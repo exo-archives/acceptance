@@ -108,13 +108,17 @@ public class StorableObject {
     this.name = name;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String toString() {
     return Objects.toStringHelper(this).add("id", getId()).add("name", getName()).toString();
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public boolean equals(Object obj) {
     if (obj == null) {
@@ -127,7 +131,9 @@ public class StorableObject {
     return java.util.Objects.equals(this.getName(), other.getName());
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public int hashCode() {
     return java.util.Objects.hash(this.getName());

@@ -120,7 +120,9 @@ public abstract class Credential extends StorableObject {
     this.type = type;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String toString() {
     return Objects.toStringHelper(this).add("id", getId()).add("type", getType()).add("name", getName()).toString();

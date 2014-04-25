@@ -71,7 +71,9 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
     return dtos;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected CRUDService<Credential> getCRUDService() {
     return credentialService;

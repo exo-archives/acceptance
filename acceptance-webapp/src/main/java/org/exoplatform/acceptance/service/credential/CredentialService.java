@@ -39,7 +39,9 @@ public class CredentialService extends AbstractMongoCRUDService<Credential> impl
   @Inject
   private CredentialMongoStorage credentialMongoStorage;
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected CredentialMongoStorage getMongoStorage() {
     return credentialMongoStorage;

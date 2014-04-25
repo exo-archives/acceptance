@@ -72,7 +72,9 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
     return dto;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected CRUDService<VCSRepository> getCRUDService() {
     return vcsRepositoryService;

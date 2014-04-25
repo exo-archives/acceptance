@@ -26,7 +26,9 @@ package org.exoplatform.acceptance.service;
  */
 public class EntityNotFoundException extends RuntimeException {
 
-  /** Constant <code>serialVersionUID=8777255433052347158L</code> */
+  /**
+   * Constant <code>serialVersionUID=8777255433052347158L</code>
+   */
   private static final long serialVersionUID = 8777255433052347158L;
 
   /**

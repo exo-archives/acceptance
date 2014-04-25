@@ -82,7 +82,9 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
   @Inject
   private VCSRepositoryMongoStorage vcsRepositoryMongoStorage;
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected VCSRepositoryMongoStorage getMongoStorage() {
     return vcsRepositoryMongoStorage;

@@ -32,7 +32,9 @@ import org.springframework.security.core.GrantedAuthority;
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
 
-  /** Constant <code>serialVersionUID=1141084636446878309L</code> */
+  /**
+   * Constant <code>serialVersionUID=1141084636446878309L</code>
+   */
   private static final long serialVersionUID = 1141084636446878309L;
 
   private final CrowdUserDetails crowdUserDetails;
@@ -51,7 +53,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
     this.grantedAuthoritiesMapper = grantedAuthoritiesMapper;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Collection<GrantedAuthority> getAuthorities() {
     return grantedAuthoritiesMapper.mapAuthorities(crowdUserDetails.getAuthorities());

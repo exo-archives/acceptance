@@ -39,7 +39,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @since 2.0.0
  */
 @Document(collection = "vcsrepositories")
-@JsonIgnoreProperties({"tags","references","branches"})
+@JsonIgnoreProperties({"tags", "references", "branches"})
 public class VCSRepository extends StorableObject {
 
   @NotNull
