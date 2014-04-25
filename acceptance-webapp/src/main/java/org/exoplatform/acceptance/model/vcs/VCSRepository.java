@@ -89,11 +89,11 @@ public class VCSRepository extends StorableObject {
   /**
    * <p>addRemoteRepository.</p>
    *
-   * @param VCSCoordinates a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
+   * @param coordinates a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
    */
-  public void addRemoteRepository(VCSCoordinates VCSCoordinates) {
-    assert VCSCoordinates.getName() != null;
-    remoteRepositories.add(VCSCoordinates);
+  public void addRemoteRepository(VCSCoordinates coordinates) {
+    assert coordinates.getName() != null;
+    remoteRepositories.add(coordinates);
   }
 
   /**
@@ -127,7 +127,7 @@ public class VCSRepository extends StorableObject {
       // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
       //@Nullable
       @Override
-      //public Iterable<VCSRef> apply(@Nullable VCSCoordinates input) {
+      //public Iterable<VCSRef> apply(@Nullable coordinates input) {
       public Iterable<VCSRef> apply(VCSCoordinates input) {
         return input.getReferences();
       }
@@ -204,12 +204,12 @@ public class VCSRepository extends StorableObject {
   /**
    * <p>Setter for the field <code>remoteRepositories</code>.</p>
    *
-   * @param VCSCoordinatesList a {@link java.util.List} object.
+   * @param coordinatesList a {@link java.util.List} object.
    */
-  public void setRemoteRepositories(List<VCSCoordinates> VCSCoordinatesList) {
+  public void setRemoteRepositories(List<VCSCoordinates> coordinatesList) {
     remoteRepositories.clear();
-    for (VCSCoordinates VCSCoordinates : VCSCoordinatesList) {
-      addRemoteRepository(VCSCoordinates);
+    for (VCSCoordinates coordinates : coordinatesList) {
+      addRemoteRepository(coordinates);
     }
   }
 
