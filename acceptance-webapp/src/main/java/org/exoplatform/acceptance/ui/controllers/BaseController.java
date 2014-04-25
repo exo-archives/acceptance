@@ -126,7 +126,7 @@ public abstract class BaseController implements RequestLifeCycle {
    * @param template a {@link juzu.template.Template} object.
    */
   protected void render(Template template) {
-    this.render(template.with());
+    render(template.with());
   }
 
   /**
@@ -145,7 +145,7 @@ public abstract class BaseController implements RequestLifeCycle {
    * @return a {@link juzu.Response.Content} object.
    */
   protected Response.Content makeResponse(Template template) {
-    return this.makeResponse(template.with());
+    return makeResponse(template.with());
   }
 
   /**
@@ -155,7 +155,7 @@ public abstract class BaseController implements RequestLifeCycle {
    * @return a {@link juzu.Response.Content} object.
    */
   protected Response.Content makeResponse(Template.Builder builder) {
-    return this.makeResponse(builder.ok());
+    return makeResponse(builder.ok());
   }
 
   /**

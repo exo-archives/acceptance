@@ -49,7 +49,7 @@ public abstract class Page {
   }
 
   public void goTo() throws Exception {
-    getDriver().get(this.contextPath.toURI().resolve(getPath()).toURL().toString());
+    getDriver().get(contextPath.toURI().resolve(getPath()).toURL().toString());
   }
 
 }

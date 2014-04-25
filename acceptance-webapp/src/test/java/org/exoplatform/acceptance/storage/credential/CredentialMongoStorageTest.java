@@ -52,7 +52,7 @@ public class CredentialMongoStorageTest {
   @After
   public void tearDown() {
     // cleanup the collection
-    this.credentialMongoStorage.deleteAll();
+    credentialMongoStorage.deleteAll();
   }
 
   @Test

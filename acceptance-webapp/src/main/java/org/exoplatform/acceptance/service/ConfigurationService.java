@@ -158,7 +158,7 @@ public class ConfigurationService {
    */
   public File getDataDir() {
     if (Strings.isNullOrEmpty(dataDirPath)) {
-      this.dataDirPath = System.getProperty("user.home") + "/.acceptance";
+      dataDirPath = System.getProperty("user.home") + "/.acceptance";
     }
     File dataDir = new File(dataDirPath);
     if (!dataDir.exists()) {

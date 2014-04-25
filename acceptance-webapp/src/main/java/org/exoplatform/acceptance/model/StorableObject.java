@@ -128,7 +128,7 @@ public class StorableObject {
       return false;
     }
     final StorableObject other = (StorableObject) obj;
-    return java.util.Objects.equals(this.getName(), other.getName());
+    return java.util.Objects.equals(getName(), other.getName());
   }
 
   /**
@@ -136,6 +136,6 @@ public class StorableObject {
    */
   @Override
   public int hashCode() {
-    return java.util.Objects.hash(this.getName());
+    return java.util.Objects.hash(getName());
   }
 }

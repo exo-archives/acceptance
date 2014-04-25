@@ -42,7 +42,7 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
    * @param userDetailsService a {@link org.exoplatform.acceptance.security.CrowdUserDetailsServiceMock} object.
    */
   public CrowdAuthenticationProviderMock(CrowdUserDetailsServiceMock userDetailsService) {
-    this.crowdUserDetailsServiceMock = userDetailsService;
+    crowdUserDetailsServiceMock = userDetailsService;
   }
 
   /**
