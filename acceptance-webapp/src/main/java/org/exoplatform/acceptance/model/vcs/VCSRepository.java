@@ -44,7 +44,7 @@ public class VCSRepository extends StorableObject {
 
   @NotNull
   @Size(min = 1)
-  private List<VCSCoordinates> remoteRepositories = new ArrayList<>();
+  private final List<VCSCoordinates> remoteRepositories = new ArrayList<>();
 
   /**
    * The type of VCS

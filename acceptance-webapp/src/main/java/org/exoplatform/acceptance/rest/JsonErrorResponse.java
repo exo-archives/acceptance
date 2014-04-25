@@ -29,8 +29,8 @@ import javax.validation.constraints.NotNull;
  * @since 2.0.0
  */
 public class JsonErrorResponse {
-  private List<FieldError> fieldErrors = new ArrayList<>();
-  private List<GlobalError> globalErrors = new ArrayList<>();
+  private final List<FieldError> fieldErrors = new ArrayList<>();
+  private final List<GlobalError> globalErrors = new ArrayList<>();
 
   /**
    * <p>Constructor for JsonErrorResponse.</p>
@@ -107,8 +107,8 @@ public class JsonErrorResponse {
 
   public static class FieldError {
 
-    private String field;
-    private String message;
+    private final String field;
+    private final String message;
 
     public FieldError(String field, String message) {
       this.field = field;
@@ -127,8 +127,8 @@ public class JsonErrorResponse {
 
   public static class GlobalError {
 
-    private String objectName;
-    private String message;
+    private final String objectName;
+    private final String message;
 
     public GlobalError(String objectName, String message) {
       this.objectName = objectName;
