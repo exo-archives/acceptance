@@ -58,7 +58,9 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
     //@Nullable
     //public VCSRef apply(@Nullable Ref input) {
     public VCSRef apply(Ref input) {
-      if (null == input) return null;
+      if (null == input) {
+        return null;
+      }
       if (input.getName().startsWith(Constants.R_HEADS)) {
         return new VCSRef(VCSRef.Type.BRANCH, input.getName().substring(Constants.R_HEADS.length()),
                           input.getObjectId().getName());
