@@ -46,7 +46,7 @@ var loadCredentialsList = function ($http, $scope) {
               // called asynchronously if an error occurs
               // or server returns response with an error status.
             });
-}
+};
 
 // Controllers
 function ListCtrl($scope, Restangular, $log) {
@@ -72,7 +72,7 @@ function CreateCtrl($scope, $location, Restangular, $log, $http) {
       $scope.repository.remoteRepositories = [];
     }
     $scope.repository.remoteRepositories.push({});
-  }
+  };
   $scope.removeRemote = function ($index) {
     $scope.repository.remoteRepositories.splice($index, 1);
   };
@@ -101,7 +101,7 @@ function EditCtrl($scope, $location, Restangular, repository, $log, $http) {
       $scope.repository.remoteRepositories = [];
     }
     $scope.repository.remoteRepositories.push({});
-  }
+  };
   $scope.removeRemote = function ($index) {
     $scope.repository.remoteRepositories.splice($index, 1);
   };

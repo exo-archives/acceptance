@@ -57,12 +57,12 @@ sourcesApp.controller(
 
 // This function is used to compute data to display in the page
 var computeData = function () {
-  var branches = []
-  var randNumMin = 0
-  var randNumMax = 100
+  var branches = [];
+  var randNumMin = 0;
+  var randNumMax = 100;
 
   for (var i = 0; i < 20; i++) {
-    var projects = []
+    var projects = [];
     for (var j = 0; j < 10; j++) {
       projects[j] = {
         'name': 'project' + j,
@@ -76,4 +76,4 @@ var computeData = function () {
     branches[i] = {'name': 'branch' + i, 'projects': projects};
   }
   return branches;
-}
+};

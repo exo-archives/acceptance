@@ -221,7 +221,7 @@ public class VCSRepository extends StorableObject {
    * VCS Repository types
    */
   public enum Type {
-    GIT;
+    GIT
   }
 
 
