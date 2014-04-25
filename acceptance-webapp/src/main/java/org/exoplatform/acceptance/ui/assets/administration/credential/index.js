@@ -16,7 +16,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-angular.module('credential', ['ngRoute', 'restangular', 'ui.bootstrap']).
+var app = angular.module('credential', ['ngRoute', 'restangular', 'ui.bootstrap']).
     config(function ($routeProvider, RestangularProvider) {
              $routeProvider.
                  when('/', {
@@ -36,6 +36,23 @@ angular.module('credential', ['ngRoute', 'restangular', 'ui.bootstrap']).
                  otherwise({redirectTo: '/'});
              RestangularProvider.setBaseUrl('/api/admin');
            });
+
+app.filter('filterByNameOrType', function () {
+  /* array is first argument, each additional argument is prefixed by a ":" in filter markup */
+  return function (dataArray, searchTerm) {
+    if (!dataArray) return;
+    /* when term is cleared, return full array */
+    if (!searchTerm) {
+      return dataArray
+    } else {
+      /* otherwise filter the array */
+      var term = searchTerm.toLowerCase();
+      return dataArray.filter(function (item) {
+        return item.name.toLowerCase().indexOf(term) > -1 || item.type.toLowerCase().indexOf(term) > -1;
+      });
+    }
+  }
+});
 
 // Controllers
 function ListCtrl($scope, Restangular, $log) {

@@ -48,6 +48,23 @@ var loadCredentialsList = function ($http, $scope) {
             });
 };
 
+app.filter('filterByNameOrType', function () {
+  /* array is first argument, each additional argument is prefixed by a ":" in filter markup */
+  return function (dataArray, searchTerm) {
+    if (!dataArray) return;
+    /* when term is cleared, return full array */
+    if (!searchTerm) {
+      return dataArray
+    } else {
+      /* otherwise filter the array */
+      var term = searchTerm.toLowerCase();
+      return dataArray.filter(function (item) {
+        return item.name.toLowerCase().indexOf(term) > -1 || item.type.toLowerCase().indexOf(term) > -1;
+      });
+    }
+  }
+});
+
 // Controllers
 function ListCtrl($scope, Restangular, $log) {
   $scope.alerts = [];
