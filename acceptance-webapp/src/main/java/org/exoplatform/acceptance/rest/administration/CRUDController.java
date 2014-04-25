@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author Arnaud Héritier ( aheritier@exoplatform.com )
  * @since 2.0.0
  */
-public abstract class CRUDController<T extends StorableObject, ID extends Serializable> {
+public abstract class CRUDController<T extends StorableObject, I extends Serializable> {
 
   /**
    * <p>getCRUDService.</p>
@@ -104,7 +104,7 @@ public abstract class CRUDController<T extends StorableObject, ID extends Serial
    */
   @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
-  public T updateObject(@PathVariable(value = "id") ID id, @Valid @RequestBody T object, HttpServletResponse response) {
+  public T updateObject(@PathVariable(value = "id") I id, @Valid @RequestBody T object, HttpServletResponse response) {
     return getCRUDService().update(object);
   }
 
