@@ -23,7 +23,6 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -112,7 +111,7 @@ public class VCSRepositoryCRUDControllerTest {
         return new ServletInvocableHandlerMethod(jsonErrorHandler, method);
       }
     };
-    List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+    List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
     messageConverters.add(new FormHttpMessageConverter());
     messageConverters.add(new StringHttpMessageConverter());
     messageConverters.add(new MappingJackson2HttpMessageConverter());

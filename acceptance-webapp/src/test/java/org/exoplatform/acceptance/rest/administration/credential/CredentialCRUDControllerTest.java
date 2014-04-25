@@ -84,6 +84,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHan
 @ActiveProfiles("test")
 public class CredentialCRUDControllerTest {
 
+  private final UsernamePasswordCredential a_username_password = new UsernamePasswordCredential("A username/password",
+                                                                                                "a_username",
+                                                                                                "a_password");
+  private final TokenCredential a_token = new TokenCredential("A token", "a_token");
+  private final KeyPairCredential a_key_pair = new KeyPairCredential("A key pair", "a private key", "a public key");
   private MockMvc mockMvc;
   @InjectMocks
   private CredentialCRUDController controllerUnderTest;
@@ -91,10 +96,6 @@ public class CredentialCRUDControllerTest {
   private CredentialService credentialServiceMock;
   @Inject
   private JsonErrorHandler jsonErrorHandler;
-  private UsernamePasswordCredential a_username_password = new UsernamePasswordCredential("A username/password", "a_username",
-                                                                                          "a_password");
-  private TokenCredential a_token = new TokenCredential("A token", "a_token");
-  private KeyPairCredential a_key_pair = new KeyPairCredential("A key pair", "a private key", "a public key");
 
   public static byte[] convertObjectToJsonBytes(Object object) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
@@ -126,7 +127,7 @@ public class CredentialCRUDControllerTest {
         return new ServletInvocableHandlerMethod(jsonErrorHandler, method);
       }
     };
-    List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
+    List<HttpMessageConverter<?>> messageConverters = new ArrayList<>();
     messageConverters.add(new FormHttpMessageConverter());
     messageConverters.add(new StringHttpMessageConverter());
     messageConverters.add(new MappingJackson2HttpMessageConverter());
