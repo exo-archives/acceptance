@@ -38,7 +38,7 @@ public class StorableObject {
   @Indexed(unique = true)
   @NotNull
   @Size(min = 3, max = 64)
-  protected String name;
+  private String name;
   /**
    * A unique technical ID used to identify the object.
    * (Can be null while the object is in memory and not yet stored)
