@@ -89,7 +89,6 @@ public abstract class CRUDController<T extends StorableObject, I extends Seriali
    */
   @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
-  //public T saveObject(@Valid @RequestBody T object, BindingResult result, HttpServletResponse response) {
   public T saveObject(@Valid @RequestBody T object) {
     return getCRUDService().updateOrCreate(object);
   }
