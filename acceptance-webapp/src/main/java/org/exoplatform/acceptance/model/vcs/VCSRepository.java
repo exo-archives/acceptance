@@ -21,6 +21,7 @@ package org.exoplatform.acceptance.model.vcs;
 import org.exoplatform.acceptance.model.StorableObject;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
@@ -38,6 +39,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @since 2.0.0
  */
 @Document(collection = "vcsrepositories")
+@JsonIgnoreProperties({"tags","references","branches"})
 public class VCSRepository extends StorableObject {
 
   @NotNull

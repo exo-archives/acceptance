@@ -20,6 +20,7 @@ package org.exoplatform.acceptance.model.vcs;
 
 import org.exoplatform.acceptance.model.credential.Credential;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.Objects;
 import com.google.common.collect.FluentIterable;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import javax.validation.constraints.NotNull;
  * @author Arnaud Héritier ( aheritier@exoplatform.com )
  * @since 2.0.0
  */
+@JsonIgnoreProperties({"tags", "branches"})
 public class VCSCoordinates {
 
   @NotNull

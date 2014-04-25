@@ -18,6 +18,8 @@
  */
 package org.exoplatform.acceptance.model.vcs;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
@@ -79,7 +81,10 @@ public class VCSRef {
    * @param name a {@link java.lang.String} object.
    * @param id   a {@link java.lang.String} object.
    */
-  public VCSRef(@NotNull Type type, @NotNull String name, @NotNull String id) {
+  @JsonCreator
+  public VCSRef(@NotNull @JsonProperty("type") Type type,
+                @NotNull @JsonProperty("name") String name,
+                @NotNull @JsonProperty("id") String id) {
     this.type = type;
     this.name = name;
     this.id = id;
@@ -139,7 +144,9 @@ public class VCSRef {
     this.type = type;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String toString() {
     return Objects.toStringHelper(this)
