@@ -237,8 +237,8 @@ public class CurrentUser {
   /**
    * Retrieves the current crowd user.
    *
-   * @throws org.springframework.security.core.userdetails.UsernameNotFoundException if any.
    * @return a {@link org.exoplatform.acceptance.security.ICrowdUserDetails} object.
+   * @throws org.springframework.security.core.userdetails.UsernameNotFoundException if any.
    */
   private ICrowdUserDetails getCurrentUser() throws UsernameNotFoundException {
     if (currentUser == null) {
@@ -249,7 +249,7 @@ public class CurrentUser {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should

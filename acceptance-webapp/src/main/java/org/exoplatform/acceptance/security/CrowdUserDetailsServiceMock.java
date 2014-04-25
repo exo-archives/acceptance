@@ -54,7 +54,7 @@ public class CrowdUserDetailsServiceMock implements UserDetailsService {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Locates the user based on the username. In the actual implementation, the search may possibly be case
    * insensitive, or case insensitive depending on how the implementation instance is configured. In this case, the
    * <code>UserDetails</code> object that comes back may have a username that is of a different case than what was

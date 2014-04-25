@@ -38,14 +38,16 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @Named
 @Development
 public class DevelopmentInitializer extends ProductionInitializer implements ApplicationListener<ContextRefreshedEvent> {
-  /** Constant <code>LOGGER</code> */
+  /**
+   * Constant <code>LOGGER</code>
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(DevelopmentInitializer.class);
   @Inject
   private DevDataLoaderService devDataLoaderService;
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Handle an application event.
    */
   @Override

@@ -39,14 +39,16 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @Named
 @Production
 public class ProductionInitializer implements ApplicationListener<ContextRefreshedEvent> {
-  /** Constant <code>LOGGER</code> */
+  /**
+   * Constant <code>LOGGER</code>
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(ProductionInitializer.class);
   @Inject
   private CredentialService credentialService;
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Handle an application event.
    */
   @Override

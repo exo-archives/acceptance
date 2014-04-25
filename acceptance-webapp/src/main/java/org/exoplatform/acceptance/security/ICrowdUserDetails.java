@@ -32,6 +32,7 @@ public interface ICrowdUserDetails extends UserDetails {
    * Returns the user's first name
    *
    * @return a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   String getFirstName();
 
@@ -39,6 +40,7 @@ public interface ICrowdUserDetails extends UserDetails {
    * Returns the user's last name
    *
    * @return a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   String getLastName();
 
@@ -46,6 +48,7 @@ public interface ICrowdUserDetails extends UserDetails {
    * Returns the user's fullname
    *
    * @return a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   String getFullName();
 
@@ -53,6 +56,7 @@ public interface ICrowdUserDetails extends UserDetails {
    * Returns the user's email
    *
    * @return a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   String getEmail();
 }

@@ -56,7 +56,7 @@ public class VCSCoordinates {
    * <p>Constructor for VCSCoordinates.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param url a {@link java.lang.String} object.
+   * @param url  a {@link java.lang.String} object.
    */
   public VCSCoordinates(@NotNull String name, @NotNull String url) {
     this(name, url, Credential.NONE.getId());
@@ -65,8 +65,8 @@ public class VCSCoordinates {
   /**
    * <p>Constructor for VCSCoordinates.</p>
    *
-   * @param name a {@link java.lang.String} object.
-   * @param url a {@link java.lang.String} object.
+   * @param name         a {@link java.lang.String} object.
+   * @param url          a {@link java.lang.String} object.
    * @param credentialId a {@link java.lang.String} object.
    */
   public VCSCoordinates(@NotNull String name, @NotNull String url, @NotNull String credentialId) {
@@ -77,7 +77,7 @@ public class VCSCoordinates {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should

@@ -73,7 +73,7 @@
                     value = "font-awesome/css/font-awesome.css",
                     minified = "font-awesome/css/font-awesome.min.css"),
         @Stylesheet(value = "acceptance.css",
-                    depends = {"bootstrap.css", "font-awesome.css"}),
+                    depends = {"bootstrap.css", "font-awesome.css"})
     })
 @Scripts(
     {

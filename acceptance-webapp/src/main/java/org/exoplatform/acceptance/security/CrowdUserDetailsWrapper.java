@@ -25,8 +25,8 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * This wrapper is used to redefine user's authorities from groups retrieved by crowd to application roles defined in {@link org.exoplatform.acceptance.security.AppAuthority}
  *
- * @see AppAuthority
  * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @see AppAuthority
  * @since 2.0.0
  */
 public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
@@ -42,8 +42,9 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
   /**
    * <p>Constructor for CrowdUserDetailsWrapper.</p>
    *
-   * @param crowdUserDetails a {@link com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails} object.
+   * @param crowdUserDetails         a {@link com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetails} object.
    * @param grantedAuthoritiesMapper a {@link org.exoplatform.acceptance.security.CrowdGrantedAuthoritiesMapper} object.
+   * @since 2.0.0
    */
   public CrowdUserDetailsWrapper(CrowdUserDetails crowdUserDetails, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdUserDetails = crowdUserDetails;
@@ -58,7 +59,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the password used to authenticate the user.
    */
   @Override
@@ -68,7 +69,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the username used to authenticate the user. Cannot return <code>null</code>.
    */
   @Override
@@ -78,7 +79,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Indicates whether the user's account has expired. An expired account cannot be authenticated.
    */
   @Override
@@ -88,7 +89,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Indicates whether the user is locked or unlocked. A locked user cannot be authenticated.
    */
   @Override
@@ -98,7 +99,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Indicates whether the user's credentials (password) has expired. Expired credentials prevent
    * authentication.
    */
@@ -109,7 +110,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Indicates whether the user is enabled or disabled. A disabled user cannot be authenticated.
    */
   @Override
@@ -119,7 +120,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the user's first name
    */
   @Override
@@ -129,7 +130,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the user's last name
    */
   @Override
@@ -139,7 +140,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the user's fullname
    */
   @Override
@@ -149,7 +150,7 @@ public class CrowdUserDetailsWrapper implements ICrowdUserDetails {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns the user's email
    */
   @Override

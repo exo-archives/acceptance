@@ -47,7 +47,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class JsonErrorHandler {
-  /** Constant <code>LOGGER</code> */
+  /**
+   * Constant <code>LOGGER</code>
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(JsonErrorHandler.class);
 
   /**

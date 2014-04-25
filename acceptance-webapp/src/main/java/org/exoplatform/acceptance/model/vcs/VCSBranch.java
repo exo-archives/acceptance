@@ -31,7 +31,7 @@ public class VCSBranch extends VCSRef {
    * <p>Constructor for VCSBranch.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param id a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
    */
   public VCSBranch(@NotNull String name, @NotNull String id) {
     super(Type.BRANCH, name, id);

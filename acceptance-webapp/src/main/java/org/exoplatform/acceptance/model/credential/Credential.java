@@ -29,6 +29,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Authentication credentials
+ *
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @since 2.0.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -41,11 +44,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
         @JsonSubTypes.Type(value = KeyPairCredential.class),
         @JsonSubTypes.Type(value = NoCredential.class),
         @JsonSubTypes.Type(value = TokenCredential.class),
-        @JsonSubTypes.Type(value = UsernamePasswordCredential.class),
+        @JsonSubTypes.Type(value = UsernamePasswordCredential.class)
     })
 @Document(collection = "credentials")
 public abstract class Credential extends StorableObject {
 
+  /**
+   * Constant <code>NONE</code>
+   */
   public static final Credential NONE = new NoCredential();
   /**
    * The type of credential
@@ -53,54 +59,68 @@ public abstract class Credential extends StorableObject {
   @NotNull
   private Type type;
 
+  /**
+   * <p>Constructor for Credential.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   */
   protected Credential(@NotNull Type type) {
     this.type = type;
   }
 
+  /**
+   * <p>Constructor for Credential.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   */
   protected Credential(@NotNull String name, @NotNull Type type) {
     super(name);
     this.type = type;
   }
 
+  /**
+   * <p>Constructor for Credential.</p>
+   *
+   * @param name a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   */
   protected Credential(@NotNull String name, @NotNull String id, @NotNull Type type) {
     super(name, id);
     this.type = type;
   }
 
+  /**
+   * <p>Constructor for Credential.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   * @param name a {@link java.lang.String} object.
+   */
   public Credential(@NotNull Type type, @NotNull String name) {
     super(name);
     this.type = type;
   }
 
+  /**
+   * <p>Getter for the field <code>type</code>.</p>
+   *
+   * @return a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   */
   public Type getType() {
     return type;
   }
 
+  /**
+   * <p>Setter for the field <code>type</code>.</p>
+   *
+   * @param type a {@link org.exoplatform.acceptance.model.credential.Credential.Type} object.
+   */
   public void setType(@NotNull Type type) {
     this.type = type;
   }
 
-  /**
-   * Returns a string representation of the object. In general, the
-   * {@code toString} method returns a string that
-   * "textually represents" this object. The result should
-   * be a concise but informative representation that is easy for a
-   * person to read.
-   * It is recommended that all subclasses override this method.
-   * <p/>
-   * The {@code toString} method for class {@code Object}
-   * returns a string consisting of the name of the class of which the
-   * object is an instance, the at-sign character `{@code @}', and
-   * the unsigned hexadecimal representation of the hash code of the
-   * object. In other words, this method returns a string equal to the
-   * value of:
-   * <blockquote>
-   * <pre>
-   * getClass().getName() + '@' + Integer.toHexString(hashCode())
-   * </pre></blockquote>
-   *
-   * @return a string representation of the object.
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString() {
     return Objects.toStringHelper(this).add("id", getId()).add("type", getType()).add("name", getName()).toString();

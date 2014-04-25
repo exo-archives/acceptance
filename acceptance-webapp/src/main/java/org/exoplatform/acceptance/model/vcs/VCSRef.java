@@ -32,7 +32,9 @@ import javax.validation.constraints.NotNull;
  */
 public class VCSRef {
 
-  /** Constant <code>IS_TAG</code> */
+  /**
+   * Constant <code>IS_TAG</code>
+   */
   public final static Predicate<VCSRef> IS_TAG = new Predicate<VCSRef>() {
     @Override
     // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
@@ -41,7 +43,9 @@ public class VCSRef {
       return null != input && null != input.getType() && Type.TAG.equals(input.getType());
     }
   };
-  /** Constant <code>IS_BRANCH</code> */
+  /**
+   * Constant <code>IS_BRANCH</code>
+   */
   public final static Predicate<VCSRef> IS_BRANCH = new Predicate<VCSRef>() {
     @Override
     // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
@@ -50,7 +54,9 @@ public class VCSRef {
       return null != input && null != input.getType() && Type.BRANCH.equals(input.getType());
     }
   };
-  /** Constant <code>SORT_BY_NAME</code> */
+  /**
+   * Constant <code>SORT_BY_NAME</code>
+   */
   public final static Ordering<VCSRef> SORT_BY_NAME = Ordering.natural().nullsFirst().onResultOf(new Function<VCSRef, String>() {
     public String apply(VCSRef ref) {
       return ref.getName();
@@ -71,7 +77,7 @@ public class VCSRef {
    *
    * @param type a {@link org.exoplatform.acceptance.model.vcs.VCSRef.Type} object.
    * @param name a {@link java.lang.String} object.
-   * @param id a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
    */
   public VCSRef(@NotNull Type type, @NotNull String name, @NotNull String id) {
     this.type = type;

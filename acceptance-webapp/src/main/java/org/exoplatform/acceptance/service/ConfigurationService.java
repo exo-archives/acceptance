@@ -37,7 +37,9 @@ import org.springframework.beans.factory.annotation.Value;
 @Named
 @Singleton
 public class ConfigurationService {
-  /** Constant <code>LOGGER</code> */
+  /**
+   * Constant <code>LOGGER</code>
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(ConfigurationService.class);
   @Value("${project.version}")
   private String version;

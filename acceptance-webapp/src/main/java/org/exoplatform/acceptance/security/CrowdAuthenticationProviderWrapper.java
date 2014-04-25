@@ -27,8 +27,8 @@ import org.springframework.security.core.AuthenticationException;
 /**
  * This authentication provider is wrapping the one used by Crowd to replace Crowd groups by Application Roles from {@link org.exoplatform.acceptance.security.AppAuthority}
  *
- * @see CrowdGrantedAuthoritiesMapper
  * @author Arnaud Héritier ( aheritier@exoplatform.com )
+ * @see CrowdGrantedAuthoritiesMapper
  * @since 2.0.0
  */
 public class CrowdAuthenticationProviderWrapper implements AuthenticationProvider {
@@ -40,7 +40,7 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
    * <p>Constructor for CrowdAuthenticationProviderWrapper.</p>
    *
    * @param crowdAuthenticationProvider a {@link com.atlassian.crowd.integration.springsecurity.RemoteCrowdAuthenticationProvider} object.
-   * @param grantedAuthoritiesMapper a {@link org.exoplatform.acceptance.security.CrowdGrantedAuthoritiesMapper} object.
+   * @param grantedAuthoritiesMapper    a {@link org.exoplatform.acceptance.security.CrowdGrantedAuthoritiesMapper} object.
    */
   public CrowdAuthenticationProviderWrapper(RemoteCrowdAuthenticationProvider crowdAuthenticationProvider, CrowdGrantedAuthoritiesMapper grantedAuthoritiesMapper) {
     this.crowdAuthenticationProvider = crowdAuthenticationProvider;
@@ -49,7 +49,7 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Performs authentication with the same contract as {@link
    * org.springframework.security.authentication.AuthenticationManager#authenticate(Authentication)}.
    */
@@ -64,7 +64,7 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns <code>true</code> if this <Code>AuthenticationProvider</code> supports the indicated
    * <Code>Authentication</code> object.
    * <p>

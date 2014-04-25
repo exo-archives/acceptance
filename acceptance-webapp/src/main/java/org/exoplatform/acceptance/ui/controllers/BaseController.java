@@ -182,7 +182,7 @@ public abstract class BaseController implements RequestLifeCycle {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * <p>Signals to the controller that a request begins. During the invocation of this method, if a {@link juzu.Response}
    * is set on the request context, the request will be considered as terminated.</p>
    * <p/>
@@ -197,7 +197,7 @@ public abstract class BaseController implements RequestLifeCycle {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * <p>Signals to the controller that a request ends. During the invocation of this method, the response set during
    * the dispatch of the request is available via the {@link juzu.request.RequestContext#getResponse()} method, this
    * method is free to override it and provide a new response instead.</p>

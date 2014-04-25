@@ -71,9 +71,9 @@ public abstract class CRUDController<T extends StorableObject, I extends Seriali
   /**
    * Get a specific object by its id.
    *
-   * @param id the id of the object
-   * @return the object
+   * @param id       the id of the object
    * @param response a {@link javax.servlet.http.HttpServletResponse} object.
+   * @return the object
    */
   @RequestMapping(value = "{id}", method = RequestMethod.GET)
   @ResponseBody
@@ -96,10 +96,10 @@ public abstract class CRUDController<T extends StorableObject, I extends Seriali
   /**
    * Update an existing object
    *
-   * @param id     the id of the object to update
-   * @param object the object to update
-   * @return the updated object
+   * @param id       the id of the object to update
+   * @param object   the object to update
    * @param response a {@link javax.servlet.http.HttpServletResponse} object.
+   * @return the updated object
    */
   @RequestMapping(value = "{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody

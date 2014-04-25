@@ -88,7 +88,7 @@ public class CredentialCRUDController extends CRUDController<Credential, String>
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Get a (potentially paginated) list of objects
    */
   @Override

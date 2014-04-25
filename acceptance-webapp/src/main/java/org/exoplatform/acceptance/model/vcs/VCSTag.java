@@ -31,7 +31,8 @@ public class VCSTag extends VCSRef {
    * <p>Constructor for VCSTag.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param id a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   public VCSTag(@NotNull String name, @NotNull String id) {
     super(Type.TAG, name, id);

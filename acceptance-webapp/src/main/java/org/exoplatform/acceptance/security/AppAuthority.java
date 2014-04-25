@@ -34,6 +34,7 @@ public enum AppAuthority implements GrantedAuthority {
    * <p>getAuthority.</p>
    *
    * @return a {@link java.lang.String} object.
+   * @since 2.0.0
    */
   public String getAuthority() {
     return name();

@@ -38,8 +38,8 @@ import org.exoplatform.acceptance.model.credential.KeyPairCredential;
 import org.exoplatform.acceptance.model.credential.TokenCredential;
 import org.exoplatform.acceptance.model.credential.UsernamePasswordCredential;
 import org.exoplatform.acceptance.rest.JsonErrorHandler;
-import org.exoplatform.acceptance.service.credential.CredentialService;
 import org.exoplatform.acceptance.service.EntityNotFoundException;
+import org.exoplatform.acceptance.service.credential.CredentialService;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -222,7 +222,8 @@ public class CredentialCRUDControllerTest {
     String exMsg = "{ \"serverUsed\" : \"localhost/127.0.0.1:27017\" , \"err\" : \"E11000 duplicate key error index: acceptance" +
         ".credentials.$name  dup key: { : \\\"" + objectToCreate.getName() + "\\\" }\" , \"code\" : 11000 , \"n\" : 0 , \"connectionId\" : 5 , \"ok\" : 1.0}";
     String errorMsg = "E11000 duplicate key error index: acceptance.credentials.$name  dup key: { : \"" + objectToCreate.getName() + "\" }";
-    when(credentialServiceMock.updateOrCreate(any(Credential.class))).thenThrow(new DuplicateKeyException("", new Exception(exMsg)));
+    when(credentialServiceMock.updateOrCreate(any(Credential.class))).thenThrow(
+        new DuplicateKeyException("", new Exception(exMsg)));
     mockMvc.perform(post("/admin/credential")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(convertObjectToJsonBytes(objectToCreate)))

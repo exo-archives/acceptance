@@ -39,9 +39,9 @@ public class KeyPairCredential extends Credential {
   /**
    * <p>Constructor for KeyPairCredential.</p>
    *
-   * @param name a {@link java.lang.String} object.
+   * @param name       a {@link java.lang.String} object.
    * @param privateKey a {@link java.lang.String} object.
-   * @param publicKey a {@link java.lang.String} object.
+   * @param publicKey  a {@link java.lang.String} object.
    */
   @JsonCreator
   public KeyPairCredential(

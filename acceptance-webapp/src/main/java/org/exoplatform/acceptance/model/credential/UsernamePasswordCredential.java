@@ -39,7 +39,7 @@ public class UsernamePasswordCredential extends Credential {
   /**
    * <p>Constructor for UsernamePasswordCredential.</p>
    *
-   * @param name a {@link java.lang.String} object.
+   * @param name     a {@link java.lang.String} object.
    * @param username a {@link java.lang.String} object.
    * @param password a {@link java.lang.String} object.
    */

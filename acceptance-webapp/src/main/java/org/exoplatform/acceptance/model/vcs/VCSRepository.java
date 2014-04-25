@@ -70,7 +70,7 @@ public class VCSRepository extends StorableObject {
    * <p>Constructor for VCSRepository.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param id a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
    */
   public VCSRepository(@NotNull String name, @NotNull String id) {
     super(name, id);
@@ -80,7 +80,7 @@ public class VCSRepository extends StorableObject {
    * <p>addRemoteRepository.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param url a {@link java.lang.String} object.
+   * @param url  a {@link java.lang.String} object.
    */
   public void addRemoteRepository(String name, String url) {
     addRemoteRepository(new VCSCoordinates(name, url));
@@ -99,8 +99,8 @@ public class VCSRepository extends StorableObject {
   /**
    * <p>addRemoteRepository.</p>
    *
-   * @param name a {@link java.lang.String} object.
-   * @param url a {@link java.lang.String} object.
+   * @param name         a {@link java.lang.String} object.
+   * @param url          a {@link java.lang.String} object.
    * @param credentialId a {@link java.lang.String} object.
    */
   public void addRemoteRepository(String name, String url, String credentialId) {
@@ -122,16 +122,18 @@ public class VCSRepository extends StorableObject {
    * @return a {@link java.util.List} object.
    */
   public List<VCSRef> getReferences() {
-    return VCSRef.SORT_BY_NAME.sortedCopy(FluentIterable.from(getRemoteRepositories()).transformAndConcat(new Function<VCSCoordinates,
-        Iterable<VCSRef>>() {
-      // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
-      //@Nullable
-      @Override
-      //public Iterable<VCSRef> apply(@Nullable coordinates input) {
-      public Iterable<VCSRef> apply(VCSCoordinates input) {
-        return input.getReferences();
-      }
-    }).toList());
+    return VCSRef.SORT_BY_NAME.sortedCopy(
+        FluentIterable.from(getRemoteRepositories()).transformAndConcat(new Function<VCSCoordinates,
+            Iterable<VCSRef>>() {
+          // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
+          //@Nullable
+          @Override
+          //public Iterable<VCSRef> apply(@Nullable coordinates input) {
+          public Iterable<VCSRef> apply(VCSCoordinates input) {
+            return input.getReferences();
+          }
+        }).toList()
+    );
   }
 
   /**
@@ -145,7 +147,7 @@ public class VCSRepository extends StorableObject {
 
   /**
    * {@inheritDoc}
-   *
+   * <p/>
    * Returns a string representation of the object. In general, the
    * {@code toString} method returns a string that
    * "textually represents" this object. The result should

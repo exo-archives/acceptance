@@ -65,7 +65,7 @@ public class StorableObject {
    * <p>Constructor for StorableObject.</p>
    *
    * @param name a {@link java.lang.String} object.
-   * @param id a {@link java.lang.String} object.
+   * @param id   a {@link java.lang.String} object.
    */
   public StorableObject(@NotNull String name, @NotNull String id) {
     this.name = name;

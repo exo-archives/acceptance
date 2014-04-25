@@ -44,6 +44,7 @@ public class EmbeddedMongoSpringFactoryBean extends EmbeddedMongoFactoryBean imp
    * (non-Javadoc)
    * @see org.springframework.dao.support.PersistenceExceptionTranslator#translateExceptionIfPossible(java.lang.RuntimeException)
    */
+
   /** {@inheritDoc} */
   @Override
   public DataAccessException translateExceptionIfPossible(RuntimeException ex) {

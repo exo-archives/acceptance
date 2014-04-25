@@ -49,9 +49,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Named
 public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository> implements CRUDService<VCSRepository> {
 
-  /** Constant <code>LOGGER</code> */
+  /**
+   * Constant <code>LOGGER</code>
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(VCSRepositoryService.class);
-  /** Constant <code>REF_TO_VCSREF_FUNCTION</code> */
+  /**
+   * Constant <code>REF_TO_VCSREF_FUNCTION</code>
+   */
   private static final Function<Ref, VCSRef> REF_TO_VCSREF_FUNCTION = new Function<Ref, VCSRef>() {
     @Override
     // TODO : Juzu throws a NPE in live mode when using @Nullable annotation
@@ -115,6 +119,7 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
   }
 
   // Every minute
+
   /**
    * <p>updateRepositories.</p>
    */
@@ -154,8 +159,8 @@ public class VCSRepositoryService extends AbstractMongoCRUDService<VCSRepository
    * <p>loadReferencesFromRemote.</p>
    *
    * @param remote a {@link org.exoplatform.acceptance.model.vcs.VCSCoordinates} object.
-   * @throws org.eclipse.jgit.api.errors.GitAPIException if any.
    * @return a {@link java.util.List} object.
+   * @throws org.eclipse.jgit.api.errors.GitAPIException if any.
    */
   private List<VCSRef> loadReferencesFromRemote(VCSCoordinates remote) throws GitAPIException {
     return FluentIterable.from(Git.lsRemoteRepository()

@@ -44,32 +44,35 @@ public class DevDataLoaderService {
 
   /**
    * <p>initializeData.</p>
+   *
+   * @since 2.0.0
    */
   public void initializeData() {
     credentialService.updateOrCreate(new UsernamePasswordCredential("A username/password", "a_username", "a_password"));
     credentialService.updateOrCreate(new TokenCredential("A token", "a_token"));
     credentialService.updateOrCreate(new KeyPairCredential("A key pair", "a_private_key", "a_public_key"));
-    createVCSRepository("maven-depmgt-pom",false);
-    createVCSRepository("platform-ui",true);
-    createVCSRepository("commons",true);
-    createVCSRepository("ecms",true);
-    createVCSRepository("calendar",true);
-    createVCSRepository("social",true);
-    createVCSRepository("wiki",true);
-    createVCSRepository("forum",true);
-    createVCSRepository("integration",true);
-    createVCSRepository("platform",true);
-    createVCSRepository("platform-public-distributions",false);
-    createVCSRepository("ide",true);
-    createVCSRepository("platform-private-distributions",false);
+    createVCSRepository("maven-depmgt-pom", false);
+    createVCSRepository("platform-ui", true);
+    createVCSRepository("commons", true);
+    createVCSRepository("ecms", true);
+    createVCSRepository("calendar", true);
+    createVCSRepository("social", true);
+    createVCSRepository("wiki", true);
+    createVCSRepository("forum", true);
+    createVCSRepository("integration", true);
+    createVCSRepository("platform", true);
+    createVCSRepository("platform-public-distributions", false);
+    createVCSRepository("ide", true);
+    createVCSRepository("platform-private-distributions", false);
   }
 
   /**
    * <p>createVCSRepository.</p>
    *
-   * @param repoName a {@link java.lang.String} object.
+   * @param repoName   a {@link java.lang.String} object.
    * @param hasDevRepo a boolean.
    * @return a {@link org.exoplatform.acceptance.model.vcs.VCSRepository} object.
+   * @since 2.0.0
    */
   private VCSRepository createVCSRepository(String repoName, boolean hasDevRepo) {
     VCSRepository gitRepository = new VCSRepository(repoName);

@@ -51,7 +51,7 @@ public class JsonErrorResponse {
    * <p>Constructor for JsonErrorResponse.</p>
    *
    * @param objectName a {@link java.lang.String} object.
-   * @param message a {@link java.lang.String} object.
+   * @param message    a {@link java.lang.String} object.
    */
   public JsonErrorResponse(@NotNull String objectName, @NotNull String message) {
     globalErrors.add(new GlobalError(objectName, message));
@@ -78,7 +78,7 @@ public class JsonErrorResponse {
   /**
    * <p>addFieldError.</p>
    *
-   * @param field a {@link java.lang.String} object.
+   * @param field   a {@link java.lang.String} object.
    * @param message a {@link java.lang.String} object.
    */
   public void addFieldError(@NotNull String field, @NotNull String message) {
@@ -89,7 +89,7 @@ public class JsonErrorResponse {
    * <p>addGlobalError.</p>
    *
    * @param objectName a {@link java.lang.String} object.
-   * @param message a {@link java.lang.String} object.
+   * @param message    a {@link java.lang.String} object.
    */
   public void addGlobalError(@NotNull String objectName, @NotNull String message) {
     globalErrors.add(new GlobalError(objectName, message));
@@ -98,7 +98,7 @@ public class JsonErrorResponse {
   /**
    * <p>addGlobalError.</p>
    *
-   * @param origin a {@link java.lang.Object} object.
+   * @param origin  a {@link java.lang.Object} object.
    * @param message a {@link java.lang.String} object.
    */
   public void addGlobalError(@NotNull Object origin, @NotNull String message) {

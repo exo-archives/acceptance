@@ -31,8 +31,8 @@ public interface CRUDService<T> {
    *
    * @param id must not be {@literal null}.
    * @return the entity with the given id
-   * @throws java.lang.IllegalArgumentException if {@code id} is {@literal null}
-   * @throws org.exoplatform.acceptance.service.EntityNotFoundException  in case there is no entity with the given {@code id}
+   * @throws java.lang.IllegalArgumentException                         if {@code id} is {@literal null}
+   * @throws org.exoplatform.acceptance.service.EntityNotFoundException in case there is no entity with the given {@code id}
    */
   T findOne(String id) throws EntityNotFoundException;
 
@@ -43,7 +43,6 @@ public interface CRUDService<T> {
    * @param entity the entity to update
    * @return the saved entity
    * @throws org.exoplatform.acceptance.service.EntityNotFoundException in case there is no entity with the given {@code id}
-   * @param <S> a S object.
    */
   <S extends T> S update(S entity) throws EntityNotFoundException;
 
@@ -53,7 +52,6 @@ public interface CRUDService<T> {
    *
    * @param entity the entity to update
    * @return the saved entity
-   * @param <S> a S object.
    */
   <S extends T> S updateOrCreate(S entity);
 
@@ -94,8 +92,8 @@ public interface CRUDService<T> {
    * Deletes the entity with the given id.
    *
    * @param id must not be {@literal null}.
-   * @throws java.lang.IllegalArgumentException in case the given {@code id} is {@literal null}
-   * @throws org.exoplatform.acceptance.service.EntityNotFoundException  in case there is no entity with the given {@code id}
+   * @throws java.lang.IllegalArgumentException                         in case the given {@code id} is {@literal null}
+   * @throws org.exoplatform.acceptance.service.EntityNotFoundException in case there is no entity with the given {@code id}
    */
   void delete(String id) throws EntityNotFoundException;
 

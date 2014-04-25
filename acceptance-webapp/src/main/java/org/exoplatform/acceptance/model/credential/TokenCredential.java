@@ -37,7 +37,7 @@ public class TokenCredential extends Credential {
   /**
    * <p>Constructor for TokenCredential.</p>
    *
-   * @param name a {@link java.lang.String} object.
+   * @param name  a {@link java.lang.String} object.
    * @param token a {@link java.lang.String} object.
    */
   @JsonCreator
