@@ -58,6 +58,7 @@
                 version = "2.4.1",
                 stripVersion = true),
         @WebJar(value = "restangular",
+                version = "1.4.0",
                 stripVersion = true)
     })
 
