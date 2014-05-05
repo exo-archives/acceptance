@@ -41,6 +41,7 @@ public interface CRUDService<T> {
    * entity instance completely.
    *
    * @param entity the entity to update
+   * @param <S>    a S object.
    * @return the saved entity
    * @throws org.exoplatform.acceptance.service.EntityNotFoundException in case there is no entity with the given {@code id}
    */
@@ -51,6 +52,7 @@ public interface CRUDService<T> {
    * operation might have changed the entity instance completely.
    *
    * @param entity the entity to update
+   * @param <S>    a S object.
    * @return the saved entity
    */
   <S extends T> S updateOrCreate(S entity);

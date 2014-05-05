@@ -48,7 +48,6 @@ public class ProductionInitializer implements ApplicationListener<ContextRefresh
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Handle an application event.
    */
   @Override

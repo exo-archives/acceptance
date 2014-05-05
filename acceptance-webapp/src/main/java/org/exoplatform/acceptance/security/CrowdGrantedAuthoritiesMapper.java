@@ -63,7 +63,6 @@ public class CrowdGrantedAuthoritiesMapper implements GrantedAuthoritiesMapper, 
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Mapping interface which can be injected into the authentication layer to convert the
    * authorities loaded from storage into those which will be used in the {@code Authentication} object.
    */

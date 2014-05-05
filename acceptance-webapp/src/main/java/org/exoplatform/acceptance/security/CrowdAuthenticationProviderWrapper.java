@@ -49,7 +49,6 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Performs authentication with the same contract as {@link
    * org.springframework.security.authentication.AuthenticationManager#authenticate(Authentication)}.
    */
@@ -64,7 +63,6 @@ public class CrowdAuthenticationProviderWrapper implements AuthenticationProvide
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns <code>true</code> if this <Code>AuthenticationProvider</code> supports the indicated
    * <Code>Authentication</code> object.
    * <p>

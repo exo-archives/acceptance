@@ -47,7 +47,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Retrieves an entity by its id.
    */
   public T findOne(String id) throws EntityNotFoundException {
@@ -59,7 +58,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Updates a given entity. Use the returned instance for further operations as the save operation might have changed the
    * entity instance completely.
    */
@@ -74,7 +72,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Updates an existing entity. Use the returned instance for further operations as the save operation might have changed the
    * entity instance completely.
    */
@@ -86,7 +83,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns whether an entity with the given id exists.
    */
   @Override
@@ -96,7 +92,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns all instances of the type.
    */
   @Override
@@ -106,7 +101,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns all instances of the given page. Pages are zero indexed, thus providing 0 for {@code page} will return the first
    * page.
    */
@@ -117,7 +111,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns the number of entities available.
    */
   @Override
@@ -127,7 +120,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Deletes the entity with the given id.
    */
   @Override
@@ -141,7 +133,6 @@ public abstract class AbstractMongoCRUDService<T extends StorableObject> impleme
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Deletes all entities managed by the repository.
    */
   @Override

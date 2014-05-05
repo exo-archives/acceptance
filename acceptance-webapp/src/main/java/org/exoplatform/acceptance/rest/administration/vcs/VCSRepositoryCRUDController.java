@@ -82,7 +82,6 @@ public class VCSRepositoryCRUDController extends CRUDController<VCSRepository, S
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Get a (potentially paginated) list of objects
    */
   @Override

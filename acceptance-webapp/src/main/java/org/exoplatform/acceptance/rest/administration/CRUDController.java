@@ -53,7 +53,8 @@ public abstract class CRUDController<T extends StorableObject, I extends Seriali
    * Get a (potentially paginated) list of objects
    *
    * @param offset the page number to get (0 by default is the first page)
-   * @param limit  the maximum number of entries in the page of results ( > 0 to activate pagination, -1 thus everything by default )
+   * @param limit  the maximum number of entries in the page of results ( &gt; 0 to activate pagination,
+   *               -1 thus everything by default )
    * @return a list of objects
    */
   @RequestMapping(method = RequestMethod.GET)

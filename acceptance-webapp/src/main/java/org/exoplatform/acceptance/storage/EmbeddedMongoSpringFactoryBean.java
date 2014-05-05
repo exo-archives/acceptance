@@ -26,8 +26,6 @@ import org.springframework.data.mongodb.core.MongoExceptionTranslator;
 /**
  * {@linkplain org.springframework.beans.factory.FactoryBean} for EmbedMongo that runs MongoDB as managed process
  * and exposes preconfigured instance of {@link com.mongodb.Mongo}.
- * <p/>
- * <p/>
  * <p>This is not truly embedded Mongo as there's no Java implementation of the
  * MongoDB. EmbedMongo actually downloads original MongoDB binary for your
  * platform and executes it. EmbedMongo process is stopped automatically when

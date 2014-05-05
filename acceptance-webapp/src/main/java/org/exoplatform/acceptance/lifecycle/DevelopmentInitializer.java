@@ -47,7 +47,6 @@ public class DevelopmentInitializer extends ProductionInitializer implements App
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Handle an application event.
    */
   @Override

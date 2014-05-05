@@ -47,7 +47,6 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Performs authentication with the same contract as {@link
    * org.springframework.security.authentication.AuthenticationManager#authenticate(Authentication)}.
    */
@@ -72,7 +71,6 @@ public class CrowdAuthenticationProviderMock implements AuthenticationProvider {
 
   /**
    * {@inheritDoc}
-   * <p/>
    * Returns <code>true</code> if this <Code>AuthenticationProvider</code> supports the indicated
    * <Code>Authentication</code> object.
    * <p>

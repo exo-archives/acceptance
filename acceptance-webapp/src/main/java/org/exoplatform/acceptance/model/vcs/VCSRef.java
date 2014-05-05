@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
 /**
  * <p>VCSRef class.</p>
  *
- * @author Arnaud Héritier <aheritier@exoplatform.com>
+ * @author Arnaud Héritier ( aheritier@exoplatform.com )
  * @since 2.0.0
  */
 public class VCSRef {
