@@ -89,7 +89,7 @@
     <webjars.angular-ui-bootstrap.version>0.11.0</webjars.angular-ui-bootstrap.version>
     <webjars.bootswatch.version>3.1.1</webjars.bootswatch.version>
     <webjars.font-awesome.version>4.0.3</webjars.font-awesome.version>
-    <webjars.jquery.version>2.1.0-2</webjars.jquery.version>
+    <webjars.jquery.version>2.1.1</webjars.jquery.version>
     <webjars.restangular.version>1.4.0-1</webjars.restangular.version>
     <xml-apis.version>1.4.01</xml-apis.version>
     <!-- **************************************** -->

@@ -52,7 +52,6 @@
         @WebJar(value = "font-awesome",
                 stripVersion = true),
         @WebJar(value = "jquery",
-                version = "2.1.0",
                 stripVersion = true),
         @WebJar(value = "lodash",
                 version = "2.4.1",
