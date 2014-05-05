@@ -45,6 +45,7 @@
         @WebJar(value = "angular-ui-bootstrap",
                 stripVersion = true),
         @WebJar(value = "angularjs",
+                version = "1.2.16",
                 stripVersion = true),
         @WebJar(value = "bootswatch-spacelab",
                 stripVersion = true),
