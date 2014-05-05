@@ -37,3 +37,4 @@ release.properties
 
 # OS
 .DS_Store
+.java-version
