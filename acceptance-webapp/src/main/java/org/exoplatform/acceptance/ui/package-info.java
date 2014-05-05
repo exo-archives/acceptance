@@ -43,7 +43,6 @@
 @WebJars(
     {
         @WebJar(value = "angular-ui-bootstrap",
-                version = "0.10.0",
                 stripVersion = true),
         @WebJar(value = "angularjs",
                 stripVersion = true),

@@ -86,7 +86,7 @@
     <spring.version>4.0.3.RELEASE</spring.version>
     <tomcat.version>7.0.53</tomcat.version>
     <webjars.angularjs.version>1.2.16</webjars.angularjs.version>
-    <webjars.angular-ui-bootstrap.version>0.10.0-1</webjars.angular-ui-bootstrap.version>
+    <webjars.angular-ui-bootstrap.version>0.11.0</webjars.angular-ui-bootstrap.version>
     <webjars.bootswatch.version>3.1.1</webjars.bootswatch.version>
     <webjars.font-awesome.version>4.0.3</webjars.font-awesome.version>
     <webjars.jquery.version>2.1.0-2</webjars.jquery.version>
