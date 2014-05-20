@@ -30,6 +30,10 @@
   <packaging>war</packaging>
   <name>eXo Acceptance Webapp</name>
   <description>eXo Acceptance - Web Application</description>
+  <properties>
+    <!-- surefire and failsafe settings -->
+    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+  </properties>
   <dependencies>
     <!-- **************************************** -->
     <!-- Crowd -->
@@ -408,7 +412,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <configuration>
-            <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
             <systemProperties>
               <!-- Port used for Tomcat HTTP connector -->
               <tomcat.http.port>${tomcat.http.port}</tomcat.http.port>
